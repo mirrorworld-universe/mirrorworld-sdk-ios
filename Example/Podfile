@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'MirrorWordSDK_Example' do
+  pod 'MirrorWordSDK', :path => '../'
+
+  target 'MirrorWordSDK_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
