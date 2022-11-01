@@ -1,0 +1,6 @@
+framework module Pods_MirrorWordSDK_Example {
+  umbrella header "Pods-MirrorWordSDK_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
