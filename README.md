@@ -104,7 +104,7 @@ Checks whether the current user is logged in. You can use this function to judge
     MWSDK.loginOut {
         print("Logs out a user : success")
     } onFail: {
-        print("Logs out a user : failed")
+        print("Logs out a user : failed !")
     }
 ```
 
