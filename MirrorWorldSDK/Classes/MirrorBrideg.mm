@@ -13,6 +13,10 @@
 
 @implementation MirrorBrideg
 
+//生命一个静态变量存储回调unity的函数指针
+static eckShowPlayerHandler showPlayerBlock;
+
+
 extern "C"
 {
     extern void initSDK(char *apikey){
@@ -23,12 +27,27 @@ extern "C"
 
 extern "C"
 {
-    extern void StartLogin(){
-        [[MirrorWorldSDK share] StartLoginOnSuccess:^(NSDictionary<NSString *,id> * _Nullable) { } onFail:^{ }];
+    typedef void (*LoginCallback) (const char *object);
+    extern void StartLogin(LoginCallback callback){
+        [[MirrorWorldSDK share] StartLoginOnSuccess:^(NSDictionary<NSString *,id> * userinfo) {
+            // to string
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userinfo options:NSJSONWritingPrettyPrinted error:nil];
+            NSString *user = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            const char *cString = [user UTF8String];
+            callback(cString);
+        } onFail:^{
+            
+        }];
     }
 }
+
+
 extern "C"
 {
     extern void OpenWallet(){}
+}
+
+-(void)sendMessage{
+    
 }
 @end

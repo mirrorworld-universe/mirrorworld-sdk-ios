@@ -153,6 +153,29 @@ Get access token so that users can visit APIs.
 
 <br/>
 
+
+
+## Using iOS-SDK for Unity.
+in Unity:
+```
+using System.Runtime.InteropServices;
+public class MirrorSDK : MonoBehaviour
+{
+  [DllImport("__Internal")]
+    private static extern void initSDK(string apikey);
+    
+    private void Awake()
+    {
+        #elif (UNITY_IOS && !(UNITY_EDITOR))
+            initSDK(apiKey);
+        #endif
+    }
+}
+```
+
+
+
+
 ## License
 
 MirrorWorldSDK is available under the MIT license. See the LICENSE file for more info.

@@ -19,8 +19,12 @@ import UIKit
      **/
     @objc func openLoginView(controller:UIViewController?) -> MirrorWorldLoginAuthController?{
         guard let sdkConfig = config else { return nil}
+        
         let urlString = sdkConfig.environment.mainRoot + sdkConfig.apiKey
-        let url = URL(string: urlString)!
+        guard let url = URL(string: urlString) else {
+            MWLog.console("please check your environment or apiKey .")
+            return nil}
+        
         let auth = MirrorWorldLoginAuthController.init(url: url)
         controller?.present(auth, animated: true)
         return auth
