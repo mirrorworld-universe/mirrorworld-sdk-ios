@@ -1,6 +1,0 @@
-framework module MirrorWordSDK {
-  umbrella header "MirrorWordSDK-umbrella.h"
-
-  export *
-  module * { export * }
-}

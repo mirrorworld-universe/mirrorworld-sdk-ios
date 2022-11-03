@@ -1,15 +1,15 @@
 PODS:
-  - MirrorWordSDK (0.1.0)
+  - MirrorWorldSDK (0.1.0)
 
 DEPENDENCIES:
-  - MirrorWordSDK (from `../`)
+  - MirrorWorldSDK (from `../`)
 
 EXTERNAL SOURCES:
-  MirrorWordSDK:
+  MirrorWorldSDK:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MirrorWordSDK: e47c680c196ec840d99522b8ca1fd27eaf5e04b2
+  MirrorWorldSDK: e47c680c196ec840d99522b8ca1fd27eaf5e04b2
 
 PODFILE CHECKSUM: a808882aaecb5a52c2de95558564e91d4951d47c
 

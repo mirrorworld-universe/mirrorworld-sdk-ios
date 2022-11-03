@@ -1,0 +1,22 @@
+{
+  "name": "MirrorWorldSDK",
+  "version": "0.1.0",
+  "summary": "A short description of MirrorWorldSDK.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/791738673@qq.com/MirrorWorldSDK",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "791738673@qq.com": "zhangmingguang@datenight.cn"
+  },
+  "source": {
+    "git": "https://github.com/791738673@qq.com/MirrorWorldSDK.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "MirrorWorldSDK/Classes/**/*"
+}

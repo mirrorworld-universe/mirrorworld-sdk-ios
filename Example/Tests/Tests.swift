@@ -1,5 +1,5 @@
 import XCTest
-import MirrorWordSDK
+import MirrorWorldSDK
 
 class Tests: XCTestCase {
     

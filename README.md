@@ -1,9 +1,9 @@
-# MirrorWordSDK
+# MirrorWorldSDK
 
-[![CI Status](https://img.shields.io/travis/791738673@qq.com/MirrorWordSDK.svg?style=flat)](https://travis-ci.org/791738673@qq.com/MirrorWordSDK)
-[![Version](https://img.shields.io/cocoapods/v/MirrorWordSDK.svg?style=flat)](https://cocoapods.org/pods/MirrorWordSDK)
-[![License](https://img.shields.io/cocoapods/l/MirrorWordSDK.svg?style=flat)](https://cocoapods.org/pods/MirrorWordSDK)
-[![Platform](https://img.shields.io/cocoapods/p/MirrorWordSDK.svg?style=flat)](https://cocoapods.org/pods/MirrorWordSDK)
+[![CI Status](https://img.shields.io/travis/791738673@qq.com/MirrorWorldSDK.svg?style=flat)](https://travis-ci.org/791738673@qq.com/MirrorWorldSDK)
+[![Version](https://img.shields.io/cocoapods/v/MirrorWorldSDK.svg?style=flat)](https://cocoapods.org/pods/MirrorWorldSDK)
+[![License](https://img.shields.io/cocoapods/l/MirrorWorldSDK.svg?style=flat)](https://cocoapods.org/pods/MirrorWorldSDK)
+[![Platform](https://img.shields.io/cocoapods/p/MirrorWorldSDK.svg?style=flat)](https://cocoapods.org/pods/MirrorWorldSDK)
 
 ## Introduction to Mirror World
 
@@ -11,7 +11,7 @@
 
 ## Author
 
-MirrorWord
+MirrorWorld
 
 ## Supported iOS & SDK Versions
 - iOS 10.0+
@@ -27,7 +27,7 @@ MirrorWord
 
 ## Installation
 
-MirrorWordSDK is available through [CocoaPods](https://cocoapods.org). To install
+MirrorWorldSDK is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
@@ -36,7 +36,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'MirrorWordSDK'
+    pod 'MirrorWorldSDK'
 end
 
 ```
@@ -58,7 +58,7 @@ Set UrlScheme in the info.plist file of your project ： `mwsdk`
 Than
 
 ```
-import MirrorWordSDK
+import MirrorWorldSDK
 
 ```
 init SDK in the AppDelegate.
@@ -72,7 +72,7 @@ init SDK in the AppDelegate.
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        MirrorWordSDK.share.handleOpen(url: url)
+        MirrorWorldSDK.share.handleOpen(url: url)
         return true
     }
     
@@ -85,7 +85,7 @@ Authentication Methods
 
 Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
 ```
-    MirrorWordSDK.share.StartLogin(baseController: self) { userInfo in
+    MirrorWorldSDK.share.StartLogin(baseController: self) { userInfo in
         print("login success :\(userInfo?.toString() ?? "")")
     } onFail: {
         print("login failed !")
@@ -112,4 +112,4 @@ Checks whether the current user is logged in. You can use this function to judge
 
 ## License
 
-MirrorWordSDK is available under the MIT license. See the LICENSE file for more info.
+MirrorWorldSDK is available under the MIT license. See the LICENSE file for more info.
