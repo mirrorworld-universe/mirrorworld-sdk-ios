@@ -132,7 +132,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             break
         case "OpenWallet":
             print("123")
-            MWSDK.OpenWallet(controller: self)
+            MWSDK.OpenWallet()
             break
         case "QueryUser":
             MWSDK.QueryUser(email: "zg72296@gmail.com") { user in

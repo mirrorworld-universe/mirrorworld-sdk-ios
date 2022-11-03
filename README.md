@@ -14,16 +14,9 @@
 MirrorWorld
 
 ## Supported iOS & SDK Versions
+
 - iOS 10.0+
 - Swift 5
-
-## Our Mission
-- Mirror World's contribution to this vision is to create top-class composable and easy-to-use APIs and SDKs for building applications and games on a decentralized web without limits. Our core SDK primarily provides features around Authentication, NFT APIs, Marketplaces and Storefronts, Tokenization and On-ramp strategies.
-- The vision of the Mirror World Smart SDK is to create easy-to-integrate tools to help creators step out of the walled-garden solutions to building digital economies on decentralized applications and games.
-
-## Our open-source initiative
-
-- We also want to foster an open-source friendly community where builders can contribute to the tools we create and be rewarded for their significant contributions to the Mirror World development ecosystem.
 
 ## Installation
 
@@ -40,28 +33,33 @@ target '<Your Target Name>' do
 end
 
 ```
+
 Then, run the following command:
 
-```bash
+```sh
 $ pod install
 ```
 
-
 ## Getting started
+
 Create a developer account on the Developer dashboard https://app.mirrorworld.fun/ . Create project and create an API Key.
 
 ## Usage
+
 ```
 Set UrlScheme in the info.plist file of your project ： `mwsdk`
 
 ```
+
 Than
 
 ```
 import MirrorWorldSDK
 
 ```
+
 init SDK in the AppDelegate.
+
 ```
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
        
@@ -78,12 +76,14 @@ init SDK in the AppDelegate.
     
 ```
 
+### Authentication Methods
 
-Authentication Methods
+`public let MWSDK = MirrorWorldSDK.share`
 
 - StartLogin
 
 Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
+
 ```
     MirrorWorldSDK.share.StartLogin(baseController: self) { userInfo in
         print("login success :\(userInfo?.toString() ?? "")")
@@ -91,24 +91,67 @@ Calling this api would popup a dialog, user can finish login flow on it. In whic
         print("login failed !")
     }
 ```
+
 - CheckAuthenticated
 
 Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
+
 ```
     MWSDK.CheckAuthenticated { onBool in
         print("This device's login state is:\(onBool)")
     }
 ```
+
 - Logs out a user
-```
+  ```
     MWSDK.loginOut {
         print("Logs out a user : success")
     } onFail: {
         print("Logs out a user : failed !")
     }
+  ```
+- CheckAuthenticated
+
+    Checks whether the current user is logged in. You can use this function to judge  whether a user needs to start login flow.
+
+```
+MWSDK.CheckAuthenticated { onBool in
+    self.Log("This device's login state is:\(onBool)")
+}
+
+### Wallet Methods
+
 ```
 
+- OpenWallet
+  Open a webview which would show the wallet page.
+  ```
+  MWSDK.OpenWallet()
+  ```
+- GetAccessToken
 
+Get access token so that users can visit APIs.
+
+```
+            MWSDK.GetAccessToken(callBack: { token in
+                self.Log("Access Token is : \(token)")
+            })
+```
+
+<br/>
+
+- QueryUser
+  
+  Check user's info, then we can get user's base information such as wallet address and so on.
+  ```
+   MWSDK.QueryUser(email: "zg72296@gmail.com") { user in
+                  self.Log(user ?? "null")
+              } onFetchFailed: { code, error in
+                  self.Log("\(code):\(error)")
+              }
+  ```
+
+<br/>
 
 ## License
 

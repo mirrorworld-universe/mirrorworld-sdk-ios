@@ -129,7 +129,7 @@ public let MWSDK = MirrorWorldSDK.share
         }
     }
     
-    @objc public func OpenWallet(controller:UIViewController?){
+    @objc public func OpenWallet(){
         let topvc = Self.getBaseViewController()
         walletMoudle.openWallet(controller: topvc)
         
