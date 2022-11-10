@@ -13,9 +13,6 @@
 
 @implementation MirrorBrideg
 
-//生命一个静态变量存储回调unity的函数指针
-static eckShowPlayerHandler showPlayerBlock;
-
 
 extern "C"
 {
@@ -44,10 +41,11 @@ extern "C"
 
 extern "C"
 {
-    extern void OpenWallet(){}
+    extern void OpenWallet(){
+        [[MirrorWorldSDK share] OpenWallet];
+
+    }
 }
 
--(void)sendMessage{
-    
-}
+
 @end

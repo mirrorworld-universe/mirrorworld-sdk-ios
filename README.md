@@ -9,14 +9,12 @@
 
 - The Mirror World Smart SDK is a cross-platform interface that provides simple, declarative API interfaces for building Mobile and Web Applications into Web 3 Architecture.
 
-## Author
-
-MirrorWorld
 
 ## Supported iOS & SDK Versions
 
 - iOS 10.0+
-- Swift 5
+- Swift
+- Objective-C/C++/C
 
 ## Installation
 
@@ -85,7 +83,7 @@ init SDK in the AppDelegate.
 Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
 
 ```
-    MirrorWorldSDK.share.StartLogin(baseController: self) { userInfo in
+    MirrorWorldSDK.share.StartLogin { userInfo in
         print("login success :\(userInfo?.toString() ?? "")")
     } onFail: {
         print("login failed !")
@@ -115,9 +113,9 @@ Checks whether the current user is logged in. You can use this function to judge
     Checks whether the current user is logged in. You can use this function to judge  whether a user needs to start login flow.
 
 ```
-MWSDK.CheckAuthenticated { onBool in
-    self.Log("This device's login state is:\(onBool)")
-}
+    MWSDK.CheckAuthenticated { onBool in
+        self.Log("This device's login state is:\(onBool)")
+    }
 
 ### Wallet Methods
 
@@ -133,9 +131,9 @@ MWSDK.CheckAuthenticated { onBool in
 Get access token so that users can visit APIs.
 
 ```
-            MWSDK.GetAccessToken(callBack: { token in
-                self.Log("Access Token is : \(token)")
-            })
+    MWSDK.GetAccessToken(callBack: { token in
+        self.Log("Access Token is : \(token)")
+    })
 ```
 
 <br/>
@@ -144,11 +142,11 @@ Get access token so that users can visit APIs.
   
   Check user's info, then we can get user's base information such as wallet address and so on.
   ```
-   MWSDK.QueryUser(email: "zg72296@gmail.com") { user in
-                  self.Log(user ?? "null")
-              } onFetchFailed: { code, error in
-                  self.Log("\(code):\(error)")
-              }
+   MWSDK.QueryUser(email: "user Email") { user in
+          self.Log(user ?? "null")
+    } onFetchFailed: { code, error in
+         self.Log("\(code):\(error)")
+    }
   ```
 
 <br/>

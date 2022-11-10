@@ -40,7 +40,7 @@ import UIKit
             DispatchQueue.main.async {
                 finsh?(true)
             }
-        } _: { errorDesc in
+        } _: { code,errorDesc in
             DispatchQueue.main.async {
                 finsh?(false)
             }
@@ -55,7 +55,7 @@ import UIKit
             DispatchQueue.main.async {
                 onBool?(true)
             }
-        } _: { errorDesc in
+        } _: { code,errorDesc in
             DispatchQueue.main.async {
                 onBool?(false)
             }
@@ -81,7 +81,7 @@ import UIKit
                 MirrorWorldSDKAuthData.share.access_token = accessToken ?? ""
                 MirrorWorldSDKAuthData.share.userInfo = user
                 onBool?(true)
-            } _: { errorDesc in
+            } _: { code,errorDesc in
                 onBool?(false)
             }
         }else{
@@ -103,9 +103,9 @@ import UIKit
             DispatchQueue.main.async {
                 onUserFetched?(user)
             }
-        } _: { err in
+        } _: { code,err in
             DispatchQueue.main.async {
-                onFetchFailed?(0,err)
+                onFetchFailed?(code,err)
             }
         }
 

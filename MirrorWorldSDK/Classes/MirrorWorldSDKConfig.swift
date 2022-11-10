@@ -13,11 +13,11 @@ import UIKit
     override init() {
         super.init()
     }
-    var environment:MWEnvironment = .MainNet
-    var apiKey:String = ""
+    public var environment:MWEnvironment = .MainNet
+    public var apiKey:String = ""
     
-    var clientSecret:String = ""
-    var clientId:String = ""
+    public var clientSecret:String = ""
+    public var clientId:String = ""
 }
 
 

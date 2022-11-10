@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        MirrorWorldSDK.share.initSDK(appKey: "mw_testIb0RM5IMP5UmgSwIAu4qCGPTP1BO7Doq1GN", appSecret: "1", env: .StagingDevNet)
+
         MWSDK.initSDK(env: .StagingDevNet, apiKey: "mw_testIb0RM5IMP5UmgSwIAu4qCGPTP1BO7Doq1GN")
+        
         return true
     }
     

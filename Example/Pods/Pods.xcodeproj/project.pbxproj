@@ -164,6 +164,13 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		804C93FD291B601000B8DA25 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		9042C6D85294A0185CF6D1E5FF431E93 /* Pods-MirrorWorldSDK_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +236,7 @@
 		F669274CEDE3F0678CC32D5320E853FA /* MirrorWorldSDK */ = {
 			isa = PBXGroup;
 			children = (
+				804C93FD291B601000B8DA25 /* Authentication */,
 				8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */,
 				808806612910C0E000B9BFB3 /* MirrorAuthMoudle.swift */,
 				808806632910C11400B9BFB3 /* MirrorWalletMoudle.swift */,
