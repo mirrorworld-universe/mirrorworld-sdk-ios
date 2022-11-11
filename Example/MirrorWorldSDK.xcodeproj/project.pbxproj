@@ -18,6 +18,7 @@
 		801D292129040AB700B60DE9 /* tableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D292029040AB600B60DE9 /* tableViewCell.swift */; };
 		801D29242906399300B60DE9 /* MWDemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D29222906399300B60DE9 /* MWDemoCell.swift */; };
 		801D29252906399300B60DE9 /* MWDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801D29232906399300B60DE9 /* MWDemoCell.xib */; };
+		80906FF2291E09CD00008035 /* infoplist-UrlScheme-desc.png in Resources */ = {isa = PBXBuildFile; fileRef = 80906FF1291E09CD00008035 /* infoplist-UrlScheme-desc.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		801D292029040AB600B60DE9 /* tableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableViewCell.swift; sourceTree = "<group>"; };
 		801D29222906399300B60DE9 /* MWDemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWDemoCell.swift; sourceTree = "<group>"; };
 		801D29232906399300B60DE9 /* MWDemoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MWDemoCell.xib; sourceTree = "<group>"; };
+		80906FF1291E09CD00008035 /* infoplist-UrlScheme-desc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoplist-UrlScheme-desc.png"; sourceTree = "<group>"; };
 		90EE38868B7DF29F80139D38 /* Pods-MirrorWorldSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MirrorWorldSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9126F66A3BD9A1C6337D74EC /* Pods_MirrorWorldSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB2B4B9C0F90B15BAB3F0744 /* Pods_MirrorWorldSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 			children = (
 				801D291F290403A000B60DE9 /* Class */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				80906FF1291E09CD00008035 /* infoplist-UrlScheme-desc.png */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				801D29252906399300B60DE9 /* MWDemoCell.xib in Resources */,
+				80906FF2291E09CD00008035 /* infoplist-UrlScheme-desc.png in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,

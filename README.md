@@ -44,10 +44,17 @@ Create a developer account on the Developer dashboard https://app.mirrorworld.fu
 
 ## Usage
 
+*`首先应该在您的项目中配置UrlScheme`
+
 ```
 Set UrlScheme in the info.plist file of your project ： `mwsdk`
 
 ```
+
+like this
+![Image text](https://camo.githubusercontent.com/7cb9b0f725e8a92c002e83ce1c5aaa42b22f770f61e3a86427cf3a594bf5251d/68747470733a2f2f6d61726b65742d6173736574732e6d6972726f72776f726c642e66756e2f646f63732f6275696c642e706e67)
+
+
 
 Than
 
@@ -108,14 +115,6 @@ Checks whether the current user is logged in. You can use this function to judge
         print("Logs out a user : failed !")
     }
   ```
-- CheckAuthenticated
-
-    Checks whether the current user is logged in. You can use this function to judge  whether a user needs to start login flow.
-
-```
-    MWSDK.CheckAuthenticated { onBool in
-        self.Log("This device's login state is:\(onBool)")
-    }
 
 ### Wallet Methods
 
@@ -151,6 +150,18 @@ Get access token so that users can visit APIs.
 
 <br/>
 
+## MarketPlace Method
+
+- FetchSingleNFT
+  Fetch the details of a NFT.
+  ```
+   MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "E5LBzZBgyNAmXFevhybmqTKL4X9UPVeiExxx") { data in
+            self.Log(data)
+    } onFailed: { code, message in
+            self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
+  ```
+
 
 
 ## Using iOS-SDK for Unity.
@@ -170,6 +181,8 @@ public class MirrorSDK : MonoBehaviour
     }
 }
 ```
+
+
 
 
 
