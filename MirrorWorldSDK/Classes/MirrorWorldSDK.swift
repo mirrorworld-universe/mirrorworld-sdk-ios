@@ -134,6 +134,9 @@ public let MWSDK = MirrorWorldSDK.share
         }
     }
     
+    /**
+     * Open a webview which would show the wallet page.
+     */
     @objc public func OpenWallet(){
         let topvc = Self.getBaseViewController()
         walletMoudle.openWallet(controller: topvc)
@@ -221,6 +224,10 @@ public let MWSDK = MirrorWorldSDK.share
     }
     
     //: MARK: - MarketPlace
+    /**
+     * Mint a new NFT.
+     *
+     */
     @objc public func MintNewNFT(collection_mint: String, name: String, symbol: String, url: String, seller_fee_basis_points: Int, confirmation: String, onSuccess: onSuccess, onFailed: onFailed){
         marketPlaceMoudle.MintNewNFT(collection_mint: collection_mint, name: name, symbol: symbol, url: url, seller_fee_basis_points: seller_fee_basis_points, confirmation: confirmation, onSuccess: { data in
             onSuccess?(data)
@@ -236,6 +243,9 @@ public let MWSDK = MirrorWorldSDK.share
         })
     }
     
+    /**
+     * Fetch the details of a NFT.
+     */
     @objc public func FetchSingleNFT(mint_Address:String,onSuccess:onSuccess,onFailed:onFailed){
         marketPlaceMoudle.FetchSingleNFT(mint_Address: mint_Address) { data in
             onSuccess?(data)
@@ -254,6 +264,9 @@ public let MWSDK = MirrorWorldSDK.share
         }
     }
     
+    /**
+     * Get list of NFT on market place.
+     */
     @objc public func ListNFT(mint_address:String,price:Double,confirmation:String,onSuccess:onSuccess,onFailed:onFailed){
         marketPlaceMoudle.ListNFT(mint_address: mint_address, price: price, confirmation: confirmation) { data in
             onSuccess?(data)
@@ -261,6 +274,83 @@ public let MWSDK = MirrorWorldSDK.share
             onFailed?(code,message)
         }
 
+    }
+    
+    /**
+     * Cancel listing of NFT.
+     */
+    @objc public func CancelNFTListing(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.CancelNFTListing(mint_address: mint_address, price: price) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+
+    
+    @objc public func FetchNFTsByMintAddresses(mint_address:String,onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.FetchNFTsByMintAddresses(mint_address: mint_address) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
+    
+    /**
+     * Get a collection of NFT by creator addresses.
+     */
+    @objc public func FetchNFTsByCreatorAddresses(creators:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.FetchNFTsByCreatorAddresses(creators: creators, limit: limit, offset: offset) { data in
+            onSuccess?(data)
+
+        } onFailed: { code, message in
+            onFailed?(code,message)
+
+        }
+
+
+    }
+    
+    
+    /**
+     * Get a collection of NFT by authority addresses.
+     */
+    @objc public func FetchNFTsByUpdateAuthorities(update_authorities:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.FetchNFTsByUpdateAuthorities(update_authorities: update_authorities, limit: limit, offset: offset) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+
+    }
+
+    
+    /**
+     *  Get a collection of NFT by mint addresses.
+     *
+     */
+    @objc public func FetchNFTsByOwnerAddress(owners:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.FetchNFTsByOwnerAddress(owners: owners, limit: limit, offset: offset) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+    }
+    
+    /**
+     * Buy a NFT on market place.
+     *
+     */
+    @objc public func BuyNFT(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.BuyNFT(mint_address: mint_address, price: price){ data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
     }
 
     

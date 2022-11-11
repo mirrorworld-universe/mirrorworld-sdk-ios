@@ -35,9 +35,10 @@ class ViewController: UIViewController {
     @IBAction func clearConsole(_ sender: Any) {
         self.textView.text = ""
     }
-    func Log(_ info:String){
+    func Log(_ info:String?){
+        let t = info ?? ""
         var text = self.textView.text
-        text?.append(info)
+        text?.append(t)
         text?.append("\n")
         self.textView.text = text
         self.textView.scrollRangeToVisible(NSRange(location: 0, length: text?.count ?? 0))
@@ -59,7 +60,12 @@ class ViewController: UIViewController {
                         "MintNewNFT",
                         "FetchSingleNFT",
                         "ListNFT",
-                        "MintNewNFTOnCollection","CreateVerifiedCollection","CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet","CancelNFTListing","BuyNFT","UpdateNFTListing","ListNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"])
+                        "CancelNFTListing",
+                        "FetchNFTsByMintAddresses",
+                        "MintNewNFTOnCollection",
+                        "CreateVerifiedCollection",
+                        "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
+                        "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"])
     ]
     
     @IBOutlet weak var tableView: UITableView!
@@ -115,8 +121,10 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
         case "Start Login":
 
             MWSDK.StartLogin { userInfo in
-                self.Log("login success :\(userInfo?.toString() ?? "")")
+                self.loadingActive.stopAnimating()
+                self.Log("login success :\(userInfo?.toString())")
             } onFail: {
+                self.loadingActive.stopAnimating()
                 self.Log("login failed!")
             }
 
@@ -128,19 +136,21 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             }
         case "CheckAuthenticated":
             MWSDK.CheckAuthenticated { onBool in
+                self.loadingActive.stopAnimating()
                 self.Log("This device's login state is:\(onBool)")
             }
             break
         case "OpenWallet":
             print("123")
             MWSDK.OpenWallet()
+            self.loadingActive.stopAnimating()
             break
         case "QueryUser":
             MWSDK.QueryUser(email: "jbakebwa@gmail.com") { user in
                 self.Log(user ?? "null")
                 self.loadingActive.stopAnimating()
             } onFetchFailed: { code, error in
-                self.Log("\(code):\(error ?? "")")
+                self.Log("\(code):\(error)")
             }
         case "GetAccessToken":
             MWSDK.GetAccessToken(callBack: { token in
@@ -149,7 +159,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             })
         case "Get wallet tokens":
             MWSDK.GetWalletTokens { res in
-                self.Log("Get wallet tokens:\n \(res ?? "")")
+                self.Log("Get wallet tokens:\n \(res)")
                 self.loadingActive.stopAnimating()
             } onFailed: {
                 self.Log("Get wallet tokens: failed")
@@ -158,7 +168,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
         case "Get wallet transactions":
 
             MirrorWorldSDK.share.GetWalletTransactions(limit: 10, next_before: "") { response in
-                self.Log("Get wallet transactions:\(response ?? "")")
+                self.Log("Get wallet transactions:\(response)")
                 self.loadingActive.stopAnimating()
             } onFailed: {
                 self.Log("\(item): failed ~")
@@ -168,7 +178,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             
         case "Get wallet transaction by signature":
             MirrorWorldSDK.share.GetWalletTransactionsBy(signature: "signature") { response in
-                self.Log(response ?? "null")
+                self.Log(response)
                 self.loadingActive.stopAnimating()
             } onFailed: {
                 self.Log("\(item):failed~")
@@ -177,7 +187,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             break
         case "Transfer SOL to another address":
             MirrorWorldSDK.share.TransferSolToAnotherAddress(to_publickey: "6Rp5grdihB8bpNCc9v25wZSgVMiNvLfRNF4B8z7esdZ4", amount: 123) { response in
-                self.Log(response ?? "nil")
+                self.Log(response)
                 self.loadingActive.stopAnimating()
             } onFailed: {
                 self.Log("\(item):failed~")
@@ -185,21 +195,21 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             break
         case "Transfer Token to another address":
             MWSDK.TransferTokenToAnotherAddress(to_publickey: "3UPoqgwgEgERSLNeF2rcawidfisdAtCzFe3F8Txxxxxx", amount: 123, token_mint: "3UPoqgwgEgERSLNeF2rcawidfisdAtCzFe3F8Txxxxxx", decimals: 123) { response in
-                self.Log(response ?? "nil")
+                self.Log(response)
                 self.loadingActive.stopAnimating()
             } onFailed: {
                 self.Log("\(item):failed~")
             }
         case "MintNewCollection":
             MWSDK.MintNewCollection(name: "testNewCollection", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", confirmation: "finalized", seller_fee_basis_points: 200, onSuccess: { data in
-                self.Log(data ?? "")
+                self.Log(data)
                 self.loadingActive.stopAnimating()
             }, onFailed: { code,message in
                 self.Log("\(item):failed:\(code),\(message ?? "")")
             })
         case "MintNewNFT":
             MWSDK.MintNewNFT(collection_mint: "", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500, confirmation: "finalized") { data in
-                self.Log(data ?? "")
+                self.Log(data)
                 self.loadingActive.stopAnimating()
             } onFailed: { code, message in
                 self.Log("\(item):failed:\(code),\(message ?? "")")
@@ -209,7 +219,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             break
         case "FetchSingleNFT":
             MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "E5LBzZBgyNAmXFevhybmqTKL4X9UPVeiEBhPbRfU1pDL") { data in
-                self.Log(data ?? "")
+                self.Log(data)
                 self.loadingActive.stopAnimating()
             } onFailed: { code, message in
                 self.Log("\(item):failed:\(code),\(message ?? "")")
@@ -217,7 +227,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             break
         case "TransferNFTToAnotherSolanaWallet":
             MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
-                self.Log(data ?? "")
+                self.Log(data)
                 self.loadingActive.stopAnimating()
             } onFailed: { code, message in
                 self.Log("\(item):failed:\(code),\(message ?? "")")
@@ -229,13 +239,76 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             break
         case "ListNFT":
             MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
-                self.Log(data ?? "")
+                self.Log(data)
                 self.loadingActive.stopAnimating()
 
             } onFailed: { code, message in
                 self.Log("\(item):failed:\(code),\(message ?? "")")
                 self.loadingActive.stopAnimating()
 
+            }
+            break
+        case "CancelNFTListing":
+            MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
+            }
+            break
+            
+        case "BuyNFT":
+            MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
+            }
+
+            
+        case "FetchNFTsByMintAddresses":
+            MWSDK.FetchNFTsByMintAddresses(mint_address: "test") { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
+
+            }
+
+            break
+        case "FetchNFTsByUpdateAuthorities":
+            MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offset: 0.1) { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
+
+            }
+
+            break
+        case "FetchNFTsByCreatorAddresses":
+            MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
+            }
+            break
+        case "FetchNFTsByOwnerAddresses":
+            MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
             }
 
             break

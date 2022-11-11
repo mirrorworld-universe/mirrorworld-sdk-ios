@@ -140,6 +140,107 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
 
     }
     
+    @objc public func CancelNFTListing(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){
+        let api = MirrorWorldNetApi.cancelNFTListing(mint_address: mint_address, price: price)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response, success: { data in
+                onSuccess?(data)
+            }, failed: { code, message in
+                onFailed?(code,message)
+            })
+        } _: { code, errorDesc in
+            DispatchQueue.main.async {
+                onFailed?(code,errorDesc)
+            }
+        }
+
+    }
+
+    
+    @objc public func FetchNFTsByMintAddresses(mint_address:String,onSuccess:onSuccess,onFailed:onFailed){
+        let api = MirrorWorldNetApi.FetchNFTsByMintAddresses(mint_address: mint_address)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response, success: { response in
+                onSuccess?(response)
+            }, failed: { code, message in
+                onFailed?(code,message)
+            })
+        } _: { code, errorDesc in
+            DispatchQueue.main.async {
+                onFailed?(code,errorDesc)
+            }
+        }
+
+    }
+    
+    
+    
+    @objc public func FetchNFTsByCreatorAddresses(creators:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
+        let api = MirrorWorldNetApi.FetchNFTsByCreatorAddresses(creators: creators, limit: limit, offset: offset)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response, success: { response in
+                onSuccess?(response)
+            }, failed: { code, message in
+                onFailed?(code,message)
+            })
+        } _: { code, errorDesc in
+            DispatchQueue.main.async {
+                onFailed?(code,errorDesc)
+            }
+        }
+
+    }
+        
+    
+    @objc public func FetchNFTsByUpdateAuthorities(update_authorities:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
+        let api = MirrorWorldNetApi.FetchNFTsByUpdateAuthorities(update_authorities: update_authorities, limit: limit, offset: offset)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response, success: { response in
+                onSuccess?(response)
+            }, failed: { code, message in
+                onFailed?(code,message)
+            })
+        } _: { code, errorDesc in
+            DispatchQueue.main.async {
+                onFailed?(code,errorDesc)
+            }
+        }
+
+    }
+
+    @objc public func FetchNFTsByOwnerAddress(owners:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
+        let api = MirrorWorldNetApi.FetchNFTsByOwnerAddress(owners: owners, limit: limit, offset: offset)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response, success: { response in
+                onSuccess?(response)
+            }, failed: { code, message in
+                onFailed?(code,message)
+            })
+        } _: { code, errorDesc in
+            DispatchQueue.main.async {
+                onFailed?(code,errorDesc)
+            }
+        }
+
+    }
+    
+    @objc public func BuyNFT(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){
+        let api = MirrorWorldNetApi.BuyNFT(mint_address: mint_address, price: price, confirmation: "finalized")
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response, success: { response in
+                onSuccess?(response)
+            }, failed: { code, message in
+                onFailed?(code,message)
+            })
+        } _: { code, errorDesc in
+            DispatchQueue.main.async {
+                onFailed?(code,errorDesc)
+            }
+        }
+
+    }
+
+    
     
     
 }

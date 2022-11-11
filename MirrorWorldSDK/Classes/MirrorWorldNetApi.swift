@@ -42,7 +42,18 @@ public enum MirrorWorldNetApi{
     
     case ListNFT(_ mint_address:String,_ price:Double,_ confirmation:String)
     
+    case cancelNFTListing(mint_address:String,price:Double)
     
+    case BuyNFT(mint_address:String,price:Double,confirmation:String)
+    
+    
+    case FetchNFTsByMintAddresses(mint_address:String)
+   
+    case FetchNFTsByCreatorAddresses(creators:[String],limit:Double,offset:Double)
+    case FetchNFTsByUpdateAuthorities(update_authorities:[String],limit:Double,offset:Double)
+    
+    case FetchNFTsByOwnerAddress(owners:[String],limit:Double,offset:Double)
+
     
     var path:String{
         switch self {
@@ -74,6 +85,18 @@ public enum MirrorWorldNetApi{
             return "solana/marketplace/transfer"
         case .ListNFT:
             return "solana/marketplace/transaction/list"
+        case .cancelNFTListing:
+            return "solana/marketplace/cancel"
+        case .FetchNFTsByMintAddresses:
+            return "solana/nft/mints"
+        case .FetchNFTsByCreatorAddresses:
+            return "solana/nft/creators"
+        case .FetchNFTsByUpdateAuthorities:
+            return "solana/nft/update-authorities"
+        case .FetchNFTsByOwnerAddress:
+            return "solana/nft/owners"
+        case .BuyNFT:
+            return "solana/marketplace/transaction/buy"
         }
         
     }
@@ -82,7 +105,7 @@ public enum MirrorWorldNetApi{
         switch self {
         case .refreshToken(let refresh_token):
             return ["x-refresh-token":refresh_token]
-        case .queryUser(let _):
+        case .queryUser:
             return nil
         case .getWalletTransactions(let limit, let next_before):
             return ["limit":limit,"next_before":next_before]
@@ -98,6 +121,19 @@ public enum MirrorWorldNetApi{
             return ["mint_address":mint_address,"to_wallet_address":to_wallet_address,"confirmation":confirmation]
         case .ListNFT(let mint_address, let price, let confirmation):
             return ["mint_address":mint_address,"price":price,"confirmation":confirmation]
+        case .cancelNFTListing(let mint_address,let price):
+            return ["mint_address":mint_address,"price":price]
+        case .FetchNFTsByMintAddresses(let mint_address):
+            return ["mint_addresses":mint_address]
+        case .FetchNFTsByCreatorAddresses(let creators, let limit, let offset):
+            return ["creators":creators,"limit":limit,"offset":offset]
+        case .FetchNFTsByUpdateAuthorities(let update_authorities ,let limit ,let offset):
+            return ["update_authorities":update_authorities,"limit":limit,"offset":offset]
+        case .FetchNFTsByOwnerAddress(let owners,let limit,let offset):
+            return ["owners":owners,"limit":limit,"offset":offset]
+        case .BuyNFT(let mint_address,let price,let confirmation):
+            return ["mint_address":mint_address,"price":price,"confirmation":confirmation]
+            
         default:
             return nil
            
@@ -115,6 +151,8 @@ public enum MirrorWorldNetApi{
         case .FetchSingleNFT:
             return "GET"
         case .TransferNFTToAnotherSolanaWallet,.ListNFT:
+            return "POST"
+        case .cancelNFTListing,.FetchNFTsByMintAddresses,.FetchNFTsByCreatorAddresses,.FetchNFTsByUpdateAuthorities,.FetchNFTsByOwnerAddress,.BuyNFT:
             return "POST"
         default:
             return "GET"
@@ -140,8 +178,14 @@ public enum MirrorWorldNetApi{
             return env.apiRoot + path
         case .ListNFT:
             return env.apiRoot + path
+        case .cancelNFTListing:
+            return env.apiRoot + path
+        case .FetchNFTsByMintAddresses,.FetchNFTsByCreatorAddresses,.FetchNFTsByOwnerAddress,.FetchNFTsByUpdateAuthorities:
+            return env.apiRoot + path
+        case .BuyNFT:
+            return env.apiRoot + path
         default:
-            return env.ssoRoot + path
+            return env.apiRoot + path
             
         }
     }
