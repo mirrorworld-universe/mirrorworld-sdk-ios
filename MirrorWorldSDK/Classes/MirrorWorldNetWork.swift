@@ -60,7 +60,10 @@ import UIKit
                 faild?(error?._code ?? -1,error.debugDescription)
                 return }
             let dataString =  String(data: data, encoding: String.Encoding.utf8)
-            MWLog.console("\n========================================\n\(dataString ?? "null")\n========================================")
+            MWLog.console("\n========================================\n")
+            MWLog.console(request.url?.absoluteString)
+            MWLog.console((dataString ?? "null"))
+            MWLog.console("\n========================================\n")
             success?(dataString)
         }
         task.resume()

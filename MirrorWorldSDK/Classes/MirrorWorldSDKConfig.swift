@@ -10,7 +10,7 @@ import UIKit
 
 
 @objc public class MirrorWorldSDKConfig: NSObject {
-    override init() {
+    override public init() {
         super.init()
     }
     public var environment:MWEnvironment = .MainNet
@@ -28,7 +28,7 @@ import UIKit
     case DevNet
     case MainNet
     
-    var mainRoot:String{
+   public var mainRoot:String{
         switch self {
         case .StagingDevNet:
             return "https://auth-staging.mirrorworld.fun/"

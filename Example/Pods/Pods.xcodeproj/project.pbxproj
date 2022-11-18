@@ -171,6 +171,20 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		80906FF52923585400008035 /* MWSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MWSDKTests;
+			sourceTree = "<group>";
+		};
+		80906FF82923595D00008035 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		9042C6D85294A0185CF6D1E5FF431E93 /* Pods-MirrorWorldSDK_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +224,7 @@
 		D5FBE4AF78D1047125F05CE64C3F967E /* Pods-MirrorWorldSDK_Tests */ = {
 			isa = PBXGroup;
 			children = (
+				80906FF82923595D00008035 /* Tests */,
 				73DC8FE9B520F6FD66094EAAE0B4A969 /* Pods-MirrorWorldSDK_Tests.modulemap */,
 				664941BC708D6F67797964A51D8FB37F /* Pods-MirrorWorldSDK_Tests-acknowledgements.markdown */,
 				CF006A8E7645BBDFAED6FA16FD5A2A81 /* Pods-MirrorWorldSDK_Tests-acknowledgements.plist */,
@@ -236,6 +251,7 @@
 		F669274CEDE3F0678CC32D5320E853FA /* MirrorWorldSDK */ = {
 			isa = PBXGroup;
 			children = (
+				80906FF52923585400008035 /* MWSDKTests */,
 				804C93FD291B601000B8DA25 /* Authentication */,
 				8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */,
 				808806612910C0E000B9BFB3 /* MirrorAuthMoudle.swift */,

@@ -35,6 +35,8 @@ public enum MirrorWorldNetApi{
     
     case MintNewCollection(_ param:[String:Any])
     
+    case CreateVerifiedSubCollection(name:String,collection_mint:String,symbol:String,url:String,confirmation:String)
+    
     case MintNewNFT(_ param:[String:Any])
     
     case TransferNFTToAnotherSolanaWallet(mint_address:String,to_wallet_address:String,confirmation:String)
@@ -97,6 +99,8 @@ public enum MirrorWorldNetApi{
             return "solana/nft/owners"
         case .BuyNFT:
             return "solana/marketplace/transaction/buy"
+        case .CreateVerifiedSubCollection:
+            return "solana/mint/sub-collection"
         }
         
     }
@@ -133,7 +137,8 @@ public enum MirrorWorldNetApi{
             return ["owners":owners,"limit":limit,"offset":offset]
         case .BuyNFT(let mint_address,let price,let confirmation):
             return ["mint_address":mint_address,"price":price,"confirmation":confirmation]
-            
+        case .CreateVerifiedSubCollection(let name,let collection_mint,let symbol,let url,let confirmation):
+            return ["name":name,"collection_mint":collection_mint,"symbol":symbol,"url":url,"confirmation":confirmation]
         default:
             return nil
            
@@ -153,6 +158,8 @@ public enum MirrorWorldNetApi{
         case .TransferNFTToAnotherSolanaWallet,.ListNFT:
             return "POST"
         case .cancelNFTListing,.FetchNFTsByMintAddresses,.FetchNFTsByCreatorAddresses,.FetchNFTsByUpdateAuthorities,.FetchNFTsByOwnerAddress,.BuyNFT:
+            return "POST"
+        case .CreateVerifiedSubCollection:
             return "POST"
         default:
             return "GET"
@@ -183,6 +190,8 @@ public enum MirrorWorldNetApi{
         case .FetchNFTsByMintAddresses,.FetchNFTsByCreatorAddresses,.FetchNFTsByOwnerAddress,.FetchNFTsByUpdateAuthorities:
             return env.apiRoot + path
         case .BuyNFT:
+            return env.apiRoot + path
+        case .CreateVerifiedSubCollection:
             return env.apiRoot + path
         default:
             return env.apiRoot + path

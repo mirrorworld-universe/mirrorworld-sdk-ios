@@ -17,6 +17,8 @@ public let MWSDK = MirrorWorldSDK.share
     var onSuccess:((_ userInfo:[String:Any]?)->())?
     var onFail:(()->())?
     
+    var onWalletLogOut:(()->())?
+    
     private var authMoudle:MirrorAuthMoudle = MirrorAuthMoudle()
     private var walletMoudle:MirrorWalletMoudle = MirrorWalletMoudle()
     private var marketPlaceMoudle:MirrorMarketplaceMoudle = MirrorMarketplaceMoudle()
@@ -70,7 +72,7 @@ public let MWSDK = MirrorWorldSDK.share
         
         
         authMoudle.RefreshToken { on in
-            print("CheckAuthenticated finsh")
+            self.sdkLog.console("CheckAuthenticated finsh")
         }
     }
     
@@ -137,10 +139,14 @@ public let MWSDK = MirrorWorldSDK.share
     /**
      * Open a webview which would show the wallet page.
      */
-    @objc public func OpenWallet(){
+//    @objc public func StartLogin(onSuccess:@escaping (_ userInfo:[String:Any]?)->(),onFail:@escaping ()->()){
+
+    @objc public func OpenWallet(onLogout:@escaping ()->Void){
+    
+        self.onWalletLogOut = onLogout
+
         let topvc = Self.getBaseViewController()
         walletMoudle.openWallet(controller: topvc)
-        
     }
     
     
@@ -242,6 +248,19 @@ public let MWSDK = MirrorWorldSDK.share
             onFailed?(code,mess)
         })
     }
+    
+    
+//
+    
+    @objc public func  CreateVerifiedSubCollection(name:String,collection_mint:String,symbol:String,url:String, _ confirmation:String = "finalized",onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.CreateVerifiedSubCollection(name: name, collection_mint: collection_mint, symbol: symbol, url: url, confirmation) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
     
     /**
      * Fetch the details of a NFT.
@@ -370,6 +389,9 @@ extension MirrorWorldSDK{
         sdkProtol.loginSuccess = {[weak self] userinfo in
             self?.onSuccess?(userinfo)
             self?.loginAuthController?.dismiss(animated: true)
+        }
+        sdkProtol.onWalletLogOut = {[weak self] in
+            self?.onWalletLogOut?()
         }
     }
 }

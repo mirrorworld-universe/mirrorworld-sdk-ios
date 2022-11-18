@@ -25,7 +25,7 @@ public class MirrorWorldLog: NSObject {
     public func console(_ text:Any?){
         guard let log = text else {return}
         #if DEBUG
-        print("MWSDK:- \(log)")
+        print("MWSDKLog: \(log)")
         #else
         #endif
     }

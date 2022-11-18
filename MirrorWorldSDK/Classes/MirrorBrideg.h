@@ -25,7 +25,12 @@ extern "C"
 
 extern "C"
 {
-    extern void OpenWallet();
+
+    ///
+//    extern void OpenWallet();
+    /// wallet log out callback
+    typedef void (*iOSWalletLogOutCallback)(const char *object);
+    extern void OpenWallet(iOSWalletLogOutCallback callback);
 }
 
 

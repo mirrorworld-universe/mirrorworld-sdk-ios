@@ -18,7 +18,10 @@
 		801D292129040AB700B60DE9 /* tableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D292029040AB600B60DE9 /* tableViewCell.swift */; };
 		801D29242906399300B60DE9 /* MWDemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D29222906399300B60DE9 /* MWDemoCell.swift */; };
 		801D29252906399300B60DE9 /* MWDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801D29232906399300B60DE9 /* MWDemoCell.xib */; };
+		80799D57292653FE0092F309 /* marketplaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80799D56292653FE0092F309 /* marketplaceTests.swift */; };
 		80906FF2291E09CD00008035 /* infoplist-UrlScheme-desc.png in Resources */ = {isa = PBXBuildFile; fileRef = 80906FF1291E09CD00008035 /* infoplist-UrlScheme-desc.png */; };
+		80906FF4292249EC00008035 /* AuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80906FF3292249EC00008035 /* AuthTest.swift */; };
+		80BF38B62924BF2C00F3441F /* walletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF38B52924BF2C00F3441F /* walletTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +54,10 @@
 		801D292029040AB600B60DE9 /* tableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableViewCell.swift; sourceTree = "<group>"; };
 		801D29222906399300B60DE9 /* MWDemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWDemoCell.swift; sourceTree = "<group>"; };
 		801D29232906399300B60DE9 /* MWDemoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MWDemoCell.xib; sourceTree = "<group>"; };
+		80799D56292653FE0092F309 /* marketplaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = marketplaceTests.swift; sourceTree = "<group>"; };
 		80906FF1291E09CD00008035 /* infoplist-UrlScheme-desc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoplist-UrlScheme-desc.png"; sourceTree = "<group>"; };
+		80906FF3292249EC00008035 /* AuthTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTest.swift; sourceTree = "<group>"; };
+		80BF38B52924BF2C00F3441F /* walletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = walletTests.swift; sourceTree = "<group>"; };
 		90EE38868B7DF29F80139D38 /* Pods-MirrorWorldSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MirrorWorldSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9126F66A3BD9A1C6337D74EC /* Pods_MirrorWorldSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB2B4B9C0F90B15BAB3F0744 /* Pods_MirrorWorldSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +144,9 @@
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
+				80906FF3292249EC00008035 /* AuthTest.swift */,
+				80BF38B52924BF2C00F3441F /* walletTests.swift */,
+				80799D56292653FE0092F309 /* marketplaceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -367,6 +376,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				80799D57292653FE0092F309 /* marketplaceTests.swift in Sources */,
+				80906FF4292249EC00008035 /* AuthTest.swift in Sources */,
+				80BF38B62924BF2C00F3441F /* walletTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

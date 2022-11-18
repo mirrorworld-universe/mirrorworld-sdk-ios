@@ -34,7 +34,7 @@ import UIKit
      * logsOut
      *
      **/
-    @objc func loginOut(_ finsh:((_ isSucc:Bool)->Void)?){
+    @objc public func loginOut(_ finsh:((_ isSucc:Bool)->Void)?){
         let api = MirrorWorldNetApi.loginOut
         MirrorWorldNetWork().request(api: api) { response in
             DispatchQueue.main.async {
@@ -48,7 +48,7 @@ import UIKit
     }
     
 //Checks whether is authenticated or not and returns the user object if true
-    @objc func CheckAuthenticated(_ onBool:((_ on:Bool)->())?){
+    @objc public func CheckAuthenticated(_ onBool:((_ on:Bool)->())?){
         let api = MirrorWorldNetApi.authMe
         MirrorWorldNetWork().request(api: api) { response in
            
@@ -65,7 +65,7 @@ import UIKit
     }
     
     //Request refresh token for user
-    @objc func RefreshToken(_ onBool:((_ on:Bool)->())?){
+    @objc public func RefreshToken(_ onBool:((_ on:Bool)->())?){
         MirrorWorldSDKAuthData.share.getRefreshToken()
         if MirrorWorldSDKAuthData.share.refresh_token.count > 0 {
             MWLog.console("Exist refresh token ！")
@@ -91,7 +91,7 @@ import UIKit
     
     
     
-    @objc func QueryUser(email:String,onUserFetched:((_ userRes:String?)->())?,onFetchFailed:((_ code:Int,_ err:String?)->())?){
+    @objc public func QueryUser(email:String,onUserFetched:((_ userRes:String?)->())?,onFetchFailed:((_ code:Int,_ err:String?)->())?){
         guard email.count > 0 else {
             MWLog.console("plese check Your email !")
             return }

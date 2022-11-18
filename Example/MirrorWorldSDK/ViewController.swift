@@ -74,8 +74,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        
     }
     func setupUI(){
         self.view.backgroundColor = .black
@@ -141,8 +139,9 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             }
             break
         case "OpenWallet":
-            print("123")
-            MWSDK.OpenWallet()
+            MWSDK.OpenWallet {
+                
+            }
             self.loadingActive.stopAnimating()
             break
         case "QueryUser":
@@ -207,6 +206,18 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             }, onFailed: { code,message in
                 self.Log("\(item):failed:\(code),\(message ?? "")")
             })
+        case "CreateVerifiedSubCollection":
+            MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", symbol: "test", url: "https://market-assets.mirrorworld.fun/gen1/1.json") { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
+
+            }
+
+            break
         case "MintNewNFT":
             MWSDK.MintNewNFT(collection_mint: "", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500, confirmation: "finalized") { data in
                 self.Log(data)

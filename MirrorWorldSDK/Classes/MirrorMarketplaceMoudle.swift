@@ -66,6 +66,22 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
 
     }
     
+    @objc public func  CreateVerifiedSubCollection(name:String,collection_mint:String,symbol:String,url:String,_ confirmation:String,onSuccess:onSuccess,onFailed:onFailed){
+        let api = MirrorWorldNetApi.CreateVerifiedSubCollection(name: name, collection_mint: collection_mint, symbol: symbol, url: url, confirmation: confirmation)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response, success: { response in
+                onSuccess?(response)
+            }, failed: { code, message in
+                onFailed?(code,message)
+            })
+        } _: { code, errorDesc in
+            DispatchQueue.main.async {
+                onFailed?(code,errorDesc)
+            }
+        }
+
+    }
+    
     
     @objc public func FetchSingleNFT(mint_Address:String,onSuccess:onSuccess,onFailed:onFailed){
         let api = MirrorWorldNetApi.FetchSingleNFT(mint_Address)

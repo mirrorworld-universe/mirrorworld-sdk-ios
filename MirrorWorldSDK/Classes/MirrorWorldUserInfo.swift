@@ -13,9 +13,9 @@ import UIKit
     override public init() {
         super.init()
     }
-    var access_token:String = ""
-    var refresh_token:String = ""
-    var userInfo:[String:Any]?
+    public var access_token:String = ""
+    public var refresh_token:String = ""
+    public var userInfo:[String:Any]?
     
     func saveRefreshToken(){
         UserDefaults.standard.set(refresh_token, forKey: "mw_refresh_token")

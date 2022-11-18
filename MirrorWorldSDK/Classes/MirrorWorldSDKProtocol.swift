@@ -62,6 +62,8 @@ public class MirrorWorldHandleProtocol:NSObject{
     var loginSuccess:((_ userInfo:[String:Any]?)->Void)?
     var loginFail:((_ errorDesc:String)->Void)?
    
+    var onWalletLogOut:(()->())?
+    
     var userInfoBolck:((_ userInfo:[String:Any]?)->Void)?
     var accessTokenBlock:((_ accessToken:String?)->())?
     var refreshTokenBlock:((_ refreshToken:String?)->())?
@@ -83,6 +85,7 @@ public class MirrorWorldHandleProtocol:NSObject{
                     let schemeInfo = MirrorWorldSchemeInfo.userinfo(userInfoObject)
                     schemeInfo.saveInfo()
                     loginSuccess?(userInfoObject)
+                    
                 }
                 if key == "access_token"{
                     var accToken = String(format: "%@",value ?? "")
@@ -90,6 +93,7 @@ public class MirrorWorldHandleProtocol:NSObject{
                     accToken.removeLast(1)
                     MirrorWorldSDKAuthData.share.access_token = accToken
                     accessTokenBlock?(accToken)
+                    
                 }
                 if key == "refresh_token"{
                     var refreToken = String(format: "%@",value ?? "")
@@ -101,7 +105,8 @@ public class MirrorWorldHandleProtocol:NSObject{
                 }
             })
         }else{
-            loginFail?("UrlScheme Decode failed !")
+//            loginFail?("UrlScheme No parameters.")
+            MWLog.console("UrlScheme No parameters.")
         }
         
         
@@ -131,6 +136,10 @@ public class MirrorWorldHandleProtocol:NSObject{
                 })
             }
             return paramDic
+        case "wallet":
+            MirrorWorldSDKAuthData.share.clearToken()
+            onWalletLogOut?()
+            return nil
         default:
             MWLog.console("unSupport the \(schemeType)")
             break

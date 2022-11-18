@@ -44,19 +44,19 @@ Create a developer account on the Developer dashboard https://app.mirrorworld.fu
 
 ## Usage
 
-*`首先应该在您的项目中配置UrlScheme`
+
+`First, you should configure UrlScheme(mwsdk) in your project`
 
 ```
 Set UrlScheme in the info.plist file of your project ： `mwsdk`
-
 ```
 
-like this
+like this:
 ![Image text](https://github.com/mirrorworld-universe/mirrorworld-sdk-ios/blob/master/Example/MirrorWorldSDK/infoplist-UrlScheme-desc.png)
 
 
 
-Than
+Then
 
 ```
 import MirrorWorldSDK

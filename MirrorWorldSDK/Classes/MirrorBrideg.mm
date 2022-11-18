@@ -41,11 +41,33 @@ extern "C"
 
 extern "C"
 {
-    extern void OpenWallet(){
-        [[MirrorWorldSDK share] OpenWallet];
-
+//    iOSWalletLoginCallback blo = ^void(const char *str){ };
+//
+//    extern void OpenWallet(){
+//
+//        NSLog(@"MWSDK-IOS:调用iOSWalletLoginCallback");
+//        blo("1");
+//
+//
+//        [[MirrorWorldSDK share] OpenWalletOnLogout:^{
+//
+//        }];
+//    }
+    typedef void (*iOSWalletLogOutCallback)(const char *object);
+    extern void OpenWallet(iOSWalletLogOutCallback callback){
+        [[MirrorWorldSDK share] OpenWalletOnLogout:^{
+            callback("wallet is logout.");
+        }];
     }
+
 }
+//extern "C"
+//{
+//    extern void SetWalletLogoutCallback(iOSWalletLoginCallback callback){
+//        blo = callback;
+//    }
+//}
+
 
 
 @end
