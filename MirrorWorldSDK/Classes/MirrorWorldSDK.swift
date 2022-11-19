@@ -62,6 +62,7 @@ public let MWSDK = MirrorWorldSDK.share
         authMoudle.config = sdkConfig
         marketPlaceMoudle.config = sdkConfig
         
+        sdkLog.console("apiKey:\(apiKey)")
         guard self.apiKey.count > 0 else {
             sdkLog.console("Check Your appKey !")
             return

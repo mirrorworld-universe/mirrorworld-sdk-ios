@@ -23,10 +23,12 @@ import UIKit
 
 
 @objc public enum MWEnvironment: Int{
-    case StagingDevNet
-    case StagingMainNet
-    case DevNet
-    case MainNet
+    case StagingDevNet = 0
+    case StagingMainNet = 1
+    
+    case MainNet = 2
+    case DevNet = 3
+   
     
    public var mainRoot:String{
         switch self {

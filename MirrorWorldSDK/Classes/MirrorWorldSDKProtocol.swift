@@ -77,22 +77,18 @@ public class MirrorWorldHandleProtocol:NSObject{
         let result = handleParam(paramsString: urlString)
         let keys = result?.keys
         if keys?.count ?? 0 > 0 {
+            var access_tokenKey = ""
+            var refresh_tokenKey = ""
+            
             keys?.forEach({ key in
                 let value = result?[key]
-                if key == "data"{
-                    let userInfoObject = value?.toJson()
-                    MirrorWorldSDKAuthData.share.userInfo = userInfoObject
-                    let schemeInfo = MirrorWorldSchemeInfo.userinfo(userInfoObject)
-                    schemeInfo.saveInfo()
-                    loginSuccess?(userInfoObject)
-                    
-                }
                 if key == "access_token"{
                     var accToken = String(format: "%@",value ?? "")
                     accToken.removeFirst(1)
                     accToken.removeLast(1)
                     MirrorWorldSDKAuthData.share.access_token = accToken
                     accessTokenBlock?(accToken)
+                    access_tokenKey = accToken
                     
                 }
                 if key == "refresh_token"{
@@ -102,7 +98,26 @@ public class MirrorWorldHandleProtocol:NSObject{
                     MirrorWorldSDKAuthData.share.refresh_token = refreToken
                     MirrorWorldSDKAuthData.share.saveRefreshToken()
                     refreshTokenBlock?(refreToken)
+                    refresh_tokenKey = refreToken
                 }
+                if key == "data"{
+                    var userInfoObject = value?.toJson()
+//                    userInfoObject?["refresh_token"] = refresh_tokenKey
+//                    userInfoObject?["access_token"] = access_tokenKey
+                    var loginResponse:[String:Any] = [:]
+                    loginResponse["user"] = userInfoObject
+                    loginResponse["refresh_token"] = refresh_tokenKey
+                    loginResponse["access_token"] = access_tokenKey
+                    
+                    MirrorWorldSDKAuthData.share.userInfo = userInfoObject
+                    let schemeInfo = MirrorWorldSchemeInfo.userinfo(userInfoObject)
+                    schemeInfo.saveInfo()
+//                    loginSuccess?(userInfoObject)
+                    loginSuccess?(loginResponse)
+                    
+                    
+                }
+                
             })
         }else{
 //            loginFail?("UrlScheme No parameters.")

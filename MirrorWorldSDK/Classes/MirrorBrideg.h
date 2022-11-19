@@ -14,13 +14,13 @@ typedef void (* eckShowPlayerHandler)(const char * userinfo);
 
 extern "C"
 {
-    extern void initSDK(char *apikey);
+    extern void IOSInitSDK(int environment,char *apikey);
 }
 
 extern "C"
 {
-    typedef void (*LoginCallback) (const char *object);
-    extern void StartLogin(LoginCallback callback);
+    typedef void (*IOSLoginCallback) (const char *object);
+    extern void IOSStartLogin(IOSLoginCallback callback);
 }
 
 extern "C"
@@ -30,7 +30,7 @@ extern "C"
 //    extern void OpenWallet();
     /// wallet log out callback
     typedef void (*iOSWalletLogOutCallback)(const char *object);
-    extern void OpenWallet(iOSWalletLogOutCallback callback);
+    extern void IOSOpenWallet(iOSWalletLogOutCallback callback);
 }
 
 
