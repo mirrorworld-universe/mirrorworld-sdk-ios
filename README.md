@@ -162,6 +162,149 @@ Get access token so that users can visit APIs.
 
   ```
 
+- MintNewNFTOnCollection
+Mint a new NFT.
+
+```Swift
+MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA", url: "", seller_fee_basis_points: 100, confirmation: "finalized") { data in
+                self.Log(data)
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+
+```
+
+- CreateVerifiedCollection
+Mint a parent NFT collection.
+
+```Swift
+MWSDK.MintNewCollection(name: "testNewCollection", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", confirmation: "finalized", seller_fee_basis_points: 200, onSuccess: { data in
+                self.Log(data)
+            }, onFailed: { code,message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            })
+```
+
+- CreateVerifiedSubCollection
+Mint a child NFT collection.
+
+```Swift
+MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", symbol: "test", url: "https://market-assets.mirrorworld.fun/gen1/1.json") { data in
+                self.Log(data)
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+```
+
+- TransferNFTToAnotherSolanaWallet
+Transfer NFT to another Sol wallet.
+
+```Swift
+
+MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
+                self.Log(data)
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+
+```
+
+- CancelNFTListing
+Cancel listing of NFT.
+
+```Swift
+
+MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
+                self.Log(data)
+
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+```
+
+- BuyNFT
+
+Buy a NFT on market place.
+
+```Swift
+            MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
+            }
+
+```
+
+- UpdateNFTListing
+Update the list of NFTs.
+
+```Swift
+ MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
+                self.Log(data)
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+```
+
+- ListNFT
+Get list of NFT on market place.
+
+```Swift
+MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
+                self.Log(data)
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+```
+
+- CancelNFTListing
+Cancel listing of NFT.
+
+```Swift
+MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
+                self.Log(data)
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+```
+
+- FetchNFTsByUpdateAuthorities
+Get a collection of NFT by authority addresses.
+
+```Swift
+MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offset: 0.1) { data in
+                self.Log(data)
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+```
+
+- FetchNFTsByCreatorAddresses
+Get a collection of NFT by creator addresses
+
+```Swift
+MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+                self.loadingActive.stopAnimating()
+            }
+```
+
+- FetchNFTsByOwnerAddresses
+Get a collection of NFT by mint addresses.
+
+```Swift
+MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
+                self.Log(data)
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+```
+
 ## Using iOS-SDK for Unity
 
 in Unity:
