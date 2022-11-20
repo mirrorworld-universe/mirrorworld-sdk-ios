@@ -7,10 +7,10 @@
 
 import UIKit
 
-@objc public class MirrorAuthMoudle: NSObject {
+@objc public class MirrorAuthMoudle: MirrorBaseMoudle {
     
     var config:MirrorWorldSDKConfig?
-
+    
     @objc public var userInfo:[String:Any]? = MirrorWorldSDKAuthData.share.userInfo
     
     /**
@@ -19,7 +19,7 @@ import UIKit
      **/
     @objc func openLoginView(controller:UIViewController?) -> MirrorWorldLoginAuthController?{
         guard let sdkConfig = config else { return nil}
-
+        
         let urlString = sdkConfig.environment.mainRoot + sdkConfig.apiKey
         
         guard let url = URL(string: urlString) else {
@@ -49,11 +49,10 @@ import UIKit
         }
     }
     
-//Checks whether is authenticated or not and returns the user object if true
+    //Checks whether is authenticated or not and returns the user object if true
     @objc public func CheckAuthenticated(_ onBool:((_ on:Bool)->())?){
         let api = MirrorWorldNetApi.authMe
         MirrorWorldNetWork().request(api: api) { response in
-           
             DispatchQueue.main.async {
                 onBool?(true)
             }
@@ -62,7 +61,7 @@ import UIKit
                 onBool?(false)
             }
         }
-
+        
         
     }
     
@@ -82,12 +81,18 @@ import UIKit
                 MirrorWorldSDKAuthData.share.saveRefreshToken()
                 MirrorWorldSDKAuthData.share.access_token = accessToken ?? ""
                 MirrorWorldSDKAuthData.share.userInfo = user
-                onBool?(true)
+                DispatchQueue.main.async {
+                    onBool?(true)
+                }
             } _: { code,errorDesc in
-                onBool?(false)
+                DispatchQueue.main.async {
+                    onBool?(false)
+                }
             }
         }else{
-            onBool?(false)
+            DispatchQueue.main.async {
+                onBool?(false)
+            }
         }
     }
     
@@ -98,19 +103,17 @@ import UIKit
             MWLog.console("plese check Your email !")
             return }
         let api = MirrorWorldNetApi.queryUser(email: email)
-        MirrorWorldNetWork().request(api: api) { response in
-            let responseJson = response?.toJson()
-            let data = responseJson?["data"] as? [String:Any]
-            let user = data?.toString()
-            DispatchQueue.main.async {
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response, success: { user in
                 onUserFetched?(user)
-            }
+            }, failed: { code, message in
+                onFetchFailed?(code,message)
+            })
         } _: { code,err in
             DispatchQueue.main.async {
                 onFetchFailed?(code,err)
             }
         }
-
     }
     
     

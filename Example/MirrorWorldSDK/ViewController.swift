@@ -59,6 +59,7 @@ class ViewController: UIViewController {
                         "MintNewCollection",
                         "MintNewNFT",
                         "FetchSingleNFT",
+                        "UpdateNFTListing",
                         "ListNFT",
                         "CancelNFTListing",
                         "FetchNFTsByMintAddresses",
@@ -236,6 +237,15 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 self.Log("\(item):failed:\(code),\(message ?? "")")
             }
             break
+        case "UpdateNFTListing":
+            MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+
+            break
         case "TransferNFTToAnotherSolanaWallet":
             MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
                 self.Log(data)
@@ -246,7 +256,13 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             break
             
         case "MintNewNFTOnCollection":
-//            MWSDK.
+            MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA", url: "", seller_fee_basis_points: 100, confirmation: "finalized") { data in
+                self.Log(data)
+                self.loadingActive.stopAnimating()
+            } onFailed: { code, message in
+                self.Log("\(item):failed:\(code),\(message ?? "")")
+            }
+
             break
         case "ListNFT":
             MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
@@ -296,11 +312,9 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offset: 0.1) { data in
                 self.Log(data)
                 self.loadingActive.stopAnimating()
-
             } onFailed: { code, message in
                 self.Log("\(item):failed:\(code),\(message ?? "")")
                 self.loadingActive.stopAnimating()
-
             }
 
             break

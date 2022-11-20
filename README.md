@@ -9,7 +9,6 @@
 
 - The Mirror World Smart SDK is a cross-platform interface that provides simple, declarative API interfaces for building Mobile and Web Applications into Web 3 Architecture.
 
-
 ## Supported iOS & SDK Versions
 
 - iOS 10.0+
@@ -35,37 +34,32 @@ end
 Then, run the following command:
 
 ```sh
-$ pod install
+pod install
 ```
 
 ## Getting started
 
-Create a developer account on the Developer dashboard https://app.mirrorworld.fun/ . Create project and create an API Key.
+Create a developer account on the Developer dashboard <https://app.mirrorworld.fun/> . Create project and create an API Key.
 
 ## Usage
 
-
 `First, you should configure UrlScheme(mwsdk) in your project`
 
-```
 Set UrlScheme in the info.plist file of your project ： `mwsdk`
-```
 
 like this:
 ![Image text](https://github.com/mirrorworld-universe/mirrorworld-sdk-ios/blob/master/Example/MirrorWorldSDK/infoplist-UrlScheme-desc.png)
 
-
-
 Then
 
-```
+```Swift
 import MirrorWorldSDK
 
 ```
 
 init SDK in the AppDelegate.
 
-```
+```Swift
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
        
         MWSDK.initSDK(env: .StagingDevNet, apiKey: "Your API Key")
@@ -89,7 +83,7 @@ init SDK in the AppDelegate.
 
 Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
 
-```
+```Swift
     MirrorWorldSDK.share.StartLogin { userInfo in
         print("login success :\(userInfo?.toString() ?? "")")
     } onFail: {
@@ -101,14 +95,15 @@ Calling this api would popup a dialog, user can finish login flow on it. In whic
 
 Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
 
-```
+```Swift
     MWSDK.CheckAuthenticated { onBool in
         print("This device's login state is:\(onBool)")
     }
 ```
 
 - Logs out a user
-  ```
+
+  ```Swift
     MWSDK.loginOut {
         print("Logs out a user : success")
     } onFail: {
@@ -118,61 +113,67 @@ Checks whether the current user is logged in. You can use this function to judge
 
 ### Wallet Methods
 
-```
-
 - OpenWallet
+
   Open a webview which would show the wallet page.
-  ```
+
+  ```Swift
   MWSDK.OpenWallet()
   ```
+
 - GetAccessToken
 
 Get access token so that users can visit APIs.
 
-```
+```Swift
+
     MWSDK.GetAccessToken(callBack: { token in
         self.Log("Access Token is : \(token)")
     })
-```
 
-<br/>
+```
 
 - QueryUser
   
   Check user's info, then we can get user's base information such as wallet address and so on.
-  ```
+
+  ```Swift
+
    MWSDK.QueryUser(email: "user Email") { user in
           self.Log(user ?? "null")
     } onFetchFailed: { code, error in
          self.Log("\(code):\(error)")
     }
-  ```
 
-<br/>
+  ```
 
 ## MarketPlace Method
 
 - FetchSingleNFT
   Fetch the details of a NFT.
-  ```
-   MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "E5LBzZBgyNAmXFevhybmqTKL4X9UPVeiExxx") { data in
+
+  ```Swift
+
+   MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
             self.Log(data)
     } onFailed: { code, message in
             self.Log("\(item):failed:\(code),\(message ?? "")")
     }
+
   ```
 
+## Using iOS-SDK for Unity
 
-
-## Using iOS-SDK for Unity.
 in Unity:
-```
+
+```Unity
+
 using System.Runtime.InteropServices;
 public class MirrorSDK : MonoBehaviour
 {
   [DllImport("__Internal")]
     private static extern void initSDK(string apikey);
-    
+
     private void Awake()
     {
         #elif (UNITY_IOS && !(UNITY_EDITOR))
@@ -180,13 +181,11 @@ public class MirrorSDK : MonoBehaviour
         #endif
     }
 }
+
 ```
-
-
-
-
-
 
 ## License
 
 MirrorWorldSDK is available under the MIT license. See the LICENSE file for more info.
+
+[`markdownlint/Ruby`](https://github.com/markdownlint/markdownlint) for the inspiration and [`markdown-it`](https://github.com/markdown-it/markdown-it) for the parser and interactive demo idea!

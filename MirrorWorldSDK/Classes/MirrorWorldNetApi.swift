@@ -44,6 +44,8 @@ public enum MirrorWorldNetApi{
     
     case ListNFT(_ mint_address:String,_ price:Double,_ confirmation:String)
     
+    case UpdateNFTListing(mint_address:String,price:Double, confirmation:String)
+    
     case cancelNFTListing(mint_address:String,price:Double)
     
     case BuyNFT(mint_address:String,price:Double,confirmation:String)
@@ -87,6 +89,8 @@ public enum MirrorWorldNetApi{
             return "solana/marketplace/transfer"
         case .ListNFT:
             return "solana/marketplace/transaction/list"
+        case .UpdateNFTListing:
+            return "solana/marketplace/update"
         case .cancelNFTListing:
             return "solana/marketplace/cancel"
         case .FetchNFTsByMintAddresses:
@@ -125,6 +129,8 @@ public enum MirrorWorldNetApi{
             return ["mint_address":mint_address,"to_wallet_address":to_wallet_address,"confirmation":confirmation]
         case .ListNFT(let mint_address, let price, let confirmation):
             return ["mint_address":mint_address,"price":price,"confirmation":confirmation]
+        case .UpdateNFTListing(let mint_address, let price, let confirmation):
+            return ["mint_address":mint_address,"price":price,"confirmation":confirmation]
         case .cancelNFTListing(let mint_address,let price):
             return ["mint_address":mint_address,"price":price]
         case .FetchNFTsByMintAddresses(let mint_address):
@@ -155,7 +161,7 @@ public enum MirrorWorldNetApi{
             return "POST"
         case .FetchSingleNFT:
             return "GET"
-        case .TransferNFTToAnotherSolanaWallet,.ListNFT:
+        case .TransferNFTToAnotherSolanaWallet,.ListNFT,.UpdateNFTListing:
             return "POST"
         case .cancelNFTListing,.FetchNFTsByMintAddresses,.FetchNFTsByCreatorAddresses,.FetchNFTsByUpdateAuthorities,.FetchNFTsByOwnerAddress,.BuyNFT:
             return "POST"

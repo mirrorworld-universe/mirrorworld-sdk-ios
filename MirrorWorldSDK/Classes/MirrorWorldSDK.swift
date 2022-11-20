@@ -297,6 +297,17 @@ public let MWSDK = MirrorWorldSDK.share
     }
     
     /**
+     *  Update Listing of NFT on the marketplace
+     */
+    @objc public func UpdateNFTListing(mint_address:String,price:Double, confirmation:String = "finalized",onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.UpdateNFTListing(mint_address: mint_address, price: price, confirmation: confirmation) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    /**
      * Cancel listing of NFT.
      */
     @objc public func CancelNFTListing(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){

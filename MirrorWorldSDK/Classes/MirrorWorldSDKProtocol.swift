@@ -101,7 +101,7 @@ public class MirrorWorldHandleProtocol:NSObject{
                     refresh_tokenKey = refreToken
                 }
                 if key == "data"{
-                    var userInfoObject = value?.toJson()
+                    let userInfoObject = value?.toJson()
 //                    userInfoObject?["refresh_token"] = refresh_tokenKey
 //                    userInfoObject?["access_token"] = access_tokenKey
                     var loginResponse:[String:Any] = [:]

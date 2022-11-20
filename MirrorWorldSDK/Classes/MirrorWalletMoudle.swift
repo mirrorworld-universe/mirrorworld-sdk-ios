@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objc public class MirrorWalletMoudle: NSObject {
+@objc public class MirrorWalletMoudle: MirrorBaseMoudle {
   
     var config:MirrorWorldSDKConfig?
     
@@ -21,13 +21,13 @@ import UIKit
     
     @objc public func GetWalletTokens(onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         let api = MirrorWorldNetApi.getWalletTokens
-        MirrorWorldNetWork().request(api: api) { response in
-            let responseJson = response?.toJson()
-            let data = responseJson?["data"] as? [String:Any]
-            let dataString = data?.toString()
-            DispatchQueue.main.async {
-                onSuccess?(dataString)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response) { data in
+                onSuccess?(data)
+            } failed: { code, message in
+                onFailed?()
             }
+
         } _: { code,error in
             DispatchQueue.main.async {
                 onFailed?()
@@ -39,12 +39,11 @@ import UIKit
     
     @objc public func GetWalletTransactions(limit:Int,next_before:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         let api = MirrorWorldNetApi.getWalletTransactions(limit: limit, next_before: next_before)
-        MirrorWorldNetWork().request(api: api) { response in
-            let responseJson = response?.toJson()
-            let data = responseJson?["data"] as? [String:Any]
-            let dataString = data?.toString()
-            DispatchQueue.main.async {
-                onSuccess?(dataString)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response) { data in
+                onSuccess?(data)
+            } failed: { code, message in
+                onFailed?()
             }
         } _: { code,err in
             DispatchQueue.main.async {
@@ -58,12 +57,11 @@ import UIKit
     
     @objc public func GetWalletTransactionBySignature(signature:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         let api = MirrorWorldNetApi.getWalletTransactionBySignature(signature: signature)
-        MirrorWorldNetWork().request(api: api) { response in
-            let responseJson = response?.toJson()
-            let data = responseJson?["data"] as? [String:Any]
-            let dataString = data?.toString()
-            DispatchQueue.main.async {
-                onSuccess?(dataString)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response) { data in
+                onSuccess?(data)
+            } failed: { code, message in
+                onFailed?()
             }
         } _: { code, err in
             DispatchQueue.main.async {
@@ -76,12 +74,11 @@ import UIKit
     
     @objc func TransferSOLtoAnotherAddress(to_publickey:String,amount:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         let api = MirrorWorldNetApi.TransferSOLtoAnotherAddress(to_publickey: to_publickey, amount: amount)
-        MirrorWorldNetWork().request(api: api) { response in
-            let responseJson = response?.toJson()
-            let data = responseJson?["data"] as? [String:Any]
-            let dataString = data?.toString()
-            DispatchQueue.main.async {
-                onSuccess?(dataString)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response) { res in
+                onSuccess?(res)
+            } failed: { code, message in
+                onFailed?()
             }
         } _: { code,error in
             DispatchQueue.main.async {
@@ -98,12 +95,11 @@ import UIKit
      */
     @objc func TransferTokenToAnotherAddress(to_publickey:String,amount:Int,token_mint:String,decimals:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         let api = MirrorWorldNetApi.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: amount, token_mint: token_mint, decimals: decimals)
-        MirrorWorldNetWork().request(api: api) { response in
-            let responseJson = response?.toJson()
-            let data = responseJson?["data"] as? [String:Any]
-            let dataString = data?.toString()
-            DispatchQueue.main.async {
-                onSuccess?(dataString)
+        MirrorWorldNetWork().request(api: api) {[weak self] response in
+            self?.handleResponse(response: response) { res in
+                onSuccess?(res)
+            } failed: { code, message in
+                onFailed?()
             }
         } _: { code,error in
             DispatchQueue.main.async {
