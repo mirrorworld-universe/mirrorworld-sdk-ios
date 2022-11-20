@@ -26,7 +26,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'MirrorWorldSDK'
+pod 'MirrorWorldSDK'
 end
 
 ```
@@ -60,19 +60,19 @@ import MirrorWorldSDK
 init SDK in the AppDelegate.
 
 ```Swift
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-       
-        MWSDK.initSDK(env: .StagingDevNet, apiKey: "Your API Key")
-        
-        // ---------
-        return true
-    }
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+   
+    MWSDK.initSDK(env: .StagingDevNet, apiKey: "Your API Key")
     
-    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        MirrorWorldSDK.share.handleOpen(url: url)
-        return true
-    }
-    
+    // ---------
+    return true
+}
+
+func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+    MirrorWorldSDK.share.handleOpen(url: url)
+    return true
+}
+
 ```
 
 ### Authentication Methods
@@ -84,11 +84,11 @@ init SDK in the AppDelegate.
 Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
 
 ```Swift
-    MirrorWorldSDK.share.StartLogin { userInfo in
-        print("login success :\(userInfo?.toString() ?? "")")
-    } onFail: {
-        print("login failed !")
-    }
+MirrorWorldSDK.share.StartLogin { userInfo in
+    print("login success :\(userInfo?.toString() ?? "")")
+} onFail: {
+    print("login failed !")
+}
 ```
 
 - CheckAuthenticated
@@ -96,30 +96,30 @@ Calling this api would popup a dialog, user can finish login flow on it. In whic
 Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
 
 ```Swift
-    MWSDK.CheckAuthenticated { onBool in
-        print("This device's login state is:\(onBool)")
-    }
+MWSDK.CheckAuthenticated { onBool in
+    print("This device's login state is:\(onBool)")
+}
 ```
 
 - Logs out a user
 
-  ```Swift
-    MWSDK.loginOut {
-        print("Logs out a user : success")
-    } onFail: {
-        print("Logs out a user : failed !")
-    }
-  ```
+```Swift
+MWSDK.loginOut {
+    print("Logs out a user : success")
+} onFail: {
+    print("Logs out a user : failed !")
+}
+```
 
 ### Wallet Methods
 
 - OpenWallet
 
-  Open a webview which would show the wallet page.
+Open a webview which would show the wallet page.
 
-  ```Swift
-  MWSDK.OpenWallet()
-  ```
+```Swift
+MWSDK.OpenWallet()
+```
 
 - GetAccessToken
 
@@ -127,50 +127,50 @@ Get access token so that users can visit APIs.
 
 ```Swift
 
-    MWSDK.GetAccessToken(callBack: { token in
-        self.Log("Access Token is : \(token)")
-    })
+MWSDK.GetAccessToken(callBack: { token in
+    self.Log("Access Token is : \(token)")
+})
 
 ```
 
 - QueryUser
-  
-  Check user's info, then we can get user's base information such as wallet address and so on.
 
-  ```Swift
+Check user's info, then we can get user's base information such as wallet address and so on.
 
-   MWSDK.QueryUser(email: "user Email") { user in
-          self.Log(user ?? "null")
-    } onFetchFailed: { code, error in
-         self.Log("\(code):\(error)")
-    }
+```Swift
 
-  ```
+MWSDK.QueryUser(email: "user Email") { user in
+  self.Log(user ?? "null")
+} onFetchFailed: { code, error in
+ self.Log("\(code):\(error)")
+}
+
+```
 
 ## MarketPlace Method
 
 - FetchSingleNFT
-  Fetch the details of a NFT.
+Fetch the details of a NFT.
 
-  ```Swift
+```Swift
 
-   MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
-            self.Log(data)
-    } onFailed: { code, message in
-            self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
+MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
+    self.Log(data)
+} onFailed: { code, message in
+    self.Log("\(item):failed:\(code),\(message ?? "")")
+}
 
-  ```
+```
 
 - MintNewNFTOnCollection
 Mint a new NFT.
 
 ```Swift
 MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA", url: "", seller_fee_basis_points: 100, confirmation: "finalized") { data in
-                self.Log(data)
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
 
 ```
 
@@ -179,10 +179,10 @@ Mint a parent NFT collection.
 
 ```Swift
 MWSDK.MintNewCollection(name: "testNewCollection", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", confirmation: "finalized", seller_fee_basis_points: 200, onSuccess: { data in
-                self.Log(data)
-            }, onFailed: { code,message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            })
+        self.Log(data)
+    }, onFailed: { code,message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    })
 ```
 
 - CreateVerifiedSubCollection
@@ -190,10 +190,10 @@ Mint a child NFT collection.
 
 ```Swift
 MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", symbol: "test", url: "https://market-assets.mirrorworld.fun/gen1/1.json") { data in
-                self.Log(data)
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
 ```
 
 - TransferNFTToAnotherSolanaWallet
@@ -202,10 +202,10 @@ Transfer NFT to another Sol wallet.
 ```Swift
 
 MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
-                self.Log(data)
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
 
 ```
 
@@ -215,11 +215,11 @@ Cancel listing of NFT.
 ```Swift
 
 MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
-                self.Log(data)
+        self.Log(data)
 
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
 ```
 
 - BuyNFT
@@ -227,13 +227,13 @@ MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
 Buy a NFT on market place.
 
 ```Swift
-            MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
-            }
+    MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
+        self.Log(data)
+        self.loadingActive.stopAnimating()
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+        self.loadingActive.stopAnimating()
+    }
 
 ```
 
@@ -241,11 +241,11 @@ Buy a NFT on market place.
 Update the list of NFTs.
 
 ```Swift
- MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
-                self.Log(data)
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
 ```
 
 - ListNFT
@@ -253,10 +253,10 @@ Get list of NFT on market place.
 
 ```Swift
 MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
-                self.Log(data)
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
 ```
 
 - CancelNFTListing
@@ -264,10 +264,10 @@ Cancel listing of NFT.
 
 ```Swift
 MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
-                self.Log(data)
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
 ```
 
 - FetchNFTsByUpdateAuthorities
@@ -275,10 +275,10 @@ Get a collection of NFT by authority addresses.
 
 ```Swift
 MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offset: 0.1) { data in
-                self.Log(data)
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+            self.Log(data)
+        } onFailed: { code, message in
+            self.Log("\(item):failed:\(code),\(message ?? "")")
+        }
 ```
 
 - FetchNFTsByCreatorAddresses
@@ -286,12 +286,12 @@ Get a collection of NFT by creator addresses
 
 ```Swift
 MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
-            }
+        self.Log(data)
+        self.loadingActive.stopAnimating()
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+        self.loadingActive.stopAnimating()
+    }
 ```
 
 - FetchNFTsByOwnerAddresses
@@ -299,10 +299,10 @@ Get a collection of NFT by mint addresses.
 
 ```Swift
 MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
-                self.Log(data)
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            }
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
 ```
 
 ## Using iOS-SDK for Unity
@@ -314,15 +314,15 @@ in Unity:
 using System.Runtime.InteropServices;
 public class MirrorSDK : MonoBehaviour
 {
-  [DllImport("__Internal")]
-    private static extern void initSDK(string apikey);
+[DllImport("__Internal")]
+private static extern void initSDK(string apikey);
 
-    private void Awake()
-    {
-        #elif (UNITY_IOS && !(UNITY_EDITOR))
-            initSDK(apiKey);
-        #endif
-    }
+private void Awake()
+{
+#elif (UNITY_IOS && !(UNITY_EDITOR))
+    initSDK(apiKey);
+#endif
+}
 }
 
 ```
