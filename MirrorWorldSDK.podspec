@@ -9,8 +9,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MirrorWorldSDK'
-  s.version          = '0.0.1'
-  s.summary          = 'iOS MirrorWorldSDK.'
+  s.version          = '0.0.2'
+  s.summary          = 'MirrorWorldSDK for iOS.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -31,8 +31,10 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
 
-  s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
-  s.source_files = 'MirrorWorldSDK/Classes/*'
+#  s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
+  
+  s.source_files = 'MirrorWorldSDK/Classes/**/*'
+  
 #  s.source_files = 'MirrorWorldSDK/Classes/**/*.{h,mm}'
 #  s.prefix_header_contents = '#import "MirrorWorldSDK/MirrorWorldSDK-Swift.h"
   
