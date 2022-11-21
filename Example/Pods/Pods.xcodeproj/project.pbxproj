@@ -162,13 +162,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		80906FF52923585400008035 /* MWSDKTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MWSDKTests;
-			sourceTree = "<group>";
-		};
 		80906FF82923595D00008035 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +235,6 @@
 		F669274CEDE3F0678CC32D5320E853FA /* MirrorWorldSDK */ = {
 			isa = PBXGroup;
 			children = (
-				80906FF52923585400008035 /* MWSDKTests */,
 				8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */,
 				80799D62292B47C10092F309 /* MirrorAuthMoudle.swift */,
 				80799D5E292A4D760092F309 /* MirrorBaseMoudle.swift */,
