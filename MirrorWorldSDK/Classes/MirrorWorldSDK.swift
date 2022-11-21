@@ -23,8 +23,6 @@ public let MWSDK = MirrorWorldSDK.share
     private var walletMoudle:MirrorWalletMoudle = MirrorWalletMoudle()
     private var marketPlaceMoudle:MirrorMarketplaceMoudle = MirrorMarketplaceMoudle()
 
-    
-    
    @objc public var sdkConfig:MirrorWorldSDKConfig = MirrorWorldSDKConfig()
     @objc public var sdkLog:MirrorWorldLog = MirrorWorldLog()
     @objc public var sdkProtol:MirrorWorldHandleProtocol = MirrorWorldHandleProtocol()
