@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/MirrorWorldSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		ZyCCMBRjxPfix7/hhz8Fxar9m5M=
+		m0nnB15csXjaL13q/ay2rqE1xak=
 		</data>
 		<key>Modules/MirrorWorldSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/MirrorWorldSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		GhJAnAc8isl43QvVooxCRdN3dfQ=
+		VasqntToAXsSWoDY79Yz6fmhapY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -65,11 +65,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ZyCCMBRjxPfix7/hhz8Fxar9m5M=
+			m0nnB15csXjaL13q/ay2rqE1xak=
 			</data>
 			<key>hash2</key>
 			<data>
-			q1nzjLeOyEHoTlILTCqQ4TQqRugdfzDLvJs8BNlgaB0=
+			niY7tqU/IvW1ae+2AbS9zNHmzjmCcRzanlb9hsClOyg=
 			</data>
 		</dict>
 		<key>Modules/MirrorWorldSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -98,11 +98,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			GhJAnAc8isl43QvVooxCRdN3dfQ=
+			VasqntToAXsSWoDY79Yz6fmhapY=
 			</data>
 			<key>hash2</key>
 			<data>
-			/j+3Ugt1karq9KEmS1bdEtc/SubqVlWKRzpDL5g/cbk=
+			qWWMubeLxxzzb6W9JKWj+h8Yk2fsDAKODa0FENlt6J4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
