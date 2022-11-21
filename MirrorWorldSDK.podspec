@@ -35,7 +35,7 @@ TODO: Add long description of the pod here.
   s.source_files = 'MirrorWorldSDK/Classes/**/*'
   s.source_files = 'MirrorWorldSDK/Classes/**/*.{h,mm}'
   
-  s.vendored_frameworks = 'SDK/MirrorWorldSDK.framework'
+  #s.vendored_frameworks = 'SDK/MirrorWorldSDK.framework'
   
   # s.resource_bundles = {
   #   'MirrorWorldSDK' => ['MirrorWorldSDK/Assets/*.png']
