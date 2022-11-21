@@ -18,6 +18,7 @@
 		8023BD7E29026EEE00A357AA /* MirrorWorldSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */; };
 		8023BD82290271CF00A357AA /* MirrorWorldLoginAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023BD81290271CF00A357AA /* MirrorWorldLoginAuthController.swift */; };
 		8023BD862902733600A357AA /* MirrorWorldSDKConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023BD852902733600A357AA /* MirrorWorldSDKConfig.swift */; };
+		80799D5F292A4D760092F309 /* MirrorBaseMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80799D5E292A4D760092F309 /* MirrorBaseMoudle.swift */; };
 		80880660290FF9A500B9BFB3 /* MirrorWorldNetApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088065F290FF9A500B9BFB3 /* MirrorWorldNetApi.swift */; };
 		808806622910C0E000B9BFB3 /* MirrorAuthMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808806612910C0E000B9BFB3 /* MirrorAuthMoudle.swift */; };
 		808806642910C11400B9BFB3 /* MirrorWalletMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808806632910C11400B9BFB3 /* MirrorWalletMoudle.swift */; };
@@ -71,10 +72,11 @@
 		8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDK.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDK.swift; sourceTree = "<group>"; };
 		8023BD81290271CF00A357AA /* MirrorWorldLoginAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorWorldLoginAuthController.swift; path = MirrorWorldSDK/Classes/MirrorWorldLoginAuthController.swift; sourceTree = "<group>"; };
 		8023BD852902733600A357AA /* MirrorWorldSDKConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDKConfig.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDKConfig.swift; sourceTree = "<group>"; };
+		80799D5E292A4D760092F309 /* MirrorBaseMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorBaseMoudle.swift; path = MirrorWorldSDK/Classes/MirrorBaseMoudle.swift; sourceTree = "<group>"; };
 		8088065F290FF9A500B9BFB3 /* MirrorWorldNetApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorWorldNetApi.swift; path = MirrorWorldSDK/Classes/MirrorWorldNetApi.swift; sourceTree = "<group>"; };
-		808806612910C0E000B9BFB3 /* MirrorAuthMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorAuthMoudle.swift; path = MirrorWorldSDK/Classes/MirrorAuthMoudle.swift; sourceTree = "<group>"; };
-		808806632910C11400B9BFB3 /* MirrorWalletMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorWalletMoudle.swift; path = MirrorWorldSDK/Classes/MirrorWalletMoudle.swift; sourceTree = "<group>"; };
-		808806652910C17A00B9BFB3 /* MirrorMarketplaceMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorMarketplaceMoudle.swift; path = MirrorWorldSDK/Classes/MirrorMarketplaceMoudle.swift; sourceTree = "<group>"; };
+		808806612910C0E000B9BFB3 /* MirrorAuthMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorAuthMoudle.swift; sourceTree = "<group>"; };
+		808806632910C11400B9BFB3 /* MirrorWalletMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorWalletMoudle.swift; sourceTree = "<group>"; };
+		808806652910C17A00B9BFB3 /* MirrorMarketplaceMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorMarketplaceMoudle.swift; sourceTree = "<group>"; };
 		80E4F13B2913833700781E9C /* MirrorBrideg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MirrorBrideg.h; path = MirrorWorldSDK/Classes/MirrorBrideg.h; sourceTree = "<group>"; };
 		80E4F13C2913833700781E9C /* MirrorBrideg.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = MirrorBrideg.mm; path = MirrorWorldSDK/Classes/MirrorBrideg.mm; sourceTree = "<group>"; };
 		828881556C5A9A7FCECDBAA85B265AEC /* Pods_MirrorWorldSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,8 +169,25 @@
 		804C93FD291B601000B8DA25 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				808806612910C0E000B9BFB3 /* MirrorAuthMoudle.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		80799D60292A4DAF0092F309 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				808806632910C11400B9BFB3 /* MirrorWalletMoudle.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		80799D61292A4DBF0092F309 /* Marketplace */ = {
+			isa = PBXGroup;
+			children = (
+				808806652910C17A00B9BFB3 /* MirrorMarketplaceMoudle.swift */,
+			);
+			path = Marketplace;
 			sourceTree = "<group>";
 		};
 		80906FF52923585400008035 /* MWSDKTests */ = {
@@ -251,12 +270,12 @@
 		F669274CEDE3F0678CC32D5320E853FA /* MirrorWorldSDK */ = {
 			isa = PBXGroup;
 			children = (
+				80799D61292A4DBF0092F309 /* Marketplace */,
+				80799D60292A4DAF0092F309 /* Wallet */,
 				80906FF52923585400008035 /* MWSDKTests */,
 				804C93FD291B601000B8DA25 /* Authentication */,
 				8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */,
-				808806612910C0E000B9BFB3 /* MirrorAuthMoudle.swift */,
-				808806632910C11400B9BFB3 /* MirrorWalletMoudle.swift */,
-				808806652910C17A00B9BFB3 /* MirrorMarketplaceMoudle.swift */,
+				80799D5E292A4D760092F309 /* MirrorBaseMoudle.swift */,
 				8023BD852902733600A357AA /* MirrorWorldSDKConfig.swift */,
 				801D292A29067B9000B60DE9 /* MirrorWorldLog.swift */,
 				8023BD81290271CF00A357AA /* MirrorWorldLoginAuthController.swift */,
@@ -474,6 +493,7 @@
 				808806642910C11400B9BFB3 /* MirrorWalletMoudle.swift in Sources */,
 				8023BD862902733600A357AA /* MirrorWorldSDKConfig.swift in Sources */,
 				80880660290FF9A500B9BFB3 /* MirrorWorldNetApi.swift in Sources */,
+				80799D5F292A4D760092F309 /* MirrorBaseMoudle.swift in Sources */,
 				80103CD5290E971000AFCDB0 /* MirrorWorldUserInfo.swift in Sources */,
 				801D29332907C39600B60DE9 /* MirrorWorldNetWork.swift in Sources */,
 				808806622910C0E000B9BFB3 /* MirrorAuthMoudle.swift in Sources */,
