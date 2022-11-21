@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MirrorWorldSDK/MirrorWorldSDK-Swift.h"
+
 
 @interface MirrorBrideg : NSObject
 

@@ -6,7 +6,6 @@
 //
 
 #import "MirrorBrideg.h"
-#import "MirrorWorldSDK/MirrorWorldSDK-Swift.h"
 
 
 
