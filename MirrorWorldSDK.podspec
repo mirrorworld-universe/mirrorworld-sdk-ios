@@ -34,6 +34,8 @@ TODO: Add long description of the pod here.
   s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
   s.source_files = 'MirrorWorldSDK/Classes/**/*'
   s.source_files = 'MirrorWorldSDK/Classes/**/*.{h,mm}'
+  s.prefix_header_contents = '#import "MirrorWorldSDK/MirrorWorldSDK-Swift.h"
+'
   
   #s.vendored_frameworks = 'SDK/MirrorWorldSDK.framework'
   
