@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MirrorWorldSDK'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = 'MirrorWorldSDK for iOS.'
 
 # This description is used to generate tags and improve search results.
@@ -35,10 +35,12 @@ TODO: Add long description of the pod here.
   
   s.source_files = 'MirrorWorldSDK/Classes/**/*'
   
+  s.vendored_frameworks = 'SDK/MirrorWorldSDK.framework'
+  
 #  s.source_files = 'MirrorWorldSDK/Classes/**/*.{h,mm}'
 #  s.prefix_header_contents = '#import "MirrorWorldSDK/MirrorWorldSDK-Swift.h"
   
-  #s.vendored_frameworks = 'SDK/MirrorWorldSDK.framework'
+  
   
   # s.resource_bundles = {
   #   'MirrorWorldSDK' => ['MirrorWorldSDK/Assets/*.png']
