@@ -56,6 +56,7 @@ class ViewController: UIViewController {
     var dataSource = [(moudleTitle:"Auth",MethodList:["Start Login","Logs out a user","CheckAuthenticated"]),
                       (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","Transfer SOL to another address","Transfer Token to another address"]),
                       (moudleTitle:"Marketplace",MethodList:[
+                        "openMarketPlacePage",
                         "MintNewCollection",
                         "MintNewNFT",
                         "FetchSingleNFT",
@@ -121,7 +122,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
 
             MWSDK.StartLogin { userInfo in
                 self.loadingActive.stopAnimating()
-                self.Log("login success :\(userInfo?.toString())")
+                self.Log("login success :\(userInfo?.toString() ?? "")")
             } onFail: {
                 self.loadingActive.stopAnimating()
                 self.Log("login failed!")
@@ -144,6 +145,9 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 
             }
             self.loadingActive.stopAnimating()
+            break
+        case "openMarketPlacePage":
+            MWSDK.openMarketPlacePage()
             break
         case "QueryUser":
             MWSDK.QueryUser(email: "jbakebwa@gmail.com") { user in

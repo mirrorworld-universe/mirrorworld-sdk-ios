@@ -11,6 +11,17 @@ import UIKit
     
     var config:MirrorWorldSDKConfig?
 
+    @objc public func openMarketPlacePage(controller:UIViewController?){
+        let urlString = config?.environment.marketRoot ?? ""
+        let marketPlaceAddress = urlString + "?auth=" + MirrorWorldSDKAuthData.share.access_token
+        guard let url = URL(string: marketPlaceAddress) else {
+            MWLog.console(marketPlaceAddress)
+            MWLog.console("please check your access_token.")
+            return }
+        let auth = MirrorWorldLoginAuthController.init(url: url)
+        controller?.present(auth, animated: true)
+    }
+    
     @objc public func MintNewCollection(name:String,symbol:String,url:String,confirmation:String,seller_fee_basis_points:Int,onSuccess:onSuccess,onFailed:onFailed){
         let param = ["name":name,
                      "symbol":symbol,

@@ -48,11 +48,11 @@ import UIKit
         case .StagingDevNet:
             return "https://jump-devnet.mirrorworld.fun"
         case .StagingMainNet:
-            return "https://jump-devnet.mirrorworld.fun"
+            return "https://jump.mirrorworld.fun"
         case .DevNet:
             return "https://jump-devnet.mirrorworld.fun"
         case .MainNet:
-            return "https://jump-devnet.mirrorworld.fun"
+            return "https://jump.mirrorworld.fun"
         }
     }
     

@@ -69,17 +69,21 @@ public class MirrorWorldHandleProtocol:NSObject{
     var refreshTokenBlock:((_ refreshToken:String?)->())?
     
     func urlSchemeDecode(url:URL){
+        
+        MWLog.console("SDK received1:\(url)")
 
         guard let urlString = url.absoluteString.removingPercentEncoding else {
             MWLog.console("UrlScheme Decode failed !")
             return
         }
+        MWLog.console("SDK received2:\(urlString)")
+
         let result = handleParam(paramsString: urlString)
         let keys = result?.keys
         if keys?.count ?? 0 > 0 {
             var access_tokenKey = ""
             var refresh_tokenKey = ""
-            
+            var userInfoObject:[String:Any]?
             keys?.forEach({ key in
                 let value = result?[key]
                 if key == "access_token"{
@@ -101,30 +105,23 @@ public class MirrorWorldHandleProtocol:NSObject{
                     refresh_tokenKey = refreToken
                 }
                 if key == "data"{
-                    let userInfoObject = value?.toJson()
-//                    userInfoObject?["refresh_token"] = refresh_tokenKey
-//                    userInfoObject?["access_token"] = access_tokenKey
-                    var loginResponse:[String:Any] = [:]
-                    loginResponse["user"] = userInfoObject
-                    loginResponse["refresh_token"] = refresh_tokenKey
-                    loginResponse["access_token"] = access_tokenKey
-                    
+                    userInfoObject = value?.toJson()
                     MirrorWorldSDKAuthData.share.userInfo = userInfoObject
                     let schemeInfo = MirrorWorldSchemeInfo.userinfo(userInfoObject)
                     schemeInfo.saveInfo()
-//                    loginSuccess?(userInfoObject)
-                    loginSuccess?(loginResponse)
-                    
-                    
                 }
                 
             })
+           
+            var loginResponse:[String:Any] = [:]
+            loginResponse["user"] = userInfoObject
+            loginResponse["refresh_token"] = refresh_tokenKey
+            loginResponse["access_token"] = access_tokenKey
+            MWLog.console("SDK received3:\(loginResponse)")
+            loginSuccess?(loginResponse)
         }else{
-//            loginFail?("UrlScheme No parameters.")
             MWLog.console("UrlScheme No parameters.")
         }
-        
-        
     }
     func handleParam(paramsString:String) -> [String:String]?{
         let schemeComponents = paramsString.components(separatedBy: "://")

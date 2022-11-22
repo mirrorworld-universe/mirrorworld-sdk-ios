@@ -148,6 +148,10 @@ public let MWSDK = MirrorWorldSDK.share
         walletMoudle.openWallet(controller: topvc)
     }
     
+    @objc public func openMarketPlacePage(){
+        let basevc = Self.getBaseViewController()
+        marketPlaceMoudle.openMarketPlacePage(controller: basevc)
+    }
     
     /**
      * Check user's info, then we can get user's base information such as wallet address and so on.
