@@ -21,13 +21,16 @@ public enum MirrorWorldLogLevel{
 public let MWLog = MirrorWorldLog.shard
 public class MirrorWorldLog: NSObject {
     public static let shard = MirrorWorldLog()
+    public var isDebug:Bool = true
     public var logLevel:MirrorWorldLogLevel = .warn
     public func console(_ text:Any?){
         guard let log = text else {return}
-        #if DEBUG
-        print("<iOS_MWSDK_LOG>: \(log)")
-        #else
-        #endif
+//        #if DEBUG
+//        #else
+//        #endif
+        if isDebug{
+            print("<iOS_MWSDK_LOG>: \(log)")
+        }
     }
 }
 

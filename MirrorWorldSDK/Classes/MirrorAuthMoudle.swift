@@ -21,7 +21,7 @@ import UIKit
         guard let sdkConfig = config else { return nil}
         
         let urlString = sdkConfig.environment.mainRoot + sdkConfig.apiKey
-        
+        MWLog.console("login Url:\(urlString)")
         guard let url = URL(string: urlString) else {
             MWLog.console(urlString)
             MWLog.console("please check your environment or apiKey.")
@@ -37,31 +37,34 @@ import UIKit
      *
      **/
     @objc public func loginOut(_ finsh:((_ isSucc:Bool)->Void)?){
-        let api = MirrorWorldNetApi.loginOut
-        MirrorWorldNetWork().request(api: api) { response in
-            DispatchQueue.main.async {
-                finsh?(true)
-            }
-        } _: { code,errorDesc in
-            DispatchQueue.main.async {
-                finsh?(false)
+        self.checkAccessToken { succ in
+            let api = MirrorWorldNetApi.loginOut
+            MirrorWorldNetWork().request(api: api) { response in
+                DispatchQueue.main.async {
+                    finsh?(true)
+                }
+            } _: { code,errorDesc in
+                DispatchQueue.main.async {
+                    finsh?(false)
+                }
             }
         }
     }
     
     //Checks whether is authenticated or not and returns the user object if true
     @objc public func CheckAuthenticated(_ onBool:((_ on:Bool)->())?){
-        let api = MirrorWorldNetApi.authMe
-        MirrorWorldNetWork().request(api: api) { response in
-            DispatchQueue.main.async {
-                onBool?(true)
-            }
-        } _: { code,errorDesc in
-            DispatchQueue.main.async {
-                onBool?(false)
+        self.checkAccessToken { succ in
+            let api = MirrorWorldNetApi.authMe
+            MirrorWorldNetWork().request(api: api) { response in
+                DispatchQueue.main.async {
+                    onBool?(true)
+                }
+            } _: { code,errorDesc in
+                DispatchQueue.main.async {
+                    onBool?(false)
+                }
             }
         }
-        
         
     }
     
@@ -102,18 +105,21 @@ import UIKit
         guard email.count > 0 else {
             MWLog.console("plese check Your email !")
             return }
-        let api = MirrorWorldNetApi.queryUser(email: email)
-        MirrorWorldNetWork().request(api: api) {[weak self] response in
-            self?.handleResponse(response: response, success: { user in
-                onUserFetched?(user)
-            }, failed: { code, message in
-                onFetchFailed?(code,message)
-            })
-        } _: { code,err in
-            DispatchQueue.main.async {
-                onFetchFailed?(code,err)
+        self.checkAccessToken { succ in
+            let api = MirrorWorldNetApi.queryUser(email: email)
+            MirrorWorldNetWork().request(api: api) {[weak self] response in
+                self?.handleResponse(response: response, success: { user in
+                    onUserFetched?(user)
+                }, failed: { code, message in
+                    onFetchFailed?(code,message)
+                })
+            } _: { code,err in
+                DispatchQueue.main.async {
+                    onFetchFailed?(code,err)
+                }
             }
         }
+       
     }
     
     

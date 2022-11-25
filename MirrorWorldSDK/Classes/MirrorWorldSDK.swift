@@ -12,6 +12,9 @@ public let MWSDK = MirrorWorldSDK.share
 
 @objc public class MirrorWorldSDK: NSObject {
    @objc public static let share = MirrorWorldSDK()
+    
+    public var SDKVersion:String = "0.0.5"
+    
     public typealias loginListent = ((_ s:Bool)->Void)?
 
     var onSuccess:((_ userInfo:[String:Any]?)->())?
@@ -41,11 +44,21 @@ public let MWSDK = MirrorWorldSDK.share
         super.init()
     }
     
+    
+    @objc public func Version() -> String{
+        return SDKVersion
+    }
+    
+    @objc public func setDebug(_ debug:Bool){
+        MWLog.isDebug = debug
+    }
+    
     /**
      * init SDK
      */
     @objc public func initSDK(env:MWEnvironment, apiKey:String){
-        
+        MWLog.console("iOS-SDK-Version:\(SDKVersion)")
+
         self.apiKey = apiKey
         
 //        self.clientSecret = clientSecret
@@ -70,9 +83,9 @@ public let MWSDK = MirrorWorldSDK.share
         listenUrlschemeCallBack()
         
         
-        authMoudle.RefreshToken { on in
-            self.sdkLog.console("CheckAuthenticated finsh")
-        }
+//        authMoudle.RefreshToken { on in
+//            self.sdkLog.console("CheckAuthenticated finsh")
+//        }
     }
     
     /**
@@ -85,9 +98,9 @@ public let MWSDK = MirrorWorldSDK.share
         authMoudle.config = sdkConfig
         marketPlaceMoudle.config = sdkConfig
         listenUrlschemeCallBack()
-        authMoudle.RefreshToken { on in
-            print("CheckAuthenticated finsh")
-        }
+//        authMoudle.RefreshToken { on in
+//            print("CheckAuthenticated finsh")
+//        }
     }
     
     /**
