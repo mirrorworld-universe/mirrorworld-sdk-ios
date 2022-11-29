@@ -13,6 +13,7 @@ import UIKit
     
     @objc public var userInfo:[String:Any]? = MirrorWorldSDKAuthData.share.userInfo
     
+    
     /**
      * open login webView
      *

@@ -18,6 +18,9 @@ public let MWSDK = MirrorWorldSDK.share
     public typealias loginListent = ((_ s:Bool)->Void)?
 
     var onSuccess:((_ userInfo:[String:Any]?)->())?
+    
+    var onWallectSuccess:((_ userInfo:[String:Any]?)->())?
+    
     var onFail:(()->())?
     
     var onWalletLogOut:(()->())?
@@ -153,9 +156,10 @@ public let MWSDK = MirrorWorldSDK.share
      */
 //    @objc public func StartLogin(onSuccess:@escaping (_ userInfo:[String:Any]?)->(),onFail:@escaping ()->()){
 
-    @objc public func OpenWallet(onLogout:@escaping ()->Void){
+    @objc public func OpenWallet(onLogout:@escaping ()->Void,loginSuccess:@escaping (_ userInfo:[String:Any]?)->()){
     
         self.onWalletLogOut = onLogout
+        self.onWallectSuccess = loginSuccess
 
         let topvc = Self.getBaseViewController()
         walletMoudle.openWallet(controller: topvc)
@@ -415,6 +419,7 @@ extension MirrorWorldSDK{
     func listenUrlschemeCallBack(){
         sdkProtol.loginSuccess = {[weak self] userinfo in
             self?.onSuccess?(userinfo)
+            self?.onWallectSuccess?(userinfo)
             self?.loginAuthController?.dismiss(animated: true)
         }
         sdkProtol.onWalletLogOut = {[weak self] in

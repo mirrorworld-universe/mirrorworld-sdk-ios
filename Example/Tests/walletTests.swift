@@ -40,13 +40,21 @@ final class walletTests: XCTestCase {
     
     func testOpenWallet() throws {
         
-        let exp = expectation(description: #function)
+//        let exp = expectation(description: #function)
         
-        MWSDK.OpenWallet {
-            XCTAssertFalse(MirrorWorldSDKAuthData.share.refresh_token.count > 0 ,"logout wallet!")
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 60,handler: nil)
+//        MWSDK.OpenWallet {
+//            XCTAssertFalse(MirrorWorldSDKAuthData.share.refresh_token.count > 0 ,"logout wallet!")
+//            exp.fulfill()
+//        } loginSuccess: ([String : Any]?) -> ()
+//        MWSDK.OpenWallet {
+//            XCTAssertFalse(MirrorWorldSDKAuthData.share.refresh_token.count > 0 ,"logout wallet!")
+//            exp.fulfill()
+//
+//        } loginSuccess: { [String : Any]? in
+//            exp.fulfill()
+//        }
+//
+//        waitForExpectations(timeout: 60,handler: nil)
         
     }
     

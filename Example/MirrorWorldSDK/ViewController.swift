@@ -142,8 +142,14 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             break
         case "OpenWallet":
             MWSDK.OpenWallet {
-                
+                self.loadingActive.stopAnimating()
+                self.Log("Wallet is logout")
+
+            } loginSuccess: { userinfo in
+                self.loadingActive.stopAnimating()
+                self.Log("Wallet login: \(userinfo)")
             }
+
             self.loadingActive.stopAnimating()
             break
         case "openMarketPlacePage":

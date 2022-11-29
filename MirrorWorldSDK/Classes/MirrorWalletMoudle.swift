@@ -12,7 +12,9 @@ import UIKit
     var config:MirrorWorldSDKConfig?
     
     @objc public func openWallet(controller:UIViewController?){
-        let walletUrl = config?.environment.mainRoot ?? ""
+//        let urlString = sdkConfig.environment.mainRoot + sdkConfig.apiKey
+
+        let walletUrl = (config?.environment.mainRoot ?? "") + (config?.apiKey ?? "")
         guard walletUrl.count > 0 else { return }
         let url = URL(string: walletUrl)!
         let auth = MirrorWorldLoginAuthController.init(url: url)

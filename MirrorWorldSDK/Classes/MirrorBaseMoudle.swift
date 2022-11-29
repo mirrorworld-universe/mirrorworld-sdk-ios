@@ -11,7 +11,7 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
 @objc public class MirrorBaseMoudle:NSObject{
     ///
     func checkAccessToken(finish:((_ succ:Bool)->Void)?){
-        let accessToken =                 MirrorWorldSDKAuthData.share.access_token
+        let accessToken = MirrorWorldSDKAuthData.share.access_token
         if accessToken.count == 0{
             MirrorWorldSDKAuthData.share.getRefreshToken()
 
