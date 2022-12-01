@@ -12,6 +12,7 @@ import SafariServices
     
     
     var finsh:(()->())?
+    var done:(()->())?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
@@ -21,7 +22,7 @@ import SafariServices
 }
 extension MirrorWorldLoginAuthController:SFSafariViewControllerDelegate{
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        print("click finish")
+        self.done?()
     }
     func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {
         print("start loading")

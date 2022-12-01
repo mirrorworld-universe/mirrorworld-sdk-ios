@@ -9,6 +9,12 @@ import UIKit
 public typealias onSuccess = ((_ data:String?)->Void)?
 public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
 @objc public class MirrorBaseMoudle:NSObject{
+    
+    /// authorization
+    public var authorization:MirrorSecurityVerification = MirrorSecurityVerification()
+    
+    
+    
     ///
     func checkAccessToken(finish:((_ succ:Bool)->Void)?){
         let accessToken = MirrorWorldSDKAuthData.share.access_token
@@ -47,7 +53,7 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
         let code = responseJson?["code"] as? Int ?? -1
         let _ = responseJson?["error"] as? String ?? ""
         let message = responseJson?["message"] as? String ?? ""
-        let status = responseJson?["status"] as? String ?? ""
+        let _ = responseJson?["status"] as? String ?? ""
         let data = responseJson?["data"] as? [String:Any]
         let dataString = data?.toString()
         DispatchQueue.main.async {

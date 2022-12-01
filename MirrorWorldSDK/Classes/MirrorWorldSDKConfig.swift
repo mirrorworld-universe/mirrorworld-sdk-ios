@@ -18,6 +18,8 @@ import UIKit
     
     public var clientSecret:String = ""
     public var clientId:String = ""
+    
+    
 }
 
 
@@ -42,6 +44,9 @@ import UIKit
             return "https://auth.mirrorworld.fun/"
         }
     }
+    
+    
+    
     
     var marketRoot:String{
         switch self {
@@ -80,6 +85,19 @@ import UIKit
             return "https://api.mirrorworld.fun/v1/devnet/"
         case .MainNet:
             return "https://api.mirrorworld.fun/v1/mainnet/"
+        }
+    }
+    
+    public var authRoot:String{
+        switch self {
+        case .StagingDevNet:
+            return "https://auth-staging.mirrorworld.fun/approve/"
+        case .StagingMainNet:
+            return "https://auth-staging.mirrorworld.fun/approve/"
+        case .DevNet:
+            return "https://auth.mirrorworld.fun/approve/"
+        case .MainNet:
+            return "https://auth.mirrorworld.fun/approve/"
         }
     }
     

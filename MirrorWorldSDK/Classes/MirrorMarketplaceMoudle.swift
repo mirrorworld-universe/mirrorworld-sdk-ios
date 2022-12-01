@@ -10,7 +10,7 @@ import UIKit
 @objc public class MirrorMarketplaceMoudle: MirrorBaseMoudle {
     
     var config:MirrorWorldSDKConfig?
-
+    var newAuth:MirrorSecurityVerification?
     @objc public func openMarketPlacePage(controller:UIViewController?){
         self.checkAccessToken { succ in
             let urlString = self.config?.environment.marketRoot ?? ""
@@ -32,19 +32,26 @@ import UIKit
                      "seller_fee_basis_points":seller_fee_basis_points] as [String : Any]
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.MintNewCollection(param)
-            MirrorWorldNetWork().request(api: api) {[weak self] response in
-                self?.handleResponse(response: response, success: { data in
-                    onSuccess?(data)
-                }, failed: { code, message in
-                    onFailed?(code,message)
-                })
-
-            } _: { code, err in
-                DispatchQueue.main.async {
-                    onFailed?(code,err)
+            self.authorization.requestActionAuthorization(config: self.config, api) { success, authToken,errorDesc  in
+                if succ{
+                    MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
+                        self?.handleResponse(response: response, success: { data in
+                            onSuccess?(data)
+                        }, failed: { code, message in
+                            onFailed?(code,message)
+                        })
+                    } _: { code, err in
+                        DispatchQueue.main.async {
+                            onFailed?(code,err)
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        onFailed?(1,errorDesc)
+                    }
                 }
-                
             }
+            
         }
     }
     
@@ -89,17 +96,24 @@ import UIKit
     @objc public func TransferNFTToAnotherSolanaWallet(mint_address:String,to_wallet_address:String,confirmation:String,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.TransferNFTToAnotherSolanaWallet(mint_address: mint_address, to_wallet_address: to_wallet_address, confirmation: confirmation)
-            MirrorWorldNetWork().request(api: api) {[weak self] response in
-                self?.handleResponse(response: response, success: { response in
-                    onSuccess?(response)
-                }, failed: { code, message in
-                    onFailed?(code,message)
-                })
-            } _: { code, errorDesc in
-                DispatchQueue.main.async {
-                    onFailed?(code,errorDesc)
+            self.authorization.requestActionAuthorization(config: self.config, api) { success, authToken, errorDesc in
+                if success{
+                    MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
+                        self?.handleResponse(response: response, success: { response in
+                            onSuccess?(response)
+                        }, failed: { code, message in
+                            onFailed?(code,message)
+                        })
+                    } _: { code, errorDesc in
+                        DispatchQueue.main.async {
+                            onFailed?(code,errorDesc)
+                        }
+                    }
+                }else{
+                    onFailed?(30001,errorDesc)
                 }
             }
+            
         }
         
 
@@ -112,19 +126,46 @@ import UIKit
                      "url":url,
                      "seller_fee_basis_points":seller_fee_basis_points,
                      "confirmation":confirmation] as [String : Any]
-        self.checkAccessToken { succ in
+        self.checkAccessToken {[weak self] succ in
+            self?.newAuth = MirrorSecurityVerification()
+            /// authToken
             let api = MirrorWorldNetApi.MintNewNFT(param)
-            MirrorWorldNetWork().request(api: api) {[weak self] response in
-                self?.handleResponse(response: response, success: { response in
-                    onSuccess?(response)
-                }, failed: { code, message in
-                      onFailed?(code,message)
-                })
-            } _: { code, errorDesc in
-                DispatchQueue.main.async {
-                    onFailed?(code,errorDesc)
+            self?.authorization.requestActionAuthorization(config: self?.config, api, { success, authToken,errorDesc  in
+                MWLog.console("action authorization API:\(String(describing: authToken))")
+                if succ {
+                    MWLog.console("action authorization continue.")
+                    MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
+                        self?.handleResponse(response: response, success: { response in
+                            onSuccess?(response)
+                        }, failed: { code, message in
+                              onFailed?(code,message)
+                        })
+                    } _: { code, errorDesc in
+                        DispatchQueue.main.async {
+                            onFailed?(code,errorDesc)
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        onFailed?(-1,errorDesc)
+                    }
                 }
-            }
+
+            })
+           
+            
+//            let api = MirrorWorldNetApi.MintNewNFT(param)
+//            MirrorWorldNetWork().request(api: api) {[weak self] response in
+//                self?.handleResponse(response: response, success: { response in
+//                    onSuccess?(response)
+//                }, failed: { code, message in
+//                      onFailed?(code,message)
+//                })
+//            } _: { code, errorDesc in
+//                DispatchQueue.main.async {
+//                    onFailed?(code,errorDesc)
+//                }
+//            }
         }
       
 
@@ -134,17 +175,26 @@ import UIKit
     @objc public func ListNFT(mint_address:String,price:Double,confirmation:String,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.ListNFT(mint_address, price, confirmation)
-            MirrorWorldNetWork().request(api: api) {[weak self] response in
-                self?.handleResponse(response: response, success: { response in
-                    onSuccess?(response)
-                }, failed: { code, message in
-                    onFailed?(code,message)
-                })
-            } _: { code, errorDesc in
-                DispatchQueue.main.async {
-                    onFailed?(code,errorDesc)
+            self.authorization.requestActionAuthorization(config: self.config, api) { success, authToken,errorDes  in
+                if success{
+                    MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
+                        self?.handleResponse(response: response, success: { response in
+                            onSuccess?(response)
+                        }, failed: { code, message in
+                            onFailed?(code,message)
+                        })
+                    } _: { code, errorDesc in
+                        DispatchQueue.main.async {
+                            onFailed?(code,errorDesc)
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        onFailed?(1,errorDes)
+                    }
                 }
             }
+            
         }
         
 
@@ -155,15 +205,22 @@ import UIKit
         
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.UpdateNFTListing(mint_address: mint_address, price: price, confirmation: confirmation)
-            MirrorWorldNetWork().request(api: api) {[weak self] response in
-                self?.handleResponse(response: response, success: { data in
-                    onSuccess?(data)
-                }, failed: { code, message in
-                    onFailed?(code,message)
-                })
-            } _: { code, errorDesc in
-                
+            self.authorization.requestActionAuthorization(config: self.config, api) { success, authToken, errorDesc in
+                if success{
+                    MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
+                        self?.handleResponse(response: response, success: { data in
+                            onSuccess?(data)
+                        }, failed: { code, message in
+                            onFailed?(code,message)
+                        })
+                    } _: { code, errorDesc in
+                        onFailed?(code,errorDesc)
+                    }
+                }else{
+                    onFailed?(30001,errorDesc)
+                }
             }
+            
         }
        
 
@@ -173,17 +230,24 @@ import UIKit
     @objc public func CancelNFTListing(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.cancelNFTListing(mint_address: mint_address, price: price)
-            MirrorWorldNetWork().request(api: api) {[weak self] response in
-                self?.handleResponse(response: response, success: { data in
-                    onSuccess?(data)
-                }, failed: { code, message in
-                    onFailed?(code,message)
-                })
-            } _: { code, errorDesc in
-                DispatchQueue.main.async {
-                    onFailed?(code,errorDesc)
+            self.authorization.requestActionAuthorization(config: self.config, api) { success, authToken, errorDesc in
+                if success{
+                    MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
+                        self?.handleResponse(response: response, success: { data in
+                            onSuccess?(data)
+                        }, failed: { code, message in
+                            onFailed?(code,message)
+                        })
+                    } _: { code, errorDesc in
+                        DispatchQueue.main.async {
+                            onFailed?(code,errorDesc)
+                        }
+                    }
+                }else{
+                    onFailed?(30001,errorDesc)
                 }
             }
+            
         }
        
 
@@ -272,17 +336,26 @@ import UIKit
     @objc public func BuyNFT(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.BuyNFT(mint_address: mint_address, price: price, confirmation: "finalized")
-            MirrorWorldNetWork().request(api: api) {[weak self] response in
-                self?.handleResponse(response: response, success: { response in
-                    onSuccess?(response)
-                }, failed: { code, message in
-                    onFailed?(code,message)
-                })
-            } _: { code, errorDesc in
-                DispatchQueue.main.async {
-                    onFailed?(code,errorDesc)
+            self.authorization.requestActionAuthorization(config: self.config, api) { success, authToken, errorDesc in
+                if success{
+                    MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
+                        self?.handleResponse(response: response, success: { response in
+                            onSuccess?(response)
+                        }, failed: { code, message in
+                            onFailed?(code,message)
+                        })
+                    } _: { code, errorDesc in
+                        DispatchQueue.main.async {
+                            onFailed?(code,errorDesc)
+                        }
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        onFailed?(30001,errorDesc)
+                    }
                 }
             }
+            
         }
         
 

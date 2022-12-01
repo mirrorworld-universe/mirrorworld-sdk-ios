@@ -8,6 +8,9 @@
 public enum MirrorWorldNetApi{
     
     //Get:  Checks whether is authenticated or not and returns the user object if true
+    
+    case requestActionAuthorization(type:String,message:String,value:Double,params:[String:Any])
+    
     case authMe
     
     // Get: Request refresh token for user
@@ -61,6 +64,8 @@ public enum MirrorWorldNetApi{
     
     var path:String{
         switch self {
+        case .requestActionAuthorization:
+            return "auth/actions/request"
         case .authMe:
             return "auth/me"
         case .loginOut:
@@ -111,6 +116,11 @@ public enum MirrorWorldNetApi{
     
     var param:[String:Any]?{
         switch self {
+        case .requestActionAuthorization(let type,let message,let value, let params):
+            return ["type":type,
+                    "message":message,
+                    "value":value,
+                    "params":params]
         case .refreshToken(let refresh_token):
             return ["x-refresh-token":refresh_token]
         case .queryUser:
@@ -151,8 +161,39 @@ public enum MirrorWorldNetApi{
         }
     }
     
+    var actionType:String{
+        switch self {
+        case .MintNewNFT:
+            return "mint_nft"
+        case .TransferSOLtoAnotherAddress:
+            return "transfer_sol"
+        case .TransferTokenToAnotherAddress:
+            return "transfer_spl_token"
+        case .MintNewCollection:
+            return "create_collection"
+        case .ListNFT:
+            return "list_nft"
+        case .BuyNFT:
+            return "buy_nft"
+        case .cancelNFTListing:
+            return "cancel_listing"
+        case .UpdateNFTListing:
+            return "update_listing"
+        case .TransferNFTToAnotherSolanaWallet:
+            return "transfer_nft"
+//            10. create_marketplace - Create a new marketplace instance
+//            11. update_marketplace - Update the marketplace instance
+        default :
+            return "interaction"
+        }
+        
+    }
+    
+    
     var method:String{
         switch self {
+        case .requestActionAuthorization:
+            return "POST"
         case .authMe,.refreshToken,.queryUser,.getWalletTransactions:
             return "GET"
         case .loginOut,.TransferSOLtoAnotherAddress,.TransferTokenToAnotherAddress:
@@ -173,6 +214,8 @@ public enum MirrorWorldNetApi{
     }
     func serverUrl(env:MWEnvironment) -> String {
         switch self {
+        case .requestActionAuthorization:
+            return env.ssoRoot + path
         case .authMe,.refreshToken:
             return env.ssoRoot + path
         case .loginOut:

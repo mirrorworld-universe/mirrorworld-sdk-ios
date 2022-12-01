@@ -139,6 +139,9 @@ public let MWSDK = MirrorWorldSDK.share
      */
     @objc public func handleOpen(url:URL){
         sdkProtol.urlSchemeDecode(url: url)
+        
+        
+        
     }
     
     /**
@@ -417,6 +420,11 @@ extension MirrorWorldSDK{
 
 extension MirrorWorldSDK{
     func listenUrlschemeCallBack(){
+//        marketPlaceMoudle.authorization.listenSchemeCallBack(schemeProtocol: sdkProtol)
+//        authMoudle.authorization.listenSchemeCallBack(schemeProtocol: sdkProtol)
+//        walletMoudle.authorization.listenSchemeCallBack(schemeProtocol: sdkProtol)
+
+        
         sdkProtol.loginSuccess = {[weak self] userinfo in
             self?.onSuccess?(userinfo)
             self?.onWallectSuccess?(userinfo)
@@ -424,6 +432,11 @@ extension MirrorWorldSDK{
         }
         sdkProtol.onWalletLogOut = {[weak self] in
             self?.onWalletLogOut?()
+        }
+        sdkProtol.authorizationTokenBlock = {[weak self] token in
+            self?.marketPlaceMoudle.authorization.callBackToken(token)
+            self?.authMoudle.authorization.callBackToken(token)
+            self?.walletMoudle.authorization.callBackToken(token)
         }
     }
 }

@@ -67,6 +67,7 @@ public class MirrorWorldHandleProtocol:NSObject{
     var userInfoBolck:((_ userInfo:[String:Any]?)->Void)?
     var accessTokenBlock:((_ accessToken:String?)->())?
     var refreshTokenBlock:((_ refreshToken:String?)->())?
+    var authorizationTokenBlock:((_ refreshToken:String?)->())?
     
     func urlSchemeDecode(url:URL){
         
@@ -84,6 +85,7 @@ public class MirrorWorldHandleProtocol:NSObject{
             var access_tokenKey = ""
             var refresh_tokenKey = ""
             var userInfoObject:[String:Any]?
+            var authorization_token = ""
             keys?.forEach({ key in
                 let value = result?[key]
                 if key == "access_token"{
@@ -110,6 +112,9 @@ public class MirrorWorldHandleProtocol:NSObject{
                     let schemeInfo = MirrorWorldSchemeInfo.userinfo(userInfoObject)
                     schemeInfo.saveInfo()
                 }
+                if key == "authorization_token"{
+                    authorization_token = value ?? ""
+                }
                 
             })
            
@@ -119,26 +124,22 @@ public class MirrorWorldHandleProtocol:NSObject{
             loginResponse["access_token"] = access_tokenKey
             MWLog.console("SDK received3:\(loginResponse)")
             loginSuccess?(loginResponse)
+            
         }else{
             MWLog.console("UrlScheme No parameters.")
         }
     }
     func handleParam(paramsString:String) -> [String:String]?{
-        let schemeComponents = paramsString.components(separatedBy: "://")
+        guard paramsString.hasPrefix("mwsdk:") else{
+            MWLog.console("Unsupported URLScheme type!")
+            return nil
+        }
+        let schemeComponents = paramsString.components(separatedBy: "mwsdk://")
         guard schemeComponents.count > 0 else { return nil}
-        let schemeProtol = schemeComponents.first
-        guard schemeProtol == "mwsdk" else {
-            MWLog.console("unSupport the \(schemeProtol ?? "")")
-            return nil
-        }
-        let schemeValue = schemeComponents.last?.components(separatedBy: "?")
-        guard let schemeType = schemeValue?.first else {
-            MWLog.console("schemeType is null)")
-            return nil
-        }
-        switch schemeType {
-        case "userinfo":
-            let params = schemeValue?.last?.components(separatedBy: "&")
+        let schemeValue = schemeComponents.last
+        if (schemeValue?.hasPrefix("userinfo") ?? false){
+            let data = schemeValue?.components(separatedBy: "userinfo?data=").last
+            let params = data?.components(separatedBy: "&")
             var paramDic:[String:String] = [:]
             if params?.count ?? 0 > 0{
                 params?.forEach({ item in
@@ -148,15 +149,20 @@ public class MirrorWorldHandleProtocol:NSObject{
                 })
             }
             return paramDic
-        case "wallet":
+        }else if (schemeValue?.hasPrefix("wallet") ?? false){
             MirrorWorldSDKAuthData.share.clearToken()
             onWalletLogOut?()
             return nil
-        default:
-            MWLog.console("unSupport the \(schemeType)")
-            break
+        }else if (schemeValue?.hasPrefix("approve") ?? false){
+            let approveData = schemeValue?.components(separatedBy: "approve?data=").last
+            let authToken = (approveData?.toJson()?["authorization_token"] as? String) ?? ""
+            authorizationTokenBlock?(authToken)
+        }else {
+            MWLog.console("unSupport the schemeType :")
+            return nil
         }
-        return nil
+       return nil
+       
     }
     
     func handleUserInfo(data:String?)->[String:Any]?{

@@ -7,9 +7,14 @@
 
 import UIKit
 
+public struct MirrorError{
+    var code:Int = -1
+    var desc:String = "error"
+}
+
 @objc public class MirrorWorldNetWork: NSObject {
     
-    public func request(api:MirrorWorldNetApi,_ success:((_ response:String?)->())?,_ faild:((_ code:Int,_ errorDesc:String)->())?){
+    public func request(api:MirrorWorldNetApi,_ authorizationToken:String? = nil,_ success:((_ response:String?)->())?,_ faild:((_ code:Int,_ errorDesc:String)->())?){
         let urlPath = api.serverUrl(env: MWSDK.sdkConfig.environment)
         let url:URL = URL(string: urlPath)!
         
@@ -33,6 +38,11 @@ import UIKit
         }else{
             MWLog.console("access_token is nil !")
         }
+        
+        if authorizationToken != nil && (authorizationToken?.count ?? 0) > 0{
+            request.setValue("x-authorization-token", forHTTPHeaderField: (authorizationToken ?? ""))
+        }
+        
         if api.method == "GET"{
             let keys = api.param?.keys
             if keys?.count ?? 0 > 0 {
@@ -71,3 +81,5 @@ import UIKit
  
     
 }
+
+
