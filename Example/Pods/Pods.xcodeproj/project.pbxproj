@@ -240,12 +240,12 @@
 			isa = PBXGroup;
 			children = (
 				8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */,
+				8023BD852902733600A357AA /* MirrorWorldSDKConfig.swift */,
 				80C3EC352938508600792716 /* MirrorSecurityVerification.swift */,
 				80799D5E292A4D760092F309 /* MirrorBaseMoudle.swift */,
 				80799D62292B47C10092F309 /* MirrorAuthMoudle.swift */,
 				80799D64292B48280092F309 /* MirrorMarketplaceMoudle.swift */,
 				80799D65292B48280092F309 /* MirrorWalletMoudle.swift */,
-				8023BD852902733600A357AA /* MirrorWorldSDKConfig.swift */,
 				80C3EC372938779400792716 /* MirrorUIConfig.swift */,
 				801D292A29067B9000B60DE9 /* MirrorWorldLog.swift */,
 				8023BD81290271CF00A357AA /* MirrorWorldLoginAuthController.swift */,

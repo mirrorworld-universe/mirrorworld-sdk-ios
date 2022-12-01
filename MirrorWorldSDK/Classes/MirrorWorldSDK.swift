@@ -30,14 +30,11 @@ public let MWSDK = MirrorWorldSDK.share
     private var marketPlaceMoudle:MirrorMarketplaceMoudle = MirrorMarketplaceMoudle()
 
    @objc public var sdkConfig:MirrorWorldSDKConfig = MirrorWorldSDKConfig()
-    @objc public var sdkLog:MirrorWorldLog = MirrorWorldLog()
     @objc public var sdkProtol:MirrorWorldHandleProtocol = MirrorWorldHandleProtocol()
     @objc private var apiKey:String = ""
     @objc private var clientSecret:String = ""
     @objc private var clientId:String = ""
     
-    @objc private var access_token:String = ""
-    @objc private var refresh_token:String = ""
     
     @objc private var loginAuthController: MirrorWorldLoginAuthController?
     
@@ -76,12 +73,12 @@ public let MWSDK = MirrorWorldSDK.share
         authMoudle.config = sdkConfig
         marketPlaceMoudle.config = sdkConfig
         
-        sdkLog.console("apiKey:\(apiKey)")
+        MWLog.console("apiKey:\(apiKey)")
         guard self.apiKey.count > 0 else {
-            sdkLog.console("Check Your appKey !")
+            MWLog.console("Check Your appKey !")
             return
         }
-        sdkLog.console("MirrorWorldSDK - init - Success!")
+        MWLog.console("MirrorWorldSDK - init - Success!")
         
         listenUrlschemeCallBack()
         
@@ -189,8 +186,9 @@ public let MWSDK = MirrorWorldSDK.share
      * Get access token so that users can visit APIs.
      */
     @objc public func GetAccessToken(callBack:((_ result:String)->Void)?){
-        let access_token = MirrorWorldSDKAuthData.share.access_token
-        callBack?(access_token)
+        authMoudle.GetAccessToken { res in
+            callBack?(res)
+        }
     }
     
     /**
@@ -257,14 +255,14 @@ public let MWSDK = MirrorWorldSDK.share
      * Mint a new NFT.
      *
      */
-    @objc public func MintNewNFT(collection_mint: String, name: String, symbol: String, url: String, seller_fee_basis_points: Int, confirmation: String, onSuccess: onSuccess, onFailed: onFailed){
+    @objc public func MintNewNFT(collection_mint: String, name: String, symbol: String, url: String, seller_fee_basis_points: Int, confirmation: String = "finalized", onSuccess: onSuccess, onFailed: onFailed){
         marketPlaceMoudle.MintNewNFT(collection_mint: collection_mint, name: name, symbol: symbol, url: url, seller_fee_basis_points: seller_fee_basis_points, confirmation: confirmation, onSuccess: { data in
             onSuccess?(data)
          }, onFailed: { code,mess in
              onFailed?(code,mess)
          })
     }
-    @objc public func MintNewCollection(name:String,symbol:String,url:String,confirmation:String,seller_fee_basis_points:Int,onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func MintNewCollection(name:String,symbol:String,url:String,confirmation:String = "finalized",seller_fee_basis_points:Int,onSuccess:onSuccess,onFailed:onFailed){
         marketPlaceMoudle.MintNewCollection(name: name, symbol: symbol, url: url, confirmation: confirmation, seller_fee_basis_points: seller_fee_basis_points, onSuccess: { data in
            onSuccess?(data)
         }, onFailed: { code,mess in
@@ -298,7 +296,7 @@ public let MWSDK = MirrorWorldSDK.share
     }
     
     
-    @objc public func TransferNFTToAnotherSolanaWallet(mint_address:String,to_wallet_address:String,confirmation:String,onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func TransferNFTToAnotherSolanaWallet(mint_address:String,to_wallet_address:String,confirmation:String = "finalized",onSuccess:onSuccess,onFailed:onFailed){
         marketPlaceMoudle.TransferNFTToAnotherSolanaWallet(mint_address: mint_address, to_wallet_address: to_wallet_address, confirmation: confirmation) { data in
             onSuccess?(data)
         } onFailed: { code, message in
@@ -309,7 +307,7 @@ public let MWSDK = MirrorWorldSDK.share
     /**
      * Get list of NFT on market place.
      */
-    @objc public func ListNFT(mint_address:String,price:Double,confirmation:String,onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func ListNFT(mint_address:String,price:Double,confirmation:String = "finalized",onSuccess:onSuccess,onFailed:onFailed){
         marketPlaceMoudle.ListNFT(mint_address: mint_address, price: price, confirmation: confirmation) { data in
             onSuccess?(data)
         } onFailed: { code, message in
@@ -443,13 +441,6 @@ extension MirrorWorldSDK{
 
 public extension MirrorWorldSDK{
     @objc class func getBaseViewController() -> UIViewController?{
-            guard let window = UIApplication.shared.keyWindow, let rootViewController = window.rootViewController else {
-                return nil
-            }
-            var topController = rootViewController
-            while let newTopController = topController.presentedViewController {
-                topController = newTopController
-            }
-            return topController
+            return MirrorUIConfig().baseViewContoller
         }
 }

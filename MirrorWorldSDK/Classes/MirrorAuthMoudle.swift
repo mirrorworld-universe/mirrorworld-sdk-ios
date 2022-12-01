@@ -14,6 +14,13 @@ import UIKit
     @objc public var userInfo:[String:Any]? = MirrorWorldSDKAuthData.share.userInfo
     
     
+    @objc public func GetAccessToken(callBack:((_ result:String)->Void)?){
+        self.CheckAuthenticated { on in
+            let access_token = MirrorWorldSDKAuthData.share.access_token
+            callBack?(access_token)
+        }
+    }
+    
     /**
      * open login webView
      *

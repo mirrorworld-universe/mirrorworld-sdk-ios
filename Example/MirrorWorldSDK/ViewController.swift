@@ -230,7 +230,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
 
             break
         case "MintNewNFT":
-            MWSDK.MintNewNFT(collection_mint: "", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500, confirmation: "finalized") { data in
+            MWSDK.MintNewNFT(collection_mint: "5dw2PLdbTtn6sUHdNLy3EH4buPHh3Ch9JQTCoP9d6DwN", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500, confirmation: "finalized") { data in
                 self.Log(data)
                 self.loadingActive.stopAnimating()
             } onFailed: { code, message in

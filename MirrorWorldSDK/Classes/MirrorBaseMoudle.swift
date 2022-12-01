@@ -13,8 +13,6 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
     /// authorization
     public var authorization:MirrorSecurityVerification = MirrorSecurityVerification()
     
-    
-    
     ///
     func checkAccessToken(finish:((_ succ:Bool)->Void)?){
         let accessToken = MirrorWorldSDKAuthData.share.access_token

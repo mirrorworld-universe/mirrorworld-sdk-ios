@@ -25,9 +25,6 @@ public class MirrorWorldLog: NSObject {
     public var logLevel:MirrorWorldLogLevel = .warn
     public func console(_ text:Any?){
         guard let log = text else {return}
-//        #if DEBUG
-//        #else
-//        #endif
         if isDebug{
             print("<iOS_MWSDK_LOG>: \(log)")
         }
