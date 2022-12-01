@@ -12,13 +12,19 @@ import UIKit
     var config:MirrorWorldSDKConfig?
     
     @objc public func openWallet(controller:UIViewController?){
-//        let urlString = sdkConfig.environment.mainRoot + sdkConfig.apiKey
-
-        let walletUrl = (config?.environment.mainRoot ?? "") + (config?.apiKey ?? "")
-        guard walletUrl.count > 0 else { return }
-        let url = URL(string: walletUrl)!
-        let auth = MirrorWorldLoginAuthController.init(url: url)
-        controller?.present(auth, animated: true)
+       
+        self.checkAccessToken {[weak self] succ in
+            var walletUrl = (self?.config?.environment.mainRoot ?? "")
+            if succ{
+                walletUrl = (self?.config?.environment.mainRoot ?? "") + "jwt?key=" + MirrorWorldSDKAuthData.share.access_token
+            }else{
+                walletUrl = (self?.config?.environment.mainRoot ?? "")
+            }
+            guard walletUrl.count > 0 else { return }
+            let url = URL(string: walletUrl)!
+            let auth = MirrorWorldLoginAuthController.init(url: url)
+            controller?.present(auth, animated: true)
+        }
     }
     
     @objc public func GetWalletTokens(onSuccess:((_ data:String?)->())?,onFailed:(()->())?){

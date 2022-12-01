@@ -43,6 +43,12 @@
 				<string>mwsdk</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>http</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>
