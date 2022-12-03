@@ -1,5 +1,6 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#import "MirrorWorldSDK/MirrorWorldSDK-Swift.h"
 #else
 #ifndef FOUNDATION_EXPORT
 #if defined(__cplusplus)

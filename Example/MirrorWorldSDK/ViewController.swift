@@ -52,6 +52,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     
+    private lazy var paramtersView:inputParamsView = {
+        let view = inputParamsView(frame: CGRect(x: 15, y: 120, width: UIScreen.main.bounds.size.width-30, height: 300))
+        return view
+    }()
+    
     
     var dataSource = [(moudleTitle:"Auth",MethodList:["Start Login","Logs out a user","CheckAuthenticated"]),
                       (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","Transfer SOL to another address","Transfer Token to another address"]),
@@ -119,7 +124,6 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
         
         switch item {
         case "Start Login":
-
             MWSDK.StartLogin { userInfo in
                 self.loadingActive.stopAnimating()
                 self.Log("login success :\(userInfo?.toString() ?? "")")
@@ -156,12 +160,20 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             MWSDK.openMarketPlacePage()
             break
         case "QueryUser":
-            MWSDK.QueryUser(email: "jbakebwa@gmail.com") { user in
-                self.Log(user ?? "null")
-                self.loadingActive.stopAnimating()
-            } onFetchFailed: { code, error in
-                self.Log("\(code):\(error)")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.email])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let email = (datas.first(where: {$0.keyText == "email"})?.valueText)! as! String
+                
+                MWSDK.QueryUser(email: email) { user in
+                    self?.Log(user ?? "null")
+                    self?.loadingActive.stopAnimating()
+                } onFetchFailed: { code, error in
+                    self?.Log("\(code):\(error)")
+                }
             }
+
+           
         case "GetAccessToken":
             MWSDK.GetAccessToken(callBack: { token in
                 self.Log("Access Token is : \(token)")
@@ -176,175 +188,325 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             }
             
         case "Get wallet transactions":
-
-            MirrorWorldSDK.share.GetWalletTransactions(limit: 10, next_before: "") { response in
-                self.Log("Get wallet transactions:\(response)")
-                self.loadingActive.stopAnimating()
-            } onFailed: {
-                self.Log("\(item): failed ~")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.limit,.next_before])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
+                let next_before = (datas.first(where: {$0.keyText == "next_before"})?.valueText)! as! String
+                MirrorWorldSDK.share.GetWalletTransactions(limit: Int(limit) ?? 10, next_before: next_before) { response in
+                    self?.Log("Get wallet transactions:\(response)")
+                    self?.loadingActive.stopAnimating()
+                } onFailed: {
+                    self?.Log("\(item): failed ~")
+                }
             }
+           
 
             break
             
         case "Get wallet transaction by signature":
-            MirrorWorldSDK.share.GetWalletTransactionsBy(signature: "signature") { response in
-                self.Log(response)
-                self.loadingActive.stopAnimating()
-            } onFailed: {
-                self.Log("\(item):failed~")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.limit,.next_before])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let signature = (datas.first(where: {$0.keyText == "signature"})?.valueText)! as! String
+                MirrorWorldSDK.share.GetWalletTransactionsBy(signature: signature) { response in
+                    self?.Log(response)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: {
+                    self?.Log("\(item):failed~")
+                }
             }
+           
 
             break
         case "Transfer SOL to another address":
-            MirrorWorldSDK.share.TransferSolToAnotherAddress(to_publickey: "6Rp5grdihB8bpNCc9v25wZSgVMiNvLfRNF4B8z7esdZ4", amount: 123) { response in
-                self.Log(response)
-                self.loadingActive.stopAnimating()
-            } onFailed: {
-                self.Log("\(item):failed~")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.to_publickey,.amount])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let to_publickey = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
+                let amount = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! String
+
+                //                6Rp5grdihB8bpNCc9v25wZSgVMiNvLfRNF4B8z7esdZ4
+                MirrorWorldSDK.share.TransferSolToAnotherAddress(to_publickey: to_publickey, amount: Int(amount) ?? 1) { response in
+                    self?.Log(response)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: {
+                    self?.Log("\(item):failed~")
+                }
+
             }
             break
         case "Transfer Token to another address":
-            MWSDK.TransferTokenToAnotherAddress(to_publickey: "3UPoqgwgEgERSLNeF2rcawidfisdAtCzFe3F8Txxxxxx", amount: 123, token_mint: "3UPoqgwgEgERSLNeF2rcawidfisdAtCzFe3F8Txxxxxx", decimals: 123) { response in
-                self.Log(response)
-                self.loadingActive.stopAnimating()
-            } onFailed: {
-                self.Log("\(item):failed~")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.to_publickey,.amount,.token_mint,.decimals])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let to_publickey = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
+                let amount = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! String
+                let token_mint = (datas.first(where: {$0.keyText == "token_mint"})?.valueText)! as! String
+                let decimals = (datas.first(where: {$0.keyText == "decimals"})?.valueText)! as! String
+
+                MWSDK.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: Int(amount) ?? 1, token_mint: token_mint, decimals: Int(decimals) ?? 1) { response in
+                    self?.Log(response)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: {
+                    self?.Log("\(item):failed~")
+                }
+
             }
         case "MintNewCollection":
-            MWSDK.MintNewCollection(name: "testNewCollection", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", confirmation: "finalized", seller_fee_basis_points: 200, onSuccess: { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            }, onFailed: { code,message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-            })
-        case "CreateVerifiedSubCollection":
-            MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", symbol: "test", url: "https://market-assets.mirrorworld.fun/gen1/1.json") { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.name,.symbol,.url,.seller_fee_basis_points])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
+                let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
+                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
+                let seller_fee_basis_points = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! String
 
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
+                MWSDK.MintNewCollection(name: name, symbol: symbol, url: url, seller_fee_basis_points: Int(seller_fee_basis_points) ?? 100, onSuccess: { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                }, onFailed: { code,message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                })
+
+            }
+        case "CreateVerifiedSubCollection":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.name,.collection_mint,.url,.symbol])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
+                let collection_mint = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
+                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
+                let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
+                MWSDK.CreateVerifiedSubCollection(name: name, collection_mint: collection_mint, symbol: symbol, url: url) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+                }
 
             }
 
             break
         case "MintNewNFT":
-            MWSDK.MintNewNFT(collection_mint: "5dw2PLdbTtn6sUHdNLy3EH4buPHh3Ch9JQTCoP9d6DwN", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500, confirmation: "finalized") { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.collection_mint,.name,.symbol,.url,.seller_fee_basis_points])
+            paramtersView.paramtersJson = {[weak self] datas in
+//                MWSDK.MintNewNFT(collection_mint: "5dw2PLdbTtn6sUHdNLy3EH4buPHh3Ch9JQTCoP9d6DwN", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500) { data in
+//                    self?.Log(data)
+//                    self?.loadingActive.stopAnimating()
+//                } onFailed: { code, message in
+//                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+//                    self?.loadingActive.stopAnimating()
+//                }
+                
+                let collection_mint = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
+                let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
+                let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
+                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
+                let seller_fee_basis_points = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! String
+                
+                MWSDK.MintNewNFT(collection_mint: collection_mint, name: name, symbol: symbol, url: url, seller_fee_basis_points: Int(seller_fee_basis_points) ?? 100) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+                }
             }
+
+            
+            
 
             break
         case "FetchSingleNFT":
-            MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "E5LBzZBgyNAmXFevhybmqTKL4X9UPVeiEBhPbRfU1pDL") { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                MirrorWorldSDK.share.FetchSingleNFT(mint_Address: mint_address) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                }
             }
             break
         case "UpdateNFTListing":
-            MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address,.price])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                let price = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! String
+                MWSDK.UpdateNFTListing(mint_address: mint_address, price: Double(price) ?? 1.0) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                }
             }
+            
 
             break
         case "TransferNFTToAnotherSolanaWallet":
-            MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address,.to_wallet_address])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                let to_wallet_address = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
+                MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: mint_address, to_wallet_address: to_wallet_address) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                }
             }
+            
             break
             
         case "MintNewNFTOnCollection":
-            MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA", url: "", seller_fee_basis_points: 100, confirmation: "finalized") { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.collection_mint,.name,.symbol,.url,.seller_fee_basis_points])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let collection_mint = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
+                let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
+                let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
+                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
+                let seller_fee_basis_points = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! String
+                MWSDK.MintNewNFT(collection_mint: collection_mint, name: name, symbol: symbol, url: url, seller_fee_basis_points: Int(seller_fee_basis_points) ?? 100, confirmation: "finalized") { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                }
             }
+            
 
             break
         case "ListNFT":
-            MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address,.price])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                let price = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! String
 
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
+                MirrorWorldSDK.share.ListNFT(mint_address: mint_address, price: Double(price) ?? 0.1, confirmation: "finalized") { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
 
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+
+                }
             }
+            
             break
         case "CancelNFTListing":
-            MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address,.price])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                let price = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! String
+                MWSDK.CancelNFTListing(mint_address: mint_address, price: Double(price) ?? 1.1) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
 
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+                }
             }
+            
             break
             
         case "BuyNFT":
-            MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address,.price])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                let price = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! String
+                MWSDK.BuyNFT(mint_address: mint_address, price: Double(price) ?? 0.01) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+                }
             }
+            break
 
             
         case "FetchNFTsByMintAddresses":
-            MWSDK.FetchNFTsByMintAddresses(mint_address: "test") { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
-
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                MWSDK.FetchNFTsByMintAddresses(mint_address: mint_address) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+                }
             }
+            
 
             break
         case "FetchNFTsByUpdateAuthorities":
-            MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offset: 0.1) { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.update_authorities,.limit,.offset])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let update_authorities = (datas.first(where: {$0.keyText == "update_authorities"})?.valueText)! as! String
+                let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
+                let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
+                MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: [update_authorities], limit: Double(limit) ?? 1.0, offset: Double(offset) ?? 0.1) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+                }
             }
+            
+            
 
             break
         case "FetchNFTsByCreatorAddresses":
-            MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.creators,.limit,.offset])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let creators = (datas.first(where: {$0.keyText == "creators"})?.valueText)! as! String
+                let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
+                let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
+                MWSDK.FetchNFTsByCreatorAddresses(creators: [creators], limit: Double(limit) ?? 10.0, offset:Double(offset) ?? 0.1) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+                }
             }
+            
             break
         case "FetchNFTsByOwnerAddresses":
-            MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
-                self.Log(data)
-                self.loadingActive.stopAnimating()
-            } onFailed: { code, message in
-                self.Log("\(item):failed:\(code),\(message ?? "")")
-                self.loadingActive.stopAnimating()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.owners,.limit,.offset])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let owners = (datas.first(where: {$0.keyText == "owners"})?.valueText)! as! String
+                let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
+                let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
+                MWSDK.FetchNFTsByOwnerAddress(owners: [owners], limit: Double(limit) ?? 1, offset: Double(offset) ?? 0.1) { data in
+                    self?.Log(data)
+                    self?.loadingActive.stopAnimating()
+                } onFailed: { code, message in
+                    self?.Log("\(item):failed:\(code),\(message ?? "")")
+                    self?.loadingActive.stopAnimating()
+                }
             }
+           
 
             break
             
