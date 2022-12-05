@@ -25,15 +25,15 @@ import UIKit
 
 
 @objc public enum MWEnvironment: Int{
-    #if DEBUG
+//    #if DEBUG
     case StagingDevNet = 0
     case StagingMainNet = 1
     case MainNet = 2
     case DevNet = 3
-    #else
-    case MainNet = 2
-    case DevNet = 3
-    #endif
+//    #else
+//    case MainNet = 2
+//    case DevNet = 3
+//    #endif
     
    
     

@@ -10,25 +10,7 @@ import UIKit
 import MirrorWorldSDK
 
 class ViewController: UIViewController {
-//    func loginListener(_ userInfo: [String : Any]?, _ onSuccess: Bool, _ onFail: Bool) {
-//
-//    }
-//
-//    func loginOut(_ success: Bool?) {
-//        if success ?? false{
-//            self.textView.text = ""
-//            self.textView.text = "logged out"
-//        }
-//    }
-//
-//    func userInfo(_ userInfo: [String : Any]?) {
-//        let info = userInfo?.toString() ?? ""
-//
-//    }
-//
-//    func getToken(_ userInfo: [String : Any]?) {
-//
-//    }
+
     
     @IBOutlet weak var loadingActive: UIActivityIndicatorView!
     
@@ -58,7 +40,7 @@ class ViewController: UIViewController {
     }()
     
     
-    var dataSource = [(moudleTitle:"Auth",MethodList:["Start Login","Logs out a user","CheckAuthenticated"]),
+    var dataSource = [(moudleTitle:"Init",MethodList:["initSDK"]),(moudleTitle:"Auth",MethodList:["Start Login","Logs out a user","CheckAuthenticated"]),
                       (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","Transfer SOL to another address","Transfer Token to another address"]),
                       (moudleTitle:"Marketplace",MethodList:[
                         "openMarketPlacePage",
@@ -123,6 +105,20 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
         loadingActive.startAnimating()
         
         switch item {
+        case "initSDK":
+            let initView = Bundle.main.loadNibNamed("selectEnvView", owner: self)?.last as! MWSelectEnvView
+            view.addSubview(initView)
+            initView.finishBlock = { env,apikey in
+                if MWSDK.initSDK(env: env, apiKey: apikey) {
+                    self.Log("initSDk success !")
+                    MWSDK.CheckAuthenticated { onBool in
+                        self.Log("CheckAuthenticated:\(onBool)")
+                    }
+                }
+            }
+//            MWSDK.initSDK(env: .StagingDevNet, apiKey: "mw_testgpyr7Dud9ZyLezOpEQAWbm7kISPGb7KQ3iX")
+
+            break
         case "Start Login":
             MWSDK.StartLogin { userInfo in
                 self.loadingActive.stopAnimating()

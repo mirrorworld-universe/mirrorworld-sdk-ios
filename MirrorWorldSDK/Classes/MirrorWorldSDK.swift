@@ -56,7 +56,7 @@ public let MWSDK = MirrorWorldSDK.share
     /**
      * init SDK
      */
-    @objc public func initSDK(env:MWEnvironment, apiKey:String){
+    @objc public func initSDK(env:MWEnvironment, apiKey:String) -> Bool{
         MWLog.console("iOS-SDK-Version:\(SDKVersion)")
 
         self.apiKey = apiKey
@@ -76,13 +76,13 @@ public let MWSDK = MirrorWorldSDK.share
         MWLog.console("apiKey:\(apiKey)")
         guard self.apiKey.count > 0 else {
             MWLog.console("Check Your appKey !")
-            return
+            return false
         }
         MWLog.console("MirrorWorldSDK - init - Success!")
         
         listenUrlschemeCallBack()
         
-        
+        return true
 //        authMoudle.RefreshToken { on in
 //            self.sdkLog.console("CheckAuthenticated finsh")
 //        }
@@ -92,12 +92,13 @@ public let MWSDK = MirrorWorldSDK.share
      * init SDK
      * config: MirrorWorldSDKConfig
      */
-    @objc public func initSDK(config:MirrorWorldSDKConfig){
+    @objc public func initSDK(config:MirrorWorldSDKConfig) -> Bool{
         sdkConfig = config
         walletMoudle.config = sdkConfig
         authMoudle.config = sdkConfig
         marketPlaceMoudle.config = sdkConfig
         listenUrlschemeCallBack()
+        return true
 //        authMoudle.RefreshToken { on in
 //            print("CheckAuthenticated finsh")
 //        }

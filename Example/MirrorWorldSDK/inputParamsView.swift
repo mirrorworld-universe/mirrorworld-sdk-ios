@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MirrorWorldSDK
 
 enum paramsData {
     case email
@@ -226,4 +227,84 @@ class inputParamsView: UIView {
         self.endEditing(true)
     }
     
+}
+
+
+class MWSelectEnvView:UIView{
+    
+    var finishBlock:((_ env: MWEnvironment,_ apiKey:String)->Void)?
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.layer.cornerRadius = 5
+//        UserDefaults.standard.set((apiKeyTextField?.text ?? ""), forKey: "env_\(i)")
+        selectEnv = Int((UserDefaults.standard.object(forKey: "SELECT_ENV") as? String) ?? "1") ?? 1
+        handleSelectState(tag: selectEnv)
+        for i in 1...4{
+            let apiKeyTextField = self.viewWithTag(i+100) as? UITextField
+           let apiKey = (UserDefaults.standard.object(forKey: "ENV_\(i)") as? String) ?? ""
+            apiKeyTextField?.text = apiKey
+        }
+    }
+    func creatRadioButton(isSelect:Bool = false) -> UIButton{
+        let btn = UIButton()
+        btn.setTitle("", for: .normal)
+        return btn
+    }
+    var selectEnv:Int = 1
+    @IBAction func selectEnvAction(_ sender: UIButton) {
+        handleSelectState(tag: sender.tag)
+    }
+    func handleSelectState(tag:Int){
+        for i in 1...4{
+            let btn = self.viewWithTag(i) as? UIButton
+            if i != tag{
+                btn?.setTitle("☑️", for: .normal)
+            }else{
+                selectEnv = tag
+                btn?.setTitle("✅", for: .normal)
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.endEditing(true)
+    }
+    
+    
+    @IBAction func closeAction(_ sender: Any) {
+        self.removeFromSuperview()
+    }
+    @IBAction func okAction(_ sender: Any) {
+        var selectApiKey = ""
+        for i in 1...4{
+            let apiKeyTextField = self.viewWithTag(i+100) as? UITextField
+            UserDefaults.standard.set((apiKeyTextField?.text ?? ""), forKey: "ENV_\(i)")
+            UserDefaults.standard.synchronize()
+            if i == selectEnv{
+                selectApiKey = apiKeyTextField?.text ?? ""
+            }
+        }
+        UserDefaults.standard.set("\(selectEnv)", forKey: "SELECT_ENV")
+        UserDefaults.standard.synchronize()
+
+        var env = MWEnvironment.MainNet
+        if selectEnv == 1{ env = .StagingDevNet}
+        if selectEnv == 2{ env = .StagingMainNet}
+        if selectEnv == 3{ env = .DevNet}
+        if selectEnv == 4{ env = .MainNet}
+        finishBlock?(env,selectApiKey)
+        
+        self.removeFromSuperview()
+        
+    }
 }
