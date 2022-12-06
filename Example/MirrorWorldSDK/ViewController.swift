@@ -18,13 +18,17 @@ class ViewController: UIViewController {
         self.textView.text = ""
     }
     func Log(_ info:String?){
+        if self.textView.text.count > 5000{
+            self.textView.text = ""
+        }
+        
+        
         let t = info ?? ""
         var text = self.textView.text
         text?.append(t)
         text?.append("\n")
         self.textView.text = text
-        self.textView.scrollRangeToVisible(NSRange(location: 0, length: text?.count ?? 0))
-        
+        self.textView.scrollRangeToVisible(NSRange(location: 0, length: text?.utf8.count ?? 0))
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -45,13 +49,12 @@ class ViewController: UIViewController {
                       (moudleTitle:"Marketplace",MethodList:[
                         "openMarketPlacePage",
                         "MintNewCollection",
-                        "MintNewNFT",
+                        "MintNewNFTOnCollection",
                         "FetchSingleNFT",
                         "UpdateNFTListing",
                         "ListNFT",
                         "CancelNFTListing",
                         "FetchNFTsByMintAddresses",
-                        "MintNewNFTOnCollection",
                         "CreateVerifiedCollection",
                         "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
                         "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"])
@@ -290,13 +293,6 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.collection_mint,.name,.symbol,.url,.seller_fee_basis_points])
             paramtersView.paramtersJson = {[weak self] datas in
-//                MWSDK.MintNewNFT(collection_mint: "5dw2PLdbTtn6sUHdNLy3EH4buPHh3Ch9JQTCoP9d6DwN", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500) { data in
-//                    self?.Log(data)
-//                    self?.loadingActive.stopAnimating()
-//                } onFailed: { code, message in
-//                    self?.Log("\(item):failed:\(code),\(message ?? "")")
-//                    self?.loadingActive.stopAnimating()
-//                }
                 
                 let collection_mint = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
                 let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
@@ -438,7 +434,13 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             paramtersView.setParams(keys: [.mint_address])
             paramtersView.paramtersJson = {[weak self] datas in
                 let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
-                MWSDK.FetchNFTsByMintAddresses(mint_addresses: [mint_address]) { data in
+                
+                var mint_address_arr:[String] = []
+                mint_address.split(separator: ",").forEach { subStr in
+                    mint_address_arr.append(String(subStr))
+                }
+//                C1UuTyxQXGheoYCf1UGd7mv5Fbeo3siwpNY7WUTvNCxN
+                MWSDK.FetchNFTsByMintAddresses(mint_addresses: mint_address_arr) { data in
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in
@@ -458,7 +460,13 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let update_authorities = (datas.first(where: {$0.keyText == "update_authorities"})?.valueText)! as! String
                 let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
                 let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
-                MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: [update_authorities], limit: Double(limit) ?? 1.0, offset: Double(offset) ?? 0.1) { data in
+                
+                var update_authorities_arr:[String] = []
+                update_authorities.split(separator: ",").forEach { subStr in
+                    update_authorities_arr.append(String(subStr))
+                }
+                
+                MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: update_authorities_arr, limit: Double(limit) ?? 1.0, offset: Double(offset) ?? 0.1) { data in
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in
@@ -477,7 +485,12 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let creators = (datas.first(where: {$0.keyText == "creators"})?.valueText)! as! String
                 let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
                 let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
-                MWSDK.FetchNFTsByCreatorAddresses(creators: [creators], limit: Double(limit) ?? 10.0, offset:Double(offset) ?? 0.1) { data in
+                
+                var creatorsArr:[String] = []
+                creators.split(separator: ",").forEach { subStr in
+                    creatorsArr.append(String(subStr))
+                }
+                MWSDK.FetchNFTsByCreatorAddresses(creators: creatorsArr, limit: Double(limit) ?? 10.0, offset:Double(offset) ?? 0.1) { data in
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in
@@ -494,7 +507,12 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let owners = (datas.first(where: {$0.keyText == "owners"})?.valueText)! as! String
                 let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
                 let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
-                MWSDK.FetchNFTsByOwnerAddress(owners: [owners], limit: Double(limit) ?? 1, offset: Double(offset) ?? 0.1) { data in
+                
+                var ownersArr:[String] = []
+                owners.split(separator: ",").forEach { subStr in
+                    ownersArr.append(String(subStr))
+                }
+                MWSDK.FetchNFTsByOwnerAddress(owners: ownersArr, limit: Double(limit) ?? 1, offset: Double(offset) ?? 0.1) { data in
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in

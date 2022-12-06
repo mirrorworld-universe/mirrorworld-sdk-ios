@@ -18,14 +18,8 @@ public struct MirrorError{
         let urlPath = api.serverUrl(env: MWSDK.sdkConfig.environment)
         let url:URL = URL(string: urlPath)!
         
-//        let sessionConfigure = URLSessionConfiguration.default
-//        sessionConfigure.httpAdditionalHeaders = ["Content-Type": "application/json"]
-//        sessionConfigure.timeoutIntervalForRequest = 30
-//        sessionConfigure.requestCachePolicy = .reloadIgnoringLocalCacheData
-//        let session = URLSession(configuration: sessionConfigure)
+        let session = configURLSession()
         
-        
-        let session = URLSession.shared
         var request = URLRequest(url: url)
         request.httpMethod = api.method
         request.setValue(MWSDK.sdkConfig.apiKey, forHTTPHeaderField: "x-api-key")
@@ -80,6 +74,16 @@ public struct MirrorError{
     }
  
     
+}
+
+public extension MirrorWorldNetWork{
+    func configURLSession(timeout:TimeInterval = 30)->URLSession{
+        let sessionConfigure = URLSessionConfiguration.default
+//        sessionConfigure.httpAdditionalHeaders = ["Content-Type": "application/json"]
+        sessionConfigure.timeoutIntervalForRequest = timeout
+        sessionConfigure.requestCachePolicy = .reloadIgnoringLocalCacheData
+        return URLSession(configuration: sessionConfigure)
+    }
 }
 
 

@@ -15,7 +15,18 @@ import UIKit
     var authController:MirrorWorldLoginAuthController?
     public func requestActionAuthorization(config:MirrorWorldSDKConfig?,_ router:MirrorWorldNetApi,_ callback:@escaping (_ success:Bool,_ authToken:String?,_ errorDesc:String?)->()){
         self.onAuthTokenCallback = callback
-          let api = MirrorWorldNetApi.requestActionAuthorization(type: router.actionType, message: "", value: 1.00, params: router.param ?? [:])
+        
+        var value:Double = 0.0
+        router.param?.keys.forEach({ key in
+            if key == "amount" {
+                value = Double(((router.param?[key] as? Int) ?? 0))
+            }
+            if key == "price"{
+                value = (router.param?[key] as? Double) ?? 0.00
+            }
+        })
+        
+          let api = MirrorWorldNetApi.requestActionAuthorization(type: router.actionType, message: "", value: value, params: router.param ?? [:])
         MirrorWorldNetWork().request(api: api) {[weak self] response in
               let responseJson = response?.toJson()
               let data = responseJson?["data"] as? [String:Any]
