@@ -67,7 +67,7 @@ public class MirrorWorldHandleProtocol:NSObject{
     var userInfoBolck:((_ userInfo:[String:Any]?)->Void)?
     var accessTokenBlock:((_ accessToken:String?)->())?
     var refreshTokenBlock:((_ refreshToken:String?)->())?
-    var authorizationTokenBlock:((_ refreshToken:String?)->())?
+    var authorizationTokenBlock:((_ uuId:String?,_ refreshToken:String?)->())?
     
     func urlSchemeDecode(url:URL){
         
@@ -138,7 +138,7 @@ public class MirrorWorldHandleProtocol:NSObject{
         guard schemeComponents.count > 0 else { return nil}
         let schemeValue = schemeComponents.last
         if (schemeValue?.hasPrefix("userinfo") ?? false){
-            let data = schemeValue?.components(separatedBy: "userinfo?data=").last
+            let data = schemeValue?.components(separatedBy: "userinfo?").last
             let params = data?.components(separatedBy: "&")
             var paramDic:[String:String] = [:]
             if params?.count ?? 0 > 0{
@@ -156,7 +156,9 @@ public class MirrorWorldHandleProtocol:NSObject{
         }else if (schemeValue?.hasPrefix("approve") ?? false){
             let approveData = schemeValue?.components(separatedBy: "approve?data=").last
             let authToken = (approveData?.toJson()?["authorization_token"] as? String) ?? ""
-            authorizationTokenBlock?(authToken)
+            let actionJson = approveData?.toJson()?["action"] as? [String:Any]
+            let uuid = (actionJson?["uuid"] as? String) ?? ""
+            authorizationTokenBlock?(uuid, authToken)
         }else {
             MWLog.console("unSupport the schemeType :")
             return nil

@@ -9,6 +9,8 @@ import UIKit
 
 @objc public class MirrorSecurityVerification: NSObject {
     
+    
+    var bindUUID:String?
     var onAuthTokenCallback:((_ success:Bool,_ authToken:String?,_ errorDesc:String?)->())?
     var authController:MirrorWorldLoginAuthController?
     public func requestActionAuthorization(config:MirrorWorldSDKConfig?,_ router:MirrorWorldNetApi,_ callback:@escaping (_ success:Bool,_ authToken:String?,_ errorDesc:String?)->()){
@@ -18,6 +20,7 @@ import UIKit
               let responseJson = response?.toJson()
               let data = responseJson?["data"] as? [String:Any]
               let uuid = (data?["uuid"] as? String) ?? ""
+              self?.bindUUID = uuid
               let urlString =  (config?.environment.authRoot ?? "")
               let approve = urlString + uuid
               DispatchQueue.main.async {
@@ -41,9 +44,22 @@ import UIKit
 
     }
     
-    public func callBackToken(_ token:String?){
-        self.authController?.dismiss(animated: true)
-        self.onAuthTokenCallback?(true,token, nil)
+    public func callBackToken(uuid:String?,token:String?){
+        guard let uuId = uuid,uuId.count > 0 else {
+            MWLog.console("the request approve: uuid is empty.")
+            return }
+        guard let bid = bindUUID,bid.count > 0 else {
+            MWLog.console("the request action failed: uuid is empty.")
+            return }
+        
+        if isRequestActionWith(uuid: uuId, binduuid: bid){
+            self.authController?.dismiss(animated: true)
+            self.onAuthTokenCallback?(true,token, nil)
+        }
+    }
+    
+    public func isRequestActionWith(uuid:String,binduuid:String)->Bool{
+        return (uuid == binduuid)
     }
     
 }

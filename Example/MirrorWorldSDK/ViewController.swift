@@ -199,21 +199,19 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
            
 
             break
-            
         case "Get wallet transaction by signature":
             view.addSubview(paramtersView)
-            paramtersView.setParams(keys: [.limit,.next_before])
+            paramtersView.setParams(keys: [.signature])
             paramtersView.paramtersJson = {[weak self] datas in
                 let signature = (datas.first(where: {$0.keyText == "signature"})?.valueText)! as! String
                 MirrorWorldSDK.share.GetWalletTransactionsBy(signature: signature) { response in
                     self?.Log(response)
                     self?.loadingActive.stopAnimating()
                 } onFailed: {
+                    self?.loadingActive.stopAnimating()
                     self?.Log("\(item):failed~")
                 }
             }
-           
-
             break
         case "Transfer SOL to another address":
             view.addSubview(paramtersView)
@@ -249,6 +247,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 }
 
             }
+            break
         case "MintNewCollection":
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.name,.symbol,.url,.seller_fee_basis_points])
@@ -266,6 +265,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 })
 
             }
+            break
         case "CreateVerifiedSubCollection":
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.name,.collection_mint,.url,.symbol])
@@ -305,6 +305,8 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let seller_fee_basis_points = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! String
                 
                 MWSDK.MintNewNFT(collection_mint: collection_mint, name: name, symbol: symbol, url: url, seller_fee_basis_points: Int(seller_fee_basis_points) ?? 100) { data in
+
+                    self?.Log("mintNewNFT - response:\n")
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in
@@ -312,10 +314,6 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                     self?.loadingActive.stopAnimating()
                 }
             }
-
-            
-            
-
             break
         case "FetchSingleNFT":
             view.addSubview(paramtersView)
@@ -440,13 +438,15 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             paramtersView.setParams(keys: [.mint_address])
             paramtersView.paramtersJson = {[weak self] datas in
                 let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
-                MWSDK.FetchNFTsByMintAddresses(mint_address: mint_address) { data in
+                MWSDK.FetchNFTsByMintAddresses(mint_addresses: [mint_address]) { data in
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in
                     self?.Log("\(item):failed:\(code),\(message ?? "")")
                     self?.loadingActive.stopAnimating()
+
                 }
+
             }
             
 

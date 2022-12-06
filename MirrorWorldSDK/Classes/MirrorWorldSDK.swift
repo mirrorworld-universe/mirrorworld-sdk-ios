@@ -341,8 +341,8 @@ public let MWSDK = MirrorWorldSDK.share
     }
 
     
-    @objc public func FetchNFTsByMintAddresses(mint_address:String,onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.FetchNFTsByMintAddresses(mint_address: mint_address) { data in
+    @objc public func FetchNFTsByMintAddresses(mint_addresses:[String],onSuccess:onSuccess,onFailed:onFailed){
+        marketPlaceMoudle.FetchNFTsByMintAddresses(mint_addresses: mint_addresses) { data in
             onSuccess?(data)
         } onFailed: { code, message in
             onFailed?(code,message)
@@ -432,10 +432,10 @@ extension MirrorWorldSDK{
         sdkProtol.onWalletLogOut = {[weak self] in
             self?.onWalletLogOut?()
         }
-        sdkProtol.authorizationTokenBlock = {[weak self] token in
-            self?.marketPlaceMoudle.authorization.callBackToken(token)
-            self?.authMoudle.authorization.callBackToken(token)
-            self?.walletMoudle.authorization.callBackToken(token)
+        sdkProtol.authorizationTokenBlock = {[weak self] (uuid, token) in
+            self?.marketPlaceMoudle.authorization.callBackToken(uuid: uuid,token: token)
+            self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
+            self?.walletMoudle.authorization.callBackToken(uuid: uuid,token: token)
         }
     }
 }

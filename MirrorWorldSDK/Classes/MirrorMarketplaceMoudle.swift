@@ -127,7 +127,6 @@ import UIKit
                      "seller_fee_basis_points":seller_fee_basis_points,
                      "confirmation":confirmation] as [String : Any]
         self.checkAccessToken {[weak self] succ in
-            self?.newAuth = MirrorSecurityVerification()
             /// authToken
             let api = MirrorWorldNetApi.MintNewNFT(param)
             self?.authorization.requestActionAuthorization(config: self?.config, api, { success, authToken,errorDesc  in
@@ -254,9 +253,9 @@ import UIKit
     }
 
     
-    @objc public func FetchNFTsByMintAddresses(mint_address:String,onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func FetchNFTsByMintAddresses(mint_addresses:[String],onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            let api = MirrorWorldNetApi.FetchNFTsByMintAddresses(mint_address: mint_address)
+            let api = MirrorWorldNetApi.FetchNFTsByMintAddresses(mint_addresses: mint_addresses)
             MirrorWorldNetWork().request(api: api) {[weak self] response in
                 self?.handleResponse(response: response, success: { response in
                     onSuccess?(response)
