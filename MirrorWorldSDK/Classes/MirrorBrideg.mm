@@ -6,7 +6,7 @@
 //
 
 #import "MirrorBrideg.h"
-#import "MirrorWorldSDK-prefix.pch"
+//#import "MirrorWorldSDK-prefix.pch"
 @implementation MirrorBrideg
 
 
