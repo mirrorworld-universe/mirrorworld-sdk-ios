@@ -62,12 +62,27 @@ import UIKit
     //Checks whether is authenticated or not and returns the user object if true
     @objc public func CheckAuthenticated(_ onBool:((_ on:Bool)->())?){
         self.checkAccessToken { succ in
-            let api = MirrorWorldNetApi.authMe
-            MirrorWorldNetWork().request(api: api) { response in
-                DispatchQueue.main.async {
-                    onBool?(true)
+            if succ{
+                let api = MirrorWorldNetApi.authMe
+                MirrorWorldNetWork().request(api: api) {[weak self] response in
+                    self?.handleResponse(response: response, success: { response in
+                        DispatchQueue.main.async {
+                            onBool?(true)
+                        }
+                    }, failed: { code, message in
+                        DispatchQueue.main.async {
+                            onBool?(false)
+                        }
+                    })
+                    
+                } _: { code,errorDesc in
+                    DispatchQueue.main.async {
+                        onBool?(false)
+                    }
                 }
-            } _: { code,errorDesc in
+
+            }
+            else{
                 DispatchQueue.main.async {
                     onBool?(false)
                 }

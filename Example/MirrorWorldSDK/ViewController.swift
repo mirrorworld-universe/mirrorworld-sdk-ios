@@ -179,8 +179,11 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 self.loadingActive.stopAnimating()
             })
         case "Get wallet tokens":
-            MWSDK.GetWalletTokens { res in
-                self.Log("Get wallet tokens:\n \(res)")
+            MWSDK.GetWalletTokens { response in
+                
+               let res = response?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
+
+                self.Log("Get wallet tokens:\(res ?? "null")")
                 self.loadingActive.stopAnimating()
             } onFailed: {
                 self.Log("Get wallet tokens: failed")
@@ -193,7 +196,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
                 let next_before = (datas.first(where: {$0.keyText == "next_before"})?.valueText)! as! String
                 MirrorWorldSDK.share.GetWalletTransactions(limit: Int(limit) ?? 10, next_before: next_before) { response in
-                    self?.Log("Get wallet transactions:\(response)")
+                    self?.Log(response)
                     self?.loadingActive.stopAnimating()
                 } onFailed: {
                     self?.Log("\(item): failed ~")
