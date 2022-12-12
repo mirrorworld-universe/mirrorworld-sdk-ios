@@ -17,6 +17,7 @@ import UIKit
         self.onAuthTokenCallback = callback
         
         var value:Double = 0.0
+        var decimals:Int = 9
         router.param?.keys.forEach({ key in
             if key == "amount" {
                 value = Double(((router.param?[key] as? Int) ?? 0))
@@ -24,7 +25,13 @@ import UIKit
             if key == "price"{
                 value = (router.param?[key] as? Double) ?? 0.00
             }
+            if key == "decimals"{
+                decimals = (router.param?[key] as? Int) ?? 9
+            }
         })
+        let root:Double = (pow(10, decimals) as NSNumber).doubleValue
+            value = value/root
+//        print(">>> value:\(value)")
         
           let api = MirrorWorldNetApi.requestActionAuthorization(type: router.actionType, message: "", value: value, params: router.param ?? [:])
         MirrorWorldNetWork().request(api: api) {[weak self] response in
