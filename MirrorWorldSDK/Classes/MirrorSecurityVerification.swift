@@ -30,8 +30,7 @@ import UIKit
             }
         })
         let root:Double = (pow(10, decimals) as NSNumber).doubleValue
-            value = value/root
-//        print(">>> value:\(value)")
+        value = value/root
         
           let api = MirrorWorldNetApi.requestActionAuthorization(type: router.actionType, message: "", value: value, params: router.param ?? [:])
         MirrorWorldNetWork().request(api: api) {[weak self] response in

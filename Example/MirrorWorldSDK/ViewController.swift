@@ -269,7 +269,6 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 }, onFailed: { code,message in
                     self?.Log("\(item):failed:\(code),\(message ?? "")")
                 })
-
             }
             break
         case "CreateVerifiedSubCollection":
