@@ -135,7 +135,7 @@ public enum MirrorWorldNetApi{
         case .SearchNFTs:
             return "marketplace/nft/search"
         case .RecommendSearchNFT:
-            return "markatplace/nft/search/recommend"
+            return "marketplace/nft/search/recommend"
         case .GetNFTs:
             return "marketplace/nfts"
         case .GetNFTRealPrice:
