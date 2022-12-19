@@ -1,14 +1,14 @@
 //
-//  MirrorBridegForC.m
+//  MirrorBrideg.m
 //  MirrorWorldSDK
 //
 //  Created by ZMG on 2022/11/3.
 //
 
-#import "MirrorBridegForC.h"
-#import <MirrorWorldSDK-Swift.h>
+#import "MirrorBrideg.h"
+//#import "MirrorWorldSDK-prefix.pch"
 
-@implementation MirrorBridegForC
+@implementation MirrorBrideg
 
 
 extern "C"

@@ -58,7 +58,7 @@ class ViewController: UIViewController {
                         "FetchNFTsByMintAddresses",
                         "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
                         "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
-                      (moudleTitle:"MeteDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","Get nfts","Get nft real price","Create new collection"])
+                      (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","Get nfts","Get nft real price","Create new collection"])
     ]
     
     @IBOutlet weak var tableView: UITableView!

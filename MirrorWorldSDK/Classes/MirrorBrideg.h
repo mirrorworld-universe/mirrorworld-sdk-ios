@@ -1,5 +1,5 @@
 //
-//  MirrorBridegForC.h
+//  MirrorBrideg.h
 //  MirrorWorldSDK
 //
 //  Created by ZMG on 2022/11/3.
@@ -7,7 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MirrorBridegForC : NSObject
+
+@interface MirrorBrideg : NSObject
 
 
 extern "C"
@@ -47,7 +48,8 @@ extern "C"
 }
 
 
-
 @end
+
+
 
 
