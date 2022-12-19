@@ -1,5 +1,5 @@
 PODS:
-  - MirrorWorldSDK (0.1.0)
+  - MirrorWorldSDK (0.0.8)
 
 DEPENDENCIES:
   - MirrorWorldSDK (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MirrorWorldSDK: e47c680c196ec840d99522b8ca1fd27eaf5e04b2
+  MirrorWorldSDK: e75978d0541e220ea45b7dbe37a0c31f07b5530e
 
-PODFILE CHECKSUM: a808882aaecb5a52c2de95558564e91d4951d47c
+PODFILE CHECKSUM: e4213f30a97a5093a6b52cb662c5ec31e90b5854
 
 COCOAPODS: 1.11.3

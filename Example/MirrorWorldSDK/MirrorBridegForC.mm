@@ -6,7 +6,7 @@
 //
 
 #import "MirrorBridegForC.h"
-#import <MirrorWorldSDK-Swift.h>
+#import <MirrorWorldSDK/MirrorWorldSDK-Swift.h>
 
 @implementation MirrorBridegForC
 
@@ -107,6 +107,5 @@ extern "C"
     }
 
 }
-
 
 @end

@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init()
         let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
         window?.rootViewController = sb.instantiateInitialViewController()
-//        window?.rootViewController = DemoViewController()
-//        window?.makeKeyAndVisible()
+        window?.makeKeyAndVisible()
         return true
     }
     

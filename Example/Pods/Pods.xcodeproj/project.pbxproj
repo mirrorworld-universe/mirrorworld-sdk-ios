@@ -7,161 +7,168 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0464109FA8A762B3AEE8F019790BCCD6 /* MirrorWorldSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC5DBF52DB2EBDECC15CAA30257C08 /* MirrorWorldSDK-dummy.m */; };
-		1AA983E52BA945A31CEDA61F615B2BE4 /* MirrorWorldSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9306D0C317DBED352E496F37F16081DB /* MirrorWorldSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34C8992AF3135A39D5263E58B70F976F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		5EB855983F9E2549A586F29DEF9CBD86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		80103CD5290E971000AFCDB0 /* MirrorWorldUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80103CD4290E971000AFCDB0 /* MirrorWorldUserInfo.swift */; };
-		801D292B29067B9000B60DE9 /* MirrorWorldLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D292A29067B9000B60DE9 /* MirrorWorldLog.swift */; };
-		801D292F2906ACE900B60DE9 /* MirrorWorldSDKProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D292E2906ACE900B60DE9 /* MirrorWorldSDKProtocol.swift */; };
-		801D29332907C39600B60DE9 /* MirrorWorldNetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D29322907C39600B60DE9 /* MirrorWorldNetWork.swift */; };
-		8023BD7E29026EEE00A357AA /* MirrorWorldSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */; };
-		8023BD82290271CF00A357AA /* MirrorWorldLoginAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023BD81290271CF00A357AA /* MirrorWorldLoginAuthController.swift */; };
-		8023BD862902733600A357AA /* MirrorWorldSDKConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023BD852902733600A357AA /* MirrorWorldSDKConfig.swift */; };
-		803516ED29505C6B00A791AF /* MirrorBrideg.h in Headers */ = {isa = PBXBuildFile; fileRef = 803516EB29505C6A00A791AF /* MirrorBrideg.h */; };
-		803516EE29505C6B00A791AF /* MirrorBrideg.mm in Sources */ = {isa = PBXBuildFile; fileRef = 803516EC29505C6A00A791AF /* MirrorBrideg.mm */; };
-		80799D5F292A4D760092F309 /* MirrorBaseMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80799D5E292A4D760092F309 /* MirrorBaseMoudle.swift */; };
-		80799D63292B47C10092F309 /* MirrorAuthMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80799D62292B47C10092F309 /* MirrorAuthMoudle.swift */; };
-		80799D66292B48280092F309 /* MirrorMarketplaceMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80799D64292B48280092F309 /* MirrorMarketplaceMoudle.swift */; };
-		80799D67292B48280092F309 /* MirrorWalletMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80799D65292B48280092F309 /* MirrorWalletMoudle.swift */; };
-		80880660290FF9A500B9BFB3 /* MirrorWorldNetApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088065F290FF9A500B9BFB3 /* MirrorWorldNetApi.swift */; };
-		80C3EC362938508600792716 /* MirrorSecurityVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3EC352938508600792716 /* MirrorSecurityVerification.swift */; };
-		80C3EC382938779400792716 /* MirrorUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3EC372938779400792716 /* MirrorUIConfig.swift */; };
-		80DA5B462949A3AC0078E9A2 /* MirrorMetadataFilterMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA5B452949A3AC0078E9A2 /* MirrorMetadataFilterMoudle.swift */; };
-		8DD43BA69EE24E8A6DC1B21F16F9465E /* Pods-MirrorWorldSDK_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 319A1EA64F9385FA75542E38B597E038 /* Pods-MirrorWorldSDK_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9F1C4E3B98A341FA5630791F5B4CF1C3 /* Pods-MirrorWorldSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5B5A03417CF80A3A77D8BF9D7C15D4 /* Pods-MirrorWorldSDK_Example-dummy.m */; };
-		C53FDB6AAAAFA289F02D26412DC69C26 /* Pods-MirrorWorldSDK_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E06CF6EAF9364AAA0B178BB208AA5B0 /* Pods-MirrorWorldSDK_Tests-dummy.m */; };
-		C7195456E3C8F0DB58F5B4C342C860E2 /* Pods-MirrorWorldSDK_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 578D57C6CFE73434023C826F68562E05 /* Pods-MirrorWorldSDK_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CBF3E528C17C2D9DC77EFE61A068583F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		01763F5038064EBC12F3FEFBAF1472E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		07606685983E6DA0E18D8F99518163C0 /* MirrorUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F28EB43E11098770D7370CA1DB9AE /* MirrorUIConfig.swift */; };
+		10F2039C229B29D3180D8E00E415234F /* MirrorMarketplaceMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DE32243DB238A9E7CB9CAB25F1703 /* MirrorMarketplaceMoudle.swift */; };
+		229762D2A465E795D937CE13D232D5B0 /* MirrorWorldNetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90011B4CD5AB60568C2467D70CA7EC75 /* MirrorWorldNetWork.swift */; };
+		25A554647B1EE476AB932BF374F310A5 /* MirrorWorldSDK-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 826682479352DE087A30566281EAD217 /* MirrorWorldSDK-dummy.m */; };
+		3AAF5E67E72C03FBC5C9822ECB19CED1 /* MirrorAuthMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4497A9B15336F84B5C7DD59B3900FEF7 /* MirrorAuthMoudle.swift */; };
+		5041F97EC347AB829DC8CB898D8C79F6 /* MirrorWorldSDKProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE910A38D54C7DF56874654F3B0483E2 /* MirrorWorldSDKProtocol.swift */; };
+		548364BFCB39C9D1C548BC96F4D99388 /* MirrorMetadataFilterMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFD43927BF91A12A76FFE6259A6B15 /* MirrorMetadataFilterMoudle.swift */; };
+		5E153861CCCDF3D4862669B54C298D25 /* MirrorWorldLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9D6D7566956D3B8C13A1B116DE81E3 /* MirrorWorldLog.swift */; };
+		5E95E75668D9DDD66F2B0172E38A8D6D /* Pods-MirrorWorldSDK_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4B818B70331DA4057921398AFCFB632 /* Pods-MirrorWorldSDK_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73C4799BD643FD35FDEE6EAB68DB08D6 /* MirrorWorldSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69496FE86DCB8CE7A6077452D50AA17 /* MirrorWorldSDK.swift */; };
+		7F5AEEA2630E11CADA739A50CA37894F /* MirrorWorldNetApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E865FD1A6834FD135FF9EAB60C7BD4D6 /* MirrorWorldNetApi.swift */; };
+		857B5BFE2A4F1411C9458EAF6784ECAA /* MirrorSecurityVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD74C4888F561CFF3D9DEACFBD06EF64 /* MirrorSecurityVerification.swift */; };
+		86C0806A5F84D0770C98F1838BF3FAE3 /* MirrorWorldSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C2B77C5C167C645C85046A227C67901D /* MirrorWorldSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8E229B494623104ACBA4547ABF0E3D8E /* MirrorWorldSDKConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E1299F5C12FC268F570D5EF2C05210 /* MirrorWorldSDKConfig.swift */; };
+		A7949282EC847E7EC98E498C31E8B86A /* MirrorWalletMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE3D905D9195E4CE3F7E99195163A38 /* MirrorWalletMoudle.swift */; };
+		A805624372234A8D5B1741A13E753E0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		B7AD843AEE1F273041667C724C761D3F /* Pods-MirrorWorldSDK_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 330EF284FB9A15C862BE2331AD2B00BA /* Pods-MirrorWorldSDK_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E0F130B702192C1BFC5368E222D25508 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		E1F62F14CE245A503E8ED578C3B6D9A7 /* MirrorBaseMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514A2C657EE82695F0BE4E2ADF999BC /* MirrorBaseMoudle.swift */; };
+		E24E42542232ECFA62696B45FB66C53C /* MirrorWorldLoginAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFAA067B0F794EF95715B42ACA6C446 /* MirrorWorldLoginAuthController.swift */; };
+		E651ABDE75FAD65AAFEAAEC55EB5734E /* Pods-MirrorWorldSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BDAF88CA548ED30036463E472A8FB5 /* Pods-MirrorWorldSDK_Example-dummy.m */; };
+		EAAB06C9676C4C33842C7C8E775914A6 /* Pods-MirrorWorldSDK_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F965A23D0E5DA1FA6F107CB4F5F795C5 /* Pods-MirrorWorldSDK_Tests-dummy.m */; };
+		EC62CC1037F6B5345F2B1C5A57C95105 /* MirrorWorldUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D0050670C9910C05DF70FCC3F809A6 /* MirrorWorldUserInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8A9EAEC5E05B47CF726FCC23074F3B67 /* PBXContainerItemProxy */ = {
+		0DBA2BB35545883252015AE31238CB73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F5B30FDCEF14725FCC43814122BB4606;
+			remoteGlobalIDString = 9DF02E2C97C278A86830D758C668BAEE;
 			remoteInfo = MirrorWorldSDK;
 		};
-		A60A7B64F03EFC02789DCB100C1071DC /* PBXContainerItemProxy */ = {
+		B22C8AAC67CAFDD8506A23D79C5A04DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3DF8DE56515D9909D7BA42BC26BAF5CB;
+			remoteGlobalIDString = 7CAB71F4CBD2C370F6A54C144B6E39B7;
 			remoteInfo = "Pods-MirrorWorldSDK_Example";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1660F6B4D8ECDF5488EC071AE352589D /* Pods-MirrorWorldSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
-		1BAC5DBF52DB2EBDECC15CAA30257C08 /* MirrorWorldSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MirrorWorldSDK-dummy.m"; sourceTree = "<group>"; };
-		21E700322A3A15A3BB80D0AEB5D45134 /* MirrorWorldSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MirrorWorldSDK.debug.xcconfig; sourceTree = "<group>"; };
-		2B91F1FEF0CFD553E0DEC00F811B30FF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		2B9AF1BEAFB8828FA9C52D1711983A46 /* Pods-MirrorWorldSDK_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		319A1EA64F9385FA75542E38B597E038 /* Pods-MirrorWorldSDK_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MirrorWorldSDK_Tests-umbrella.h"; sourceTree = "<group>"; };
-		37726B44BECB91D2FE63F94E059AC87D /* MirrorWorldSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MirrorWorldSDK-Info.plist"; sourceTree = "<group>"; };
-		4EE9D6750B2F2CED9D02E4D31CF4419F /* Pods-MirrorWorldSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MirrorWorldSDK_Example.modulemap"; sourceTree = "<group>"; };
-		578D57C6CFE73434023C826F68562E05 /* Pods-MirrorWorldSDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MirrorWorldSDK_Example-umbrella.h"; sourceTree = "<group>"; };
-		6400A94527090FAD990306E6F8C83725 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		664941BC708D6F67797964A51D8FB37F /* Pods-MirrorWorldSDK_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = "Pods-MirrorWorldSDK_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		16AFD43927BF91A12A76FFE6259A6B15 /* MirrorMetadataFilterMoudle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorMetadataFilterMoudle.swift; path = MirrorWorldSDK/Classes/MirrorMetadataFilterMoudle.swift; sourceTree = "<group>"; };
+		199DE32243DB238A9E7CB9CAB25F1703 /* MirrorMarketplaceMoudle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorMarketplaceMoudle.swift; path = MirrorWorldSDK/Classes/MirrorMarketplaceMoudle.swift; sourceTree = "<group>"; };
+		1CE3D905D9195E4CE3F7E99195163A38 /* MirrorWalletMoudle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWalletMoudle.swift; path = MirrorWorldSDK/Classes/MirrorWalletMoudle.swift; sourceTree = "<group>"; };
+		1DF4E7CFB8E8A4E9016BBC5A3E22FA1D /* Pods-MirrorWorldSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
+		1F4C5F8CC3BED796B9876646DC7C49F3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		271CE282133DBAE96ADB64CC65F49418 /* MirrorWorldSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MirrorWorldSDK.debug.xcconfig; sourceTree = "<group>"; };
+		2F6262EB9A0F7BD092A20DBD1A300117 /* MirrorWorldSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MirrorWorldSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		330EF284FB9A15C862BE2331AD2B00BA /* Pods-MirrorWorldSDK_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MirrorWorldSDK_Tests-umbrella.h"; sourceTree = "<group>"; };
+		4497A9B15336F84B5C7DD59B3900FEF7 /* MirrorAuthMoudle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorAuthMoudle.swift; path = MirrorWorldSDK/Classes/MirrorAuthMoudle.swift; sourceTree = "<group>"; };
+		48DBE96404F0D6CA317FD80D03D687C8 /* MirrorWorldSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MirrorWorldSDK-Info.plist"; sourceTree = "<group>"; };
+		4934D9C7F3280CF492F08AF733F2E3A9 /* Pods-MirrorWorldSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		590477189CDA99EFFE024A9658D2C016 /* Pods-MirrorWorldSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		5EC8293BD3791D9700789E995D888EA4 /* Pods-MirrorWorldSDK_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-MirrorWorldSDK_Example"; path = Pods_MirrorWorldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ADEFE42D2AAE02821B540AC7E865562 /* Pods-MirrorWorldSDK_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MirrorWorldSDK_Example-frameworks.sh"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		73DC8FE9B520F6FD66094EAAE0B4A969 /* Pods-MirrorWorldSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-MirrorWorldSDK_Tests.modulemap"; sourceTree = "<group>"; };
-		7714932D313A1C302CA7C54117B698EB /* Pods-MirrorWorldSDK_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MirrorWorldSDK_Example-frameworks.sh"; sourceTree = "<group>"; };
-		775FDA81F5B17C2F52F8941AE331C13C /* MirrorWorldSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MirrorWorldSDK-prefix.pch"; sourceTree = "<group>"; };
-		80103CD4290E971000AFCDB0 /* MirrorWorldUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorWorldUserInfo.swift; path = MirrorWorldSDK/Classes/MirrorWorldUserInfo.swift; sourceTree = "<group>"; };
-		801D292A29067B9000B60DE9 /* MirrorWorldLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorWorldLog.swift; path = MirrorWorldSDK/Classes/MirrorWorldLog.swift; sourceTree = "<group>"; };
-		801D292E2906ACE900B60DE9 /* MirrorWorldSDKProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDKProtocol.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDKProtocol.swift; sourceTree = "<group>"; };
-		801D29322907C39600B60DE9 /* MirrorWorldNetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorWorldNetWork.swift; path = MirrorWorldSDK/Classes/MirrorWorldNetWork.swift; sourceTree = "<group>"; };
-		8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDK.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDK.swift; sourceTree = "<group>"; };
-		8023BD81290271CF00A357AA /* MirrorWorldLoginAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorWorldLoginAuthController.swift; path = MirrorWorldSDK/Classes/MirrorWorldLoginAuthController.swift; sourceTree = "<group>"; };
-		8023BD852902733600A357AA /* MirrorWorldSDKConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDKConfig.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDKConfig.swift; sourceTree = "<group>"; };
-		803516EB29505C6A00A791AF /* MirrorBrideg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MirrorBrideg.h; path = MirrorWorldSDK/Classes/MirrorBrideg.h; sourceTree = "<group>"; };
-		803516EC29505C6A00A791AF /* MirrorBrideg.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MirrorBrideg.mm; path = MirrorWorldSDK/Classes/MirrorBrideg.mm; sourceTree = "<group>"; };
-		80799D5E292A4D760092F309 /* MirrorBaseMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorBaseMoudle.swift; path = MirrorWorldSDK/Classes/MirrorBaseMoudle.swift; sourceTree = "<group>"; };
-		80799D62292B47C10092F309 /* MirrorAuthMoudle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorAuthMoudle.swift; path = MirrorWorldSDK/Classes/MirrorAuthMoudle.swift; sourceTree = "<group>"; };
-		80799D64292B48280092F309 /* MirrorMarketplaceMoudle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorMarketplaceMoudle.swift; path = MirrorWorldSDK/Classes/MirrorMarketplaceMoudle.swift; sourceTree = "<group>"; };
-		80799D65292B48280092F309 /* MirrorWalletMoudle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorWalletMoudle.swift; path = MirrorWorldSDK/Classes/MirrorWalletMoudle.swift; sourceTree = "<group>"; };
-		8088065F290FF9A500B9BFB3 /* MirrorWorldNetApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorWorldNetApi.swift; path = MirrorWorldSDK/Classes/MirrorWorldNetApi.swift; sourceTree = "<group>"; };
-		80C3EC352938508600792716 /* MirrorSecurityVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorSecurityVerification.swift; path = MirrorWorldSDK/Classes/MirrorSecurityVerification.swift; sourceTree = "<group>"; };
-		80C3EC372938779400792716 /* MirrorUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorUIConfig.swift; path = MirrorWorldSDK/Classes/MirrorUIConfig.swift; sourceTree = "<group>"; };
-		80DA5B452949A3AC0078E9A2 /* MirrorMetadataFilterMoudle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MirrorMetadataFilterMoudle.swift; path = MirrorWorldSDK/Classes/MirrorMetadataFilterMoudle.swift; sourceTree = "<group>"; };
-		828881556C5A9A7FCECDBAA85B265AEC /* Pods_MirrorWorldSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8478170D38806FDDF3043ED7D3783096 /* Pods-MirrorWorldSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		9306D0C317DBED352E496F37F16081DB /* MirrorWorldSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MirrorWorldSDK-umbrella.h"; sourceTree = "<group>"; };
-		9848402F84DB48582146B06AB43A8D96 /* Pods-MirrorWorldSDK_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Example-Info.plist"; sourceTree = "<group>"; };
+		736645766AFDCE5D263E36145F7AB17D /* Pods-MirrorWorldSDK_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MirrorWorldSDK_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		783EB02237E1EFB5839853DE2AD09E31 /* MirrorWorldSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MirrorWorldSDK.release.xcconfig; sourceTree = "<group>"; };
+		7ED5FF53206D4AF8B09C06C0ADDF94E8 /* Pods-MirrorWorldSDK_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		826682479352DE087A30566281EAD217 /* MirrorWorldSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MirrorWorldSDK-dummy.m"; sourceTree = "<group>"; };
+		88E1299F5C12FC268F570D5EF2C05210 /* MirrorWorldSDKConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDKConfig.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDKConfig.swift; sourceTree = "<group>"; };
+		8A9D6D7566956D3B8C13A1B116DE81E3 /* MirrorWorldLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldLog.swift; path = MirrorWorldSDK/Classes/MirrorWorldLog.swift; sourceTree = "<group>"; };
+		8BDFBEC20F96DC457F5D80508818935C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		8CCBA6309DE8542FF1E4EA4E316523CC /* Pods-MirrorWorldSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		8D53733BD1E911E3EE41D572AB0B11E9 /* MirrorWorldSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MirrorWorldSDK.modulemap; sourceTree = "<group>"; };
+		90011B4CD5AB60568C2467D70CA7EC75 /* MirrorWorldNetWork.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldNetWork.swift; path = MirrorWorldSDK/Classes/MirrorWorldNetWork.swift; sourceTree = "<group>"; };
+		939F14904729B08F2475166954C12911 /* Pods-MirrorWorldSDK_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Tests-Info.plist"; sourceTree = "<group>"; };
+		9462773CEF54232825A5ECF7F8AE7E71 /* Pods-MirrorWorldSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MirrorWorldSDK_Example.modulemap"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E06CF6EAF9364AAA0B178BB208AA5B0 /* Pods-MirrorWorldSDK_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MirrorWorldSDK_Tests-dummy.m"; sourceTree = "<group>"; };
-		A0712A16335DC15540D1636E70965D13 /* Pods-MirrorWorldSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		AB1B89C7F87FA7DA087BA70AF8457967 /* Pods-MirrorWorldSDK_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Tests-Info.plist"; sourceTree = "<group>"; };
-		B2776BC6F007A85884A35A1D404D910B /* MirrorWorldSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MirrorWorldSDK.release.xcconfig; sourceTree = "<group>"; };
-		B7FEE55B94A4FEF4F026B22EA871CA15 /* MirrorWorldSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MirrorWorldSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BD89938249A80F2DC3C21924C9575D9D /* Pods_MirrorWorldSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF006A8E7645BBDFAED6FA16FD5A2A81 /* Pods-MirrorWorldSDK_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		D1CBB6D5A2E90012FAA3DF039952EED4 /* Pods-MirrorWorldSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		EC856496E75AADF7080A03FC1EC516B4 /* MirrorWorldSDK.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MirrorWorldSDK.modulemap; sourceTree = "<group>"; };
-		EE5B5A03417CF80A3A77D8BF9D7C15D4 /* Pods-MirrorWorldSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MirrorWorldSDK_Example-dummy.m"; sourceTree = "<group>"; };
-		F53298399E745B36113E77315D720DEE /* Pods-MirrorWorldSDK_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = "Pods-MirrorWorldSDK_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		FBC3689CDAEFEA4EA5E0D746A9F39CC8 /* MirrorWorldSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MirrorWorldSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3618A518E56A0A87BEB53E0FCCEDDD5 /* Pods-MirrorWorldSDK_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-MirrorWorldSDK_Tests"; path = Pods_MirrorWorldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A514A2C657EE82695F0BE4E2ADF999BC /* MirrorBaseMoudle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorBaseMoudle.swift; path = MirrorWorldSDK/Classes/MirrorBaseMoudle.swift; sourceTree = "<group>"; };
+		AF5406E3C16BA5368B01DE5DA2C840B0 /* MirrorWorldSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MirrorWorldSDK-prefix.pch"; sourceTree = "<group>"; };
+		B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MirrorWorldSDK; path = MirrorWorldSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0BDAF88CA548ED30036463E472A8FB5 /* Pods-MirrorWorldSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MirrorWorldSDK_Example-dummy.m"; sourceTree = "<group>"; };
+		C245D8B849667FEDB408AABBFC1EB266 /* Pods-MirrorWorldSDK_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Example-Info.plist"; sourceTree = "<group>"; };
+		C2B77C5C167C645C85046A227C67901D /* MirrorWorldSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MirrorWorldSDK-umbrella.h"; sourceTree = "<group>"; };
+		CAFAA067B0F794EF95715B42ACA6C446 /* MirrorWorldLoginAuthController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldLoginAuthController.swift; path = MirrorWorldSDK/Classes/MirrorWorldLoginAuthController.swift; sourceTree = "<group>"; };
+		CE910A38D54C7DF56874654F3B0483E2 /* MirrorWorldSDKProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDKProtocol.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDKProtocol.swift; sourceTree = "<group>"; };
+		D2D0050670C9910C05DF70FCC3F809A6 /* MirrorWorldUserInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldUserInfo.swift; path = MirrorWorldSDK/Classes/MirrorWorldUserInfo.swift; sourceTree = "<group>"; };
+		D2DB6C616AEC3488476F426613B3537E /* Pods-MirrorWorldSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MirrorWorldSDK_Tests.modulemap"; sourceTree = "<group>"; };
+		D672A8245A8359A1977ED34E5762FE34 /* MirrorWorldSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MirrorWorldSDK.framework; path = SDK/MirrorWorldSDK.framework; sourceTree = "<group>"; };
+		DAC1A5263E705CCF7D3ACB8086B1EF23 /* Pods-MirrorWorldSDK_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E4B818B70331DA4057921398AFCFB632 /* Pods-MirrorWorldSDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MirrorWorldSDK_Example-umbrella.h"; sourceTree = "<group>"; };
+		E4C0F0A1549DACD3CC237549EE79FC5F /* Pods-MirrorWorldSDK_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MirrorWorldSDK_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E865FD1A6834FD135FF9EAB60C7BD4D6 /* MirrorWorldNetApi.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldNetApi.swift; path = MirrorWorldSDK/Classes/MirrorWorldNetApi.swift; sourceTree = "<group>"; };
+		F47F28EB43E11098770D7370CA1DB9AE /* MirrorUIConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorUIConfig.swift; path = MirrorWorldSDK/Classes/MirrorUIConfig.swift; sourceTree = "<group>"; };
+		F69496FE86DCB8CE7A6077452D50AA17 /* MirrorWorldSDK.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDK.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDK.swift; sourceTree = "<group>"; };
+		F965A23D0E5DA1FA6F107CB4F5F795C5 /* Pods-MirrorWorldSDK_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MirrorWorldSDK_Tests-dummy.m"; sourceTree = "<group>"; };
+		FD74C4888F561CFF3D9DEACFBD06EF64 /* MirrorSecurityVerification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorSecurityVerification.swift; path = MirrorWorldSDK/Classes/MirrorSecurityVerification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9745A0F29E4976E5F42E2707B484E80E /* Frameworks */ = {
+		2974B03D832E30ADFD8AD54E053FCF07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C8992AF3135A39D5263E58B70F976F /* Foundation.framework in Frameworks */,
+				E0F130B702192C1BFC5368E222D25508 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ED92CCF9078108F6996EDC5D03D3C569 /* Frameworks */ = {
+		DD3FB134C3077E96D2DA243756C382B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBF3E528C17C2D9DC77EFE61A068583F /* Foundation.framework in Frameworks */,
+				01763F5038064EBC12F3FEFBAF1472E5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F04D3F20305E89F936CA29E35E3E3589 /* Frameworks */ = {
+		F000255D3FACAD8BF18C60C496B7C3E5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EB855983F9E2549A586F29DEF9CBD86 /* Foundation.framework in Frameworks */,
+				A805624372234A8D5B1741A13E753E0A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		054447A6329CBB692CB5976C6B90719B /* Support Files */ = {
+		144300CFEA3C48ABFFA0028C12056EC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EC856496E75AADF7080A03FC1EC516B4 /* MirrorWorldSDK.modulemap */,
-				1BAC5DBF52DB2EBDECC15CAA30257C08 /* MirrorWorldSDK-dummy.m */,
-				37726B44BECB91D2FE63F94E059AC87D /* MirrorWorldSDK-Info.plist */,
-				775FDA81F5B17C2F52F8941AE331C13C /* MirrorWorldSDK-prefix.pch */,
-				9306D0C317DBED352E496F37F16081DB /* MirrorWorldSDK-umbrella.h */,
-				21E700322A3A15A3BB80D0AEB5D45134 /* MirrorWorldSDK.debug.xcconfig */,
-				B2776BC6F007A85884A35A1D404D910B /* MirrorWorldSDK.release.xcconfig */,
+				D672A8245A8359A1977ED34E5762FE34 /* MirrorWorldSDK.framework */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/MirrorWorldSDK";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2899C2546B4C4A2CF34706FEED89BA1D /* Targets Support Files */ = {
+		220FF1C5DE3093A793A5DA562CFF087C /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9042C6D85294A0185CF6D1E5FF431E93 /* Pods-MirrorWorldSDK_Example */,
-				D5FBE4AF78D1047125F05CE64C3F967E /* Pods-MirrorWorldSDK_Tests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		29AB09DF59F7E57BC3179E75853D40FD /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F669274CEDE3F0678CC32D5320E853FA /* MirrorWorldSDK */,
+				A1044B53A2725BEAE4B0FD0B2E1AD1B7 /* MirrorWorldSDK */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		26D6266389578C9471CDF7D2FB1C4078 /* Pods-MirrorWorldSDK_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D2DB6C616AEC3488476F426613B3537E /* Pods-MirrorWorldSDK_Tests.modulemap */,
+				E4C0F0A1549DACD3CC237549EE79FC5F /* Pods-MirrorWorldSDK_Tests-acknowledgements.markdown */,
+				DAC1A5263E705CCF7D3ACB8086B1EF23 /* Pods-MirrorWorldSDK_Tests-acknowledgements.plist */,
+				F965A23D0E5DA1FA6F107CB4F5F795C5 /* Pods-MirrorWorldSDK_Tests-dummy.m */,
+				939F14904729B08F2475166954C12911 /* Pods-MirrorWorldSDK_Tests-Info.plist */,
+				330EF284FB9A15C862BE2331AD2B00BA /* Pods-MirrorWorldSDK_Tests-umbrella.h */,
+				590477189CDA99EFFE024A9658D2C016 /* Pods-MirrorWorldSDK_Tests.debug.xcconfig */,
+				8CCBA6309DE8542FF1E4EA4E316523CC /* Pods-MirrorWorldSDK_Tests.release.xcconfig */,
+			);
+			name = "Pods-MirrorWorldSDK_Tests";
+			path = "Target Support Files/Pods-MirrorWorldSDK_Tests";
+			sourceTree = "<group>";
+		};
+		4C8A42FF301C17663DE1CA2ABAA9831D /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				8BDFBEC20F96DC457F5D80508818935C /* LICENSE */,
+				2F6262EB9A0F7BD092A20DBD1A300117 /* MirrorWorldSDK.podspec */,
+				1F4C5F8CC3BED796B9876646DC7C49F3 /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -172,38 +179,91 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		80906FF82923595D00008035 /* Tests */ = {
+		66E3775576F752AFF1270C367C94016E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				8D53733BD1E911E3EE41D572AB0B11E9 /* MirrorWorldSDK.modulemap */,
+				826682479352DE087A30566281EAD217 /* MirrorWorldSDK-dummy.m */,
+				48DBE96404F0D6CA317FD80D03D687C8 /* MirrorWorldSDK-Info.plist */,
+				AF5406E3C16BA5368B01DE5DA2C840B0 /* MirrorWorldSDK-prefix.pch */,
+				C2B77C5C167C645C85046A227C67901D /* MirrorWorldSDK-umbrella.h */,
+				271CE282133DBAE96ADB64CC65F49418 /* MirrorWorldSDK.debug.xcconfig */,
+				783EB02237E1EFB5839853DE2AD09E31 /* MirrorWorldSDK.release.xcconfig */,
 			);
-			path = Tests;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/MirrorWorldSDK";
 			sourceTree = "<group>";
 		};
-		9042C6D85294A0185CF6D1E5FF431E93 /* Pods-MirrorWorldSDK_Example */ = {
+		88DD9D0200B5740A5FC14D3709B3DE1B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4EE9D6750B2F2CED9D02E4D31CF4419F /* Pods-MirrorWorldSDK_Example.modulemap */,
-				F53298399E745B36113E77315D720DEE /* Pods-MirrorWorldSDK_Example-acknowledgements.markdown */,
-				2B9AF1BEAFB8828FA9C52D1711983A46 /* Pods-MirrorWorldSDK_Example-acknowledgements.plist */,
-				EE5B5A03417CF80A3A77D8BF9D7C15D4 /* Pods-MirrorWorldSDK_Example-dummy.m */,
-				7714932D313A1C302CA7C54117B698EB /* Pods-MirrorWorldSDK_Example-frameworks.sh */,
-				9848402F84DB48582146B06AB43A8D96 /* Pods-MirrorWorldSDK_Example-Info.plist */,
-				578D57C6CFE73434023C826F68562E05 /* Pods-MirrorWorldSDK_Example-umbrella.h */,
-				8478170D38806FDDF3043ED7D3783096 /* Pods-MirrorWorldSDK_Example.debug.xcconfig */,
-				1660F6B4D8ECDF5488EC071AE352589D /* Pods-MirrorWorldSDK_Example.release.xcconfig */,
+				B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */,
+				5EC8293BD3791D9700789E995D888EA4 /* Pods-MirrorWorldSDK_Example */,
+				A3618A518E56A0A87BEB53E0FCCEDDD5 /* Pods-MirrorWorldSDK_Tests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8AB93B8D3F21113ADE2EDDFE1C02113D /* Pods-MirrorWorldSDK_Example */ = {
+			isa = PBXGroup;
+			children = (
+				9462773CEF54232825A5ECF7F8AE7E71 /* Pods-MirrorWorldSDK_Example.modulemap */,
+				736645766AFDCE5D263E36145F7AB17D /* Pods-MirrorWorldSDK_Example-acknowledgements.markdown */,
+				7ED5FF53206D4AF8B09C06C0ADDF94E8 /* Pods-MirrorWorldSDK_Example-acknowledgements.plist */,
+				C0BDAF88CA548ED30036463E472A8FB5 /* Pods-MirrorWorldSDK_Example-dummy.m */,
+				6ADEFE42D2AAE02821B540AC7E865562 /* Pods-MirrorWorldSDK_Example-frameworks.sh */,
+				C245D8B849667FEDB408AABBFC1EB266 /* Pods-MirrorWorldSDK_Example-Info.plist */,
+				E4B818B70331DA4057921398AFCFB632 /* Pods-MirrorWorldSDK_Example-umbrella.h */,
+				4934D9C7F3280CF492F08AF733F2E3A9 /* Pods-MirrorWorldSDK_Example.debug.xcconfig */,
+				1DF4E7CFB8E8A4E9016BBC5A3E22FA1D /* Pods-MirrorWorldSDK_Example.release.xcconfig */,
 			);
 			name = "Pods-MirrorWorldSDK_Example";
 			path = "Target Support Files/Pods-MirrorWorldSDK_Example";
+			sourceTree = "<group>";
+		};
+		A1044B53A2725BEAE4B0FD0B2E1AD1B7 /* MirrorWorldSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4497A9B15336F84B5C7DD59B3900FEF7 /* MirrorAuthMoudle.swift */,
+				A514A2C657EE82695F0BE4E2ADF999BC /* MirrorBaseMoudle.swift */,
+				199DE32243DB238A9E7CB9CAB25F1703 /* MirrorMarketplaceMoudle.swift */,
+				16AFD43927BF91A12A76FFE6259A6B15 /* MirrorMetadataFilterMoudle.swift */,
+				FD74C4888F561CFF3D9DEACFBD06EF64 /* MirrorSecurityVerification.swift */,
+				F47F28EB43E11098770D7370CA1DB9AE /* MirrorUIConfig.swift */,
+				1CE3D905D9195E4CE3F7E99195163A38 /* MirrorWalletMoudle.swift */,
+				8A9D6D7566956D3B8C13A1B116DE81E3 /* MirrorWorldLog.swift */,
+				CAFAA067B0F794EF95715B42ACA6C446 /* MirrorWorldLoginAuthController.swift */,
+				E865FD1A6834FD135FF9EAB60C7BD4D6 /* MirrorWorldNetApi.swift */,
+				90011B4CD5AB60568C2467D70CA7EC75 /* MirrorWorldNetWork.swift */,
+				F69496FE86DCB8CE7A6077452D50AA17 /* MirrorWorldSDK.swift */,
+				88E1299F5C12FC268F570D5EF2C05210 /* MirrorWorldSDKConfig.swift */,
+				CE910A38D54C7DF56874654F3B0483E2 /* MirrorWorldSDKProtocol.swift */,
+				D2D0050670C9910C05DF70FCC3F809A6 /* MirrorWorldUserInfo.swift */,
+				144300CFEA3C48ABFFA0028C12056EC9 /* Frameworks */,
+				4C8A42FF301C17663DE1CA2ABAA9831D /* Pod */,
+				66E3775576F752AFF1270C367C94016E /* Support Files */,
+			);
+			name = MirrorWorldSDK;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		B473BDFCC856AF3531043BF1CAF35706 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8AB93B8D3F21113ADE2EDDFE1C02113D /* Pods-MirrorWorldSDK_Example */,
+				26D6266389578C9471CDF7D2FB1C4078 /* Pods-MirrorWorldSDK_Tests */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				29AB09DF59F7E57BC3179E75853D40FD /* Development Pods */,
+				220FF1C5DE3093A793A5DA562CFF087C /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				E138D6E5C42A5E806FF6211106DFF427 /* Products */,
-				2899C2546B4C4A2CF34706FEED89BA1D /* Targets Support Files */,
+				88DD9D0200B5740A5FC14D3709B3DE1B /* Products */,
+				B473BDFCC856AF3531043BF1CAF35706 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,148 +275,63 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D5FBE4AF78D1047125F05CE64C3F967E /* Pods-MirrorWorldSDK_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				80906FF82923595D00008035 /* Tests */,
-				73DC8FE9B520F6FD66094EAAE0B4A969 /* Pods-MirrorWorldSDK_Tests.modulemap */,
-				664941BC708D6F67797964A51D8FB37F /* Pods-MirrorWorldSDK_Tests-acknowledgements.markdown */,
-				CF006A8E7645BBDFAED6FA16FD5A2A81 /* Pods-MirrorWorldSDK_Tests-acknowledgements.plist */,
-				9E06CF6EAF9364AAA0B178BB208AA5B0 /* Pods-MirrorWorldSDK_Tests-dummy.m */,
-				AB1B89C7F87FA7DA087BA70AF8457967 /* Pods-MirrorWorldSDK_Tests-Info.plist */,
-				319A1EA64F9385FA75542E38B597E038 /* Pods-MirrorWorldSDK_Tests-umbrella.h */,
-				A0712A16335DC15540D1636E70965D13 /* Pods-MirrorWorldSDK_Tests.debug.xcconfig */,
-				D1CBB6D5A2E90012FAA3DF039952EED4 /* Pods-MirrorWorldSDK_Tests.release.xcconfig */,
-			);
-			name = "Pods-MirrorWorldSDK_Tests";
-			path = "Target Support Files/Pods-MirrorWorldSDK_Tests";
-			sourceTree = "<group>";
-		};
-		E138D6E5C42A5E806FF6211106DFF427 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FBC3689CDAEFEA4EA5E0D746A9F39CC8 /* MirrorWorldSDK.framework */,
-				BD89938249A80F2DC3C21924C9575D9D /* Pods_MirrorWorldSDK_Example.framework */,
-				828881556C5A9A7FCECDBAA85B265AEC /* Pods_MirrorWorldSDK_Tests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F669274CEDE3F0678CC32D5320E853FA /* MirrorWorldSDK */ = {
-			isa = PBXGroup;
-			children = (
-				803516EB29505C6A00A791AF /* MirrorBrideg.h */,
-				803516EC29505C6A00A791AF /* MirrorBrideg.mm */,
-				8023BD7D29026EEE00A357AA /* MirrorWorldSDK.swift */,
-				8023BD852902733600A357AA /* MirrorWorldSDKConfig.swift */,
-				80C3EC352938508600792716 /* MirrorSecurityVerification.swift */,
-				80799D5E292A4D760092F309 /* MirrorBaseMoudle.swift */,
-				80799D62292B47C10092F309 /* MirrorAuthMoudle.swift */,
-				80799D64292B48280092F309 /* MirrorMarketplaceMoudle.swift */,
-				80799D65292B48280092F309 /* MirrorWalletMoudle.swift */,
-				80DA5B452949A3AC0078E9A2 /* MirrorMetadataFilterMoudle.swift */,
-				80C3EC372938779400792716 /* MirrorUIConfig.swift */,
-				801D292A29067B9000B60DE9 /* MirrorWorldLog.swift */,
-				8023BD81290271CF00A357AA /* MirrorWorldLoginAuthController.swift */,
-				801D292E2906ACE900B60DE9 /* MirrorWorldSDKProtocol.swift */,
-				801D29322907C39600B60DE9 /* MirrorWorldNetWork.swift */,
-				80103CD4290E971000AFCDB0 /* MirrorWorldUserInfo.swift */,
-				8088065F290FF9A500B9BFB3 /* MirrorWorldNetApi.swift */,
-				FD3C83BDFCEB49249715E73E2CC22010 /* Pod */,
-				054447A6329CBB692CB5976C6B90719B /* Support Files */,
-			);
-			name = MirrorWorldSDK;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		FD3C83BDFCEB49249715E73E2CC22010 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				2B91F1FEF0CFD553E0DEC00F811B30FF /* LICENSE */,
-				B7FEE55B94A4FEF4F026B22EA871CA15 /* MirrorWorldSDK.podspec */,
-				6400A94527090FAD990306E6F8C83725 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0E34E2D0E3CE611D847AC19405D63240 /* Headers */ = {
+		4BFAB3FEF9BC14E26793199E593DEC03 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DD43BA69EE24E8A6DC1B21F16F9465E /* Pods-MirrorWorldSDK_Tests-umbrella.h in Headers */,
+				5E95E75668D9DDD66F2B0172E38A8D6D /* Pods-MirrorWorldSDK_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BCC7D1DBFC11A8AAB4E0558C40BA9E85 /* Headers */ = {
+		8670095670863316920958634EBC7F95 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				803516ED29505C6B00A791AF /* MirrorBrideg.h in Headers */,
-				1AA983E52BA945A31CEDA61F615B2BE4 /* MirrorWorldSDK-umbrella.h in Headers */,
+				86C0806A5F84D0770C98F1838BF3FAE3 /* MirrorWorldSDK-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2D0D63127B324CF023AE72FA57AC429 /* Headers */ = {
+		A835FA2335CB5FC34B3501507B24DD43 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7195456E3C8F0DB58F5B4C342C860E2 /* Pods-MirrorWorldSDK_Example-umbrella.h in Headers */,
+				B7AD843AEE1F273041667C724C761D3F /* Pods-MirrorWorldSDK_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3DF8DE56515D9909D7BA42BC26BAF5CB /* Pods-MirrorWorldSDK_Example */ = {
+		7CAB71F4CBD2C370F6A54C144B6E39B7 /* Pods-MirrorWorldSDK_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5307119227FA0B850E887113C095FAA3 /* Build configuration list for PBXNativeTarget "Pods-MirrorWorldSDK_Example" */;
+			buildConfigurationList = 4331B7F59AAB147AD02747054ED12FB3 /* Build configuration list for PBXNativeTarget "Pods-MirrorWorldSDK_Example" */;
 			buildPhases = (
-				E2D0D63127B324CF023AE72FA57AC429 /* Headers */,
-				C5452D66C9AE56CE6B6EF1E8AEBBC896 /* Sources */,
-				ED92CCF9078108F6996EDC5D03D3C569 /* Frameworks */,
-				41E217B5FB87500103B85A7559150BDB /* Resources */,
+				4BFAB3FEF9BC14E26793199E593DEC03 /* Headers */,
+				4BDB026BE757C93F2C546D7DC62EE34D /* Sources */,
+				F000255D3FACAD8BF18C60C496B7C3E5 /* Frameworks */,
+				4DCD6D1D4B8AE3600CAE544571F23801 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A9D8B53E6C5F2B6FA844BB143589994E /* PBXTargetDependency */,
+				85A3E49CD658AD9CA381C34E026C58D9 /* PBXTargetDependency */,
 			);
 			name = "Pods-MirrorWorldSDK_Example";
 			productName = Pods_MirrorWorldSDK_Example;
-			productReference = BD89938249A80F2DC3C21924C9575D9D /* Pods_MirrorWorldSDK_Example.framework */;
+			productReference = 5EC8293BD3791D9700789E995D888EA4 /* Pods-MirrorWorldSDK_Example */;
 			productType = "com.apple.product-type.framework";
 		};
-		4441E33A0DFF4839ECCEEB80D6954046 /* Pods-MirrorWorldSDK_Tests */ = {
+		9DF02E2C97C278A86830D758C668BAEE /* MirrorWorldSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 56C43D90B7C7CBCE1EBDE2FE49F2066D /* Build configuration list for PBXNativeTarget "Pods-MirrorWorldSDK_Tests" */;
+			buildConfigurationList = 1E9350540E24EA5BDC7ABFC20EE3468E /* Build configuration list for PBXNativeTarget "MirrorWorldSDK" */;
 			buildPhases = (
-				0E34E2D0E3CE611D847AC19405D63240 /* Headers */,
-				5706B307C029901FD29035906CEA1095 /* Sources */,
-				F04D3F20305E89F936CA29E35E3E3589 /* Frameworks */,
-				1F656648B0417D87E05D3873E9B39B0D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D229D465FB9D7348AEBEA07E397EF623 /* PBXTargetDependency */,
-			);
-			name = "Pods-MirrorWorldSDK_Tests";
-			productName = Pods_MirrorWorldSDK_Tests;
-			productReference = 828881556C5A9A7FCECDBAA85B265AEC /* Pods_MirrorWorldSDK_Tests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		F5B30FDCEF14725FCC43814122BB4606 /* MirrorWorldSDK */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FF966FEDB0ED442C6922C08114E2B75F /* Build configuration list for PBXNativeTarget "MirrorWorldSDK" */;
-			buildPhases = (
-				BCC7D1DBFC11A8AAB4E0558C40BA9E85 /* Headers */,
-				CBA77BECF5A9D160235E6D1865F1F2B8 /* Sources */,
-				9745A0F29E4976E5F42E2707B484E80E /* Frameworks */,
-				E422799CDC85D0D4A383ADD1BAC8A49A /* Resources */,
-				80799D5D292A3EFE0092F309 /* ShellScript */,
+				8670095670863316920958634EBC7F95 /* Headers */,
+				C6C74EC0217ED5C872D1C06F260C0147 /* Sources */,
+				2974B03D832E30ADFD8AD54E053FCF07 /* Frameworks */,
+				A8BA5CD62B406666FB3A8AA163FB82A3 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -364,7 +339,26 @@
 			);
 			name = MirrorWorldSDK;
 			productName = MirrorWorldSDK;
-			productReference = FBC3689CDAEFEA4EA5E0D746A9F39CC8 /* MirrorWorldSDK.framework */;
+			productReference = B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */;
+			productType = "com.apple.product-type.framework";
+		};
+		A950FC11B09ACAAB0942BB1A8C1D116F /* Pods-MirrorWorldSDK_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F61E49AE75D2E2C67540F02D0074F525 /* Build configuration list for PBXNativeTarget "Pods-MirrorWorldSDK_Tests" */;
+			buildPhases = (
+				A835FA2335CB5FC34B3501507B24DD43 /* Headers */,
+				1B49AD923A5AA97C64BCC7CBE1C127DA /* Sources */,
+				DD3FB134C3077E96D2DA243756C382B8 /* Frameworks */,
+				7C311E00CE919FCD946758F395B06B09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21AB7E46CE558E72EB1ED63ABD330D76 /* PBXTargetDependency */,
+			);
+			name = "Pods-MirrorWorldSDK_Tests";
+			productName = Pods_MirrorWorldSDK_Tests;
+			productReference = A3618A518E56A0A87BEB53E0FCCEDDD5 /* Pods-MirrorWorldSDK_Tests */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -385,33 +379,33 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = E138D6E5C42A5E806FF6211106DFF427 /* Products */;
+			productRefGroup = 88DD9D0200B5740A5FC14D3709B3DE1B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F5B30FDCEF14725FCC43814122BB4606 /* MirrorWorldSDK */,
-				3DF8DE56515D9909D7BA42BC26BAF5CB /* Pods-MirrorWorldSDK_Example */,
-				4441E33A0DFF4839ECCEEB80D6954046 /* Pods-MirrorWorldSDK_Tests */,
+				9DF02E2C97C278A86830D758C668BAEE /* MirrorWorldSDK */,
+				7CAB71F4CBD2C370F6A54C144B6E39B7 /* Pods-MirrorWorldSDK_Example */,
+				A950FC11B09ACAAB0942BB1A8C1D116F /* Pods-MirrorWorldSDK_Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1F656648B0417D87E05D3873E9B39B0D /* Resources */ = {
+		4DCD6D1D4B8AE3600CAE544571F23801 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		41E217B5FB87500103B85A7559150BDB /* Resources */ = {
+		7C311E00CE919FCD946758F395B06B09 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E422799CDC85D0D4A383ADD1BAC8A49A /* Resources */ = {
+		A8BA5CD62B406666FB3A8AA163FB82A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -420,88 +414,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		80799D5D292A3EFE0092F309 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh framework.sh\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		5706B307C029901FD29035906CEA1095 /* Sources */ = {
+		1B49AD923A5AA97C64BCC7CBE1C127DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FDB6AAAAFA289F02D26412DC69C26 /* Pods-MirrorWorldSDK_Tests-dummy.m in Sources */,
+				EAAB06C9676C4C33842C7C8E775914A6 /* Pods-MirrorWorldSDK_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C5452D66C9AE56CE6B6EF1E8AEBBC896 /* Sources */ = {
+		4BDB026BE757C93F2C546D7DC62EE34D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F1C4E3B98A341FA5630791F5B4CF1C3 /* Pods-MirrorWorldSDK_Example-dummy.m in Sources */,
+				E651ABDE75FAD65AAFEAAEC55EB5734E /* Pods-MirrorWorldSDK_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CBA77BECF5A9D160235E6D1865F1F2B8 /* Sources */ = {
+		C6C74EC0217ED5C872D1C06F260C0147 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				803516EE29505C6B00A791AF /* MirrorBrideg.mm in Sources */,
-				8023BD82290271CF00A357AA /* MirrorWorldLoginAuthController.swift in Sources */,
-				0464109FA8A762B3AEE8F019790BCCD6 /* MirrorWorldSDK-dummy.m in Sources */,
-				80799D66292B48280092F309 /* MirrorMarketplaceMoudle.swift in Sources */,
-				8023BD7E29026EEE00A357AA /* MirrorWorldSDK.swift in Sources */,
-				80C3EC362938508600792716 /* MirrorSecurityVerification.swift in Sources */,
-				801D292F2906ACE900B60DE9 /* MirrorWorldSDKProtocol.swift in Sources */,
-				8023BD862902733600A357AA /* MirrorWorldSDKConfig.swift in Sources */,
-				80DA5B462949A3AC0078E9A2 /* MirrorMetadataFilterMoudle.swift in Sources */,
-				80880660290FF9A500B9BFB3 /* MirrorWorldNetApi.swift in Sources */,
-				80799D63292B47C10092F309 /* MirrorAuthMoudle.swift in Sources */,
-				80799D5F292A4D760092F309 /* MirrorBaseMoudle.swift in Sources */,
-				80C3EC382938779400792716 /* MirrorUIConfig.swift in Sources */,
-				80103CD5290E971000AFCDB0 /* MirrorWorldUserInfo.swift in Sources */,
-				80799D67292B48280092F309 /* MirrorWalletMoudle.swift in Sources */,
-				801D29332907C39600B60DE9 /* MirrorWorldNetWork.swift in Sources */,
-				801D292B29067B9000B60DE9 /* MirrorWorldLog.swift in Sources */,
+				3AAF5E67E72C03FBC5C9822ECB19CED1 /* MirrorAuthMoudle.swift in Sources */,
+				E1F62F14CE245A503E8ED578C3B6D9A7 /* MirrorBaseMoudle.swift in Sources */,
+				10F2039C229B29D3180D8E00E415234F /* MirrorMarketplaceMoudle.swift in Sources */,
+				548364BFCB39C9D1C548BC96F4D99388 /* MirrorMetadataFilterMoudle.swift in Sources */,
+				857B5BFE2A4F1411C9458EAF6784ECAA /* MirrorSecurityVerification.swift in Sources */,
+				07606685983E6DA0E18D8F99518163C0 /* MirrorUIConfig.swift in Sources */,
+				A7949282EC847E7EC98E498C31E8B86A /* MirrorWalletMoudle.swift in Sources */,
+				5E153861CCCDF3D4862669B54C298D25 /* MirrorWorldLog.swift in Sources */,
+				E24E42542232ECFA62696B45FB66C53C /* MirrorWorldLoginAuthController.swift in Sources */,
+				7F5AEEA2630E11CADA739A50CA37894F /* MirrorWorldNetApi.swift in Sources */,
+				229762D2A465E795D937CE13D232D5B0 /* MirrorWorldNetWork.swift in Sources */,
+				73C4799BD643FD35FDEE6EAB68DB08D6 /* MirrorWorldSDK.swift in Sources */,
+				25A554647B1EE476AB932BF374F310A5 /* MirrorWorldSDK-dummy.m in Sources */,
+				8E229B494623104ACBA4547ABF0E3D8E /* MirrorWorldSDKConfig.swift in Sources */,
+				5041F97EC347AB829DC8CB898D8C79F6 /* MirrorWorldSDKProtocol.swift in Sources */,
+				EC62CC1037F6B5345F2B1C5A57C95105 /* MirrorWorldUserInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A9D8B53E6C5F2B6FA844BB143589994E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MirrorWorldSDK;
-			target = F5B30FDCEF14725FCC43814122BB4606 /* MirrorWorldSDK */;
-			targetProxy = 8A9EAEC5E05B47CF726FCC23074F3B67 /* PBXContainerItemProxy */;
-		};
-		D229D465FB9D7348AEBEA07E397EF623 /* PBXTargetDependency */ = {
+		21AB7E46CE558E72EB1ED63ABD330D76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-MirrorWorldSDK_Example";
-			target = 3DF8DE56515D9909D7BA42BC26BAF5CB /* Pods-MirrorWorldSDK_Example */;
-			targetProxy = A60A7B64F03EFC02789DCB100C1071DC /* PBXContainerItemProxy */;
+			target = 7CAB71F4CBD2C370F6A54C144B6E39B7 /* Pods-MirrorWorldSDK_Example */;
+			targetProxy = B22C8AAC67CAFDD8506A23D79C5A04DC /* PBXContainerItemProxy */;
+		};
+		85A3E49CD658AD9CA381C34E026C58D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MirrorWorldSDK;
+			target = 9DF02E2C97C278A86830D758C668BAEE /* MirrorWorldSDK */;
+			targetProxy = 0DBA2BB35545883252015AE31238CB73 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		15B8B40C50B7FB11E95662DC7ED17490 /* Release */ = {
+		4351C31F080167A03F1600FF372AAB5C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1660F6B4D8ECDF5488EC071AE352589D /* Pods-MirrorWorldSDK_Example.release.xcconfig */;
+			baseConfigurationReference = 1DF4E7CFB8E8A4E9016BBC5A3E22FA1D /* Pods-MirrorWorldSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -533,10 +506,11 @@
 			};
 			name = Release;
 		};
-		1A5911F5742BEFA5ADA6018DF0341296 /* Release */ = {
+		4F0CE27BB897AEE9DB10201A3ABAC655 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B2776BC6F007A85884A35A1D404D910B /* MirrorWorldSDK.release.xcconfig */;
+			baseConfigurationReference = 8CCBA6309DE8542FF1E4EA4E316523CC /* Pods-MirrorWorldSDK_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -546,22 +520,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK.modulemap";
-				OTHER_CFLAGS = "-fembed-bitcode";
-				PRODUCT_MODULE_NAME = MirrorWorldSDK;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -569,10 +540,11 @@
 			};
 			name = Release;
 		};
-		35E487178EACD5FC4EEE06BCEB513FBA /* Debug */ = {
+		5148EC5032F01BAA396AFE8C66E79649 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21E700322A3A15A3BB80D0AEB5D45134 /* MirrorWorldSDK.debug.xcconfig */;
+			baseConfigurationReference = 590477189CDA99EFFE024A9658D2C016 /* Pods-MirrorWorldSDK_Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -582,22 +554,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK.modulemap";
-				OTHER_CFLAGS = "-fembed-bitcode";
-				PRODUCT_MODULE_NAME = MirrorWorldSDK;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -640,7 +609,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -666,11 +634,10 @@
 			};
 			name = Release;
 		};
-		855ED1BE5C49C181D22CF3A8F1C127B2 /* Release */ = {
+		991E38684934066EB912912BECFF29DE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1CBB6D5A2E90012FAA3DF039952EED4 /* Pods-MirrorWorldSDK_Tests.release.xcconfig */;
+			baseConfigurationReference = 783EB02237E1EFB5839853DE2AD09E31 /* MirrorWorldSDK.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -680,19 +647,18 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK.modulemap";
+				PRODUCT_MODULE_NAME = MirrorWorldSDK;
+				PRODUCT_NAME = MirrorWorldSDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -700,11 +666,10 @@
 			};
 			name = Release;
 		};
-		8E044BA6628614C8EE20DDF38A734468 /* Debug */ = {
+		B75D79D1F6585E8274A9C43CF465AB2B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0712A16335DC15540D1636E70965D13 /* Pods-MirrorWorldSDK_Tests.debug.xcconfig */;
+			baseConfigurationReference = 271CE282133DBAE96ADB64CC65F49418 /* MirrorWorldSDK.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -714,52 +679,18 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK.modulemap";
+				PRODUCT_MODULE_NAME = MirrorWorldSDK;
+				PRODUCT_NAME = MirrorWorldSDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		CB991AA8A994EB5A7ADA97BB8EECB831 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8478170D38806FDDF3043ED7D3783096 /* Pods-MirrorWorldSDK_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-MirrorWorldSDK_Example/Pods-MirrorWorldSDK_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-MirrorWorldSDK_Example/Pods-MirrorWorldSDK_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -802,7 +733,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -833,9 +763,60 @@
 			};
 			name = Debug;
 		};
+		FD35B2F8FA9E29271447EA0C00F2F5BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4934D9C7F3280CF492F08AF733F2E3A9 /* Pods-MirrorWorldSDK_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MirrorWorldSDK_Example/Pods-MirrorWorldSDK_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MirrorWorldSDK_Example/Pods-MirrorWorldSDK_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1E9350540E24EA5BDC7ABFC20EE3468E /* Build configuration list for PBXNativeTarget "MirrorWorldSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B75D79D1F6585E8274A9C43CF465AB2B /* Debug */,
+				991E38684934066EB912912BECFF29DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4331B7F59AAB147AD02747054ED12FB3 /* Build configuration list for PBXNativeTarget "Pods-MirrorWorldSDK_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD35B2F8FA9E29271447EA0C00F2F5BB /* Debug */,
+				4351C31F080167A03F1600FF372AAB5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -845,29 +826,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5307119227FA0B850E887113C095FAA3 /* Build configuration list for PBXNativeTarget "Pods-MirrorWorldSDK_Example" */ = {
+		F61E49AE75D2E2C67540F02D0074F525 /* Build configuration list for PBXNativeTarget "Pods-MirrorWorldSDK_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CB991AA8A994EB5A7ADA97BB8EECB831 /* Debug */,
-				15B8B40C50B7FB11E95662DC7ED17490 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		56C43D90B7C7CBCE1EBDE2FE49F2066D /* Build configuration list for PBXNativeTarget "Pods-MirrorWorldSDK_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8E044BA6628614C8EE20DDF38A734468 /* Debug */,
-				855ED1BE5C49C181D22CF3A8F1C127B2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FF966FEDB0ED442C6922C08114E2B75F /* Build configuration list for PBXNativeTarget "MirrorWorldSDK" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				35E487178EACD5FC4EEE06BCEB513FBA /* Debug */,
-				1A5911F5742BEFA5ADA6018DF0341296 /* Release */,
+				5148EC5032F01BAA396AFE8C66E79649 /* Debug */,
+				4F0CE27BB897AEE9DB10201A3ABAC655 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
