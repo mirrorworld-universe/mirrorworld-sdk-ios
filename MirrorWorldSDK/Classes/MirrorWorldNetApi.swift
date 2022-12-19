@@ -10,6 +10,7 @@ public enum MirrorWorldNetApi{
     //Get:  Checks whether is authenticated or not and returns the user object if true
     
     case requestActionAuthorization(type:String,message:String,value:Double,params:[String:Any])
+    case SecurityVerification(_ params:[String:Any])
     
     case authMe
     
@@ -17,7 +18,7 @@ public enum MirrorWorldNetApi{
     case refreshToken(refresh_token:String)
     
     //POST: Logs out a user
-    case loginOut
+    case logOut
     
     case queryUser(email:String)
     
@@ -61,14 +62,26 @@ public enum MirrorWorldNetApi{
     
     case FetchNFTsByOwnerAddress(owners:[String],limit:Double,offset:Double)
 
+    //MARK: - MeteDataFilter
+    case GetCollectionFilterInfo(collection:String)
+    case GetNFTInfo(mint_address:String)
+    case GetCollectionInfo(collections:[String])
+    case GetNFTEvents(mint_address:String,page:Int,page_size:Int)
+    case SearchNFTs(collections:[String],search:String)
+    case RecommendSearchNFT(collections:[String])
+    case GetNFTs(collection:String,page:Int,page_size:Int,order:[String:Any],sale:Int,filter:[[String:Any]])
+    case GetNFTRealPrice(price:Double,fee:Double)
+    case CreateNewCollection(collection:String,collection_name:String,collection_type:String,collection_orders:[Any],collection_filter:[[String:Any]])
     
     var path:String{
         switch self {
         case .requestActionAuthorization:
             return "auth/actions/request"
+        case .SecurityVerification:
+            return "auth/actions/request"
         case .authMe:
             return "auth/me"
-        case .loginOut:
+        case .logOut:
             return "auth/logout"
         case .refreshToken:
             return "auth/refresh-token"
@@ -110,6 +123,25 @@ public enum MirrorWorldNetApi{
             return "solana/marketplace/buy"
         case .CreateVerifiedSubCollection:
             return "solana/mint/sub-collection"
+            
+        case .GetCollectionFilterInfo(let collection):
+            return "marketplace/collection/filter_info?collection=\(collection)"
+        case .GetNFTInfo(let mint_address):
+            return "marketplace/nft/\(mint_address)"
+        case .GetCollectionInfo:
+            return "marketplace/collections"
+        case .GetNFTEvents:
+            return "marketplace/nft/events"
+        case .SearchNFTs:
+            return "marketplace/nft/search"
+        case .RecommendSearchNFT:
+            return "markatplace/nft/search/recommend"
+        case .GetNFTs:
+            return "marketplace/nfts"
+        case .GetNFTRealPrice:
+            return "marketplace/nft/real_price"
+        case .CreateNewCollection:
+            return "marketplace/collection/new"
         }
         
     }
@@ -121,6 +153,8 @@ public enum MirrorWorldNetApi{
                     "message":message,
                     "value":value,
                     "params":params]
+        case .SecurityVerification(let params):
+            return params
         case .refreshToken(let refresh_token):
             return ["x-refresh-token":refresh_token]
         case .queryUser:
@@ -155,6 +189,22 @@ public enum MirrorWorldNetApi{
             return ["mint_address":mint_address,"price":price,"confirmation":confirmation]
         case .CreateVerifiedSubCollection(let name,let collection_mint,let symbol,let url,let confirmation):
             return ["name":name,"collection_mint":collection_mint,"symbol":symbol,"url":url,"confirmation":confirmation]
+        case .GetCollectionFilterInfo,.GetNFTInfo:
+            return nil
+        case .GetCollectionInfo(let collections):
+            return ["collections":collections]
+        case .GetNFTEvents(let mint_address, let page,let page_size):
+            return ["mint_address":mint_address,"page":page,"page_size":page_size]
+        case .SearchNFTs(let collections, let search):
+            return ["collections":collections,"search":search]
+        case .RecommendSearchNFT(let collections):
+            return ["collections":collections]
+        case .GetNFTs(let collection, let page,let page_size, let order, let sale, let filter):
+            return ["collection":collection,"page":page,"page_size":page_size,"order":order,"sale":sale,"filter":filter]
+        case .GetNFTRealPrice(let price, let fee):
+            return ["price":price,"fee":fee]
+        case .CreateNewCollection(let collection, let collection_name, let collection_type, let collection_orders, let collection_filter):
+            return ["collection":collection,"collection_name":collection_name,"collection_type":collection_type,"collection_orders":collection_orders,"collection_filter":collection_filter]
         default:
             return nil
            
@@ -196,7 +246,7 @@ public enum MirrorWorldNetApi{
             return "POST"
         case .authMe,.refreshToken,.queryUser,.getWalletTransactions:
             return "GET"
-        case .loginOut,.TransferSOLtoAnotherAddress,.TransferTokenToAnotherAddress:
+        case .logOut,.TransferSOLtoAnotherAddress,.TransferTokenToAnotherAddress:
             return "POST"
         case .MintNewNFT,.MintNewCollection:
             return "POST"
@@ -208,6 +258,10 @@ public enum MirrorWorldNetApi{
             return "POST"
         case .CreateVerifiedSubCollection:
             return "POST"
+        case .GetCollectionFilterInfo,.GetNFTInfo:
+            return "GET"
+        case .GetCollectionInfo,.GetNFTEvents,.SearchNFTs,.RecommendSearchNFT,.GetNFTs,.GetNFTRealPrice,.CreateNewCollection:
+            return "POST"
         default:
             return "GET"
         }
@@ -218,7 +272,7 @@ public enum MirrorWorldNetApi{
             return env.ssoRoot + path
         case .authMe,.refreshToken:
             return env.ssoRoot + path
-        case .loginOut:
+        case .logOut:
             return env.ssoRoot + path
         case .queryUser(let email):
             return env.ssoRoot + path + "?email=\(email)"
@@ -242,6 +296,8 @@ public enum MirrorWorldNetApi{
             return env.apiRoot + path
         case .CreateVerifiedSubCollection:
             return env.apiRoot + path
+        case .GetCollectionFilterInfo,.GetNFTInfo,.GetCollectionInfo,.GetNFTEvents,.SearchNFTs,.RecommendSearchNFT,.GetNFTs,.GetNFTRealPrice,.CreateNewCollection:
+            return env.ssoRoot + path
         default:
             return env.apiRoot + path
             

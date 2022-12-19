@@ -1,9 +1,12 @@
 //
-//  MirrorBrideg.h
+//  MirrorBridegForC.h
 //  MirrorWorldSDK
 //
 //  Created by ZMG on 2022/11/3.
 //
+
+#import <Foundation/Foundation.h>
+
 
 #import <Foundation/Foundation.h>
 
@@ -35,10 +38,20 @@ extern "C"
     extern void IOSOpenMarketPlace();
 }
 
+extern "C"
+{
+    extern void IOSOpenUrl(const char *object);
+    typedef void (*IOSSecurityAuthCallback)(const char *object);
+    extern void IOSOpenUrlSetCallBack(IOSSecurityAuthCallback callback);
+    
+    
+    
+    typedef void (*IOSSecurityCallback)(const char *object);
+    extern void IOSGetSecurityToken(char *params,IOSSecurityCallback callback);
+}
+
 
 
 @end
-
-
 
 

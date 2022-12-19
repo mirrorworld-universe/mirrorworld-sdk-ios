@@ -44,9 +44,9 @@ import UIKit
      * logsOut
      *
      **/
-    @objc public func loginOut(_ finsh:((_ isSucc:Bool)->Void)?){
+    @objc public func Logout(_ finsh:((_ isSucc:Bool)->Void)?){
         self.checkAccessToken { succ in
-            let api = MirrorWorldNetApi.loginOut
+            let api = MirrorWorldNetApi.logOut
             MirrorWorldNetWork().request(api: api) { response in
                 DispatchQueue.main.async {
                     finsh?(true)

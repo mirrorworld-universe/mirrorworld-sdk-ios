@@ -16,7 +16,8 @@ import SafariServices
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        // Do any additional setup after loading the view.
+//        self.preferredBarTintColor = .red
+        self.preferredControlTintColor = UIColor(red: 166/255.0, green: 226/255.0, blue: 46/255.0, alpha: 1)
     }
 
 }

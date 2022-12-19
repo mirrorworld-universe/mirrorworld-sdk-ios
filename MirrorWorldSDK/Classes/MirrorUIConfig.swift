@@ -18,6 +18,8 @@ import UIKit
             return Self.getBaseViewController()
         }
     }
+    @objc public var webTintColor:UIColor = UIColor(red: 166/255.0, green: 226/255.0, blue: 46/255.0, alpha: 1)
+    @objc public var webControllerColor:UIColor = UIColor.white
 }
 public extension MirrorUIConfig{
     @objc class func getBaseViewController() -> UIViewController?{

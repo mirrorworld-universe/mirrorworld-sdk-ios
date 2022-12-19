@@ -52,8 +52,19 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
         let _ = responseJson?["error"] as? String ?? ""
         let message = responseJson?["message"] as? String ?? ""
         let _ = responseJson?["status"] as? String ?? ""
-        let data = responseJson?["data"] as? [String:Any]
-        let dataString = data?.toString()
+       
+        var dataString:String? = ""
+        if responseJson?["data"] is Array<Any>{
+            let data = responseJson?["data"] as? [Any]
+            dataString = data?.toString()
+        }else{
+            var data = responseJson?["data"] as? [String:Any]
+            dataString = data?.toString()
+        }
+//        if responseJson?["data"] is String{
+//            
+//        }
+       
         DispatchQueue.main.async {
             if code == 0 {
                 success?(dataString)

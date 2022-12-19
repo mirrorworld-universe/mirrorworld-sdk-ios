@@ -35,6 +35,18 @@ enum paramsData {
     case creators
     case owners
     
+    case page
+    case page_size
+    
+    case search
+    
+    case sale
+    
+    case fee
+    
+    case collection_name
+    case collection_type
+    
     
     var keyText:String{
         switch self {
@@ -79,6 +91,20 @@ enum paramsData {
             return "creators"
         case .owners:
             return "owners"
+        case .page:
+            return "page"
+        case .page_size:
+            return "page_size"
+        case .search:
+            return "search"
+        case .sale:
+            return "sale"
+        case .fee:
+            return "fee"
+        case .collection_name:
+            return "collection_name"
+        case .collection_type:
+            return "collection_type"
         default:
             return ""
         }
@@ -94,7 +120,6 @@ class inputParamsView: UIView {
         super.init(frame: frame)
         self.layer.cornerRadius = 8
         self.backgroundColor = .lightGray
-        
     }
     
     deinit {

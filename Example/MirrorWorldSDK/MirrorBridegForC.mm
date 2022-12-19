@@ -1,12 +1,12 @@
 //
-//  MirrorBrideg.m
+//  MirrorBridegForC.m
 //  MirrorWorldSDK
 //
 //  Created by ZMG on 2022/11/3.
 //
 
-#import "MirrorBrideg.h"
-//#import "MirrorWorldSDK-prefix.pch"
+#import "MirrorBridegForC.h"
+#import <MirrorWorldSDK-Swift.h>
 
 @implementation MirrorBrideg
 
@@ -73,5 +73,40 @@ extern "C"
         NSLog(@"iOS_MWSDK_LOG: - IOSOpenMarketPlace");
     }
 }
+
+
+extern "C"
+{
+    extern void IOSOpenUrl(const char *object){
+        NSString *urlStr = [NSString stringWithFormat:@"%s",object];
+        [[MirrorSecurityVerificationShared share] openWebPage:urlStr];
+        NSLog(@"iOS_MWSDK_LOG: - IOSOpenURL");
+    }
+    typedef void (*IOSSecurityAuthCallback)(const char *object);
+    extern void IOSOpenUrlSetCallBack(IOSSecurityAuthCallback callback){
+        [[MirrorSecurityVerificationShared share] getApproveCallBackWithFinish:^(NSString * uuid, NSString * authtoken) {
+                    const char *cString = [authtoken UTF8String];
+                    callback(cString);
+            NSLog(@"iOS_MWSDK_LOG: - IOSApproveCallBack");
+        }];
+        
+    }
+
+    
+    
+    typedef void (*IOSSecurityCallback)(const char *object);
+    extern void IOSGetSecurityToken(char *params,IOSSecurityCallback callback){
+        NSString *paramStr = [NSString stringWithFormat:@"%s",params];
+        NSData *data = [paramStr dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error = nil;
+        NSDictionary *paramJson = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        [[MirrorSecurityVerificationShared share] getSecurityTokenWithParams:paramJson config:[MirrorWorldSDK share].sdkConfig :^(BOOL, NSString * authToken) {
+            const char *cString = [authToken UTF8String];
+            callback(cString);
+        }];
+    }
+
+}
+
 
 @end

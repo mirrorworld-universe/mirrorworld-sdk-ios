@@ -13,7 +13,7 @@ public let MWSDK = MirrorWorldSDK.share
 @objc public class MirrorWorldSDK: NSObject {
    @objc public static let share = MirrorWorldSDK()
     
-    public var SDKVersion:String = "0.0.7"
+    public var SDKVersion:String = "0.0.8"
     
     public typealias loginListent = ((_ s:Bool)->Void)?
 
@@ -28,8 +28,10 @@ public let MWSDK = MirrorWorldSDK.share
     private var authMoudle:MirrorAuthMoudle = MirrorAuthMoudle()
     private var walletMoudle:MirrorWalletMoudle = MirrorWalletMoudle()
     private var marketPlaceMoudle:MirrorMarketplaceMoudle = MirrorMarketplaceMoudle()
+    private var metedataFilterMoudle:MirrorMetadataFilterMoudle = MirrorMetadataFilterMoudle()
 
-   @objc public var sdkConfig:MirrorWorldSDKConfig = MirrorWorldSDKConfig()
+
+    @objc public var sdkConfig:MirrorWorldSDKConfig = MirrorWorldSDKConfig()
     @objc public var sdkProtol:MirrorWorldHandleProtocol = MirrorWorldHandleProtocol()
     @objc private var apiKey:String = ""
     @objc private var clientSecret:String = ""
@@ -72,6 +74,7 @@ public let MWSDK = MirrorWorldSDK.share
         walletMoudle.config = sdkConfig
         authMoudle.config = sdkConfig
         marketPlaceMoudle.config = sdkConfig
+        metedataFilterMoudle.config = sdkConfig
         
         MWLog.console("apiKey:\(apiKey)")
         guard self.apiKey.count > 0 else {
@@ -97,6 +100,8 @@ public let MWSDK = MirrorWorldSDK.share
         walletMoudle.config = sdkConfig
         authMoudle.config = sdkConfig
         marketPlaceMoudle.config = sdkConfig
+        metedataFilterMoudle.config = sdkConfig
+
         listenUrlschemeCallBack()
         return true
 //        authMoudle.RefreshToken { on in
@@ -119,8 +124,8 @@ public let MWSDK = MirrorWorldSDK.share
     /**
      * Logs out a user
      */
-    @objc public func loginOut(onSuccess: (()->())?, onFail: (()->())?){
-        authMoudle.loginOut { isSucc in
+    @objc public func Logout(onSuccess: (()->())?, onFail: (()->())?){
+        authMoudle.Logout { isSucc in
             if isSucc {
                 MirrorWorldSDKAuthData.share.clearToken()
                 onSuccess?()
@@ -406,6 +411,94 @@ public let MWSDK = MirrorWorldSDK.share
     }
 
     
+    @objc public func GetCollectionFilterInfo(collection:String,onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.GetCollectionFilterInfo(collection: collection) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
+    @objc public func GetNFTInfo(mint_address:String,onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.GetNFTInfo(mint_address: mint_address) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
+    
+    
+    @objc public func GetCollectionInfo(collections:[String],onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.GetCollectionInfo(collections: collections) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
+    @objc public func GetNFTEvents(mint_address: String, page: Int, page_size: Int,onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.GetNFTEvents(mint_address: mint_address, page: page, page_size: page_size) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+
+    }
+    
+    @objc public func SearchNFTs(collections: [String], search: String,onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.SearchNFTs(collections: collections, search: search) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
+    @objc public func RecommentSearchNFT(collections: [String], onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.RecommentSearchNFT(collections: collections) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
+    
+    @objc public func GetNFTs(collection: String, page: Int, page_size: Int, order: [String : Any], sale: Int, filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.GetNFTs(collection: collection, page: page, page_size: page_size, order: order, sale: sale, filter: filter) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+
+    }
+    
+    @objc public func GetNFTRealPrice(price: Double, fee: Double, onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.GetNFTRealPrice(price: price, fee: fee) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
+    @objc public func CreateNewCollection(collection: String, collection_name: String, collection_type: String, collection_orders: [Any], collection_filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
+        metedataFilterMoudle.CreateNewCollection(collection: collection, collection_name: collection_name, collection_type: collection_type, collection_orders: collection_orders, collection_filter: collection_filter) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+
+    }
+    
+    
+    
 }
 extension MirrorWorldSDK{
     private func loginAuth(_ controller:UIViewController?){
@@ -436,6 +529,9 @@ extension MirrorWorldSDK{
             self?.marketPlaceMoudle.authorization.callBackToken(uuid: uuid,token: token)
             self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
             self?.walletMoudle.authorization.callBackToken(uuid: uuid,token: token)
+            MirrorSecurityVerificationShared.share.authTokenCallBack(uuid: uuid, token: token)
+            
+            MirrorSecurityVerificationShared.share.ApproveCallBack(uuid: uuid, token: token)
         }
     }
 }

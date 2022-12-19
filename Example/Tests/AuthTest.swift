@@ -59,7 +59,7 @@ final class AuthTest: XCTestCase {
         
         let exp = expectation(description: #function)
 
-        MWSDK.loginOut {
+        MWSDK.Logout {
             XCTAssertNil(MirrorWorldSDKAuthData.share.userInfo,"logOut success !")
             exp.fulfill()
         } onFail: {

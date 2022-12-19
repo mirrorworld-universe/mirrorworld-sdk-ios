@@ -194,4 +194,16 @@ public extension [String:Any] {
         return nil
     }
 }
-
+public extension [Any] {
+    func toString() -> String? {
+        do {
+            let data1 =  try JSONSerialization.data(withJSONObject: self,options: .prettyPrinted)
+            let convertedString = String(data: data1, encoding: .utf8)
+            return convertedString
+            
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil
+    }
+}
