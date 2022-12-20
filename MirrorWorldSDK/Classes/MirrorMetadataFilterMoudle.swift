@@ -125,7 +125,7 @@ import UIKit
 
     }
     
-    @objc public func GetNFTRealPrice(price: Double, fee: Double, onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func GetNFTRealPrice(price: String, fee: Double, onSuccess:onSuccess,onFailed:onFailed){
         let api = MirrorWorldNetApi.GetNFTRealPrice(price: price, fee: fee)
         MirrorWorldNetWork().request(api: api) {[weak self] response in
             self?.handleResponse(response: response, success: { response in

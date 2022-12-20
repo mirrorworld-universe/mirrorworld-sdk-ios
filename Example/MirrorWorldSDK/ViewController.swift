@@ -652,7 +652,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let fee = (datas.first(where: {$0.keyText == "fee"})?.valueText)! as! String
                 let price = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! String
 
-                MWSDK.GetNFTRealPrice(price: Double(price) ?? 0, fee: Double(fee) ?? 0) { data in
+                MWSDK.GetNFTRealPrice(price: price, fee: Double(fee) ?? 0) { data in
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in

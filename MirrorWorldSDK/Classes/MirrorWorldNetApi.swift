@@ -70,7 +70,7 @@ public enum MirrorWorldNetApi{
     case SearchNFTs(collections:[String],search:String)
     case RecommendSearchNFT(collections:[String])
     case GetNFTs(collection:String,page:Int,page_size:Int,order:[String:Any],sale:Int,filter:[[String:Any]])
-    case GetNFTRealPrice(price:Double,fee:Double)
+    case GetNFTRealPrice(price:String,fee:Double)
     case CreateNewCollection(collection:String,collection_name:String,collection_type:String,collection_orders:[Any],collection_filter:[[String:Any]])
     
     var path:String{

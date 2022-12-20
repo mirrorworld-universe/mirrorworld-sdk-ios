@@ -479,7 +479,7 @@ public let MWSDK = MirrorWorldSDK.share
 
     }
     
-    @objc public func GetNFTRealPrice(price: Double, fee: Double, onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func GetNFTRealPrice(price: String, fee: Double, onSuccess:onSuccess,onFailed:onFailed){
         metedataFilterMoudle.GetNFTRealPrice(price: price, fee: fee) { data in
             onSuccess?(data)
         } onFailed: { code, message in
