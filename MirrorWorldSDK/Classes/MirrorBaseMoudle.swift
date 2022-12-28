@@ -56,10 +56,12 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
         var dataString:String? = ""
         if responseJson?["data"] is Array<Any>{
             let data = responseJson?["data"] as? [Any]
-            dataString = data?.toString()
+//            dataString = data?.toString()
+            dataString = MirrorTool.arrayToString(data)
         }else{
-            var data = responseJson?["data"] as? [String:Any]
-            dataString = data?.toString()
+            let data = responseJson?["data"] as? [String:Any]
+//            dataString = data?.toString()
+            dataString = MirrorTool.dicToString(data)
         }
 //        if responseJson?["data"] is String{
 //            

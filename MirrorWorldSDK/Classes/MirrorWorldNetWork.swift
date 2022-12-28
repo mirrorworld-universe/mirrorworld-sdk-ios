@@ -53,7 +53,8 @@ public struct MirrorError{
 //                return "\(key)=\(value)"
 //            }).joined(separator: "&")
 //            request.httpBody = postString?.data(using: .utf8)
-            let bodyString = api.param?.toString()
+//            let bodyString = api.param?.toString()
+            let bodyString = MirrorTool.dicToString(api.param)
             request.httpBody = bodyString?.data(using: .utf8)
         }
         

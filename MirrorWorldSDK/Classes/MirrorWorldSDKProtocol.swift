@@ -181,6 +181,38 @@ public extension String{
     }
 }
 
+
+@objc public class MirrorTool:NSObject{
+    
+   @objc public class func dicToString(_ dic:[String:Any]?) -> String? {
+       guard let dictionary = dic else { return nil }
+        do {
+            let data1 =  try JSONSerialization.data(withJSONObject: dictionary,options: .prettyPrinted)
+            let convertedString = String(data: data1, encoding: .utf8)
+            return convertedString
+            
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil
+    }
+    @objc public class func arrayToString(_ array:[Any]?) -> String? {
+        guard let arr = array else { return nil }
+        do {
+            let data1 =  try JSONSerialization.data(withJSONObject: arr,options: .prettyPrinted)
+            let convertedString = String(data: data1, encoding: .utf8)
+            return convertedString
+            
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil
+    }
+    
+    
+}
+
+/*
 public extension [String:Any] {
     func toString() -> String? {
         do {
@@ -207,3 +239,4 @@ public extension [Any] {
         return nil
     }
 }
+*/

@@ -126,7 +126,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
         case "Start Login":
             MWSDK.StartLogin { userInfo in
                 self.loadingActive.stopAnimating()
-                self.Log("login success :\(userInfo?.toString() ?? "")")
+                self.Log("login success :\(MirrorTool.dicToString(userInfo) ?? "")")
             } onFail: {
                 self.loadingActive.stopAnimating()
                 self.Log("login failed!")
