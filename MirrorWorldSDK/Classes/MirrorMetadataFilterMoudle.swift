@@ -109,7 +109,7 @@ import UIKit
     }
     
     
-    @objc public func GetNFTs(collection: String, page: Int, page_size: Int, order: [String : Any], sale: Int, filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func getNFTsByUnabridgedParams(collection: String, page: Int, page_size: Int, order: [String : Any], sale: Int, filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
         let api = MirrorWorldNetApi.GetNFTs(collection: collection, page: page, page_size: page_size, order: order, sale: sale, filter: filter)
         MirrorWorldNetWork().request(api: api) {[weak self] response in
             self?.handleResponse(response: response, success: { response in

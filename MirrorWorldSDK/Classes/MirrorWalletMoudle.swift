@@ -27,6 +27,17 @@ import UIKit
         }
     }
     
+    // for unitySDK
+    @objc public func mw_Unity_Wallet(url: String?,controller:UIViewController?){
+        self.checkAccessToken { succ in
+            var walletUrl = url ?? ""
+            guard walletUrl.count > 0 else { return }
+            let url = URL(string: walletUrl)!
+            let auth = MirrorWorldLoginAuthController.init(url: url)
+            controller?.present(auth, animated: true)
+        }
+    }
+    
     @objc public func GetWalletTokens(onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.getWalletTokens

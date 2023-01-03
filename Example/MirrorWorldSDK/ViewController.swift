@@ -157,7 +157,13 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             self.loadingActive.stopAnimating()
             break
         case "openMarketPlacePage":
-            MirrorWorldSDK.share.openMarketPlacePage()
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.url])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
+                MirrorWorldSDK.share.openMarketPlacePage(url: url)
+                self?.Log("openMarketPlacePage")
+            }
             break
         case "QueryUser":
             view.addSubview(paramtersView)
@@ -633,7 +639,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let page_size = (datas.first(where: {$0.keyText == "page_size"})?.valueText)! as! String
                 let sale = (datas.first(where: {$0.keyText == "sale"})?.valueText)! as! String
 
-                MWSDK.GetNFTs(collection: collection_mint, page: Int(page) ?? 0, page_size: Int(page_size) ?? 10, order: ["order_by":"price","desc":true], sale: Int(sale) ?? 0, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]) { data in
+                MWSDK.getNFTsByUnabridgedParams(collection: collection_mint, page: Int(page) ?? 0, page_size: Int(page_size) ?? 10, order: ["order_by":"price","desc":true], sale: Int(sale) ?? 0, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]) { data in
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in

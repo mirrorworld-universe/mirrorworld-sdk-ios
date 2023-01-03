@@ -11,10 +11,20 @@ import UIKit
     
     var config:MirrorWorldSDKConfig?
     var newAuth:MirrorSecurityVerification?
-    @objc public func openMarketPlacePage(controller:UIViewController?){
+    @objc public func openMarketPlacePage(url:String?,controller:UIViewController?){
         self.checkAccessToken { succ in
-            let urlString = self.config?.environment.marketRoot ?? ""
-            let marketPlaceAddress = urlString + "?auth=" + MirrorWorldSDKAuthData.share.access_token
+//            let urlString = self.config?.environment.marketRoot ?? ""
+//            let marketPlaceAddress = urlString + "?auth=" + MirrorWorldSDKAuthData.share.access_token
+            guard let urlString = url,urlString.count > 0 else {
+                MWLog.console("please check marketplace address.")
+                return
+            }
+            var marketPlaceAddress = ""
+            if !urlString.contains("?auth="){
+                marketPlaceAddress = urlString + "?auth=" + MirrorWorldSDKAuthData.share.access_token
+            }else{
+                marketPlaceAddress = urlString
+            }
             guard let url = URL(string: marketPlaceAddress) else {
                 MWLog.console(marketPlaceAddress)
                 MWLog.console("please check your access_token.")

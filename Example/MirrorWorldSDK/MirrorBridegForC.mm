@@ -48,9 +48,23 @@ extern "C"
     typedef void (*iOSWalletLogOutCallback)(const char *object);
     typedef void (*iOSWalletLoginTokenCallback)(const char *object);
 
-    extern void IOSOpenWallet(iOSWalletLogOutCallback callback,iOSWalletLoginTokenCallback walletLoginCallback){
+    extern void IOSOpenWallet(const char *url,iOSWalletLogOutCallback callback,iOSWalletLoginTokenCallback walletLoginCallback){
         NSLog(@"iOS_MWSDK_LOG: - IOSOpenWallet");
-        [[MirrorWorldSDK share] OpenWalletOnLogout:^{
+//        [[MirrorWorldSDK share] OpenWalletOnLogout:^{
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                callback("wallet is logout.");
+//            });
+//        } loginSuccess:^(NSDictionary<NSString *,id> * userinfo) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userinfo options:NSJSONWritingPrettyPrinted error:nil];
+//                NSString *user = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//                const char *cString = [user UTF8String];
+//                walletLoginCallback(cString);
+//            });
+//        }];
+        NSString *urlStr = [NSString stringWithFormat:@"%s",url];
+
+        [[MirrorWorldSDK share] mw_Unity_WalletWithUrl:urlStr onLogout:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 callback("wallet is logout.");
             });
@@ -68,8 +82,9 @@ extern "C"
 
 extern "C"
 {
-    extern void IOSOpenMarketPlace(){
-        [[MirrorWorldSDK share] openMarketPlacePage];
+    extern void IOSOpenMarketPlace(const char *url){
+        NSString *urlStr = [NSString stringWithFormat:@"%s",url];
+        [[MirrorWorldSDK share] openMarketPlacePageWithUrl:urlStr];
         NSLog(@"iOS_MWSDK_LOG: - IOSOpenMarketPlace");
     }
 }

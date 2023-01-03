@@ -26,12 +26,12 @@ extern "C"
     typedef void (*iOSWalletLogOutCallback)(const char *object);
     typedef void (*iOSWalletLoginTokenCallback)(const char *object);
 
-    extern void IOSOpenWallet(iOSWalletLogOutCallback callback,iOSWalletLoginTokenCallback walletLoginCallback);
+    extern void IOSOpenWallet(const char *url,iOSWalletLogOutCallback callback,iOSWalletLoginTokenCallback walletLoginCallback);
 }
 
 extern "C"
 {
-    extern void IOSOpenMarketPlace();
+    extern void IOSOpenMarketPlace(const char *url);
 }
 
 extern "C"

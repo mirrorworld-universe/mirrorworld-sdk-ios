@@ -171,9 +171,15 @@ public let MWSDK = MirrorWorldSDK.share
         walletMoudle.openWallet(controller: topvc)
     }
     
-    @objc public func openMarketPlacePage(){
+    @objc public func mw_Unity_Wallet(url:String?,onLogout:@escaping ()->Void,loginSuccess:@escaping (_ userInfo:[String:Any]?)->()){
+        self.onWalletLogOut = onLogout
+        let topvc = Self.getBaseViewController()
+        walletMoudle.mw_Unity_Wallet(url: url, controller: Self.getBaseViewController())
+    }
+    
+    @objc public func openMarketPlacePage(url:String?){
         let basevc = Self.getBaseViewController()
-        marketPlaceMoudle.openMarketPlacePage(controller: basevc)
+        marketPlaceMoudle.openMarketPlacePage(url: url, controller: basevc)
     }
     
     /**
@@ -185,7 +191,6 @@ public let MWSDK = MirrorWorldSDK.share
         } onFetchFailed: { code, errDesc in
             onFetchFailed?(code,errDesc)
         }
-
     }
     
     /**
@@ -469,8 +474,9 @@ public let MWSDK = MirrorWorldSDK.share
     }
     
     
-    @objc public func GetNFTs(collection: String, page: Int, page_size: Int, order: [String : Any], sale: Int, filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.GetNFTs(collection: collection, page: page, page_size: page_size, order: order, sale: sale, filter: filter) { data in
+    @objc public func getNFTsByUnabridgedParams(collection: String, page: Int, page_size: Int, order: [String : Any], sale: Int, filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
+        
+        metedataFilterMoudle.getNFTsByUnabridgedParams(collection: collection, page: page, page_size: page_size, order: order, sale: sale, filter: filter) { data in
             onSuccess?(data)
         } onFailed: { code, message in
             onFailed?(code,message)
