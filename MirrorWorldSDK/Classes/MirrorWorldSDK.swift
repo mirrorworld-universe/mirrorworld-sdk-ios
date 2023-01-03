@@ -13,7 +13,7 @@ public let MWSDK = MirrorWorldSDK.share
 @objc public class MirrorWorldSDK: NSObject {
    @objc public static let share = MirrorWorldSDK()
     
-    public var SDKVersion:String = "1.0.0"
+    public var SDKVersion:String = "1.0.1"
     
     public typealias loginListent = ((_ s:Bool)->Void)?
 
@@ -474,9 +474,9 @@ public let MWSDK = MirrorWorldSDK.share
     }
     
     
-    @objc public func getNFTsByUnabridgedParams(collection: String, page: Int, page_size: Int, order: [String : Any], sale: Int, filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func GetNFTsByUnabridgedParams(collection: String, page: Int, page_size: Int, order: [String : Any], sale: Int, filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
         
-        metedataFilterMoudle.getNFTsByUnabridgedParams(collection: collection, page: page, page_size: page_size, order: order, sale: sale, filter: filter) { data in
+        metedataFilterMoudle.GetNFTsByUnabridgedParams(collection: collection, page: page, page_size: page_size, order: order, sale: sale, filter: filter) { data in
             onSuccess?(data)
         } onFailed: { code, message in
             onFailed?(code,message)

@@ -58,7 +58,7 @@ class ViewController: UIViewController {
                         "FetchNFTsByMintAddresses",
                         "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
                         "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
-                      (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","Get nfts","Get nft real price","Create new collection"])
+                      (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","GetNFTsByUnabridgedParams","Get nft real price","Create new collection"])
     ]
     
     @IBOutlet weak var tableView: UITableView!
@@ -201,7 +201,10 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             paramtersView.setParams(keys: [.limit,.next_before])
             paramtersView.paramtersJson = {[weak self] datas in
                 let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
+                
                 let next_before = (datas.first(where: {$0.keyText == "next_before"})?.valueText)! as! String
+                
+                
                 MirrorWorldSDK.share.GetWalletTransactions(limit: Int(limit) ?? 10, next_before: next_before) { response in
                     self?.Log(response)
                     self?.loadingActive.stopAnimating()
@@ -630,16 +633,18 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 }
             }
             break
-        case "Get nfts":
+        case "GetNFTsByUnabridgedParams":
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.collection_mint,.page,.page_size,.sale])
             paramtersView.paramtersJson = {[weak self] datas in
+                
                 let collection_mint = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
                 let page = (datas.first(where: {$0.keyText == "page"})?.valueText)! as! String
                 let page_size = (datas.first(where: {$0.keyText == "page_size"})?.valueText)! as! String
                 let sale = (datas.first(where: {$0.keyText == "sale"})?.valueText)! as! String
-
-                MWSDK.getNFTsByUnabridgedParams(collection: collection_mint, page: Int(page) ?? 0, page_size: Int(page_size) ?? 10, order: ["order_by":"price","desc":true], sale: Int(sale) ?? 0, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]) { data in
+               
+                
+                MWSDK.GetNFTsByUnabridgedParams(collection: collection_mint, page: Int(page) ?? 0, page_size: Int(page_size) ?? 10, order: ["order_by":"price","desc":true], sale: Int(sale) ?? 0, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]) { data in
                     self?.Log(data)
                     self?.loadingActive.stopAnimating()
                 } onFailed: { code, message in

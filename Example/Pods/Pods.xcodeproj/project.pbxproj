@@ -82,7 +82,7 @@
 		A3618A518E56A0A87BEB53E0FCCEDDD5 /* Pods-MirrorWorldSDK_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-MirrorWorldSDK_Tests"; path = Pods_MirrorWorldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A514A2C657EE82695F0BE4E2ADF999BC /* MirrorBaseMoudle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorBaseMoudle.swift; path = MirrorWorldSDK/Classes/MirrorBaseMoudle.swift; sourceTree = "<group>"; };
 		AF5406E3C16BA5368B01DE5DA2C840B0 /* MirrorWorldSDK-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MirrorWorldSDK-prefix.pch"; sourceTree = "<group>"; };
-		B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MirrorWorldSDK; path = MirrorWorldSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MirrorWorldSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0BDAF88CA548ED30036463E472A8FB5 /* Pods-MirrorWorldSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MirrorWorldSDK_Example-dummy.m"; sourceTree = "<group>"; };
 		C245D8B849667FEDB408AABBFC1EB266 /* Pods-MirrorWorldSDK_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Example-Info.plist"; sourceTree = "<group>"; };
 		C2B77C5C167C645C85046A227C67901D /* MirrorWorldSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MirrorWorldSDK-umbrella.h"; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 		88DD9D0200B5740A5FC14D3709B3DE1B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */,
+				B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK.framework */,
 				5EC8293BD3791D9700789E995D888EA4 /* Pods-MirrorWorldSDK_Example */,
 				A3618A518E56A0A87BEB53E0FCCEDDD5 /* Pods-MirrorWorldSDK_Tests */,
 			);
@@ -339,7 +339,7 @@
 			);
 			name = MirrorWorldSDK;
 			productName = MirrorWorldSDK;
-			productReference = B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */;
+			productReference = B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A950FC11B09ACAAB0942BB1A8C1D116F /* Pods-MirrorWorldSDK_Tests */ = {
@@ -647,6 +647,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -679,6 +680,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
