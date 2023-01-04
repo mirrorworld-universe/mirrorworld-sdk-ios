@@ -161,7 +161,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             paramtersView.setParams(keys: [.url])
             paramtersView.paramtersJson = {[weak self] datas in
                 let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
-                MirrorWorldSDK.share.openMarketPlacePage(url: url)
+                MWSDK.openMarketPlacePage(url: url)
                 self?.Log("openMarketPlacePage")
             }
             break
@@ -600,6 +600,8 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                     self?.Log("\(item):failed  code:\(code),message: \(message ?? "")")
                 }
 
+
+
             }
             break
         case "Search nfts":
@@ -652,7 +654,6 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                     self?.Log("\(item):failed  code:\(code),message: \(message ?? "")")
                 }
 
-                
             }
 
             break
@@ -670,7 +671,6 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                     self?.loadingActive.stopAnimating()
                     self?.Log("\(item):failed  code:\(code),message: \(message ?? "")")
                 }
-
             }
             break
         case "Create new collection":
