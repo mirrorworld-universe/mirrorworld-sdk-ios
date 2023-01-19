@@ -237,6 +237,8 @@ public enum MirrorWorldNetApi{
         switch self {
         case .MintNewNFT:
             return "mint_nft"
+        case .UpdateNFTProperties:
+            return "update_nft"
         case .TransferSOLtoAnotherAddress:
             return "transfer_sol"
         case .TransferTokenToAnotherAddress:

@@ -203,15 +203,21 @@ import UIKit
         self.checkAccessToken { succ in
             if(succ){
                 let api = MirrorWorldNetApi.UpdateNFTProperties(mintAddress: mintAddresses, name: name, symbol: symbol, updateAuthority: updateAuthority, NFTJsonUrl: NFTJsonUrl, seller_fee_basis_points: seller_fee_basis_points, confirmation: confirmation)
-                MirrorWorldNetWork().request(api: api) { response in
-                    self.handleResponse(response: response, success: { response in
-                        onReceive?(true,response)
-                    }, failed: { code, message in
-                        onReceive?(false,"code:\(code),message:\(message)")
-                    })
-                } _: { code, errorDesc in
-                    onReceive?(false,"code:\(code),message:\(errorDesc)")
-                }
+                self.authorization.requestActionAuthorization(config: self.config, api, { success, authToken, errorDesc in
+                    if(success){
+                        MirrorWorldNetWork().request(api: api,authToken) { response in
+                            self.handleResponse(response: response, success: { response in
+                                onReceive?(true,response)
+                            }, failed: { code, message in
+                                onReceive?(false,"code:\(code),message:\(message)")
+                            })
+                        } _: { code, errorDesc in
+                            onReceive?(false,"code:\(code),message:\(errorDesc)")
+                        }
+                    }else{
+                        onReceive?(false,errorDesc)
+                    }
+                })
             }else{
                 onReceive?(false,"No access token, please login first.")
             }
