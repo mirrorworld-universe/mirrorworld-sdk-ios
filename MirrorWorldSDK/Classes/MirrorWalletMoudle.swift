@@ -79,7 +79,6 @@ import UIKit
     }
     
     
-    
     @objc public func GetWalletTransactionBySignature(signature:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.getWalletTransactionBySignature(signature: signature)
@@ -95,8 +94,25 @@ import UIKit
                 }
             }
         }
-        
-
+    }
+    
+    @objc public func CheckStatusOfTransactions(signatures:[String],onSuccess:((_ data:String?)->())?,onFailed:((_ code:Int,_ message:String?)->())?){
+        self.checkAccessToken {[weak self] succ in
+            if(succ){
+                let api = MirrorWorldNetApi.CheckStatusOfTransactions(signatures: signatures)
+                MirrorWorldNetWork().request(api: api) { response in
+                    self?.handleResponse(response: response, success: { dataString in
+                        onSuccess?(dataString)
+                    }, failed: { code, message in
+                        onFailed?(code,message)
+                    })
+                } _: { code, errorDesc in
+                    onFailed?(code,errorDesc)
+                }
+            }else{
+                onFailed?(999,"No access token, please login first.");
+            }
+        }
     }
 
     
@@ -118,10 +134,7 @@ import UIKit
                     }
                 }
             })
-           
         }
-        
-
     }
     
     

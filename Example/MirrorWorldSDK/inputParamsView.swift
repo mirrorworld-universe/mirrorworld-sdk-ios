@@ -16,16 +16,19 @@ enum paramsData {
     case symbol
     case url
     case seller_fee_basis_points
+    case confirmation
     
     case limit
     case next_before
     case signature
+    case another_signature
     case to_publickey
     case amount
     case token_mint
     case decimals
     
     case mint_address
+    case another_mint_address
     case price
     
     case to_wallet_address
@@ -62,12 +65,16 @@ enum paramsData {
             return "url"
         case .seller_fee_basis_points:
             return "seller_fee_basis_points"
+        case .confirmation:
+            return "confirmation"
         case .limit:
             return "limit"
         case .next_before:
             return "next_before"
         case .signature:
             return "signature"
+        case .another_signature:
+            return "another signature"
         case .to_publickey:
             return "to_publickey"
         case .amount:
@@ -78,6 +85,8 @@ enum paramsData {
             return "decimals"
         case .mint_address:
             return "mint_address"
+        case .another_mint_address:
+            return "another_mint_address"
         case .price:
             return "price"
         

@@ -17,6 +17,8 @@ public enum MirrorWorldNetApi{
     // Get: Request refresh token for user
     case refreshToken(refresh_token:String)
     
+    case guestLogin
+    
     //POST: Logs out a user
     case logOut
     
@@ -27,6 +29,8 @@ public enum MirrorWorldNetApi{
     case getWalletTransactions(limit:Int,next_before:String)
     
     case getWalletTransactionBySignature(signature:String)
+    
+    case CheckStatusOfTransactions(signatures:[String])
     
     case TransferSOLtoAnotherAddress(to_publickey:String,amount:Int)
     
@@ -42,6 +46,10 @@ public enum MirrorWorldNetApi{
     case CreateVerifiedSubCollection(name:String,collection_mint:String,symbol:String,url:String,confirmation:String)
     
     case MintNewNFT(_ param:[String:Any])
+    
+    case CheckStatusOfMinting(mintAddress:[String])
+    
+    case UpdateNFTProperties(mintAddress:String,  name:String,   symbol:String,   updateAuthority:String,   NFTJsonUrl:String,   seller_fee_basis_points:String,   confirmation:String)
     
     case TransferNFTToAnotherSolanaWallet(mint_address:String,to_wallet_address:String,confirmation:String)
     
@@ -75,6 +83,8 @@ public enum MirrorWorldNetApi{
     
     var path:String{
         switch self {
+        case .guestLogin:
+            return "auth/guest-login"
         case .requestActionAuthorization:
             return "auth/actions/request"
         case .SecurityVerification:
@@ -93,12 +103,18 @@ public enum MirrorWorldNetApi{
             return "wallet/transactions"
         case .getWalletTransactionBySignature(let signature):
             return "wallet/transactions/\(signature)"
+        case .CheckStatusOfTransactions:
+            return "solana/confirmation/transactions-status"
         case .TransferSOLtoAnotherAddress:
             return "wallet/transfer-sol"
         case .TransferTokenToAnotherAddress:
             return "wallet/transfer-token"
         case .MintNewNFT:
             return "solana/mint/nft"
+        case .CheckStatusOfMinting:
+            return "solana/confirmation/mints-status"
+        case .UpdateNFTProperties:
+            return "solana/mint/update"
         case .MintNewCollection:
             return "solana/mint/collection"
         case .FetchSingleNFT(let path):
@@ -146,8 +162,15 @@ public enum MirrorWorldNetApi{
         
     }
     
+    //http params
     var param:[String:Any]?{
         switch self {
+        case .CheckStatusOfTransactions(let signatures):
+            return ["signatures":signatures]
+        case .CheckStatusOfMinting(let mintAddress):
+            return ["mint_addresses":mintAddress]
+        case .UpdateNFTProperties(let mintAddress,let name, let symbol, let updateAuthority, let NFTJsonUrl, let seller_fee_basis_points, let confirmation):
+            return ["mint_address":mintAddress,"name":name,"symbol":symbol,"update_authority":updateAuthority,"url":NFTJsonUrl,"seller_fee_basis_points":seller_fee_basis_points,"confirmation":confirmation]
         case .requestActionAuthorization(let type,let message,let value, let params):
             return ["type":type,
                     "message":message,
@@ -207,7 +230,6 @@ public enum MirrorWorldNetApi{
             return ["collection":collection,"collection_name":collection_name,"collection_type":collection_type,"collection_orders":collection_orders,"collection_filter":collection_filter]
         default:
             return nil
-           
         }
     }
     
@@ -242,13 +264,15 @@ public enum MirrorWorldNetApi{
     
     var method:String{
         switch self {
+        case .guestLogin:
+            return "GET"
         case .requestActionAuthorization:
             return "POST"
         case .authMe,.refreshToken,.queryUser,.getWalletTransactions:
             return "GET"
-        case .logOut,.TransferSOLtoAnotherAddress,.TransferTokenToAnotherAddress:
+        case .logOut,.TransferSOLtoAnotherAddress,.TransferTokenToAnotherAddress,.CheckStatusOfTransactions:
             return "POST"
-        case .MintNewNFT,.MintNewCollection:
+        case .MintNewNFT,.CheckStatusOfMinting,.MintNewCollection,.UpdateNFTProperties:
             return "POST"
         case .FetchSingleNFT:
             return "GET"
@@ -268,6 +292,10 @@ public enum MirrorWorldNetApi{
     }
     func serverUrl(env:MWEnvironment) -> String {
         switch self {
+        case .CheckStatusOfMinting:
+            return env.apiRoot + path
+        case .guestLogin:
+            return env.ssoRoot + path
         case .requestActionAuthorization:
             return env.ssoRoot + path
         case .authMe,.refreshToken:
@@ -278,11 +306,11 @@ public enum MirrorWorldNetApi{
             return env.ssoRoot + path + "?email=\(email)"
         case .getWalletTokens:
             return env.apiRoot + path
-        case .getWalletTransactions,.getWalletTransactionBySignature:
+        case .getWalletTransactions,.getWalletTransactionBySignature,.CheckStatusOfTransactions:
             return env.apiRoot + path
         case .TransferSOLtoAnotherAddress,.TransferTokenToAnotherAddress:
             return env.apiRoot + path
-        case .MintNewNFT,.MintNewCollection:
+        case .MintNewNFT,.MintNewCollection,.UpdateNFTProperties:
             return env.apiRoot + path
         case .FetchSingleNFT:
             return env.apiRoot + path
@@ -300,9 +328,6 @@ public enum MirrorWorldNetApi{
             return env.ssoRoot + path
         default:
             return env.apiRoot + path
-            
         }
     }
-    
-    
 }

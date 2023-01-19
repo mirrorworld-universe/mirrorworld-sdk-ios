@@ -45,12 +45,14 @@ class ViewController: UIViewController {
     
     
     var dataSource = [(moudleTitle:"Init",MethodList:["initSDK"]),
-                      (moudleTitle:"Auth",MethodList:["Start Login","Logs out a user","CheckAuthenticated"]),
-                      (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","Transfer SOL to another address","Transfer Token to another address"]),
+                      (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
+                      (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
                       (moudleTitle:"Marketplace",MethodList:[
                         "openMarketPlacePage",
                         "MintNewCollection",
                         "MintNewNFTOnCollection",
+                        "CheckStatusOfMinting",
+                        "UpdateNFTProperties",
                         "FetchSingleNFT",
                         "UpdateNFTListing",
                         "ListNFT",
@@ -132,6 +134,13 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 self.Log("login failed!")
             }
             
+        case "Guest Login":
+            MWSDK.GuestLogin {
+                self.Log("guest login success")
+            } onFail: {
+                self.Log("guest login failed")
+            }
+
         case "Logs out a user":
             MWSDK.Logout {
                 self.Log("Logs out a user : success")
@@ -229,6 +238,20 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 }
             }
             break
+        case "CheckStatusOfTransactions":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.signature,.another_signature])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let signature = (datas.first(where: {$0.keyText == "signature"})?.valueText)! as! String
+                let another_signature = (datas.first(where: {$0.keyText == "another signature"})?.valueText)! as! String
+                MWSDK.CheckStatusOfTransactions(signatures: [signature,another_signature]) { data in
+                    self?.Log(data)
+                } onFailed: { code, message in
+                    self?.Log("CheckStatusOfTransactions failed,code is:\(code);message:\(message)")
+                }
+
+            }
+            break
         case "Transfer SOL to another address":
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.to_publickey,.amount])
@@ -322,6 +345,37 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                     self?.Log("\(item):failed:\(code),\(message ?? "")")
                     self?.loadingActive.stopAnimating()
                 }
+            }
+            break
+        case "CheckStatusOfMinting":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address,.another_mint_address])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                let another_address = (datas.first(where: {$0.keyText == "another_mint_address"})?.valueText)! as! String
+                MWSDK.CheckStatusOfMinting(mintAddress: [mint_address,another_address]) { isSucc, data in
+                    self?.Log("Check status of Minting result is:\(isSucc). data is:\(data)")
+                }
+            }
+            break
+        case "UpdateNFTProperties":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.mint_address,.name,.symbol,.update_authorities,.url,.seller_fee_basis_points,.confirmation])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let mintAddress = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
+                let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
+                let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
+                let update_authority = (datas.first(where: {$0.keyText == "update_authorities"})?.valueText)! as! String
+                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
+                let sellerString = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! String
+                let confirmation = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
+                
+                MWSDK.UpdateNFTProperties(mintAddresses: mintAddress,name:name,symbol:symbol,updateAuthority:update_authority,NFTJsonUrl: url,seller_fee_basis_points:sellerString,confirmation:confirmation) { data in
+                    self?.Log(data)
+                } _: { message in
+                    self?.Log(message)
+                }
+
             }
             break
         case "FetchSingleNFT":

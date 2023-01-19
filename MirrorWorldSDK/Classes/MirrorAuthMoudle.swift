@@ -41,6 +41,37 @@ import UIKit
     }
     
     /**
+     * guest login
+     *
+     **/
+    @objc public func GuestLogin(_ onReceive:((_ isSucc:Bool)->Void)?){
+        let api = MirrorWorldNetApi.guestLogin
+        MirrorWorldNetWork().request(api: api) { response in
+            DispatchQueue.main.async {
+                let responseJson = response?.toJson()
+                let data = responseJson?["data"] as? [String:Any]
+                let user = data?["user"] as? [String:Any]
+                let refreshToken = data?["refresh_token"] as? String
+                let accessToken = data?["access_token"] as? String
+                
+                MirrorWorldSDKAuthData.share.access_token = accessToken ?? ""
+                MirrorWorldSDKAuthData.share.refresh_token = refreshToken ?? ""
+                MirrorWorldSDKAuthData.share.saveRefreshToken()
+                MirrorWorldSDKAuthData.share.userInfo = user
+                
+                if(accessToken == nil || accessToken == ""){
+                    onReceive?(false)
+                }else{
+                    onReceive?(true)
+                }
+            }
+        } _: { code,errorDesc in
+            DispatchQueue.main.async {
+                onReceive?(false)
+            }
+        }
+    }
+    /**
      * logsOut
      *
      **/
