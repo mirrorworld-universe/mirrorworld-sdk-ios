@@ -13,7 +13,7 @@ public let MWSDK = MirrorWorldSDK.share
 @objc public class MirrorWorldSDK: NSObject {
    @objc public static let share = MirrorWorldSDK()
     
-    public var SDKVersion:String = "1.0.1"
+    public var SDKVersion:String = "1.1.0"
     
     public typealias loginListent = ((_ s:Bool)->Void)?
 
@@ -120,6 +120,15 @@ public let MWSDK = MirrorWorldSDK.share
         loginAuth(Self.getBaseViewController())
     }
     
+    @objc public func GuestLogin(onSuccess: (()->())?, onFail: (()->())?){
+        authMoudle.GuestLogin { isSucc in
+            if(isSucc){
+                onSuccess?()
+            }else{
+                onFail?()
+            }
+        }
+    }
     
     /**
      * Logs out a user
@@ -177,9 +186,9 @@ public let MWSDK = MirrorWorldSDK.share
         walletMoudle.mw_Unity_Wallet(url: url, controller: Self.getBaseViewController())
     }
     
-    @objc public func openMarketPlacePage(url:String?){
+    @objc public func OpenMarketPlacePage(url:String?){
         let basevc = Self.getBaseViewController()
-        marketPlaceMoudle.openMarketPlacePage(url: url, controller: basevc)
+        marketPlaceMoudle.OpenMarketPlacePage(url: url, controller: basevc)
     }
     
     /**
@@ -238,27 +247,32 @@ public let MWSDK = MirrorWorldSDK.share
 
     }
     
+    @objc public func CheckStatusOfTransactions(signatures:[String],onSuccess:((_ data:String?)->())?,onFailed:((_ code:Int,_ message:String?)->())?){
+        walletMoudle.CheckStatusOfTransactions(signatures: signatures) { data in
+            onSuccess?(data)
+        } onFailed: { code, message in
+            onFailed?(code,message)
+        }
+    }
+    
     /**
      *
      *
      */
-    @objc public func TransferSolToAnotherAddress(to_publickey:String,amount:Int, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func TransferSolToAnotherAddress(to_publickey:String,amount:Double, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         walletMoudle.TransferSOLtoAnotherAddress(to_publickey: to_publickey, amount: amount) { response in
             onSuccess?(response)
         } onFailed: {
             onFailed?()
         }
-
-
     }
     
-    @objc public func TransferTokenToAnotherAddress(to_publickey:String,amount:Int,token_mint:String,decimals:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func TransferTokenToAnotherAddress(to_publickey:String,amount:Double,token_mint:String,decimals:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         walletMoudle.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: amount, token_mint: token_mint, decimals: decimals) { response in
             onSuccess?(response)
         } onFailed: {
             onFailed?()
         }
-
     }
     
     //: MARK: - MarketPlace
@@ -273,6 +287,23 @@ public let MWSDK = MirrorWorldSDK.share
              onFailed?(code,mess)
          })
     }
+    
+    @objc public func CheckStatusOfMinting(mintAddress:[String],_ onReceive:((_ isSucc:Bool,_ data:String?)->Void)?){
+        marketPlaceMoudle.CheckStatusOfMinting(mintAddress: mintAddress) { isSucc, data in
+            onReceive?(isSucc,data)
+        }
+    }
+    
+    @objc public func UpdateNFTProperties(mintAddresses:String,name:String,symbol:String,updateAuthority:String,NFTJsonUrl:String,seller_fee_basis_points:String,confirmation:String,_ onSuccess:((_ data:String?)->Void)?,_ onFailed:((_ message:String?)->Void)?){
+        marketPlaceMoudle.UpdateNFTProperties(mintAddresses: mintAddresses,name: name,symbol: symbol,updateAuthority: updateAuthority,NFTJsonUrl: NFTJsonUrl,seller_fee_basis_points: seller_fee_basis_points,confirmation: confirmation) { isSucc, data in
+            if(isSucc){
+                onSuccess?(data)
+            }else{
+                onFailed?(data)
+            }
+        }
+    }
+    
     @objc public func MintNewCollection(name:String,symbol:String,url:String,confirmation:String = "finalized",seller_fee_basis_points:Int,onSuccess:onSuccess,onFailed:onFailed){
         marketPlaceMoudle.MintNewCollection(name: name, symbol: symbol, url: url, confirmation: confirmation, seller_fee_basis_points: seller_fee_basis_points, onSuccess: { data in
            onSuccess?(data)

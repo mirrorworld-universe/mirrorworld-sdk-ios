@@ -11,7 +11,7 @@ import UIKit
     
     var config:MirrorWorldSDKConfig?
     var newAuth:MirrorSecurityVerification?
-    @objc public func openMarketPlacePage(url:String?,controller:UIViewController?){
+    @objc public func OpenMarketPlacePage(url:String?,controller:UIViewController?){
         self.checkAccessToken { succ in
 //            let urlString = self.config?.environment.marketRoot ?? ""
 //            let marketPlaceAddress = urlString + "?auth=" + MirrorWorldSDKAuthData.share.access_token
@@ -108,6 +108,7 @@ import UIKit
             let api = MirrorWorldNetApi.TransferNFTToAnotherSolanaWallet(mint_address: mint_address, to_wallet_address: to_wallet_address, confirmation: confirmation)
             self.authorization.requestActionAuthorization(config: self.config, api) { success, authToken, errorDesc in
                 if success{
+                    print("TransferNFTToAnotherSolanaWallet authToken:\(authToken)")
                     MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
                         self?.handleResponse(response: response, success: { response in
                             onSuccess?(response)
@@ -176,8 +177,52 @@ import UIKit
 //                }
 //            }
         }
-      
-
+    }
+    
+    @objc public func CheckStatusOfMinting(mintAddress:[String],_ onReceive:((_ isSucc:Bool,_ data:String?)->Void)?){
+        self.checkAccessToken { succ in
+            if(succ){
+                let api = MirrorWorldNetApi.CheckStatusOfMinting(mintAddress:mintAddress)
+                MirrorWorldNetWork().request(api: api) {[weak self] response in
+                    self?.handleResponse(response: response, success: { response in
+                        onReceive?(true,response)
+                    }, failed: { code, message in
+                        onReceive?(false,nil)
+                    })
+                } _: { code, errorDesc in
+                    DispatchQueue.main.async {
+                        onReceive?(false,"code is :\(code); message is :\(errorDesc)")
+                    }
+                }
+            }else{
+                onReceive?(false,"")
+            }
+        }
+    }
+    
+    @objc public func UpdateNFTProperties(mintAddresses:String,name:String,symbol:String,updateAuthority:String,NFTJsonUrl:String,seller_fee_basis_points:String,confirmation:String,_ onReceive:((_ isSucc:Bool,_ data:String?)->Void)?){
+        self.checkAccessToken { succ in
+            if(succ){
+                let api = MirrorWorldNetApi.UpdateNFTProperties(mintAddress: mintAddresses, name: name, symbol: symbol, updateAuthority: updateAuthority, NFTJsonUrl: NFTJsonUrl, seller_fee_basis_points: seller_fee_basis_points, confirmation: confirmation)
+                self.authorization.requestActionAuthorization(config: self.config, api, { success, authToken, errorDesc in
+                    if(success){
+                        MirrorWorldNetWork().request(api: api,authToken) { response in
+                            self.handleResponse(response: response, success: { response in
+                                onReceive?(true,response)
+                            }, failed: { code, message in
+                                onReceive?(false,"code:\(code),message:\(message)")
+                            })
+                        } _: { code, errorDesc in
+                            onReceive?(false,"code:\(code),message:\(errorDesc)")
+                        }
+                    }else{
+                        onReceive?(false,errorDesc)
+                    }
+                })
+            }else{
+                onReceive?(false,"No access token, please login first.")
+            }
+        }
     }
     
     

@@ -79,7 +79,6 @@ import UIKit
     }
     
     
-    
     @objc public func GetWalletTransactionBySignature(signature:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let api = MirrorWorldNetApi.getWalletTransactionBySignature(signature: signature)
@@ -95,12 +94,29 @@ import UIKit
                 }
             }
         }
-        
-
+    }
+    
+    @objc public func CheckStatusOfTransactions(signatures:[String],onSuccess:((_ data:String?)->())?,onFailed:((_ code:Int,_ message:String?)->())?){
+        self.checkAccessToken {[weak self] succ in
+            if(succ){
+                let api = MirrorWorldNetApi.CheckStatusOfTransactions(signatures: signatures)
+                MirrorWorldNetWork().request(api: api) { response in
+                    self?.handleResponse(response: response, success: { dataString in
+                        onSuccess?(dataString)
+                    }, failed: { code, message in
+                        onFailed?(code,message)
+                    })
+                } _: { code, errorDesc in
+                    onFailed?(code,errorDesc)
+                }
+            }else{
+                onFailed?(999,"No access token, please login first.");
+            }
+        }
     }
 
     
-    @objc func TransferSOLtoAnotherAddress(to_publickey:String,amount:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc func TransferSOLtoAnotherAddress(to_publickey:String,amount:Double,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken {[weak self] succ in
             let api = MirrorWorldNetApi.TransferSOLtoAnotherAddress(to_publickey: to_publickey, amount: amount)
             self?.authorization.requestActionAuthorization(config: self?.config, api, { success,authToken,errorDesc in
@@ -118,10 +134,7 @@ import UIKit
                     }
                 }
             })
-           
         }
-        
-
     }
     
     
@@ -129,7 +142,7 @@ import UIKit
      *
      *
      */
-    @objc func TransferTokenToAnotherAddress(to_publickey:String,amount:Int,token_mint:String,decimals:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc func TransferTokenToAnotherAddress(to_publickey:String,amount:Double,token_mint:String,decimals:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken {[weak self] succ in
             let api = MirrorWorldNetApi.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: amount, token_mint: token_mint, decimals: decimals)
             self?.authorization.requestActionAuthorization(config: self?.config, api, { success, authToken,errorDesc in

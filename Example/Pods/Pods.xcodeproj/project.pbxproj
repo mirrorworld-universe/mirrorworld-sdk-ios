@@ -65,7 +65,7 @@
 		492BDF189778AC4E2263A9B2019FEEB1 /* MirrorWorldSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MirrorWorldSDK.framework; path = SDK/MirrorWorldSDK.framework; sourceTree = "<group>"; };
 		4934D9C7F3280CF492F08AF733F2E3A9 /* Pods-MirrorWorldSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4C6CF538B169DB148252514C1A4BE4BC /* MirrorBaseMoudle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorBaseMoudle.swift; path = MirrorWorldSDK/Classes/MirrorBaseMoudle.swift; sourceTree = "<group>"; };
-		588D72A0ACDCCD95C41E9C6715EF0E6D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		588D72A0ACDCCD95C41E9C6715EF0E6D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		588EABAA644E9576A8A6887B1B522A1C /* MirrorWorldSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MirrorWorldSDK.release.xcconfig; sourceTree = "<group>"; };
 		590477189CDA99EFFE024A9658D2C016 /* Pods-MirrorWorldSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5EC8293BD3791D9700789E995D888EA4 /* Pods-MirrorWorldSDK_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-MirrorWorldSDK_Example"; path = Pods_MirrorWorldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,14 +80,14 @@
 		8CCBA6309DE8542FF1E4EA4E316523CC /* Pods-MirrorWorldSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MirrorWorldSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		939F14904729B08F2475166954C12911 /* Pods-MirrorWorldSDK_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Tests-Info.plist"; sourceTree = "<group>"; };
 		9462773CEF54232825A5ECF7F8AE7E71 /* Pods-MirrorWorldSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MirrorWorldSDK_Example.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DF87CC263F246D46709D77395B322AF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DF87CC263F246D46709D77395B322AF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A023CC9E7EE0351E0D38BC508D9E8C6C /* MirrorWorldUserInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldUserInfo.swift; path = MirrorWorldSDK/Classes/MirrorWorldUserInfo.swift; sourceTree = "<group>"; };
 		A31C0290DB1DF6D8783D56CDBC5965CF /* MirrorWorldSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MirrorWorldSDK-umbrella.h"; sourceTree = "<group>"; };
 		A3618A518E56A0A87BEB53E0FCCEDDD5 /* Pods-MirrorWorldSDK_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-MirrorWorldSDK_Tests"; path = Pods_MirrorWorldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF59204687835C6E043D6573DC303EAE /* MirrorSecurityVerification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorSecurityVerification.swift; path = MirrorWorldSDK/Classes/MirrorSecurityVerification.swift; sourceTree = "<group>"; };
-		B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MirrorWorldSDK; path = MirrorWorldSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC25D66583ACC5EAE9AC8B04E4096BE9 /* MirrorWorldSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = MirrorWorldSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MirrorWorldSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC25D66583ACC5EAE9AC8B04E4096BE9 /* MirrorWorldSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MirrorWorldSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C0BDAF88CA548ED30036463E472A8FB5 /* Pods-MirrorWorldSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MirrorWorldSDK_Example-dummy.m"; sourceTree = "<group>"; };
 		C245D8B849667FEDB408AABBFC1EB266 /* Pods-MirrorWorldSDK_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Example-Info.plist"; sourceTree = "<group>"; };
 		CB9EA534F01FD25B6AE8670E8DE9436D /* MirrorWorldNetWork.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldNetWork.swift; path = MirrorWorldSDK/Classes/MirrorWorldNetWork.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		88DD9D0200B5740A5FC14D3709B3DE1B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */,
+				B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK.framework */,
 				5EC8293BD3791D9700789E995D888EA4 /* Pods-MirrorWorldSDK_Example */,
 				A3618A518E56A0A87BEB53E0FCCEDDD5 /* Pods-MirrorWorldSDK_Tests */,
 			);
@@ -339,7 +339,7 @@
 			);
 			name = MirrorWorldSDK;
 			productName = MirrorWorldSDK;
-			productReference = B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK */;
+			productReference = B1813E637595CA6062A1BA4EBB8078E6 /* MirrorWorldSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		A950FC11B09ACAAB0942BB1A8C1D116F /* Pods-MirrorWorldSDK_Tests */ = {
@@ -628,8 +628,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -654,6 +653,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/MirrorWorldSDK/MirrorWorldSDK.modulemap";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_MODULE_NAME = MirrorWorldSDK;
 				PRODUCT_NAME = MirrorWorldSDK;
 				SDKROOT = iphoneos;
