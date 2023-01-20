@@ -260,7 +260,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let amount = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! String
                 
                 //                6Rp5grdihB8bpNCc9v25wZSgVMiNvLfRNF4B8z7esdZ4
-                MirrorWorldSDK.share.TransferSolToAnotherAddress(to_publickey: to_publickey, amount: Int(amount) ?? 1) { response in
+                MirrorWorldSDK.share.TransferSolToAnotherAddress(to_publickey: to_publickey, amount: Double(amount) ?? 0.0) { response in
                     self?.Log(response)
                     self?.loadingActive.stopAnimating()
                 } onFailed: {
@@ -278,7 +278,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
                 let token_mint = (datas.first(where: {$0.keyText == "token_mint"})?.valueText)! as! String
                 let decimals = (datas.first(where: {$0.keyText == "decimals"})?.valueText)! as! String
                 
-                MWSDK.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: Int(amount) ?? 1, token_mint: token_mint, decimals: Int(decimals) ?? 1) { response in
+                MWSDK.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: Double(amount) ?? 0.0, token_mint: token_mint, decimals: Int(decimals) ?? 1) { response in
                     self?.Log(response)
                     self?.loadingActive.stopAnimating()
                 } onFailed: {

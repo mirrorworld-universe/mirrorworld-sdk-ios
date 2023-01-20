@@ -259,7 +259,7 @@ public let MWSDK = MirrorWorldSDK.share
      *
      *
      */
-    @objc public func TransferSolToAnotherAddress(to_publickey:String,amount:Int, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func TransferSolToAnotherAddress(to_publickey:String,amount:Double, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         walletMoudle.TransferSOLtoAnotherAddress(to_publickey: to_publickey, amount: amount) { response in
             onSuccess?(response)
         } onFailed: {
@@ -267,7 +267,7 @@ public let MWSDK = MirrorWorldSDK.share
         }
     }
     
-    @objc public func TransferTokenToAnotherAddress(to_publickey:String,amount:Int,token_mint:String,decimals:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func TransferTokenToAnotherAddress(to_publickey:String,amount:Double,token_mint:String,decimals:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         walletMoudle.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: amount, token_mint: token_mint, decimals: decimals) { response in
             onSuccess?(response)
         } onFailed: {

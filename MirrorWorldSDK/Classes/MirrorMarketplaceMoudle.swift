@@ -108,6 +108,7 @@ import UIKit
             let api = MirrorWorldNetApi.TransferNFTToAnotherSolanaWallet(mint_address: mint_address, to_wallet_address: to_wallet_address, confirmation: confirmation)
             self.authorization.requestActionAuthorization(config: self.config, api) { success, authToken, errorDesc in
                 if success{
+                    print("TransferNFTToAnotherSolanaWallet authToken:\(authToken)")
                     MirrorWorldNetWork().request(api: api,authToken) {[weak self] response in
                         self?.handleResponse(response: response, success: { response in
                             onSuccess?(response)

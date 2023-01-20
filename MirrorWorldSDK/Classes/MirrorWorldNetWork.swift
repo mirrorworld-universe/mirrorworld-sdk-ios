@@ -29,12 +29,15 @@ public struct MirrorError{
         let access_token = MirrorWorldSDKAuthData.share.access_token
         if access_token.count > 0 {
             request.setValue("Bearer \(access_token)", forHTTPHeaderField: "Authorization")
+//            print("request have Authorization:\(access_token)")
         }else{
             MWLog.console("access_token is nil !")
         }
         
         if authorizationToken != nil && (authorizationToken?.count ?? 0) > 0{
-            request.setValue("x-authorization-token", forHTTPHeaderField: (authorizationToken ?? ""))
+//            request.setValue("x-authorization-token", forHTTPHeaderField: (authorizationToken ?? ""))
+            request.setValue((authorizationToken ?? ""),forHTTPHeaderField:"x-authorization-token")
+//            print("request have x-authorization-token:\(authorizationToken ?? "")")
         }
         
         if api.method == "GET"{

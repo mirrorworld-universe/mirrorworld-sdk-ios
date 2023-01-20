@@ -32,9 +32,9 @@ public enum MirrorWorldNetApi{
     
     case CheckStatusOfTransactions(signatures:[String])
     
-    case TransferSOLtoAnotherAddress(to_publickey:String,amount:Int)
+    case TransferSOLtoAnotherAddress(to_publickey:String,amount:Double)
     
-    case TransferTokenToAnotherAddress(to_publickey:String,amount:Int,token_mint:String,decimals:Int)
+    case TransferTokenToAnotherAddress(to_publickey:String,amount:Double,token_mint:String,decimals:Int)
     
     
 //MARK: - marketPlace api
