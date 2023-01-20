@@ -186,9 +186,9 @@ public let MWSDK = MirrorWorldSDK.share
         walletMoudle.mw_Unity_Wallet(url: url, controller: Self.getBaseViewController())
     }
     
-    @objc public func openMarketPlacePage(url:String?){
+    @objc public func OpenMarketPlacePage(url:String?){
         let basevc = Self.getBaseViewController()
-        marketPlaceMoudle.openMarketPlacePage(url: url, controller: basevc)
+        marketPlaceMoudle.OpenMarketPlacePage(url: url, controller: basevc)
     }
     
     /**

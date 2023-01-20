@@ -170,7 +170,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             paramtersView.setParams(keys: [.url])
             paramtersView.paramtersJson = {[weak self] datas in
                 let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
-                MWSDK.openMarketPlacePage(url: url)
+                MWSDK.OpenMarketPlacePage(url: url)
                 self?.Log("openMarketPlacePage")
             }
             break

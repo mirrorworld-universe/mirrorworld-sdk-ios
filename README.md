@@ -91,6 +91,17 @@ MirrorWorldSDK.share.StartLogin { userInfo in
 }
 ```
 
+- GuestLogin
+
+Use this API to make a user logged in as a guest who has a new account and a new wallet.
+```Swift
+MWSDK.GuestLogin {
+    print("guest login success")
+} onFail: {
+    print("guest login failed")
+}
+```
+
 - CheckAuthenticated
 
 Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
@@ -167,11 +178,50 @@ Mint a new NFT.
 
 ```Swift
 MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA", url: "", seller_fee_basis_points: 100, confirmation: "finalized") { data in
-        self.Log(data)
+        print(data)
     } onFailed: { code, message in
         self.Log("\(item):failed:\(code),\(message ?? "")")
     }
 
+```
+
+- CheckStatusOfMinting
+
+Get status of a minting operation. Because minting may has some delay before success.
+```Swift
+MWSDK.CheckStatusOfMinting(mintAddress: ["NFTMintAddress"]) { isSucc, data in
+    print("Check status of Minting result is:\(isSucc). data is:\(data)")
+}
+```
+
+- CheckStatusOfTransactions
+
+Get status of transactions by their signatures.
+```Swift
+MWSDK.CheckStatusOfTransactions(signatures: ["signature"]) { data in
+    print(data)
+} onFailed: { code, message in
+    print("CheckStatusOfTransactions failed,code is:\(code);message:\(message)")
+}
+```
+
+- UpdateNFTProperties
+
+Update properties of a NFT.
+```Swift
+let mintAddress = "NFT mint address"
+let name = "Awsom NFT"
+let symbol = "My symbol"
+let updateAuthority = "Update authority"
+let url = "Your NFT json url"
+let points = 100
+let confirmation = "confirmed"
+
+MWSDK.UpdateNFTProperties(mintAddresses: mintAddress,name:name,symbol:symbol,updateAuthority:update_authority,NFTJsonUrl: url,seller_fee_basis_points:points,confirmation:confirmation) { data in
+    print(data)
+} _: { message in
+    print(message)
+}
 ```
 
 - CreateVerifiedCollection
@@ -200,32 +250,29 @@ MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", sym
 Transfer NFT to another Sol wallet.
 
 ```Swift
-
 MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
-        self.Log(data)
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
-
+    self.Log(data)
+} onFailed: { code, message in
+    self.Log("\(item):failed:\(code),\(message ?? "")")
+}
 ```
 
 - CancelNFTListing
+
 Cancel listing of NFT.
 
 ```Swift
-
 MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
-        self.Log(data)
+    self.Log(data)
 
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
+} onFailed: { code, message in
+    self.Log("\(item):failed:\(code),\(message ?? "")")
+}
 ```
 
 - BuyNFT
 
 Buy a NFT on market place.
-
 ```Swift
     MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
         self.Log(data)
@@ -306,12 +353,12 @@ MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
 ```
 
 ## Storefront Methods
-- OpenMarketPage
+- OpenMarketPlacePage
 Open the market place page which publish before.
 You can refer to [How to publish self Storefront](https://docs.mirrorworld.fun/overview/storefront).
 ```Swift
 let marketUrl = "Your market place url"
-MWSDK.openMarketPlacePage(url: url)
+MWSDK.OpenMarketPlacePage(url: url)
 ```
 
 - GetCollectionFilterInfo
@@ -411,15 +458,15 @@ in Unity:
 using System.Runtime.InteropServices;
 public class MirrorSDK : MonoBehaviour
 {
-[DllImport("__Internal")]
-private static extern void initSDK(string apikey);
-
-private void Awake()
-{
-#elif (UNITY_IOS && !(UNITY_EDITOR))
-    initSDK(apiKey);
-#endif
-}
+    [DllImport("__Internal")]
+    private static extern void initSDK(string apikey);
+    
+    private void Awake()
+    {
+    #elif (UNITY_IOS && !(UNITY_EDITOR))
+        initSDK(apiKey);
+    #endif
+    }
 }
 
 ```
