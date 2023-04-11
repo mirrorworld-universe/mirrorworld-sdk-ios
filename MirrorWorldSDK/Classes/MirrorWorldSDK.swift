@@ -34,6 +34,7 @@ public let MWSDK = MirrorWorldSDK.share
     @objc public var sdkConfig:MirrorWorldSDKConfig = MirrorWorldSDKConfig()
     @objc public var sdkProtol:MirrorWorldHandleProtocol = MirrorWorldHandleProtocol()
     @objc private var apiKey:String = ""
+    @objc private var chain:MWChain = MWChain.Solana
     @objc private var clientSecret:String = ""
     @objc private var clientId:String = ""
     
@@ -58,10 +59,11 @@ public let MWSDK = MirrorWorldSDK.share
     /**
      * init SDK
      */
-    @objc public func initSDK(env:MWEnvironment, apiKey:String) -> Bool{
+    @objc public func initSDK(env:MWEnvironment,chain:MWChain,apiKey:String) -> Bool{
         MWLog.console("iOS-SDK-Version:\(SDKVersion)")
 
         self.apiKey = apiKey
+        self.chain = chain
         
 //        self.clientSecret = clientSecret
 //        self.clientId = clientId

@@ -22,6 +22,12 @@ import UIKit
     
 }
 
+@objc public enum MWChain: Int{
+    case Solana = 1
+    case Ethreum = 2
+    case Polygon = 3
+    case BNB = 4
+}
 
 
 @objc public enum MWEnvironment: Int{

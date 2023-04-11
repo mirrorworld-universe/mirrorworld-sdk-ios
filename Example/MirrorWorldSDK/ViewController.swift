@@ -115,7 +115,7 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             let initView = Bundle.main.loadNibNamed("selectEnvView", owner: self)?.last as! MWSelectEnvView
             view.addSubview(initView)
             initView.finishBlock = { env,apikey in
-                if MWSDK.initSDK(env: env, apiKey: apikey) {
+                if MWSDK.initSDK(env: env,chain: MWChain.Solana, apiKey: apikey) {
                     self.Log("initSDk success !")
                     MWSDK.CheckAuthenticated { onBool in
                         self.Log("CheckAuthenticated:\(onBool)")

@@ -34,7 +34,7 @@ final class AuthTest: XCTestCase {
     }
     func testInitSDK() throws {
         let apiKey = "mw_testIb0RM5IMP5UmgSwIAu4qCGPTP1BO7Doq1GN"
-        MirrorWorldSDK.share.initSDK(env: .StagingDevNet, apiKey: apiKey)
+        MirrorWorldSDK.share.initSDK(env: .StagingDevNet,chain:MWChain.Solana, apiKey: apiKey)
         XCTAssertTrue(MWSDK.sdkConfig.apiKey.count>0,"init success")
     }
     

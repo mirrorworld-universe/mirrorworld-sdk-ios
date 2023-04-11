@@ -552,7 +552,7 @@
 				DEVELOPMENT_TEAM = 99CLZ8K3DB;
 				INFOPLIST_FILE = MirrorWorldSDK/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mirror Demo";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -577,7 +577,7 @@
 				DEVELOPMENT_TEAM = 99CLZ8K3DB;
 				INFOPLIST_FILE = MirrorWorldSDK/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mirror Demo";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";

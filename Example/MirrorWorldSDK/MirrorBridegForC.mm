@@ -13,14 +13,19 @@
 
 extern "C"
 {
-    extern void IOSInitSDK(int environment,char *apikey){
+    extern void IOSInitSDK(int environment, int chain, char *apikey){
         MWEnvironment env = MWEnvironmentMainNet;
         if (environment == 0){env = MWEnvironmentStagingDevNet; }
         if (environment == 1){env = MWEnvironmentStagingMainNet; }
         if (environment == 3){ env = MWEnvironmentDevNet; }
+        MWChain chainEnum = MWChainSolana;
+        if (chain == 1){ chainEnum = MWChainSolana; }
+        if (chain == 2){ chainEnum = MWChainEthreum; }
+        if (chain == 3){ chainEnum = MWChainPolygon; }
+        if (chain == 4){ chainEnum = MWChainBNB; }
         NSLog(@"ios-environment:%ld",(long)env);
         NSString *key = [NSString stringWithFormat:@"%s",apikey];
-        [[MirrorWorldSDK share] initSDKWithEnv:env apiKey:key];
+        [[MirrorWorldSDK share] initSDKWithEnv:env chain:chainEnum apiKey:key];
     }
 }
 

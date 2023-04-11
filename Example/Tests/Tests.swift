@@ -9,7 +9,7 @@ class Tests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        MirrorWorldSDK.share.initSDK(env: .StagingDevNet, apiKey: "")
+        MirrorWorldSDK.share.initSDK(env: .StagingDevNet, chain: MWChain.Solana, apiKey: "")
     }
     
     override func tearDown() {
