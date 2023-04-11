@@ -28,6 +28,7 @@
 		80C3EC3E29390E0A00792716 /* inputParamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3EC3D29390E0A00792716 /* inputParamsView.swift */; };
 		E6FD3BC729E42D96005DA2F3 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6FD3BC629E42D96005DA2F3 /* Entrance.storyboard */; };
 		E6FD3BC929E42E42005DA2F3 /* Entrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD3BC829E42E42005DA2F3 /* Entrance.swift */; };
+		E6FD3BCB29E58321005DA2F3 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD3BCA29E58321005DA2F3 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		DB2B4B9C0F90B15BAB3F0744 /* Pods_MirrorWorldSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FD3BC629E42D96005DA2F3 /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
 		E6FD3BC829E42E42005DA2F3 /* Entrance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrance.swift; sourceTree = "<group>"; };
+		E6FD3BCA29E58321005DA2F3 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				8021684F2940A596009A8894 /* MirrorWorldSDK_Example-Bridging-Header.h */,
 				E6FD3BC629E42D96005DA2F3 /* Entrance.storyboard */,
 				E6FD3BC829E42E42005DA2F3 /* Entrance.swift */,
+				E6FD3BCA29E58321005DA2F3 /* DataModel.swift */,
 			);
 			name = "Example for MirrorWorldSDK";
 			path = MirrorWorldSDK;
@@ -398,6 +401,7 @@
 				803516EA29500B9F00A791AF /* DemoViewController.swift in Sources */,
 				80C3EC3E29390E0A00792716 /* inputParamsView.swift in Sources */,
 				801D292129040AB700B60DE9 /* tableViewCell.swift in Sources */,
+				E6FD3BCB29E58321005DA2F3 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

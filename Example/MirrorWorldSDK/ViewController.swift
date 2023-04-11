@@ -43,7 +43,6 @@ class ViewController: UIViewController {
         return view
     }()
     
-    
     var dataSource = [(moudleTitle:"Init",MethodList:["initSDK"]),
                       (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
                       (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
@@ -68,6 +67,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource = DataModel.shared.data as! [(moudleTitle: String, MethodList: [String])]
         setupUI()
     }
     func setupUI(){

@@ -54,7 +54,17 @@ class Entrance :UIViewController{
                 MirrorWorldSDK.share.initSDK(env: selectedEnv, chain: selectedChain, apiKey:apiKey)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier: "Main")
-        //        navigationController?.pushViewController(viewController, animated: true)
+                if(selectedChain == MWChain.Solana){
+                    setUIData()
+                }else if(selectedChain == MWChain.Ethreum){
+                    setUIData()
+                }else if(selectedChain == MWChain.Polygon){
+                    
+                }else if(selectedChain == MWChain.BNB){
+                    
+                }else{
+                    print("⚠️ Warning: Unknown chain")
+                }
                 present(viewController, animated: true, completion: nil)
             }else{
                 print("⚠️ Warning: Please input your API Key.")
@@ -75,5 +85,26 @@ class Entrance :UIViewController{
         alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func setUIData(){
+        DataModel.shared.data = [
+                          (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
+                          (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
+                          (moudleTitle:"Marketplace",MethodList:[
+                            "openMarketPlacePage",
+                            "MintNewCollection",
+                            "MintNewNFTOnCollection",
+                            "CheckStatusOfMinting",
+                            "UpdateNFTProperties",
+                            "FetchSingleNFT",
+                            "UpdateNFTListing",
+                            "ListNFT",
+                            "CancelNFTListing",
+                            "FetchNFTsByMintAddresses",
+                            "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
+                            "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
+                          (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","GetNFTsByUnabridgedParams","Get nft real price","Create new collection"])
+        ]
     }
 }
