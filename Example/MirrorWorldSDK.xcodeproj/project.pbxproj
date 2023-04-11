@@ -26,6 +26,8 @@
 		8099E9EB293DA6E900E936E3 /* selectEnvView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8099E9EA293DA6E900E936E3 /* selectEnvView.xib */; };
 		80BF38B62924BF2C00F3441F /* walletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF38B52924BF2C00F3441F /* walletTests.swift */; };
 		80C3EC3E29390E0A00792716 /* inputParamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3EC3D29390E0A00792716 /* inputParamsView.swift */; };
+		E6FD3BC729E42D96005DA2F3 /* Entrance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6FD3BC629E42D96005DA2F3 /* Entrance.storyboard */; };
+		E6FD3BC929E42E42005DA2F3 /* Entrance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FD3BC829E42E42005DA2F3 /* Entrance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		90EE38868B7DF29F80139D38 /* Pods-MirrorWorldSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MirrorWorldSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-MirrorWorldSDK_Tests/Pods-MirrorWorldSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9126F66A3BD9A1C6337D74EC /* Pods_MirrorWorldSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB2B4B9C0F90B15BAB3F0744 /* Pods_MirrorWorldSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MirrorWorldSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6FD3BC629E42D96005DA2F3 /* Entrance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Entrance.storyboard; sourceTree = "<group>"; };
+		E6FD3BC829E42E42005DA2F3 /* Entrance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entrance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				8021684F2940A596009A8894 /* MirrorWorldSDK_Example-Bridging-Header.h */,
+				E6FD3BC629E42D96005DA2F3 /* Entrance.storyboard */,
+				E6FD3BC829E42E42005DA2F3 /* Entrance.swift */,
 			);
 			name = "Example for MirrorWorldSDK";
 			path = MirrorWorldSDK;
@@ -296,6 +302,7 @@
 			files = (
 				801D29252906399300B60DE9 /* MWDemoCell.xib in Resources */,
 				80906FF2291E09CD00008035 /* infoplist-UrlScheme-desc.png in Resources */,
+				E6FD3BC729E42D96005DA2F3 /* Entrance.storyboard in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				8099E9EB293DA6E900E936E3 /* selectEnvView.xib in Resources */,
@@ -384,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				801D29242906399300B60DE9 /* MWDemoCell.swift in Sources */,
+				E6FD3BC929E42E42005DA2F3 /* Entrance.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				802168522940A597009A8894 /* MirrorBridegForC.mm in Sources */,
