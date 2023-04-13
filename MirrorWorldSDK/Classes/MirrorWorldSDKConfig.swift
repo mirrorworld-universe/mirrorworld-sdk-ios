@@ -19,14 +19,15 @@ import UIKit
     public var clientSecret:String = ""
     public var clientId:String = ""
     
-    
+    public var chain:MWChain = .Solana
 }
 
 @objc public enum MWChain: Int{
     case Solana = 1
-    case Ethreum = 2
+    case Ethereum = 2
     case Polygon = 3
     case BNB = 4
+    case SUI = 5
 }
 
 
@@ -76,13 +77,13 @@ import UIKit
     var ssoRoot:String{
         switch self {
         case .StagingDevNet:
-            return "https://api-staging.mirrorworld.fun/v1/"
+            return "https://api-staging.mirrorworld.fun/v2/"
         case .StagingMainNet:
-            return "https://api-staging.mirrorworld.fun/v1/"
+            return "https://api-staging.mirrorworld.fun/v2/"
         case .DevNet:
-            return "https://api.mirrorworld.fun/v1/"
+            return "https://api.mirrorworld.fun/v2/"
         case .MainNet:
-            return "https://api.mirrorworld.fun/v1/"
+            return "https://api.mirrorworld.fun/v2/"
         }
     }
     

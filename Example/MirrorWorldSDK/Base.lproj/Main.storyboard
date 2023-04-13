@@ -110,6 +110,7 @@
                         <outlet property="loadingActive" destination="Ccz-J6-gdH" id="9oi-YJ-7nX"/>
                         <outlet property="tableView" destination="afW-ew-ScG" id="wqQ-fj-WYB"/>
                         <outlet property="textView" destination="Mbs-Pz-Nmk" id="KwT-e7-xRF"/>
+                        <outlet property="titleView" destination="VTs-mT-MWt" id="nbv-RI-zra"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

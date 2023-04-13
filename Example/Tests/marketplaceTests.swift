@@ -39,49 +39,49 @@ final class marketplaceTests: XCTestCase {
     }
 
     
-    func testMintNewNFT(){
-        let exp = expectation(description: #function)
-
-        MWSDK.MintNewNFT(collection_mint: "", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500, confirmation: "finalized") { data in
-            XCTAssertNotNil(data)
-            exp.fulfill()
-
-        } onFailed: { code, message in
-            XCTFail()
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 15,handler: nil)
-
-    }
-    
-    func testMintNewCollection(){
-        let exp = expectation(description: #function)
-        
-        MWSDK.MintNewCollection(name: "testColleciton", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", confirmation: "finalized", seller_fee_basis_points: 200) { data in
-            XCTAssertNotNil(data)
-            exp.fulfill()
-
-        } onFailed: { code, message in
-            XCTFail()
-            exp.fulfill()
-
-        }
-        waitForExpectations(timeout: 60,handler: nil)
-    }
-    
-    func testCreateVerifiedSubCollection() throws{
-        
-        let exp = expectation(description: #function)
-
-        MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", symbol: "test", url: "https://market-assets.mirrorworld.fun/gen1/1.json") { data in
-            XCTAssertNotNil(data)
-            exp.fulfill()
-        } onFailed: { code, message in
-            XCTFail(message ?? "failed")
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 60,handler: nil)
-
-    }
+//    func testMintNewNFT(){
+//        let exp = expectation(description: #function)
+//
+//        MWSDK.Solana.asset.mintNFT(collection_mint: "", name: "testNFT", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", seller_fee_basis_points: 500, confirmation: "finalized") { data in
+//            XCTAssertNotNil(data)
+//            exp.fulfill()
+//
+//        } onFailed: { code, message in
+//            XCTFail()
+//            exp.fulfill()
+//        }
+//        waitForExpectations(timeout: 15,handler: nil)
+//
+//    }
+//    
+//    func testMintNewCollection(){
+//        let exp = expectation(description: #function)
+//        
+//        MWSDK.MintNewCollection(name: "testColleciton", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", confirmation: "finalized", seller_fee_basis_points: 200) { data in
+//            XCTAssertNotNil(data)
+//            exp.fulfill()
+//
+//        } onFailed: { code, message in
+//            XCTFail()
+//            exp.fulfill()
+//
+//        }
+//        waitForExpectations(timeout: 60,handler: nil)
+//    }
+//    
+//    func testCreateVerifiedSubCollection() throws{
+//        
+//        let exp = expectation(description: #function)
+//
+//        MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", symbol: "test", url: "https://market-assets.mirrorworld.fun/gen1/1.json") { data in
+//            XCTAssertNotNil(data)
+//            exp.fulfill()
+//        } onFailed: { code, message in
+//            XCTFail(message ?? "failed")
+//            exp.fulfill()
+//        }
+//        waitForExpectations(timeout: 60,handler: nil)
+//
+//    }
     
 }

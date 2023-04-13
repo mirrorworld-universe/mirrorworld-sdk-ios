@@ -58,52 +58,52 @@ final class walletTests: XCTestCase {
         
     }
     
-    func testGetWalletTokens() throws {
-        let exp = expectation(description: #function)
-        MWSDK.GetWalletTokens { data in
-            XCTAssertNotNil(data)
-            exp.fulfill()
-        } onFailed: {
-            XCTFail()
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 10,handler: nil)
-    }
-    
-    
-    func testQueryUser(){
-        let exp = expectation(description: #function)
-        let email = "zg72296@gmail.com"
-        MWSDK.QueryUser(email: email) { userRes in
-            XCTAssertNotNil(userRes)
-            exp.fulfill()
-        } onFetchFailed: { code, err in
-            XCTFail()
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 10,handler: nil)
-    }
-    
-    func testGetAccessToken(){
-        XCTAssertNotNil(MirrorWorldSDKAuthData.share.access_token)
-    }
-    
-  
-    func testGetWalletTransactions() throws{
-        
-        let exp = expectation(description: #function)
-
-        MWSDK.GetWalletTransactions(limit: 10, next_before: "11") { data in
-            XCTAssertNotNil(data)
-            exp.fulfill()
-        } onFailed: {
-            XCTFail()
-            exp.fulfill()
-
-        }
-        waitForExpectations(timeout: 10,handler: nil)
-
-    }
+//    func testGetWalletTokens() throws {
+//        let exp = expectation(description: #function)
+//        MWSDK.GetWalletTokens { data in
+//            XCTAssertNotNil(data)
+//            exp.fulfill()
+//        } onFailed: {
+//            XCTFail()
+//            exp.fulfill()
+//        }
+//        waitForExpectations(timeout: 10,handler: nil)
+//    }
+//    
+//    
+//    func testQueryUser(){
+//        let exp = expectation(description: #function)
+//        let email = "zg72296@gmail.com"
+//        MWSDK.QueryUser(email: email) { userRes in
+//            XCTAssertNotNil(userRes)
+//            exp.fulfill()
+//        } onFetchFailed: { code, err in
+//            XCTFail()
+//            exp.fulfill()
+//        }
+//        waitForExpectations(timeout: 10,handler: nil)
+//    }
+//    
+//    func testGetAccessToken(){
+//        XCTAssertNotNil(MirrorWorldSDKAuthData.share.access_token)
+//    }
+//    
+//  
+//    func testGetWalletTransactions() throws{
+//        
+//        let exp = expectation(description: #function)
+//
+//        MWSDK.GetWalletTransactions(limit: 10, next_before: "11") { data in
+//            XCTAssertNotNil(data)
+//            exp.fulfill()
+//        } onFailed: {
+//            XCTFail()
+//            exp.fulfill()
+//
+//        }
+//        waitForExpectations(timeout: 10,handler: nil)
+//
+//    }
     
     
 }

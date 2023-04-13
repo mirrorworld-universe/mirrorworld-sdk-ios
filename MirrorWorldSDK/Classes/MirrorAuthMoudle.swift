@@ -40,13 +40,41 @@ import UIKit
         return auth
     }
     
-    /**
-     * guest login
-     *
-     **/
+    @objc public func loginWithEmail(_ email:String, passWord:String, onReceive:((_ isSucc:Bool)->Void)?){
+        let url = MirrorUrlUtils.shard.getActionRoot() + "auth/login"
+        let params = [
+            "email":email,
+            "password":passWord
+        ]
+        MirrorWorldNetWork().request(url:url,method: "Post",params:params) { response in
+            DispatchQueue.main.async {
+                let responseJson = response?.toJson()
+                let data = responseJson?["data"] as? [String:Any]
+                let user = data?["user"] as? [String:Any]
+                let refreshToken = data?["refresh_token"] as? String
+                let accessToken = data?["access_token"] as? String
+                
+                MirrorWorldSDKAuthData.share.access_token = accessToken ?? ""
+                MirrorWorldSDKAuthData.share.refresh_token = refreshToken ?? ""
+                MirrorWorldSDKAuthData.share.saveRefreshToken()
+                MirrorWorldSDKAuthData.share.userInfo = user
+                
+                if(accessToken == nil || accessToken == ""){
+                    onReceive?(false)
+                }else{
+                    onReceive?(true)
+                }
+            }
+        } _: { code,errorDesc in
+            DispatchQueue.main.async {
+                onReceive?(false)
+            }
+        }
+    }
+    
     @objc public func GuestLogin(_ onReceive:((_ isSucc:Bool)->Void)?){
-        let api = MirrorWorldNetApi.guestLogin
-        MirrorWorldNetWork().request(api: api) { response in
+        let url = MirrorUrlUtils.shard.getActionRoot() + "auth/guest-login"
+        MirrorWorldNetWork().request(url: url,method: "Post",params: nil) { response in
             DispatchQueue.main.async {
                 let responseJson = response?.toJson()
                 let data = responseJson?["data"] as? [String:Any]
@@ -77,8 +105,8 @@ import UIKit
      **/
     @objc public func Logout(_ finsh:((_ isSucc:Bool)->Void)?){
         self.checkAccessToken { succ in
-            let api = MirrorWorldNetApi.logOut
-            MirrorWorldNetWork().request(api: api) { response in
+            let url = MirrorUrlUtils.shard.getActionRoot() + "auth/logout"
+            MirrorWorldNetWork().request(url: url,method: "Post",params: nil) { response in
                 DispatchQueue.main.async {
                     finsh?(true)
                 }
@@ -94,8 +122,8 @@ import UIKit
     @objc public func CheckAuthenticated(_ onBool:((_ on:Bool)->())?){
         self.checkAccessToken { succ in
             if succ{
-                let api = MirrorWorldNetApi.authMe
-                MirrorWorldNetWork().request(api: api) {[weak self] response in
+                let url = MirrorUrlUtils.shard.getActionRoot() + "auth/me"
+                MirrorWorldNetWork().request(url:url,method: "Get",params: nil) {[weak self] response in
                     self?.handleResponse(response: response, success: { response in
                         DispatchQueue.main.async {
                             onBool?(true)
@@ -127,8 +155,8 @@ import UIKit
         MirrorWorldSDKAuthData.share.getRefreshToken()
         if MirrorWorldSDKAuthData.share.refresh_token.count > 0 {
             MWLog.console("Exist refresh token ！")
-            let api = MirrorWorldNetApi.refreshToken(refresh_token: MirrorWorldSDKAuthData.share.refresh_token)
-            MirrorWorldNetWork().request(api: api) { response in
+            let url = MirrorUrlUtils.shard.getActionRoot()+"auth/refresh-token"
+            MirrorWorldNetWork().request(url: url,method: "Post",params: nil) { response in
                 let responseJson = response?.toJson()
                 let data = responseJson?["data"] as? [String:Any]
                 let user = data?["user"] as? [String:Any]
@@ -160,8 +188,8 @@ import UIKit
             MWLog.console("plese check Your email !")
             return }
         self.checkAccessToken { succ in
-            let api = MirrorWorldNetApi.queryUser(email: email)
-            MirrorWorldNetWork().request(api: api) {[weak self] response in
+            let url = MirrorUrlUtils.shard.getActionRoot() + "auth/user?email=" + email
+            MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in
                 self?.handleResponse(response: response, success: { user in
                     onUserFetched?(user)
                 }, failed: { code, message in

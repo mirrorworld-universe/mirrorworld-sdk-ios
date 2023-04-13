@@ -19,8 +19,8 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
         if accessToken.count == 0{
             MirrorWorldSDKAuthData.share.getRefreshToken()
 
-            let api = MirrorWorldNetApi.refreshToken(refresh_token: MirrorWorldSDKAuthData.share.refresh_token)
-            MirrorWorldNetWork().request(api: api) { response in
+            let url = MirrorUrlUtils.shard.getActionRoot() + "auth/refresh-token"
+            MirrorWorldNetWork().request(url: url,method: "Get",params: nil) { response in
                 let responseJson = response?.toJson()
                 let data = responseJson?["data"] as? [String:Any]
                 let user = data?["user"] as? [String:Any]

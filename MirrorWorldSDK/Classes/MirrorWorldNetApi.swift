@@ -6,16 +6,12 @@
 //
 
 public enum MirrorWorldNetApi{
-    
-    //Get:  Checks whether is authenticated or not and returns the user object if true
-    
     case requestActionAuthorization(type:String,message:String,value:Double,params:[String:Any])
     case SecurityVerification(_ params:[String:Any])
-    
     case authMe
-    
-    // Get: Request refresh token for user
     case refreshToken(refresh_token:String)
+    
+    case loginWithEmail(email:String,passWord:String)
     
     case guestLogin
     
@@ -60,7 +56,7 @@ public enum MirrorWorldNetApi{
     
     case cancelNFTListing(mint_address:String,price:Double)
     
-    case BuyNFT(mint_address:String,price:Double,confirmation:String)
+    case BuyNFT(mint_address:String,price:Double,auction_house:String,confirmation:String,skip_preflight:Bool)
     
     
     case FetchNFTsByMintAddresses(mint_addresses:[String])
@@ -83,6 +79,8 @@ public enum MirrorWorldNetApi{
     
     var path:String{
         switch self {
+        case .loginWithEmail:
+            return "v2/auth/login"
         case .guestLogin:
             return "auth/guest-login"
         case .requestActionAuthorization:
@@ -136,7 +134,7 @@ public enum MirrorWorldNetApi{
         case .FetchNFTsByOwnerAddress:
             return "solana/nft/owners"
         case .BuyNFT:
-            return "solana/marketplace/buy"
+            return "v2/solana/"+""+"/asset/auction/buy"
         case .CreateVerifiedSubCollection:
             return "solana/mint/sub-collection"
             
@@ -208,7 +206,7 @@ public enum MirrorWorldNetApi{
             return ["update_authorities":update_authorities,"limit":limit,"offset":offset]
         case .FetchNFTsByOwnerAddress(let owners,let limit,let offset):
             return ["owners":owners,"limit":limit,"offset":offset]
-        case .BuyNFT(let mint_address,let price,let confirmation):
+        case .BuyNFT(let mint_address,let price,let auction_house,let confirmation,let skip_preflight):
             return ["mint_address":mint_address,"price":price,"confirmation":confirmation]
         case .CreateVerifiedSubCollection(let name,let collection_mint,let symbol,let url,let confirmation):
             return ["name":name,"collection_mint":collection_mint,"symbol":symbol,"url":url,"confirmation":confirmation]
@@ -292,9 +290,12 @@ public enum MirrorWorldNetApi{
             return "GET"
         }
     }
+    
     func serverUrl(env:MWEnvironment) -> String {
         switch self {
         case .CheckStatusOfMinting:
+            return env.apiRoot + path
+        case .loginWithEmail:
             return env.apiRoot + path
         case .guestLogin:
             return env.ssoRoot + path
@@ -323,7 +324,7 @@ public enum MirrorWorldNetApi{
         case .FetchNFTsByMintAddresses,.FetchNFTsByCreatorAddresses,.FetchNFTsByOwnerAddress,.FetchNFTsByUpdateAuthorities:
             return env.apiRoot + path
         case .BuyNFT:
-            return env.apiRoot + path
+            return env.apiRoot + "v2/" + path
         case .CreateVerifiedSubCollection:
             return env.apiRoot + path
         case .GetCollectionFilterInfo,.GetNFTInfo,.GetCollectionInfo,.GetNFTEvents,.SearchNFTs,.RecommendSearchNFT,.GetNFTs,.GetNFTRealPrice,.CreateNewCollection:

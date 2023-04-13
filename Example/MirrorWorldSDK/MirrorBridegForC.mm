@@ -20,7 +20,7 @@ extern "C"
         if (environment == 3){ env = MWEnvironmentDevNet; }
         MWChain chainEnum = MWChainSolana;
         if (chain == 1){ chainEnum = MWChainSolana; }
-        if (chain == 2){ chainEnum = MWChainEthreum; }
+        if (chain == 2){ chainEnum = MWChainEthereum; }
         if (chain == 3){ chainEnum = MWChainPolygon; }
         if (chain == 4){ chainEnum = MWChainBNB; }
         NSLog(@"ios-environment:%ld",(long)env);
@@ -34,7 +34,7 @@ extern "C"
     typedef void (*IOSLoginCallback) (const char *object);
     extern void IOSStartLogin(IOSLoginCallback callback){
         NSLog(@"iOS_MWSDK_LOG: - IOSStartLogin");
-        [[MirrorWorldSDK share] StartLoginOnSuccess:^(NSDictionary<NSString *,id> * userinfo) {
+        [[MirrorWorldSDK share] startLoginOnSuccess:^(NSDictionary<NSString *,id> * userinfo) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userinfo options:NSJSONWritingPrettyPrinted error:nil];
                 NSString *user = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
@@ -91,7 +91,7 @@ extern "C"
         NSString *urlStr = [NSString stringWithFormat:@"%s",url];
       
         NSLog(@"iOS_MWSDK_LOG: - IOSOpenMarketPlace:%@",urlStr);
-        [[MirrorWorldSDK share] OpenMarketPlacePageWithUrl:urlStr];
+        [[MirrorWorldSDK share] openMarketWithUrl:urlStr];
         NSLog(@"iOS_MWSDK_LOG: - IOSOpenMarketPlace。");
     }
 }

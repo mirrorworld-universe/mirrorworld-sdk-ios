@@ -13,23 +13,21 @@ public let MWSDK = MirrorWorldSDK.share
 @objc public class MirrorWorldSDK: NSObject {
    @objc public static let share = MirrorWorldSDK()
     
-    public var SDKVersion:String = "1.1.0"
+    public var SDKVersion:String = "1.2.0"
     
     public typealias loginListent = ((_ s:Bool)->Void)?
 
-    var onSuccess:((_ userInfo:[String:Any]?)->())?
+    public var onSuccess:((_ userInfo:[String:Any]?)->())?
     
-    var onWallectSuccess:((_ userInfo:[String:Any]?)->())?
+    public var onWallectSuccess:((_ userInfo:[String:Any]?)->())?
     
-    var onFail:(()->())?
+    public var onFail:(()->())?
     
-    var onWalletLogOut:(()->())?
+    public var onWalletLogOut:(()->())?
+    
+    public var Solana:MirrorSolana = MirrorSolana()
     
     private var authMoudle:MirrorAuthMoudle = MirrorAuthMoudle()
-    private var walletMoudle:MirrorWalletMoudle = MirrorWalletMoudle()
-    private var marketPlaceMoudle:MirrorMarketplaceMoudle = MirrorMarketplaceMoudle()
-    private var metedataFilterMoudle:MirrorMetadataFilterMoudle = MirrorMetadataFilterMoudle()
-
 
     @objc public var sdkConfig:MirrorWorldSDKConfig = MirrorWorldSDKConfig()
     @objc public var sdkProtol:MirrorWorldHandleProtocol = MirrorWorldHandleProtocol()
@@ -47,7 +45,6 @@ public let MWSDK = MirrorWorldSDK.share
         super.init()
     }
     
-    
     @objc public func Version() -> String{
         return SDKVersion
     }
@@ -56,6 +53,7 @@ public let MWSDK = MirrorWorldSDK.share
         MWLog.isDebug = debug
     }
     
+    ///Authentication APIs
     /**
      * init SDK
      */
@@ -72,11 +70,12 @@ public let MWSDK = MirrorWorldSDK.share
         sdkConfig.apiKey = self.apiKey
         sdkConfig.clientSecret = self.clientSecret
         sdkConfig.clientId = self.clientId
+        MirrorUrlUtils.shard.initSDKParams(chain: chain, env: env)
         
-        walletMoudle.config = sdkConfig
         authMoudle.config = sdkConfig
-        marketPlaceMoudle.config = sdkConfig
-        metedataFilterMoudle.config = sdkConfig
+        if(self.chain == MWChain.Solana){
+            Solana.config = sdkConfig
+        }
         
         MWLog.console("apiKey:\(apiKey)")
         guard self.apiKey.count > 0 else {
@@ -98,12 +97,13 @@ public let MWSDK = MirrorWorldSDK.share
      * config: MirrorWorldSDKConfig
      */
     @objc public func initSDK(config:MirrorWorldSDKConfig) -> Bool{
+        if(config.chain == MWChain.Solana){
+            Solana.config = sdkConfig
+        }
+        
         sdkConfig = config
-        walletMoudle.config = sdkConfig
         authMoudle.config = sdkConfig
-        marketPlaceMoudle.config = sdkConfig
-        metedataFilterMoudle.config = sdkConfig
-
+        
         listenUrlschemeCallBack()
         return true
 //        authMoudle.RefreshToken { on in
@@ -116,10 +116,32 @@ public let MWSDK = MirrorWorldSDK.share
      * baseController： baseController will present of SFSafariViewController
      */
     
-    @objc public func StartLogin(onSuccess:@escaping (_ userInfo:[String:Any]?)->(),onFail:@escaping ()->()){
+    @objc public func startLogin(onSuccess:@escaping (_ userInfo:[String:Any]?)->(),onFail:@escaping ()->()){
         self.onSuccess = onSuccess
         self.onFail = onFail
         loginAuth(Self.getBaseViewController())
+    }
+    
+    /**
+     * User can use email on Mirror World and its password to login instad of social account
+     */
+    @objc public func loginWithEmail(email:String, passWord:String, onSuccess: (()->())?, onFail: (()->())?){
+        authMoudle.loginWithEmail(email, passWord: passWord) { isSucc in
+            if(isSucc){
+                onSuccess?()
+            }else{
+                onFail?()
+            }
+        }
+    }
+    
+    /**
+     * Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
+     */
+    @objc public func isLogged(_ onBool:((_ onBool:Bool)->())?){
+        authMoudle.CheckAuthenticated { succ in
+            onBool?(succ)
+        }
     }
     
     @objc public func GuestLogin(onSuccess: (()->())?, onFail: (()->())?){
@@ -144,7 +166,6 @@ public let MWSDK = MirrorWorldSDK.share
                 onFail?()
             }
         }
-
     }
     
     /**
@@ -153,46 +174,67 @@ public let MWSDK = MirrorWorldSDK.share
      */
     @objc public func handleOpen(url:URL){
         sdkProtol.urlSchemeDecode(url: url)
-        
-        
-        
     }
     
-    /**
-     * Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
-     *
-     */
-    @objc public func CheckAuthenticated(_ onBool:((_ onBool:Bool)->())?){
-        authMoudle.CheckAuthenticated { succ in
-            onBool?(succ)
-        }
-    }
     
     /**
      * Open a webview which would show the wallet page.
      */
 //    @objc public func StartLogin(onSuccess:@escaping (_ userInfo:[String:Any]?)->(),onFail:@escaping ()->()){
 
-    @objc public func OpenWallet(onLogout:@escaping ()->Void,loginSuccess:@escaping (_ userInfo:[String:Any]?)->()){
+    
+    ///Client APIs
+    ///
+    ///
+    @objc public func openWallet(onLogout:@escaping ()->Void,loginSuccess:@escaping (_ userInfo:[String:Any]?)->()){
     
         self.onWalletLogOut = onLogout
         self.onWallectSuccess = loginSuccess
 
         let topvc = Self.getBaseViewController()
-        walletMoudle.openWallet(controller: topvc)
+        self.doOpenWallet(controller: topvc)
     }
     
-    @objc public func mw_Unity_Wallet(url:String?,onLogout:@escaping ()->Void,loginSuccess:@escaping (_ userInfo:[String:Any]?)->()){
-        self.onWalletLogOut = onLogout
-        let topvc = Self.getBaseViewController()
-        walletMoudle.mw_Unity_Wallet(url: url, controller: Self.getBaseViewController())
+    @objc private func doOpenWallet(controller:UIViewController?){
+        authMoudle.checkAccessToken {[weak self] succ in
+            var walletUrl = (self?.sdkConfig.environment.mainRoot ?? "")
+            if succ{
+                walletUrl = (self?.sdkConfig.environment.mainRoot ?? "") + "jwt?key=" + MirrorWorldSDKAuthData.share.access_token
+            }else{
+                walletUrl = (self?.sdkConfig.environment.mainRoot ?? "")
+            }
+            guard walletUrl.count > 0 else { return }
+            let url = URL(string: walletUrl)!
+            let auth = MirrorWorldLoginAuthController.init(url: url)
+            controller?.present(auth, animated: true)
+        }
     }
     
-    @objc public func OpenMarketPlacePage(url:String?){
+    @objc public func openMarket(url:String?){
         let basevc = Self.getBaseViewController()
-        marketPlaceMoudle.OpenMarketPlacePage(url: url, controller: basevc)
+        doOpenMarketPlacePage(url: url, controller: basevc)
     }
     
+    @objc private func doOpenMarketPlacePage(url:String?,controller:UIViewController?){
+        authMoudle.checkAccessToken { succ in
+            guard let urlString = url,urlString.count > 0 else {
+                MWLog.console("please check marketplace address.")
+                return
+            }
+            var marketPlaceAddress = ""
+            if !urlString.contains("?auth="){
+                marketPlaceAddress = urlString + "?auth=" + MirrorWorldSDKAuthData.share.access_token
+            }else{
+                marketPlaceAddress = urlString
+            }
+            guard let url = URL(string: marketPlaceAddress) else {
+                MWLog.console(marketPlaceAddress)
+                MWLog.console("please check your access_token.")
+                return }
+            let auth = MirrorWorldLoginAuthController.init(url: url)
+            controller?.present(auth, animated: true)
+        }
+    }
     /**
      * Check user's info, then we can get user's base information such as wallet address and so on.
      */
@@ -204,6 +246,9 @@ public let MWSDK = MirrorWorldSDK.share
         }
     }
     
+    
+    
+    
     /**
      * Get access token so that users can visit APIs.
      */
@@ -212,333 +257,8 @@ public let MWSDK = MirrorWorldSDK.share
             callBack?(res)
         }
     }
-    
-    /**
-     *
-     */
-    @objc public func GetWalletTokens(onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
-        walletMoudle.GetWalletTokens { res in
-            onSuccess?(res)
-        } onFailed: {
-            onFailed?() 
-        }
-    }
-    
-    /**
-     *
-     *
-     */
-    @objc public func GetWalletTransactions(limit:Int, next_before:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
-        walletMoudle.GetWalletTransactions(limit: limit, next_before: next_before) { result in
-            onSuccess?(result)
-        } onFailed: {
-            onFailed?()
-        }
-    }
-    
-    /**
-     *
-     *
-     */
-    @objc public func GetWalletTransactionsBy(signature:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
-        walletMoudle.GetWalletTransactionBySignature(signature: signature) { result in
-            onSuccess?(result)
-        } onFailed: {
-            onFailed?()
-        }
-
-    }
-    
-    @objc public func CheckStatusOfTransactions(signatures:[String],onSuccess:((_ data:String?)->())?,onFailed:((_ code:Int,_ message:String?)->())?){
-        walletMoudle.CheckStatusOfTransactions(signatures: signatures) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-    }
-    
-    /**
-     *
-     *
-     */
-    @objc public func TransferSolToAnotherAddress(to_publickey:String,amount:Double, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
-        walletMoudle.TransferSOLtoAnotherAddress(to_publickey: to_publickey, amount: amount) { response in
-            onSuccess?(response)
-        } onFailed: {
-            onFailed?()
-        }
-    }
-    
-    @objc public func TransferTokenToAnotherAddress(to_publickey:String,amount:Double,token_mint:String,decimals:Int,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
-        walletMoudle.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: amount, token_mint: token_mint, decimals: decimals) { response in
-            onSuccess?(response)
-        } onFailed: {
-            onFailed?()
-        }
-    }
-    
-    //: MARK: - MarketPlace
-    /**
-     * Mint a new NFT.
-     *
-     */
-    @objc public func MintNewNFT(collection_mint: String, name: String, symbol: String, url: String, seller_fee_basis_points: Int, confirmation: String = "finalized", onSuccess: onSuccess, onFailed: onFailed){
-        marketPlaceMoudle.MintNewNFT(collection_mint: collection_mint, name: name, symbol: symbol, url: url, seller_fee_basis_points: seller_fee_basis_points, confirmation: confirmation, onSuccess: { data in
-            onSuccess?(data)
-         }, onFailed: { code,mess in
-             onFailed?(code,mess)
-         })
-    }
-    
-    @objc public func CheckStatusOfMinting(mintAddress:[String],_ onReceive:((_ isSucc:Bool,_ data:String?)->Void)?){
-        marketPlaceMoudle.CheckStatusOfMinting(mintAddress: mintAddress) { isSucc, data in
-            onReceive?(isSucc,data)
-        }
-    }
-    
-    @objc public func UpdateNFTProperties(mintAddresses:String,name:String,symbol:String,updateAuthority:String,NFTJsonUrl:String,seller_fee_basis_points:String,confirmation:String,_ onSuccess:((_ data:String?)->Void)?,_ onFailed:((_ message:String?)->Void)?){
-        marketPlaceMoudle.UpdateNFTProperties(mintAddresses: mintAddresses,name: name,symbol: symbol,updateAuthority: updateAuthority,NFTJsonUrl: NFTJsonUrl,seller_fee_basis_points: seller_fee_basis_points,confirmation: confirmation) { isSucc, data in
-            if(isSucc){
-                onSuccess?(data)
-            }else{
-                onFailed?(data)
-            }
-        }
-    }
-    
-    @objc public func MintNewCollection(name:String,symbol:String,url:String,confirmation:String = "finalized",seller_fee_basis_points:Int,onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.MintNewCollection(name: name, symbol: symbol, url: url, confirmation: confirmation, seller_fee_basis_points: seller_fee_basis_points, onSuccess: { data in
-           onSuccess?(data)
-        }, onFailed: { code,mess in
-            onFailed?(code,mess)
-        })
-    }
-    
-    
-//
-    
-    @objc public func  CreateVerifiedSubCollection(name:String,collection_mint:String,symbol:String,url:String, _ confirmation:String = "finalized",onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.CreateVerifiedSubCollection(name: name, collection_mint: collection_mint, symbol: symbol, url: url, confirmation) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    
-    /**
-     * Fetch the details of a NFT.
-     */
-    @objc public func FetchSingleNFT(mint_Address:String,onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.FetchSingleNFT(mint_Address: mint_Address) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    
-    @objc public func TransferNFTToAnotherSolanaWallet(mint_address:String,to_wallet_address:String,confirmation:String = "finalized",onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.TransferNFTToAnotherSolanaWallet(mint_address: mint_address, to_wallet_address: to_wallet_address, confirmation: confirmation) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-    }
-    
-    /**
-     * Get list of NFT on market place.
-     */
-    @objc public func ListNFT(mint_address:String,price:Double,confirmation:String = "finalized",onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.ListNFT(mint_address: mint_address, price: price, confirmation: confirmation) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    /**
-     *  Update Listing of NFT on the marketplace
-     */
-    @objc public func UpdateNFTListing(mint_address:String,price:Double, confirmation:String = "finalized",onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.UpdateNFTListing(mint_address: mint_address, price: price, confirmation: confirmation) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    /**
-     * Cancel listing of NFT.
-     */
-    @objc public func CancelNFTListing(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.CancelNFTListing(mint_address: mint_address, price: price) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-
-    
-    @objc public func FetchNFTsByMintAddresses(mint_addresses:[String],onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.FetchNFTsByMintAddresses(mint_addresses: mint_addresses) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    
-    /**
-     * Get a collection of NFT by creator addresses.
-     */
-    @objc public func FetchNFTsByCreatorAddresses(creators:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.FetchNFTsByCreatorAddresses(creators: creators, limit: limit, offset: offset) { data in
-            onSuccess?(data)
-
-        } onFailed: { code, message in
-            onFailed?(code,message)
-
-        }
-
-
-    }
-    
-    
-    /**
-     * Get a collection of NFT by authority addresses.
-     */
-    @objc public func FetchNFTsByUpdateAuthorities(update_authorities:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.FetchNFTsByUpdateAuthorities(update_authorities: update_authorities, limit: limit, offset: offset) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-
-    }
-
-    
-    /**
-     *  Get a collection of NFT by mint addresses.
-     *
-     */
-    @objc public func FetchNFTsByOwnerAddress(owners:[String],limit:Double,offset:Double,onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.FetchNFTsByOwnerAddress(owners: owners, limit: limit, offset: offset) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-    }
-    
-    /**
-     * Buy a NFT on market place.
-     *
-     */
-    @objc public func BuyNFT(mint_address:String,price:Double,onSuccess:onSuccess,onFailed:onFailed){
-        marketPlaceMoudle.BuyNFT(mint_address: mint_address, price: price){ data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-    }
-
-    
-    @objc public func GetCollectionFilterInfo(collection:String,onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.GetCollectionFilterInfo(collection: collection) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    @objc public func GetNFTInfo(mint_address:String,onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.GetNFTInfo(mint_address: mint_address) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    
-    
-    @objc public func GetCollectionInfo(collections:[String],onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.GetCollectionInfo(collections: collections) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    @objc public func GetNFTEvents(mint_address: String, page: Int, page_size: Int,onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.GetNFTEvents(mint_address: mint_address, page: page, page_size: page_size) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-
-    }
-    
-    @objc public func SearchNFTs(collections: [String], search: String,onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.SearchNFTs(collections: collections, search: search) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    @objc public func RecommentSearchNFT(collections: [String], onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.RecommentSearchNFT(collections: collections) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    
-    @objc public func GetNFTsByUnabridgedParams(collection: String, page: Int, page_size: Int, order: [String : Any], sale: Int, filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
-        
-        metedataFilterMoudle.GetNFTsByUnabridgedParams(collection: collection, page: page, page_size: page_size, order: order, sale: sale, filter: filter) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-
-    }
-    
-    @objc public func GetNFTRealPrice(price: String, fee: Double, onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.GetNFTRealPrice(price: price, fee: fee) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    @objc public func CreateNewCollection(collection: String, collection_name: String, collection_type: String, collection_orders: [Any], collection_filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
-        metedataFilterMoudle.CreateNewCollection(collection: collection, collection_name: collection_name, collection_type: collection_type, collection_orders: collection_orders, collection_filter: collection_filter) { data in
-            onSuccess?(data)
-        } onFailed: { code, message in
-            onFailed?(code,message)
-        }
-
-    }
-    
-    
-    
 }
+
 extension MirrorWorldSDK{
     private func loginAuth(_ controller:UIViewController?){
         guard controller != nil else {
@@ -547,7 +267,6 @@ extension MirrorWorldSDK{
         loginAuthController = authMoudle.openLoginView(controller: controller)
     }
 }
-
 
 extension MirrorWorldSDK{
     func listenUrlschemeCallBack(){
@@ -565,14 +284,29 @@ extension MirrorWorldSDK{
             self?.onWalletLogOut?()
         }
         sdkProtol.authorizationTokenBlock = {[weak self] (uuid, token) in
-            self?.marketPlaceMoudle.authorization.callBackToken(uuid: uuid,token: token)
             self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
-            self?.walletMoudle.authorization.callBackToken(uuid: uuid,token: token)
+            self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
+            self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
             MirrorSecurityVerificationShared.share.authTokenCallBack(uuid: uuid, token: token)
             
             MirrorSecurityVerificationShared.share.ApproveCallBack(uuid: uuid, token: token)
         }
     }
+    
+    
+    @objc public func mw_Unity_Wallet(url:String?,onLogout:@escaping ()->Void,loginSuccess:@escaping (_ userInfo:[String:Any]?)->()){
+        self.onWalletLogOut = onLogout
+        let topvc = Self.getBaseViewController()
+        
+        authMoudle.checkAccessToken { succ in
+            var walletUrl = url ?? ""
+            guard walletUrl.count > 0 else { return }
+            let url = URL(string: walletUrl)!
+            let auth = MirrorWorldLoginAuthController.init(url: url)
+            topvc?.present(auth, animated: true)
+        }
+    }
+    
 }
 
 public extension MirrorWorldSDK{

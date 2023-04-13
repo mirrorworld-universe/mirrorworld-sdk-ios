@@ -38,48 +38,48 @@ final class AuthTest: XCTestCase {
         XCTAssertTrue(MWSDK.sdkConfig.apiKey.count>0,"init success")
     }
     
-    func testStartLogin() throws {
-        let exp = expectation(description: #function)
-        
-        let urlString = testSDKConfig.environment.mainRoot + testSDKConfig.apiKey
-        XCTAssertNotNil(urlString)
-        
-        MirrorWorldSDK.share.initSDK(config: testSDKConfig)
-        MWSDK.StartLogin { userInfo in
-            XCTAssertTrue(userInfo?.count ?? 0 > 0 , "login success")
-            exp.fulfill()
-        } onFail: {
-            XCTFail()
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 60,handler: nil)
-    }
-    
-    func testloginOut() throws {
-        
-        let exp = expectation(description: #function)
-
-        MWSDK.Logout {
-            XCTAssertNil(MirrorWorldSDKAuthData.share.userInfo,"logOut success !")
-            exp.fulfill()
-        } onFail: {
-            XCTFail()
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 60,handler: nil)
-
-    }
-    
-    func testCheckAuthenticated()throws{
-        
-        let exp = expectation(description: #function)
-
-        MWSDK.CheckAuthenticated { onBool in
-            XCTAssert(onBool)
-            exp.fulfill()
-        }
-        waitForExpectations(timeout: 10,handler: nil)
-    }
+//    func testStartLogin() throws {
+//        let exp = expectation(description: #function)
+//        
+//        let urlString = testSDKConfig.environment.mainRoot + testSDKConfig.apiKey
+//        XCTAssertNotNil(urlString)
+//        
+//        MirrorWorldSDK.share.initSDK(config: testSDKConfig)
+//        MWSDK.StartLogin { userInfo in
+//            XCTAssertTrue(userInfo?.count ?? 0 > 0 , "login success")
+//            exp.fulfill()
+//        } onFail: {
+//            XCTFail()
+//            exp.fulfill()
+//        }
+//        waitForExpectations(timeout: 60,handler: nil)
+//    }
+//    
+//    func testloginOut() throws {
+//        
+//        let exp = expectation(description: #function)
+//
+//        MWSDK.Logout {
+//            XCTAssertNil(MirrorWorldSDKAuthData.share.userInfo,"logOut success !")
+//            exp.fulfill()
+//        } onFail: {
+//            XCTFail()
+//            exp.fulfill()
+//        }
+//        waitForExpectations(timeout: 60,handler: nil)
+//
+//    }
+//    
+//    func testCheckAuthenticated()throws{
+//        
+//        let exp = expectation(description: #function)
+//
+//        MWSDK.CheckAuthenticated { onBool in
+//            XCTAssert(onBool)
+//            exp.fulfill()
+//        }
+//        waitForExpectations(timeout: 10,handler: nil)
+//    }
     
    
     

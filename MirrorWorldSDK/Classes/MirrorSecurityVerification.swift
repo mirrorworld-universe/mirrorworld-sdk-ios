@@ -12,33 +12,33 @@ import UIKit
     var bindUUID:String?
     var onAuthTokenCallback:((_ success:Bool,_ authToken:String?,_ errorDesc:String?)->())?
     var authController:MirrorWorldLoginAuthController?
-    public func requestActionAuthorization(config:MirrorWorldSDKConfig?,_ router:MirrorWorldNetApi,_ callback:@escaping (_ success:Bool,_ authToken:String?,_ errorDesc:String?)->()){
+    public func requestActionAuthorization(config:MirrorWorldSDKConfig?,_ params:[String:Any]?,actionType:String,_ callback:@escaping (_ success:Bool,_ authToken:String?,_ errorDesc:String?)->()){
         self.onAuthTokenCallback = callback
         
         var value:Double = 0.0
         var decimals:Int = 9
-        router.param?.keys.forEach({ key in
+        params?.keys.forEach({ key in
             if key == "amount" {
-//                print("11111\(router.param?[key])")
-                value = Double(((router.param?[key] as? Double) ?? 0))
+//                print("11111\(var param?[key])")
+                value = Double(((params?[key] as? Double) ?? 0))
 //                print("11111\(value)")
             }
             if key == "price"{
-//                print("22222\(router.param?[key])")
-                value = (router.param?[key] as? Double) ?? 0.00
+//                print("22222\(var param?[key])")
+                value = (params?[key] as? Double) ?? 0.00
 //                print("22222\(value)")
             }
             if key == "decimals"{
-//                print("33333\(router.param?[key])")
-                decimals = (router.param?[key] as? Int) ?? 9
+//                print("33333\(var param?[key])")
+                decimals = (params?[key] as? Int) ?? 9
 //                print("33333\(value)")
             }
         })
         let root:Double = (pow(10, decimals) as NSNumber).doubleValue
 //        value = value/root
         let valueStr:String = value.toString()
-        let api = MirrorWorldNetApi.requestActionAuthorization(type: router.actionType, message: "", value: value, params: router.param ?? [:])
-        MirrorWorldNetWork().request(api: api) {[weak self] response in
+        let api = MirrorWorldNetApi.requestActionAuthorization(type: actionType, message: "", value: value, params: params ?? [:])
+        MirrorWorldNetWork().request(url: api.path,method: "Post",params: api.param) {[weak self] response in
               let responseJson = response?.toJson()
               let data = responseJson?["data"] as? [String:Any]
               let uuid = (data?["uuid"] as? String) ?? ""
@@ -118,7 +118,7 @@ import UIKit
         self.onAuthTokenCallback = finish
 
         let api = MirrorWorldNetApi.SecurityVerification(params)
-      MirrorWorldNetWork().request(api: api) {[weak self] response in
+        MirrorWorldNetWork().request(url: api.path,method: "Post",params: api.param) {[weak self] response in
             let responseJson = response?.toJson()
             let data = responseJson?["data"] as? [String:Any]
             let uuid = (data?["uuid"] as? String) ?? ""

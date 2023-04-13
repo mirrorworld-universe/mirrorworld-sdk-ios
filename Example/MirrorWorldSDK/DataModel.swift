@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import MirrorWorldSDK
 class DataModel {
     static let shared = DataModel()
     
+    var title:String?
+    var chain:MWChain?
     var data: Any?
 }

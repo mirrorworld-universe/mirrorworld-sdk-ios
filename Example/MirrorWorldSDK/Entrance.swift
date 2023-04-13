@@ -22,7 +22,7 @@ class Entrance :UIViewController{
             if(buttonName == "Solana"){
                 selectedChain = MWChain.Solana
             }else if(buttonName == "Ethreum"){
-                selectedChain = MWChain.Ethreum
+                selectedChain = MWChain.Ethereum
             }else if(buttonName == "Polygon"){
                 selectedChain = MWChain.Polygon
             }else if(buttonName == "BNB"){
@@ -55,13 +55,13 @@ class Entrance :UIViewController{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier: "Main")
                 if(selectedChain == MWChain.Solana){
-                    setUIData()
-                }else if(selectedChain == MWChain.Ethreum){
-                    setUIData()
+                    setSolanaUIData()
+                }else if(selectedChain == MWChain.Ethereum){
+                    setEthreumUIData()
                 }else if(selectedChain == MWChain.Polygon){
-                    
+                    setPolygonUIData()
                 }else if(selectedChain == MWChain.BNB){
-                    
+                    setBNBUIData()
                 }else{
                     print("⚠️ Warning: Unknown chain")
                 }
@@ -87,7 +87,78 @@ class Entrance :UIViewController{
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func setUIData(){
+    func setSolanaUIData(){
+        DataModel.shared.chain = MWChain.Solana
+        DataModel.shared.title = "Mirror World SDK(Solana)";
+        DataModel.shared.data = [
+                          (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
+                          (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
+                          (moudleTitle:"Marketplace",MethodList:[
+                            "openMarketPlacePage",
+                            "MintNewCollection",
+                            "MintNewNFTOnCollection",
+                            "CheckStatusOfMinting",
+                            "UpdateNFTProperties",
+                            "FetchSingleNFT",
+                            "UpdateNFTListing",
+                            "ListNFT",
+                            "CancelNFTListing",
+                            "FetchNFTsByMintAddresses",
+                            "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
+                            "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
+                          (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","GetNFTsByUnabridgedParams","Get nft real price","Create new collection"])
+        ]
+    }
+    
+    func setEthreumUIData(){
+        DataModel.shared.chain = MWChain.Ethereum
+        DataModel.shared.title = "Mirror World SDK(Ethreum)";
+        DataModel.shared.data = [
+                          (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
+                          (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
+                          (moudleTitle:"Marketplace",MethodList:[
+                            "openMarketPlacePage",
+                            "MintNewCollection",
+                            "MintNewNFTOnCollection",
+                            "CheckStatusOfMinting",
+                            "UpdateNFTProperties",
+                            "FetchSingleNFT",
+                            "UpdateNFTListing",
+                            "ListNFT",
+                            "CancelNFTListing",
+                            "FetchNFTsByMintAddresses",
+                            "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
+                            "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
+                          (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","GetNFTsByUnabridgedParams","Get nft real price","Create new collection"])
+        ]
+    }
+    
+    func setPolygonUIData(){
+        DataModel.shared.chain = MWChain.Polygon
+        DataModel.shared.title = "Mirror World SDK(Polygon)";
+        DataModel.shared.data = [
+                          (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
+                          (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
+                          (moudleTitle:"Marketplace",MethodList:[
+                            "openMarketPlacePage",
+                            "MintNewCollection",
+                            "MintNewNFTOnCollection",
+                            "CheckStatusOfMinting",
+                            "UpdateNFTProperties",
+                            "FetchSingleNFT",
+                            "UpdateNFTListing",
+                            "ListNFT",
+                            "CancelNFTListing",
+                            "FetchNFTsByMintAddresses",
+                            "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
+                            "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
+                          (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","GetNFTsByUnabridgedParams","Get nft real price","Create new collection"])
+        ]
+    }
+    
+    func setBNBUIData(){
+        DataModel.shared.chain = MWChain.BNB
+        DataModel.shared.title = "Mirror World SDK(BNB)";
         DataModel.shared.data = [
                           (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
                           (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
