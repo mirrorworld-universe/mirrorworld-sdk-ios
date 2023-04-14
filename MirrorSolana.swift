@@ -11,5 +11,5 @@ import Foundation
     var config:MirrorWorldSDKConfig?
     public var Wallet:SolanaWallet = SolanaWallet()
     public var Asset:SolanaAsset = SolanaAsset()
-    private var metedataFilterMoudle:MirrorMetadataFilterMoudle = MirrorMetadataFilterMoudle()
+    public var Metadata:SolanaMetadata = SolanaMetadata()
 }

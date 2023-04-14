@@ -45,7 +45,7 @@ import UIKit
         }
     }
     
-    @objc public func GetWalletTransactionBySignature(signature:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func getWalletTransactionBySignature(signature:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "transactions/\(signature)")
             MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in

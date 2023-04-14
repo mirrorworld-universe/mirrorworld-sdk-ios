@@ -126,7 +126,7 @@ import UIKit
 
     }
 
-    @objc public func SearchNFTs(collections: [String], search: String,onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func searchNFTs(collections: [String], search: String,onSuccess:onSuccess,onFailed:onFailed){
         let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.MetadataNFTSearch, APIPath: "")
         let params = [
             "collections":collections,
@@ -146,7 +146,7 @@ import UIKit
 
     }
 
-    @objc public func RecommentSearchNFT(collections: [String], onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func recommentSearchNFT(collections: [String], onSuccess:onSuccess,onFailed:onFailed){
         let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.MetadataNFTSearch, APIPath: "recommend")
         let params = [
             "collections":collections

@@ -18,6 +18,7 @@ enum paramsData {
     case url
     case seller_fee_basis_points
     case confirmation
+    case skip_preflight
     
     case limit
     case next_before
@@ -31,7 +32,7 @@ enum paramsData {
     case mint_address
     case another_mint_address
     case price
-    
+    case auction_house
     case to_wallet_address
     
     case update_authorities
@@ -70,10 +71,14 @@ enum paramsData {
             return "seller_fee_basis_points"
         case .confirmation:
             return "confirmation"
+        case .skip_preflight:
+            return "skip_preflight"
         case .limit:
             return "limit"
         case .next_before:
             return "next_before"
+        case .auction_house:
+            return "auction_house"
         case .signature:
             return "signature"
         case .another_signature:
