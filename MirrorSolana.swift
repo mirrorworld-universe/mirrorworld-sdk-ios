@@ -9,7 +9,7 @@ import Foundation
 
 @objc public class MirrorSolana: MirrorBaseMoudle {
     var config:MirrorWorldSDKConfig?
-    public var wallet:MirrorWalletMoudle = MirrorWalletMoudle()
-    public var asset:MirrorMarketplaceMoudle = MirrorMarketplaceMoudle()
+    public var Wallet:SolanaWallet = SolanaWallet()
+    public var Asset:SolanaAsset = SolanaAsset()
     private var metedataFilterMoudle:MirrorMetadataFilterMoudle = MirrorMetadataFilterMoudle()
 }

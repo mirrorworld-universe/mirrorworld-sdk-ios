@@ -43,179 +43,178 @@ class SolanaAPIView{
         
         loadingActive.startAnimating()
         
-//        switch item {
-//        case "Start Login":
-//            MWSDK.startLogin { userInfo in
-//                loadingActive.stopAnimating()
-//                self.Log("login success :\(MirrorTool.dicToString(userInfo) ?? "")")
-//            } onFail: {
-//                loadingActive.stopAnimating()
-//                self.Log("login failed!")
-//            }
-//            
-//        case "Guest Login":
-//            MWSDK.GuestLogin {
-//                self.Log("guest login success")
-//            } onFail: {
-//                self.Log("guest login failed")
-//            }
-//
-//        case "Logs out a user":
-//            MWSDK.Logout {
-//                self.Log("Logs out a user : success")
-//            } onFail: {
-//                self.Log("Logs out a user : failed")
-//            }
-//        case "CheckAuthenticated":
-//            MWSDK.isLogged { onBool in
-//                loadingActive.stopAnimating()
-//                self.Log("This device's login state is:\(onBool)")
-//            }
-//            break
-//        case "OpenWallet":
-//            MWSDK.openWallet {
-//                loadingActive.stopAnimating()
-//                self.Log("Wallet is logout")
-//                
-//            } loginSuccess: { userinfo in
-//                loadingActive.stopAnimating()
-//                self.Log("Wallet login: \(userinfo)")
-//            }
-//            
-//            loadingActive.stopAnimating()
-//            break
-//        case "openMarketPlacePage":
-//            view.addSubview(paramtersView)
-//            paramtersView.setParams(keys: [.url])
-//            paramtersView.paramtersJson = {[weak self] datas in
-//                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
-//                MWSDK.openMarket(url: url)
-//                self?.Log("openMarketPlacePage")
-//            }
-//            break
-//        case "QueryUser":
-//            view.addSubview(paramtersView)
-//            paramtersView.setParams(keys: [.email])
-//            paramtersView.paramtersJson = {[weak self] datas in
-//                let email = (datas.first(where: {$0.keyText == "email"})?.valueText)! as! String
-//                
-//                MWSDK.QueryUser(email: email) { user in
-//                    self?.Log(user ?? "null")
-//                    loadingActive.stopAnimating()
-//                } onFetchFailed: { code, error in
-//                    self?.Log("\(code):\(error)")
-//                }
-//            }
-//            
-//            
-//        case "GetAccessToken":
-//            MWSDK.GetAccessToken(callBack: { token in
-//                self.Log("Access Token is : \(token)")
-//                loadingActive.stopAnimating()
-//            })
-//        case "Get wallet tokens":
-//            MWSDK.Solana.wallet.getWalletTokens { response in
-//                
-//                let res = response?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
-//                
-//                self.Log("Get wallet tokens:\(res ?? "null")")
-//                loadingActive.stopAnimating()
-//            } onFailed: {
-//                self.Log("Get wallet tokens: failed")
-//            }
-//            
-//        case "Get wallet transactions":
-//            view.addSubview(paramtersView)
-//            paramtersView.setParams(keys: [.limit,.next_before])
-//            paramtersView.paramtersJson = {[weak self] datas in
-//                let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
-//                
-//                let next_before = (datas.first(where: {$0.keyText == "next_before"})?.valueText)! as! String
-//                
-//                
-//                MWSDK.Solana.wallet.getWalletTransactions(limit: Int(limit) ?? 10, next_before: next_before) { response in
-//                    self?.Log(response)
-//                    loadingActive.stopAnimating()
-//                } onFailed: {
-//                    self?.Log("\(item): failed ~")
-//                }
-//            }
-//            
-//            
-//            break
-//        case "Get wallet transaction by signature":
-//            view.addSubview(paramtersView)
-//            paramtersView.setParams(keys: [.signature])
-//            paramtersView.paramtersJson = {[weak self] datas in
-//                let signature = (datas.first(where: {$0.keyText == "signature"})?.valueText)! as! String
-//                MWSDK.Solana.wallet.getWalletTransactionsBy(signature: signature) { response in
-//                    self?.Log(response)
-//                    loadingActive.stopAnimating()
-//                } onFailed: {
-//                    loadingActive.stopAnimating()
-//                    self?.Log("\(item):failed~")
-//                }
-//            }
-//            break
+        switch item {
+            //Authentication
+        case "Start Login":
+            MWSDK.startLogin { userInfo in
+                loadingActive.stopAnimating()
+                self.Log("login success :\(MirrorTool.dicToString(userInfo) ?? "")")
+            } onFail: {
+                loadingActive.stopAnimating()
+                self.Log("login failed!")
+            }
+            
+        case "Guest Login":
+            MWSDK.GuestLogin {
+                self.Log("guest login success")
+            } onFail: {
+                self.Log("guest login failed")
+            }
+
+        case "Logs out a user":
+            MWSDK.Logout {
+                self.Log("Logs out a user : success")
+            } onFail: {
+                self.Log("Logs out a user : failed")
+            }
+        case "CheckAuthenticated":
+            MWSDK.isLogged { onBool in
+                loadingActive.stopAnimating()
+                self.Log("This device's login state is:\(onBool)")
+            }
+            break
+        case "OpenWallet":
+            MWSDK.openWallet {
+                loadingActive.stopAnimating()
+                self.Log("Wallet is logout")
+                
+            } loginSuccess: { userinfo in
+                loadingActive.stopAnimating()
+                self.Log("Wallet login: \(String(describing: userinfo))")
+            }
+            
+            loadingActive.stopAnimating()
+            break
+        case "openMarketPlacePage":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.url])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
+                MWSDK.openMarket(url: url)
+                self?.Log("openMarketPlacePage")
+            }
+            break
+        case "QueryUser":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.email])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let email = (datas.first(where: {$0.keyText == "email"})?.valueText)! as! String
+                
+                MWSDK.QueryUser(email: email) { user in
+                    self?.Log(user ?? "null")
+                    loadingActive.stopAnimating()
+                } onFetchFailed: { code, error in
+                    self?.Log("\(code):\(String(describing: error))")
+                }
+            }
+            
+            
+        case "GetAccessToken":
+            MWSDK.GetAccessToken(callBack: { token in
+                self.Log("Access Token is : \(token)")
+                loadingActive.stopAnimating()
+            })
+            //Wallet
+        case "Get wallet tokens":
+            MWSDK.Solana.Wallet.getWalletTokens { response in
+                
+                let res = response?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
+                
+                self.Log("Get wallet tokens:\(res ?? "null")")
+                loadingActive.stopAnimating()
+            } onFailed: {
+                self.Log("Get wallet tokens: failed")
+            }
+            
+        case "Get wallet transactions":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.limit,.next_before])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let limit:Int = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! Int
+                
+                let next_before:String = (datas.first(where: {$0.keyText == "next_before"})?.valueText)! as! String
+                
+                
+                MWSDK.Solana.Wallet.getWalletTransactions(limit: Int(limit) , next_before: next_before) { response in
+                    self?.Log(response)
+                    loadingActive.stopAnimating()
+                } onFailed: {
+                    self?.Log("\(item): failed ~")
+                }
+            }
+            break
+        case "Get wallet transaction by signature":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.signature])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let signature:String = (datas.first(where: {$0.keyText == "signature"})?.valueText)! as! String
+                MWSDK.Solana.Wallet.GetWalletTransactionBySignature(signature: signature) { response in
+                    self?.Log(response)
+                    loadingActive.stopAnimating()
+                } onFailed: {
+                    loadingActive.stopAnimating()
+                    self?.Log("\(item):failed~")
+                }
+            }
+            break
+        case "Transfer SOL to another address":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.to_publickey,.amount])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let to_publickey:String = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
+                let amount:Int = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! Int
+                MWSDK.Solana.Wallet.transferSOL(to_publickey: to_publickey, amount: Int(amount) ) { response in
+                    self?.Log(response)
+                    loadingActive.stopAnimating()
+                } onFailed: {
+                    self?.Log("\(item):failed~")
+                }
+                
+            }
+            break
+        case "Transfer Token to another address":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.to_publickey,.amount,.token_mint,.decimals])
+            paramtersView.paramtersJson = {[weak self] datas in
+                let to_publickey:String = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
+                let amount:Int = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! Int
+                let token_mint:String = (datas.first(where: {$0.keyText == "token_mint"})?.valueText)! as! String
+                let decimals:Int = (datas.first(where: {$0.keyText == "decimals"})?.valueText)! as! Int
+                
+                MWSDK.Solana.Wallet.transferToken(to_publickey: to_publickey, amount: Int(Double(amount) ?? 0.0), token_mint: token_mint, decimals: Int(decimals) ?? 1) { response in
+                    self?.Log(response)
+                    loadingActive.stopAnimating()
+                } onFailed: {
+                    self?.Log("\(item):failed~")
+                }
+                
+            }
+            break
+            //Asset
 //        case "CheckStatusOfTransactions":
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.signature,.another_signature])
 //            paramtersView.paramtersJson = {[weak self] datas in
-//                let signature = (datas.first(where: {$0.keyText == "signature"})?.valueText)! as! String
-//                let another_signature = (datas.first(where: {$0.keyText == "another signature"})?.valueText)! as! String
-//                MWSDK.Solana.wallet.GetWalletTransactionBySignature(signatures: [signature,another_signature]) { data in
+//                let signature:String = (datas.first(where: {$0.keyText == "signature"})?.valueText)! as! String
+//                let another_signature:String = (datas.first(where: {$0.keyText == "another signature"})?.valueText)! as! String
+//                MWSDK.Solana.Asset.checkTransactionsStatus(signatures: [signature,another_signature]) { data in
 //                    self?.Log(data)
 //                } onFailed: { code, message in
-//                    self?.Log("CheckStatusOfTransactions failed,code is:\(code);message:\(message)")
+//                    self?.Log("CheckStatusOfTransactions failed,code is:\(code);message:\(String(describing: message))")
 //                }
 //
-//            }
-//            break
-//        case "Transfer SOL to another address":
-//            view.addSubview(paramtersView)
-//            paramtersView.setParams(keys: [.to_publickey,.amount])
-//            paramtersView.paramtersJson = {[weak self] datas in
-//                let to_publickey = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
-//                let amount = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! String
-//                
-//                //                6Rp5grdihB8bpNCc9v25wZSgVMiNvLfRNF4B8z7esdZ4
-//                MirrorWorldSDK.share.TransferSolToAnotherAddress(to_publickey: to_publickey, amount: Double(amount) ?? 0.0) { response in
-//                    self?.Log(response)
-//                    loadingActive.stopAnimating()
-//                } onFailed: {
-//                    self?.Log("\(item):failed~")
-//                }
-//                
-//            }
-//            break
-//        case "Transfer Token to another address":
-//            view.addSubview(paramtersView)
-//            paramtersView.setParams(keys: [.to_publickey,.amount,.token_mint,.decimals])
-//            paramtersView.paramtersJson = {[weak self] datas in
-//                let to_publickey = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
-//                let amount = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! String
-//                let token_mint = (datas.first(where: {$0.keyText == "token_mint"})?.valueText)! as! String
-//                let decimals = (datas.first(where: {$0.keyText == "decimals"})?.valueText)! as! String
-//                
-//                MWSDK.TransferTokenToAnotherAddress(to_publickey: to_publickey, amount: Double(amount) ?? 0.0, token_mint: token_mint, decimals: Int(decimals) ?? 1) { response in
-//                    self?.Log(response)
-//                    loadingActive.stopAnimating()
-//                } onFailed: {
-//                    self?.Log("\(item):failed~")
-//                }
-//                
 //            }
 //            break
 //        case "MintNewCollection":
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.name,.symbol,.url,.seller_fee_basis_points])
 //            paramtersView.paramtersJson = {[weak self] datas in
-//                let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
-//                let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
-//                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
-//                let seller_fee_basis_points = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! String
-//                
-//                MWSDK.MintNewCollection(name: name, symbol: symbol, url: url, seller_fee_basis_points: Int(seller_fee_basis_points) ?? 100, onSuccess: { data in
+//                let name:String = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
+//                let symbol:String = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
+//                let url:String = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
+//                let seller_fee_basis_points:Int = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! Int
+//
+//                MWSDK.Solana.Asset.mintNFT(name: name, symbol: symbol, url: url, seller_fee_basis_points: Int(seller_fee_basis_points) ?? 100, onSuccess: { data in
 //                    self?.Log(data)
 //                    loadingActive.stopAnimating()
 //                }, onFailed: { code,message in
@@ -227,27 +226,27 @@ class SolanaAPIView{
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.name,.collection_mint,.url,.symbol])
 //            paramtersView.paramtersJson = {[weak self] datas in
-//                let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
-//                let collection_mint = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
+//                let name:String = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
+//                let collection_mint:String = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
 //                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
 //                let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
-//                MWSDK.CreateVerifiedSubCollection(name: name, collection_mint: collection_mint, symbol: symbol, url: url) { data in
+//                MWSDK.Solana.Asset.mintCollection(name: name, collection_mint: collection_mint, symbol: symbol, url: url) { data in
 //                    self?.Log(data)
 //                    loadingActive.stopAnimating()
-//                    
+//
 //                } onFailed: { code, message in
 //                    self?.Log("\(item):failed:\(code),\(message ?? "")")
 //                    loadingActive.stopAnimating()
 //                }
-//                
+//
 //            }
-//            
+//
 //            break
 //        case "MintNewNFT":
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.collection_mint,.name,.symbol,.url,.seller_fee_basis_points])
 //            paramtersView.paramtersJson = {[weak self] datas in
-//                
+//
 //                let collection_mint = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
 //                let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
 //                let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
@@ -256,7 +255,7 @@ class SolanaAPIView{
 //                //            5dw2PLdbTtn6sUHdNLy3EH4buPHh3Ch9JQTCoP9d6DwN
 //                //            https://market-assets.mirrorworld.fun/gen1/1.json
 //                MWSDK.MintNewNFT(collection_mint: collection_mint, name: name, symbol: symbol, url: url, seller_fee_basis_points: Int(seller_fee_basis_points) ?? 100) { data in
-//                    
+//
 //                    self?.Log("mintNewNFT - response:\n")
 //                    self?.Log(data)
 //                    loadingActive.stopAnimating()
@@ -288,7 +287,7 @@ class SolanaAPIView{
 //                let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
 //                let sellerString = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! String
 //                let confirmation = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
-//                
+//
 //                MWSDK.UpdateNFTProperties(mintAddresses: mintAddress,name:name,symbol:symbol,updateAuthority:update_authority,NFTJsonUrl: url,seller_fee_basis_points:sellerString,confirmation:confirmation) { data in
 //                    self?.Log(data)
 //                } _: { message in
@@ -323,25 +322,10 @@ class SolanaAPIView{
 //                    self?.Log("\(item):failed:\(code),\(message ?? "")")
 //                }
 //            }
-//            
-//            
+//
+//
 //            break
-//        case "TransferNFTToAnotherSolanaWallet":
-//            view.addSubview(paramtersView)
-//            paramtersView.setParams(keys: [.mint_address,.to_wallet_address])
-//            paramtersView.paramtersJson = {[weak self] datas in
-//                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
-//                let to_wallet_address = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
-//                MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: mint_address, to_wallet_address: to_wallet_address) { data in
-//                    self?.Log(data)
-//                    loadingActive.stopAnimating()
-//                } onFailed: { code, message in
-//                    self?.Log("\(item):failed:\(code),\(message ?? "")")
-//                }
-//            }
-//            
-//            break
-//            
+//
 //        case "MintNewNFTOnCollection":
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.collection_mint,.name,.symbol,.url,.seller_fee_basis_points])
@@ -358,8 +342,8 @@ class SolanaAPIView{
 //                    self?.Log("\(item):failed:\(code),\(message ?? "")")
 //                }
 //            }
-//            
-//            
+//
+//
 //            break
 //        case "ListNFT":
 //            view.addSubview(paramtersView)
@@ -367,18 +351,18 @@ class SolanaAPIView{
 //            paramtersView.paramtersJson = {[weak self] datas in
 //                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
 //                let price = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! String
-//                
+//
 //                MirrorWorldSDK.share.ListNFT(mint_address: mint_address, price: Double(price) ?? 0.1, confirmation: "finalized") { data in
 //                    self?.Log(data)
 //                    loadingActive.stopAnimating()
-//                    
+//
 //                } onFailed: { code, message in
 //                    self?.Log("\(item):failed:\(code),\(message ?? "")")
 //                    loadingActive.stopAnimating()
-//                    
+//
 //                }
 //            }
-//            
+//
 //            break
 //        case "CancelNFTListing":
 //            view.addSubview(paramtersView)
@@ -389,15 +373,15 @@ class SolanaAPIView{
 //                MWSDK.CancelNFTListing(mint_address: mint_address, price: Double(price) ?? 1.1) { data in
 //                    self?.Log(data)
 //                    loadingActive.stopAnimating()
-//                    
+//
 //                } onFailed: { code, message in
 //                    self?.Log("\(item):failed:\(code),\(message ?? "")")
 //                    loadingActive.stopAnimating()
 //                }
 //            }
-//            
+//
 //            break
-//            
+//
 //        case "BuyNFT":
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.mint_address,.price])
@@ -413,14 +397,14 @@ class SolanaAPIView{
 //                }
 //            }
 //            break
-//            
-//            
+//
+//
 //        case "FetchNFTsByMintAddresses":
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.mint_address])
 //            paramtersView.paramtersJson = {[weak self] datas in
 //                let mint_address = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
-//                
+//
 //                var mint_address_arr:[String] = []
 //                mint_address.split(separator: ",").forEach { subStr in
 //                    mint_address_arr.append(String(subStr))
@@ -432,12 +416,12 @@ class SolanaAPIView{
 //                } onFailed: { code, message in
 //                    self?.Log("\(item):failed:\(code),\(message ?? "")")
 //                    loadingActive.stopAnimating()
-//                    
+//
 //                }
-//                
+//
 //            }
-//            
-//            
+//
+//
 //            break
 //        case "FetchNFTsByUpdateAuthorities":
 //            view.addSubview(paramtersView)
@@ -446,12 +430,12 @@ class SolanaAPIView{
 //                let update_authorities = (datas.first(where: {$0.keyText == "update_authorities"})?.valueText)! as! String
 //                let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
 //                let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
-//                
+//
 //                var update_authorities_arr:[String] = []
 //                update_authorities.split(separator: ",").forEach { subStr in
 //                    update_authorities_arr.append(String(subStr))
 //                }
-//                
+//
 //                MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: update_authorities_arr, limit: Double(limit) ?? 1.0, offset: Double(offset) ?? 0.1) { data in
 //                    self?.Log(data)
 //                    loadingActive.stopAnimating()
@@ -460,9 +444,9 @@ class SolanaAPIView{
 //                    loadingActive.stopAnimating()
 //                }
 //            }
-//            
-//            
-//            
+//
+//
+//
 //            break
 //        case "FetchNFTsByCreatorAddresses":
 //            view.addSubview(paramtersView)
@@ -471,7 +455,7 @@ class SolanaAPIView{
 //                let creators = (datas.first(where: {$0.keyText == "creators"})?.valueText)! as! String
 //                let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
 //                let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
-//                
+//
 //                var creatorsArr:[String] = []
 //                creators.split(separator: ",").forEach { subStr in
 //                    creatorsArr.append(String(subStr))
@@ -484,7 +468,7 @@ class SolanaAPIView{
 //                    loadingActive.stopAnimating()
 //                }
 //            }
-//            
+//
 //            break
 //        case "FetchNFTsByOwnerAddresses":
 //            view.addSubview(paramtersView)
@@ -493,7 +477,7 @@ class SolanaAPIView{
 //                let owners = (datas.first(where: {$0.keyText == "owners"})?.valueText)! as! String
 //                let limit = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! String
 //                let offset = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! String
-//                
+//
 //                var ownersArr:[String] = []
 //                owners.split(separator: ",").forEach { subStr in
 //                    ownersArr.append(String(subStr))
@@ -506,10 +490,10 @@ class SolanaAPIView{
 //                    loadingActive.stopAnimating()
 //                }
 //            }
-//            
-//            
+//
+//
 //            break
-//            
+//            //Metadata
 //        case "Get collection filter info":
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.collection_mint])
@@ -523,7 +507,7 @@ class SolanaAPIView{
 //                    self?.Log("\(item):failed:\(code),\(message ?? "")")
 //                }
 //            }
-//            
+//
 //
 //            break
 //        case "Get nft info":
@@ -553,7 +537,7 @@ class SolanaAPIView{
 //                    self?.Log("\(item):failed  code:\(code),message: \(message ?? "")")
 //                }
 //            }
-//            
+//
 //
 //            break
 //        case "Get nft events":
@@ -612,13 +596,13 @@ class SolanaAPIView{
 //            view.addSubview(paramtersView)
 //            paramtersView.setParams(keys: [.collection_mint,.page,.page_size,.sale])
 //            paramtersView.paramtersJson = {[weak self] datas in
-//                
+//
 //                let collection_mint = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
 //                let page = (datas.first(where: {$0.keyText == "page"})?.valueText)! as! String
 //                let page_size = (datas.first(where: {$0.keyText == "page_size"})?.valueText)! as! String
 //                let sale = (datas.first(where: {$0.keyText == "sale"})?.valueText)! as! String
-//               
-//                
+//
+//
 //                MWSDK.GetNFTsByUnabridgedParams(collection: collection_mint, page: Int(page) ?? 0, page_size: Int(page_size) ?? 10, order: ["order_by":"price","desc":true], sale: Int(sale) ?? 0, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]) { data in
 //                    self?.Log(data)
 //                    loadingActive.stopAnimating()
@@ -666,11 +650,11 @@ class SolanaAPIView{
 //
 //            break
 //
-//        default:
-//            self.Log(item + " Coming soon.")
-//            loadingActive.stopAnimating()
-//            break
-//            
-//        }
+        default:
+            self.Log(item + " Coming soon.")
+            loadingActive.stopAnimating()
+            break
+
+        }
     }
 }

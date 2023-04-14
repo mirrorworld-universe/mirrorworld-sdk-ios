@@ -1,30 +1,24 @@
-//
-//  MirrorMarketplaceMoudle.swift
-//  MirrorWorldSDK
-//
-//  Created by ZMG on 2022/11/1.
-//
+
 
 import UIKit
 
-@objc public class MirrorMarketplaceMoudle: MirrorBaseMoudle {
+@objc public class SolanaAsset: MirrorBaseMoudle {
     
     var config:MirrorWorldSDKConfig?
     var newAuth:MirrorSecurityVerification?
     
     @objc public func buyNFT(mint_address:String,price:Double,auction_house:String,confirmation:String, skip_preflight:Bool,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            var params = [
+            let params = [
                 "mint_address":mint_address,
                 "price":price,
                 "auction_house":auction_house,
                 "confirmation":confirmation,
                 "skip_preflight":skip_preflight
             ]as [String : Any]
-            let api = MirrorWorldNetApi.BuyNFT(mint_address: mint_address, price: price, auction_house:auction_house,confirmation: confirmation,skip_preflight:skip_preflight)
             self.authorization.requestActionAuthorization(config: self.config, params,actionType:MWActionType.buyNFT) { success, authToken, errorDesc in
                 if success{
-                    var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetAuction,APIPath:"buy")
+                    let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetAuction,APIPath:"buy")
                     MirrorWorldNetWork().request(url: url,method:"Post",params:params,authToken) {[weak self] response in
                         self?.handleResponse(response: response, success: { response in
                             onSuccess?(response)
@@ -48,7 +42,7 @@ import UIKit
     
     @objc public func cancelNFTListing(mint_address:String,price:Double,auction_house:String,confirmation:String,skip_preflight:Bool,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            var params = [
+            let params = [
                 "mint_address":mint_address,
                 "price":price,
                 "auction_house":auction_house,
@@ -57,7 +51,7 @@ import UIKit
             ] as [String : Any]
             self.authorization.requestActionAuthorization(config: self.config,params,actionType: MWActionType.cancelListing) { success, authToken, errorDesc in
                 if success{
-                    var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetAuction,APIPath:"cancel")
+                    let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetAuction,APIPath:"cancel")
                     MirrorWorldNetWork().request(url: url,method:"Post",params:params,authToken) {[weak self] response in
                         self?.handleResponse(response: response, success: { data in
                             onSuccess?(data)
@@ -78,7 +72,7 @@ import UIKit
     
     @objc public func listNFT(mint_address:String,price:Double,auction_house:String,confirmation:String,skip_preflight:Bool,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            var params = [
+            let params = [
                 "mint_address":mint_address,
                 "price":price,
                 "auction_house":auction_house,
@@ -87,7 +81,7 @@ import UIKit
             ] as [String : Any]
             self.authorization.requestActionAuthorization(config: self.config, params,actionType: MWActionType.listNFT) { success, authToken,errorDes  in
                 if success{
-                    var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetAuction,APIPath:"list")
+                    let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetAuction,APIPath:"list")
                     MirrorWorldNetWork().request(url: url,method: "Post",params: params,authToken) {[weak self] response in
                         self?.handleResponse(response: response, success: { response in
                             onSuccess?(response)
@@ -111,7 +105,7 @@ import UIKit
     
     @objc public func transferNFTToAnotherSolanaWallet(mint_address:String,to_wallet_address:String,confirmation:String,skip_preflight:Bool,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            var params = [
+            let params = [
                 "mint_address":mint_address,
                 "to_wallet_address":to_wallet_address,
                 "confirmation":confirmation,
@@ -119,7 +113,7 @@ import UIKit
             ] as [String : Any]
             self.authorization.requestActionAuthorization(config: self.config, params,actionType: MWActionType.transferNFT) { success, authToken, errorDesc in
                 if success{
-                    var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetAuction,APIPath:"transfer")
+                    let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetAuction,APIPath:"transfer")
                     MirrorWorldNetWork().request(url:url,method: "Post", params:params,authToken) {[weak self] response in
                         self?.handleResponse(response: response, success: { response in
                             onSuccess?(response)
@@ -142,8 +136,8 @@ import UIKit
     
     @objc public func checkTransactionsStatus(signatures:[String],onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetConfirmation,APIPath:"transactions-status")
-            var params = [
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetConfirmation,APIPath:"transactions-status")
+            let params = [
                 "signatures":signatures
             ] as [String : Any]
             MirrorWorldNetWork().request(url: url,method: "Post",params: params) {[weak self] response in
@@ -162,8 +156,8 @@ import UIKit
     
     @objc public func checkMintingStatus(mint_addresses:[String],onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetConfirmation,APIPath:"mints-status")
-            var params = [
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetConfirmation,APIPath:"mints-status")
+            let params = [
                 "mint_addresses":mint_addresses
             ] as [String : Any]
             MirrorWorldNetWork().request(url: url,method: "Post",params: params) {[weak self] response in
@@ -187,10 +181,9 @@ import UIKit
                      "confirmation":confirmation,
                      "seller_fee_basis_points":seller_fee_basis_points] as [String : Any]
         self.checkAccessToken { succ in
-            let api = MirrorWorldNetApi.MintNewCollection(param)
             self.authorization.requestActionAuthorization(config: self.config, param,actionType: MWActionType.createCollection) { success, authToken,errorDesc  in
                 if succ{
-                    var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetMint,APIPath:"collection")
+                    let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetMint,APIPath:"collection")
                     MirrorWorldNetWork().request(url:url,method:"Post", params:param,authToken) {[weak self] response in
                         self?.handleResponse(response: response, success: { data in
                             onSuccess?(data)
@@ -220,10 +213,9 @@ import UIKit
                      "confirmation":confirmation,
                      "skip_preflight":skip_preflight
         ] as [String : Any]
-        var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetMint,APIPath:"nft")
+        let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetMint,APIPath:"nft")
         self.checkAccessToken {[weak self] succ in
             /// authToken
-            let api = MirrorWorldNetApi.MintNewNFT(param)
             self?.authorization.requestActionAuthorization(config: self?.config, param,actionType: MWActionType.mintNFT, { success, authToken,errorDesc  in
                 MWLog.console("action authorization API:\(String(describing: authToken))")
                 if succ {
@@ -250,7 +242,7 @@ import UIKit
     }
     
     @objc public func UpdateNFTMetadata(mint_address:String,url:String,seller_fee_basis_points:String,name:String,symbol:String,updateAuthority:String,confirmation:String,skip_preflight:Bool,_ onReceive:((_ isSucc:Bool,_ data:String?)->Void)?){
-        var params = [
+        let params = [
             "mint_address":mint_address,
             "url":url,
             "name":name,
@@ -263,7 +255,7 @@ import UIKit
             if(succ){
                 self.authorization.requestActionAuthorization(config: self.config, params,actionType: MWActionType.updateNFT, { success, authToken, errorDesc in
                     if(success){
-                        var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetMint,APIPath:"collection")
+                        let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetMint,APIPath:"collection")
                         MirrorWorldNetWork().request(url: url,method: "Post",params: params,authToken) { response in
                             self.handleResponse(response: response, success: { response in
                                 onReceive?(true,response)
@@ -285,7 +277,7 @@ import UIKit
     
     @objc public func queryNFT(mint_Address:String,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-                var url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetNFT,APIPath:mint_Address)
+                let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetNFT,APIPath:mint_Address)
             MirrorWorldNetWork().request(url:url, method: "Get",params:nil) {[weak self] response in
                 self?.handleResponse(response: response, success: { response in
                     onSuccess?(response)
@@ -303,7 +295,7 @@ import UIKit
     @objc public func SearchNFTs(mint_addresses:[String],onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.AssetNFT, APIPath: "mints")
-            var params = [
+            let params = [
                 "mint_address":mint_addresses
             ] as [String : Any]
             MirrorWorldNetWork().request(url: url,method: "Post",params:params) {[weak self] response in
@@ -325,7 +317,7 @@ import UIKit
     @objc public func searchNFTsByOwner(owners:[String],limit:Int,offset:Int,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.AssetNFT, APIPath: "owners")
-            var params = [
+            let params = [
                 "owners":owners,
                 "limit":limit,
                 "offset":offset
