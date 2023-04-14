@@ -103,7 +103,7 @@ import UIKit
         }
     }
     
-    @objc public func transferNFTToAnotherSolanaWallet(mint_address:String,to_wallet_address:String,confirmation:String,skip_preflight:Bool,onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func transferNFT(mint_address:String,to_wallet_address:String,confirmation:String,skip_preflight:Bool,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
             let params = [
                 "mint_address":mint_address,
@@ -241,7 +241,7 @@ import UIKit
         }
     }
     
-    @objc public func UpdateNFTMetadata(mint_address:String,url:String,seller_fee_basis_points:String,name:String,symbol:String,updateAuthority:String,confirmation:String,skip_preflight:Bool,_ onReceive:((_ isSucc:Bool,_ data:String?)->Void)?){
+    @objc public func updateNFT(mint_address:String,url:String,seller_fee_basis_points:Int,name:String,symbol:String,updateAuthority:String,confirmation:String,skip_preflight:Bool,_ onReceive:((_ isSucc:Bool,_ data:String?)->Void)?){
         let params = [
             "mint_address":mint_address,
             "url":url,
@@ -292,7 +292,7 @@ import UIKit
         }
     }
     
-    @objc public func SearchNFTs(mint_addresses:[String],onSuccess:onSuccess,onFailed:onFailed){
+    @objc public func searchNFTs(mint_addresses:[String],onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.AssetNFT, APIPath: "mints")
             let params = [

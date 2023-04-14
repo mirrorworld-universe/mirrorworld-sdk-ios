@@ -80,7 +80,7 @@ import UIKit
     }
     
     @objc public func getNFTs(collection: String,  sale: Int, page: Int, page_size: Int, order: [String : Any],auction_house:String,filter: [[String : Any]], onSuccess:onSuccess,onFailed:onFailed){
-        let api = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Metadata, APIPath: "nfts")
+        let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Metadata, APIPath: "nfts")
         let params = [
             "collection":collection,
             "sale":sale,

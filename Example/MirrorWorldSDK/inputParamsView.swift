@@ -11,6 +11,7 @@ import MirrorWorldSDK
 
 enum paramsData {
     case email
+    case password
     case collection_mint
     case name
     case symbol
@@ -55,6 +56,8 @@ enum paramsData {
         switch self {
         case .email:
             return "email"
+        case .password:
+            return "password"
         case .collection_mint:
             return "collection_mint"
         case .name:
