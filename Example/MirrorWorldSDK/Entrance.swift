@@ -115,22 +115,22 @@ class Entrance :UIViewController{
         DataModel.shared.chain = MWChain.Ethereum
         DataModel.shared.title = "Mirror World SDK(Ethreum)";
         DataModel.shared.data = [
-                          (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
-                          (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
-                          (moudleTitle:"Marketplace",MethodList:[
-                            "openMarketPlacePage",
-                            "MintNewCollection",
-                            "MintNewNFTOnCollection",
-                            "CheckStatusOfMinting",
-                            "UpdateNFTProperties",
-                            "FetchSingleNFT",
-                            "UpdateNFTListing",
-                            "ListNFT",
-                            "CancelNFTListing",
-                            "FetchNFTsByMintAddresses",
-                            "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
-                            "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
-                          (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","GetNFTsByUnabridgedParams","Get nft real price","Create new collection"])
+            (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
+            (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionsBySignature","getTokens","getTokensByWallet","transferETH","transferToken"]),
+            (moudleTitle:"Asset",MethodList:[
+              "mintCollection",
+              "mintNFT",
+              "updateNFT",
+              "queryNFT",
+              "listNFT",
+              "cancelNFTListing",
+              "searchNFTs",
+              "transferNFT",
+              "buyNFT",
+              "searchNFTsByOwner"]),
+            (moudleTitle:"Metadata",MethodList:[
+              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","searchNFTs","recommendSearchNFT","getNFTs","getMarketplaceEvents"])
         ]
     }
     
@@ -138,22 +138,22 @@ class Entrance :UIViewController{
         DataModel.shared.chain = MWChain.Polygon
         DataModel.shared.title = "Mirror World SDK(Polygon)";
         DataModel.shared.data = [
-                          (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
-                          (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
-                          (moudleTitle:"Marketplace",MethodList:[
-                            "openMarketPlacePage",
-                            "MintNewCollection",
-                            "MintNewNFTOnCollection",
-                            "CheckStatusOfMinting",
-                            "UpdateNFTProperties",
-                            "FetchSingleNFT",
-                            "UpdateNFTListing",
-                            "ListNFT",
-                            "CancelNFTListing",
-                            "FetchNFTsByMintAddresses",
-                            "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
-                            "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
-                          (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","GetNFTsByUnabridgedParams","Get nft real price","Create new collection"])
+            (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
+            (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionsBySignature","getTokens","getTokensByWallet","transferMatic","transferToken"]),
+            (moudleTitle:"Asset",MethodList:[
+              "mintCollection",
+              "mintNFT",
+              "updateNFT",
+              "queryNFT",
+              "listNFT",
+              "cancelNFTListing",
+              "searchNFTs",
+              "transferNFT",
+              "buyNFT",
+              "searchNFTsByOwner"]),
+            (moudleTitle:"Metadata",MethodList:[
+              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","searchNFTs","recommendSearchNFT","getNFTs","getMarketplaceEvents"])
         ]
     }
     
@@ -161,22 +161,22 @@ class Entrance :UIViewController{
         DataModel.shared.chain = MWChain.BNB
         DataModel.shared.title = "Mirror World SDK(BNB)";
         DataModel.shared.data = [
-                          (moudleTitle:"Auth",MethodList:["Start Login","Guest Login","Logs out a user","CheckAuthenticated"]),
-                          (moudleTitle:"Wallet",MethodList:["OpenWallet","GetAccessToken","QueryUser","Get wallet tokens","Get wallet transactions","Get wallet transaction by signature","CheckStatusOfTransactions","Transfer SOL to another address","Transfer Token to another address"]),
-                          (moudleTitle:"Marketplace",MethodList:[
-                            "openMarketPlacePage",
-                            "MintNewCollection",
-                            "MintNewNFTOnCollection",
-                            "CheckStatusOfMinting",
-                            "UpdateNFTProperties",
-                            "FetchSingleNFT",
-                            "UpdateNFTListing",
-                            "ListNFT",
-                            "CancelNFTListing",
-                            "FetchNFTsByMintAddresses",
-                            "CreateVerifiedSubCollection","TransferNFTToAnotherSolanaWallet",
-                            "BuyNFT","FetchNFTsByUpdateAuthorities","FetchNFTsByCreatorAddresses","FetchNFTsByOwnerAddresses"]),
-                          (moudleTitle:"MetaDataFilter",MethodList:["Get collection filter info","Get nft info","Get collection info","Get nft events","Search nfts","Recommend search nft","GetNFTsByUnabridgedParams","Get nft real price","Create new collection"])
+            (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
+            (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionsBySignature","getTokens","getTokensByWallet","transferBNB","transferToken"]),
+            (moudleTitle:"Asset",MethodList:[
+              "mintCollection",
+              "mintNFT",
+              "updateNFT",
+              "queryNFT",
+              "listNFT",
+              "cancelNFTListing",
+              "searchNFTs",
+              "transferNFT",
+              "buyNFT",
+              "searchNFTsByOwner"]),
+            (moudleTitle:"Metadata",MethodList:[
+              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","searchNFTs","recommendSearchNFT","getNFTs","getMarketplaceEvents"])
         ]
     }
 }

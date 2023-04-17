@@ -110,6 +110,10 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             var solanaView:SolanaAPIView = SolanaAPIView()
             solanaView.Init(textView: textView)
             solanaView.onAPISelected(view, paramtersView: paramtersView, loadingActive: loadingActive, dataSource: dataSource, tableView: tableView, didSelectRowAt: indexPath)
+        }else if(DataModel.shared.chain == MWChain.Ethereum || DataModel.shared.chain == MWChain.Polygon || DataModel.shared.chain == MWChain.BNB){
+            var evmView:EVMAPIView = EVMAPIView()
+            evmView.Init(textView: textView)
+            evmView.onAPISelected(view, paramtersView: paramtersView, loadingActive: loadingActive, dataSource: dataSource, tableView: tableView, didSelectRowAt: indexPath)
         }else{
             
         }

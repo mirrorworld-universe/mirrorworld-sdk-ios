@@ -180,6 +180,8 @@ class MirrorUrlUtils :NSObject{
             return "metadata/nft";
         }else if(serviceEnum == MirrorService.MetadataNFTSearch){
             return "metadata/nft/search";
+        }else if(serviceEnum == MirrorService.MetadataNFTMarketplace){
+            return "metadata/marketplace";
         }else {
             MirrorWorldLog.shard.console("Unknown service:\(serviceEnum)");
             return "";
@@ -206,6 +208,7 @@ class MirrorUrlUtils :NSObject{
     case MetadataCollection
     case MetadataNFT
     case MetadataNFTSearch
+    case MetadataNFTMarketplace
     case Marketplace
     case Wallet
 }

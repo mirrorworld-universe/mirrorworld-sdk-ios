@@ -13,6 +13,8 @@ enum paramsData {
     case email
     case password
     case collection_mint
+    case collection_address
+    case token_id
     case name
     case symbol
     case url
@@ -20,20 +22,26 @@ enum paramsData {
     case confirmation
     case skip_preflight
     
+    case cursor
     case limit
     case next_before
     case signature
     case another_signature
     case to_publickey
+    case nonce
     case amount
     case token_mint
     case decimals
     
     case mint_address
+    case token_address
     case another_mint_address
     case price
     case auction_house
     case to_wallet_address
+    case marketplace_address
+    case contract_type
+    case mint_start_id
     
     case update_authorities
     case offset
@@ -51,10 +59,46 @@ enum paramsData {
     
     case collection_name
     case collection_type
-    
+    case gasPrice
+    case gasLimit
+    case to
+    case contract
+    case mint_end_id
+    case mint_amount
+    case owner_address
     
     var keyText:String{
         switch self {
+        case .cursor:
+            return "cursor"
+        case .owner_address:
+            return "owner_address"
+        case .token_address:
+            return "token_address"
+        case .mint_start_id:
+            return "mint_start_id"
+        case .mint_end_id:
+            return "mint_end_id"
+        case .mint_amount:
+            return "mint_amount"
+        case .contract_type:
+            return "contract_type"
+        case .marketplace_address:
+            return "marketplace_address"
+        case .token_id:
+            return "token_id"
+        case .collection_address:
+            return "collection_address"
+        case .contract:
+            return "contract"
+        case .to:
+            return "to"
+        case .gasLimit:
+            return "gasLimit"
+        case .gasPrice:
+            return "gasPrice"
+        case .nonce:
+            return "nonce"
         case .email:
             return "email"
         case .password:

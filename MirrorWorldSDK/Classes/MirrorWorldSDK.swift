@@ -26,6 +26,7 @@ public let MWSDK = MirrorWorldSDK.share
     public var onWalletLogOut:(()->())?
     
     public var Solana:MirrorSolana = MirrorSolana()
+    public var EVM:MirrorEVM = MirrorEVM()
     
     private var authMoudle:MirrorAuthMoudle = MirrorAuthMoudle()
 
