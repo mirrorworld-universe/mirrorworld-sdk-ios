@@ -25,11 +25,12 @@ class MirrorUrlUtils :NSObject{
             return ""
         }
         var host = getUrlHost(service:serviceEnum);
+        var service = getServiceString(serviceEnum: serviceEnum);
         var version = "v2";
         var chainStr = getChainString();
         var network = getNetworkString();
 
-        var finalUrl = "\(host)/\(version)/\(chainStr)/\(network)/\(serviceEnum)/\(APIPath)";
+        var finalUrl = "\(host)/\(version)/\(chainStr)/\(network)/\(service)/\(APIPath)";
         return finalUrl;
     }
     
@@ -49,7 +50,7 @@ class MirrorUrlUtils :NSObject{
         }
     }
     
-    private func getUrlHost(service:MirrorService) -> String{
+    public func getUrlHost(service:MirrorService) -> String{
         if(service == MirrorService.Wallet || belongToAsset(service: service) || belongToMetadata(service: service)
         || service == MirrorService.AssetConfirmation){
             if(env == MWEnvironment.StagingMainNet){
@@ -63,6 +64,19 @@ class MirrorUrlUtils :NSObject{
             }else {
                 MirrorWorldLog.shard.console("Unknown env:\(env)");
                 return "https://api-staging.mirrorworld.fun";
+            }
+        }else if(service == MirrorService.Auth){
+            if(env == MWEnvironment.StagingMainNet){
+                return "https://auth-staging.mirrorworld.fun";
+            }else if(env == MWEnvironment.StagingDevNet){
+                return "https://auth-staging.mirrorworld.fun";
+            }else if(env == MWEnvironment.DevNet){
+                return "https://auth.mirrorworld.fun";
+            }else if(env == MWEnvironment.MainNet){
+                return "https://auth.mirrorworld.fun";
+            }else {
+                MirrorWorldLog.shard.console("Unknown env:\(env).Will use production host.");
+                return "https://auth.mirrorworld.fun";
             }
         }else {
             if(env == MWEnvironment.StagingMainNet){
@@ -211,4 +225,5 @@ class MirrorUrlUtils :NSObject{
     case MetadataNFTMarketplace
     case Marketplace
     case Wallet
+    case Auth
 }

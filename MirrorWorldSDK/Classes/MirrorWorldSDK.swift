@@ -286,8 +286,6 @@ extension MirrorWorldSDK{
         }
         sdkProtol.authorizationTokenBlock = {[weak self] (uuid, token) in
             self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
-            self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
-            self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
             MirrorSecurityVerificationShared.share.authTokenCallBack(uuid: uuid, token: token)
             
             MirrorSecurityVerificationShared.share.ApproveCallBack(uuid: uuid, token: token)

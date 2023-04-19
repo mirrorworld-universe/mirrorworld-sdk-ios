@@ -149,6 +149,18 @@ public class MirrorWorldHandleProtocol:NSObject{
                 })
             }
             return paramDic
+        }else if (schemeValue?.hasPrefix("data") ?? false){
+            let data = schemeValue?.components(separatedBy: "data?").last
+            let params = data?.components(separatedBy: "&")
+            var paramDic:[String:String] = [:]
+            if params?.count ?? 0 > 0{
+                params?.forEach({ item in
+                    let key = item.components(separatedBy: "=").first
+                    let value = item.components(separatedBy: "=").last
+                    paramDic[key ?? ""] = value
+                })
+            }
+            return paramDic
         }else if (schemeValue?.hasPrefix("wallet") ?? false){
             MirrorWorldSDKAuthData.share.clearToken()
             onWalletLogOut?()
@@ -181,36 +193,6 @@ public extension String{
     }
 }
 
-
-@objc public class MirrorTool:NSObject{
-    
-   @objc public class func dicToString(_ dic:[String:Any]?) -> String? {
-       guard let dictionary = dic else { return nil }
-        do {
-            let data1 =  try JSONSerialization.data(withJSONObject: dictionary,options: .prettyPrinted)
-            let convertedString = String(data: data1, encoding: .utf8)
-            return convertedString
-            
-        } catch let myJSONError {
-            print(myJSONError)
-        }
-        return nil
-    }
-    @objc public class func arrayToString(_ array:[Any]?) -> String? {
-        guard let arr = array else { return nil }
-        do {
-            let data1 =  try JSONSerialization.data(withJSONObject: arr,options: .prettyPrinted)
-            let convertedString = String(data: data1, encoding: .utf8)
-            return convertedString
-            
-        } catch let myJSONError {
-            print(myJSONError)
-        }
-        return nil
-    }
-    
-    
-}
 
 /*
 public extension [String:Any] {

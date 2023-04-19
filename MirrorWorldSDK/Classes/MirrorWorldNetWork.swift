@@ -80,7 +80,7 @@ public struct MirrorError{
     
     public func request(url:String,method:String,params:[String:Any]?,_ authorizationToken:String? = nil,_ success:((_ response:String?)->())?,_ faild:((_ code:Int,_ errorDesc:String)->())?){
         let url:URL = URL(string: url)!
-        
+        print("request url is:\(url)")
         
         let session = configURLSession()
         
@@ -88,7 +88,7 @@ public struct MirrorError{
         request.httpMethod = method
         request.setValue(MWSDK.sdkConfig.apiKey, forHTTPHeaderField: "x-api-key")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
+//        request.setValue("application/json", forHTTPHeaderField: "Accept")
 
         let access_token = MirrorWorldSDKAuthData.share.access_token
         if access_token.count > 0 {
@@ -104,7 +104,7 @@ public struct MirrorError{
 //            print("request have x-authorization-token:\(authorizationToken ?? "")")
         }
         
-        if method == "GET"{
+        if method == "GET" || method == "Get"{
             let keys = params?.keys
             if keys?.count ?? 0 > 0 {
                 keys?.forEach({ k in
@@ -113,11 +113,11 @@ public struct MirrorError{
                     request.setValue(value, forHTTPHeaderField: headerField)
                 })
             }
-        }
-        
-        if method == "POST" {
+        }else if method == "POST" || method == "Post"{
             let bodyString:String? = MirrorTool.dicToString(params)
             request.httpBody = bodyString?.data(using: .utf8)
+        }else{
+            print("Don't know the method:\(method)")
         }
         
         

@@ -40,7 +40,7 @@ public typealias onFailed = ((_ code:Int,_ message:String?)->Void)?
             }
 
         }else{
-            MWLog.console("AccessToken already exists.")
+            MWLog.console("AccessToken check success.")
             finish?(true)
         }
 

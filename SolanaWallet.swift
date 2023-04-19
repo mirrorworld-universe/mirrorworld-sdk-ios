@@ -11,7 +11,7 @@ import UIKit
   
     var config:MirrorWorldSDKConfig?
     
-    @objc public func getWalletTransactions(limit:Int,next_before:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func getTransactions(limit:Int,next_before:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "transactions?limit=\(limit)&next_before=\(next_before)")
             MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in
@@ -28,7 +28,7 @@ import UIKit
         }
     }
 
-    @objc public func getWalletTransactionByWallet(wallet_address:String, limit:Int,next_before:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func getTransactionsByWallet(wallet_address:String, limit:Int,next_before:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "\(wallet_address)/transactions?limit=\(limit)&next_before=\(next_before)")
             MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in
@@ -45,7 +45,7 @@ import UIKit
         }
     }
     
-    @objc public func getWalletTransactionBySignature(signature:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func getTransactionBySignature(signature:String, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "transactions/\(signature)")
             MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in
@@ -62,7 +62,7 @@ import UIKit
         }
     }
     
-    @objc public func getWalletTokens(onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func getTokens(onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "tokens")
             MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in
@@ -80,7 +80,7 @@ import UIKit
         }
     }
     
-    @objc public func getWalletTokensByWallet(wallet_address:String,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+    @objc public func getTokensByWallet(wallet_address:String,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "tokens/\(wallet_address)")
             MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in

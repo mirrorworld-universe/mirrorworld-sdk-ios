@@ -23,6 +23,7 @@
 		B91520EAC1387E65D6826CCB3BBB5009 /* MirrorWorldSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F6843435746FCE3B7E3E6DEAACC2E6 /* MirrorWorldSDK.swift */; };
 		C18F2491EF9A536F06ACD2A677797858 /* MirrorSecurityVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF59204687835C6E043D6573DC303EAE /* MirrorSecurityVerification.swift */; };
 		C57162628264049719D4013EFA3136AF /* MirrorWorldSDKConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ECDEF44F97DED269C500AB1A9D1EE /* MirrorWorldSDKConfig.swift */; };
+		E61B60FC29F01AF10067980E /* MirrorTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61B60FB29F01AF10067980E /* MirrorTool.swift */; };
 		E651ABDE75FAD65AAFEAAEC55EB5734E /* Pods-MirrorWorldSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0BDAF88CA548ED30036463E472A8FB5 /* Pods-MirrorWorldSDK_Example-dummy.m */; };
 		E69A2C8F29E9361A00A8BB3C /* SolanaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69A2C8E29E9361A00A8BB3C /* SolanaAsset.swift */; };
 		E69A2C9129E9369700A8BB3C /* SolanaWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69A2C9029E9369700A8BB3C /* SolanaWallet.swift */; };
@@ -101,6 +102,7 @@
 		DAC1A5263E705CCF7D3ACB8086B1EF23 /* Pods-MirrorWorldSDK_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MirrorWorldSDK_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		E4B818B70331DA4057921398AFCFB632 /* Pods-MirrorWorldSDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MirrorWorldSDK_Example-umbrella.h"; sourceTree = "<group>"; };
 		E4C0F0A1549DACD3CC237549EE79FC5F /* Pods-MirrorWorldSDK_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MirrorWorldSDK_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E61B60FB29F01AF10067980E /* MirrorTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorTool.swift; sourceTree = "<group>"; };
 		E69A2C8E29E9361A00A8BB3C /* SolanaAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaAsset.swift; sourceTree = "<group>"; };
 		E69A2C9029E9369700A8BB3C /* SolanaWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaWallet.swift; sourceTree = "<group>"; };
 		E69A2C9229E9504700A8BB3C /* SolanaMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaMetadata.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				E6E0D6CB29ED238100D23C8D /* EVMAsset.swift */,
 				E6E0D6CF29ED2AF900D23C8D /* EVMWallet.swift */,
 				E6E0D6D129ED2E3000D23C8D /* EVMMetadata.swift */,
+				E61B60FB29F01AF10067980E /* MirrorTool.swift */,
 			);
 			name = MirrorWorldSDK;
 			path = ../..;
@@ -464,6 +467,7 @@
 				E6E0D6D029ED2AF900D23C8D /* EVMWallet.swift in Sources */,
 				E6A3B87629E7EAF200C60877 /* MirrorUrlUtils.swift in Sources */,
 				E69A2C8F29E9361A00A8BB3C /* SolanaAsset.swift in Sources */,
+				E61B60FC29F01AF10067980E /* MirrorTool.swift in Sources */,
 				E6E0D6D229ED2E3000D23C8D /* EVMMetadata.swift in Sources */,
 				1CCFEB066DEFD967FA5ABEB36A574152 /* MirrorWorldUserInfo.swift in Sources */,
 				E6E0D6CE29ED23DA00D23C8D /* MirrorEVM.swift in Sources */,

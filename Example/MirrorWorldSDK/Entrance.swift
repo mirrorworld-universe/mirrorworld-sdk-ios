@@ -93,7 +93,7 @@ class Entrance :UIViewController{
         DataModel.shared.data = [
                           (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
                           (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
-                          (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionsBySignature","getTokens","getTokensByWallet","transferSOL","transferToken"]),
+                          (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","getTokensByWallet","transferSOL","transferToken"]),
                           (moudleTitle:"Asset",MethodList:[
                             "mintCollection",
                             "mintNFT",
@@ -117,7 +117,7 @@ class Entrance :UIViewController{
         DataModel.shared.data = [
             (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
             (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
-            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionsBySignature","getTokens","getTokensByWallet","transferETH","transferToken"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","getTokensByWallet","transferETH","transferToken"]),
             (moudleTitle:"Asset",MethodList:[
               "mintCollection",
               "mintNFT",
@@ -140,7 +140,7 @@ class Entrance :UIViewController{
         DataModel.shared.data = [
             (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
             (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
-            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionsBySignature","getTokens","getTokensByWallet","transferMatic","transferToken"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","getTokensByWallet","transferMatic","transferToken"]),
             (moudleTitle:"Asset",MethodList:[
               "mintCollection",
               "mintNFT",
@@ -163,7 +163,7 @@ class Entrance :UIViewController{
         DataModel.shared.data = [
             (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
             (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
-            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionsBySignature","getTokens","getTokensByWallet","transferBNB","transferToken"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","getTokensByWallet","transferBNB","transferToken"]),
             (moudleTitle:"Asset",MethodList:[
               "mintCollection",
               "mintNFT",
