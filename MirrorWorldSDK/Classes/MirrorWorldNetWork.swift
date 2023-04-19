@@ -81,6 +81,7 @@ public struct MirrorError{
     public func request(url:String,method:String,params:[String:Any]?,_ authorizationToken:String? = nil,_ success:((_ response:String?)->())?,_ faild:((_ code:Int,_ errorDesc:String)->())?){
         let url:URL = URL(string: url)!
         
+        
         let session = configURLSession()
         
         var request = URLRequest(url: url)

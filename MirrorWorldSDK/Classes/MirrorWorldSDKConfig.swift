@@ -23,11 +23,11 @@ import UIKit
 }
 
 @objc public enum MWChain: Int{
-    case Solana = 1
-    case Ethereum = 2
-    case Polygon = 3
-    case BNB = 4
-    case SUI = 5
+    case Solana = 101
+    case Ethereum = 201
+    case Polygon = 202
+    case BNB = 203
+    case SUI = 301
 }
 
 

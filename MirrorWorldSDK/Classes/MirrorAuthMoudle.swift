@@ -46,6 +46,8 @@ import UIKit
             "email":email,
             "password":passWord
         ]
+        print("login with email params:\(params)")
+        
         MirrorWorldNetWork().request(url:url,method: "Post",params:params) { response in
             DispatchQueue.main.async {
                 let responseJson = response?.toJson()
@@ -74,7 +76,7 @@ import UIKit
     
     @objc public func GuestLogin(_ onReceive:((_ isSucc:Bool)->Void)?){
         let url = MirrorUrlUtils.shard.getActionRoot() + "auth/guest-login"
-        MirrorWorldNetWork().request(url: url,method: "Post",params: nil) { response in
+        MirrorWorldNetWork().request(url: url,method: "Get",params: nil) { response in
             DispatchQueue.main.async {
                 let responseJson = response?.toJson()
                 let data = responseJson?["data"] as? [String:Any]
