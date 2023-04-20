@@ -9,12 +9,22 @@ import Foundation
 
 @objc public class MirrorTool:NSObject{
     
-    @objc public class func getInputInt(someString:String) -> Int{
+    public class func getInputInt(someString:String) -> Int{
             print("getTransactions input limit: \(String(describing: someString))")
             let formatter = NumberFormatter()
         let limit:Int = formatter.number(from: someString ) as! Int
             
         return limit
+    }
+    public class func getInputConfirmation(someString:String) -> String{
+        if(someString.isEmpty){
+            return "confirmed"
+        }else{
+            return someString
+        }
+    }
+    public class func getInputDouble(_ str: String) -> Double {
+        return Double(str) ?? 0.0
     }
    @objc public class func dicToString(_ dic:[String:Any]?) -> String? {
        guard let dictionary = dic else { return nil }

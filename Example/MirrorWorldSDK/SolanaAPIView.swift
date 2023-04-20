@@ -226,9 +226,9 @@ class SolanaAPIView{
             paramtersView.setParams(keys: [.to_publickey,.amount,.token_mint,.decimals])
             paramtersView.paramtersJson = {datas in
                 let to_publickey:String = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
-                let amount:Int = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! Int
+                let amount:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! String)
                 let token_mint:String = (datas.first(where: {$0.keyText == "token_mint"})?.valueText)! as! String
-                let decimals:Int = (datas.first(where: {$0.keyText == "decimals"})?.valueText)! as! Int
+                let decimals:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "decimals"})?.valueText)! as! String)
                 
                 MWSDK.Solana.Wallet.transferToken(to_publickey: to_publickey, amount: Int(Double(amount) ?? 0.0), token_mint: token_mint, decimals: Int(decimals) ?? 1) { response in
                     self.Log(response)
@@ -245,10 +245,10 @@ class SolanaAPIView{
             paramtersView.setParams(keys: [.mint_address,.price,.auction_house,.confirmation,.skip_preflight])
             paramtersView.paramtersJson = {datas in
                 let mint_address:String = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
-                let price:Double = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! Double
+                let price:Double = MirrorTool.getInputDouble((datas.first(where: {$0.keyText == "price"})?.valueText)! as! String)
                 let auction_house:String = (datas.first(where: {$0.keyText == "auction_house"})?.valueText)! as! String
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
-                let skip_preflight:Bool = (datas.first(where: {$0.keyText == "skip_preflight"})?.valueText)! as! Bool
+                                let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
+                let skip_preflight = datas.first(where: { $0.keyText == "skip_preflight" }).flatMap { $0.valueText as? Bool } ?? false
                 MWSDK.Solana.Asset.buyNFT(mint_address: mint_address, price: Double(price) ?? 0.01,auction_house: auction_house,confirmation: confirmation,skip_preflight: skip_preflight) { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -264,10 +264,10 @@ class SolanaAPIView{
             paramtersView.paramtersJson = {datas in
                 
                     let mint_address:String = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
-                    let price:Double = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! Double
+                    let price:Double = MirrorTool.getInputDouble((datas.first(where: {$0.keyText == "price"})?.valueText)! as! String)
                     let auction_house:String = (datas.first(where: {$0.keyText == "auction_house"})?.valueText)! as! String
-                    let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
-                    let skip_preflight:Bool = (datas.first(where: {$0.keyText == "skip_preflight"})?.valueText)! as! Bool
+                                    let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
+                    let skip_preflight = datas.first(where: { $0.keyText == "skip_preflight" }).flatMap { $0.valueText as? Bool } ?? false
                 
                 MWSDK.Solana.Asset.cancelNFTListing(mint_address: mint_address, price: Double(price) ?? 1.1,auction_house: auction_house,confirmation: confirmation,skip_preflight: skip_preflight) { data in
                     self.Log(data)
@@ -285,10 +285,10 @@ class SolanaAPIView{
             paramtersView.setParams(keys: [.mint_address,.price,.auction_house,.confirmation,.skip_preflight])
             paramtersView.paramtersJson = {datas in
                 let mint_address:String = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
-                let price:Double = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! Double
+                let price:Double = MirrorTool.getInputDouble((datas.first(where: {$0.keyText == "price"})?.valueText)! as! String)
                 let auction_house:String = (datas.first(where: {$0.keyText == "auction_house"})?.valueText)! as! String
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
-                let skip_preflight:Bool = (datas.first(where: {$0.keyText == "skip_preflight"})?.valueText)! as! Bool
+                                let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
+                let skip_preflight = datas.first(where: { $0.keyText == "skip_preflight" }).flatMap { $0.valueText as? Bool } ?? false
                 MWSDK.Solana.Asset.listNFT(mint_address: mint_address, price: Double(price) ?? 0.1,auction_house: auction_house, confirmation: "finalized",skip_preflight: skip_preflight) { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -307,8 +307,8 @@ class SolanaAPIView{
             paramtersView.paramtersJson = {datas in
                 let mint_address:String = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
                 let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
-                let skip_preflight:Bool = (datas.first(where: {$0.keyText == "skip_preflight"})?.valueText)! as! Bool
+                                let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
+                let skip_preflight = datas.first(where: { $0.keyText == "skip_preflight" }).flatMap { $0.valueText as? Bool } ?? false
                 MWSDK.Solana.Asset.transferNFT(mint_address: mint_address, to_wallet_address: to_wallet_address, confirmation: confirmation, skip_preflight: skip_preflight,onSuccess: { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -357,9 +357,9 @@ class SolanaAPIView{
                 let name:String = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
                 let symbol:String = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
                 let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
-                let seller_fee_basis_points:Int = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! Int
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
-                let skip_preflight:Bool = (datas.first(where: {$0.keyText == "skip_preflight"})?.valueText)! as! Bool
+                let seller_fee_basis_points:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText) as! String)
+                let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
+                let skip_preflight = datas.first(where: { $0.keyText == "skip_preflight" }).flatMap { $0.valueText as? Bool } ?? false
 
                 MWSDK.Solana.Asset.mintCollection(url:url,name: name, symbol: symbol, to_wallet_address: to_wallet_address, seller_fee_basis_points: Int(seller_fee_basis_points) ,confirmation:confirmation,skip_preflight:skip_preflight, onSuccess: { data in
                     self.Log(data)
@@ -379,9 +379,9 @@ class SolanaAPIView{
                 let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
                 let url = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
                 let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
-                let seller_fee_basis_points:Int = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! Int
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
-                let skip_preflight:Bool = (datas.first(where: {$0.keyText == "skip_preflight"})?.valueText)! as! Bool
+                let seller_fee_basis_points:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText) as! String)
+                                let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
+                let skip_preflight = datas.first(where: { $0.keyText == "skip_preflight" }).flatMap { $0.valueText as? Bool } ?? false
                 MWSDK.Solana.Asset.mintNFT(collection_mint: collection_mint, url: url, to_wallet_address: to_wallet_address, seller_fee_basis_points: seller_fee_basis_points, confirmation: confirmation, skip_preflight: skip_preflight){ data in
 
                     self.Log("mintNewNFT - response:\n")
@@ -403,11 +403,11 @@ class SolanaAPIView{
                 let symbol:String = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
                 let update_authority:String = (datas.first(where: {$0.keyText == "update_authorities"})?.valueText)! as! String
                 let url:String = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
-                let sellerString:Int = (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText)! as! Int
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
-                let skip_preflight:Bool = (datas.first(where: {$0.keyText == "skip_preflight"})?.valueText)! as! Bool
+                let seller_fee_basis_points:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "seller_fee_basis_points"})?.valueText) as! String)
+                                let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
+                let skip_preflight = datas.first(where: { $0.keyText == "skip_preflight" }).flatMap { $0.valueText as? Bool } ?? false
 
-                MWSDK.Solana.Asset.updateNFT(mint_address: mintAddress, url: url, seller_fee_basis_points: sellerString, name: name, symbol: symbol, updateAuthority: update_authority, confirmation: confirmation, skip_preflight: skip_preflight)
+                MWSDK.Solana.Asset.updateNFT(mint_address: mintAddress, url: url, seller_fee_basis_points: seller_fee_basis_points, name: name, symbol: symbol, updateAuthority: update_authority, confirmation: confirmation, skip_preflight: skip_preflight)
                 { isSucc,data in
                     self.Log("result:\(isSucc),data is:\(data)")
                 }
@@ -450,8 +450,8 @@ class SolanaAPIView{
             paramtersView.setParams(keys: [.owners,.limit,.offset])
             paramtersView.paramtersJson = {datas in
                 let owners = (datas.first(where: {$0.keyText == "owners"})?.valueText)! as! String
-                let limit:Int = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! Int
-                let offset:Int = (datas.first(where: {$0.keyText == "offset"})?.valueText)! as! Int
+                let limit:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "limit"})?.valueText) as! String)
+                let offset:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "offset"})?.valueText) as! String)
 
                 var ownersArr:[String] = []
                 owners.split(separator: ",").forEach { subStr in
@@ -530,9 +530,9 @@ class SolanaAPIView{
 
                 let collection_mint:String = (datas.first(where: {$0.keyText == "collection_mint"})?.valueText)! as! String
                 let auction_house:String = (datas.first(where: {$0.keyText == "auction_house"})?.valueText)! as! String
-                let page:Int = (datas.first(where: {$0.keyText == "page"})?.valueText)! as! Int
-                let page_size:Int = (datas.first(where: {$0.keyText == "page_size"})?.valueText)! as! Int
-                let sale:Int = (datas.first(where: {$0.keyText == "sale"})?.valueText)! as! Int
+                let page:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page"})?.valueText) as! String)
+                let page_size:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page_size"})?.valueText) as! String)
+                let sale:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "sale"})?.valueText) as! String)
 
 
                 MWSDK.Solana.Metadata.getNFTs(collection: collection_mint, sale: sale, page: page, page_size: page_size, order: ["order_by":"price","desc":true], auction_house: auction_house, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]){ data in
@@ -550,8 +550,8 @@ class SolanaAPIView{
             paramtersView.setParams(keys: [.mint_address,.page,.page_size])
             paramtersView.paramtersJson = {datas in
                 let mint_address:String = (datas.first(where: {$0.keyText == "mint_address"})?.valueText)! as! String
-                let page:Int = (datas.first(where: {$0.keyText == "page"})?.valueText)! as! Int
-                let page_size:Int = (datas.first(where: {$0.keyText == "page_size"})?.valueText)! as! Int
+                let page:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page"})?.valueText) as! String)
+                let page_size:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page_size"})?.valueText) as! String)
 
                 MWSDK.Solana.Metadata.getNFTEvents(mint_address: mint_address, page: page, page_size: page_size) { data in
                     self.Log(data)

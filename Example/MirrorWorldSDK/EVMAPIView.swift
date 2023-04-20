@@ -275,7 +275,7 @@ class EVMAPIView{
                 let price:Double = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! Double
                 let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
                 let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
+                 let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 MWSDK.EVM.Asset.buyNFT(collection_address: collection_address,token_id:token_id, price: Double(price) ,marketplace_address: marketplace_address, confirmation: confirmation) { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -293,7 +293,7 @@ class EVMAPIView{
                     let collection_address:String = (datas.first(where: {$0.keyText == "collection_address"})?.valueText)! as! String
                     let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
                     let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
-                    let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
+                     let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 MWSDK.EVM.Asset.cancelNFTListing(collection_address: collection_address,token_id:token_id,marketplace_address: marketplace_address,confirmation: confirmation) { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -313,7 +313,7 @@ class EVMAPIView{
                 let price:Double = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! Double
                 let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
                 let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
+                 let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 MWSDK.EVM.Asset.listNFT(collection_address: collection_address,token_id:token_id, price: Double(price) ,marketplace_address: marketplace_address, confirmation: confirmation) { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -331,7 +331,7 @@ class EVMAPIView{
             paramtersView.paramtersJson = {datas in
                 let collection_address:String = (datas.first(where: {$0.keyText == "collection_address"})?.valueText)! as! String
                 let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
+                 let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
                 MWSDK.EVM.Asset.transferNFT(collection_address: collection_address, token_id: token_id, to_wallet_address: to_wallet_address, confirmation: confirmation,onSuccess: { data in
                     self.Log(data)
@@ -357,7 +357,7 @@ class EVMAPIView{
                 let mint_start_id:Int = (datas.first(where: {$0.keyText == "mint_start_id"})?.valueText)! as! Int
                 let mint_end_id:Int = (datas.first(where: {$0.keyText == "mint_end_id"})?.valueText)! as! Int
                 let mint_amount:Int = (datas.first(where: {$0.keyText == "mint_amount"})?.valueText)! as! Int
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
+                 let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
 
                 MWSDK.EVM.Asset.mintCollection(url:url,name: name, symbol: symbol, contract_type: contract_type, mint_start_id: mint_start_id,mint_end_id:mint_end_id,mint_amount: mint_amount ,confirmation:confirmation, onSuccess: { data in
                     self.Log(data)
@@ -375,7 +375,7 @@ class EVMAPIView{
                 let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
                 let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
                 let mint_amount:Int = (datas.first(where: {$0.keyText == "mint_amount"})?.valueText)! as! Int
-                let confirmation:String = (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String
+                 let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 MWSDK.EVM.Asset.mintNFT(collection_address: collection_address, token_id: token_id, to_wallet_address: to_wallet_address, mint_amount: mint_amount, confirmation: confirmation){ data in
 
                     self.Log("mintNewNFT - response:\n")
