@@ -30,7 +30,7 @@ import UIKit
 
     @objc public func getTransactionsByWallet(wallet_address:String, limit:Int, onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken { succ in
-            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "\(wallet_address)/transactions?limit=\(limit)")
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "transactions?limit=\(limit)")
             MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in
                 self?.handleResponse(response: response) { data in
                     onSuccess?(data)
@@ -80,23 +80,23 @@ import UIKit
         }
     }
     
-    @objc public func getTokensByWallet(wallet_address:String,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
-        self.checkAccessToken { succ in
-            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "tokens/\(wallet_address)")
-            MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in
-                self?.handleResponse(response: response) { data in
-                    onSuccess?(data)
-                } failed: { code, message in
-                    onFailed?()
-                }
-
-            } _: { code,error in
-                DispatchQueue.main.async {
-                    onFailed?()
-                }
-            }
-        }
-    }
+//    @objc public func getTokensByWallet(wallet_address:String,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
+//        self.checkAccessToken { succ in
+//            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "tokens/\(wallet_address)")
+//            MirrorWorldNetWork().request(url: url,method: "Get",params: nil) {[weak self] response in
+//                self?.handleResponse(response: response) { data in
+//                    onSuccess?(data)
+//                } failed: { code, message in
+//                    onFailed?()
+//                }
+//
+//            } _: { code,error in
+//                DispatchQueue.main.async {
+//                    onFailed?()
+//                }
+//            }
+//        }
+//    }
     @objc public func transferETH(nonce:String,gasPrice:String,gasLimit:String,to:String,amount:String,onSuccess:((_ data:String?)->())?,onFailed:(()->())?){
         self.checkAccessToken {[weak self] succ in
             let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.Wallet, APIPath: "transfer-eth")

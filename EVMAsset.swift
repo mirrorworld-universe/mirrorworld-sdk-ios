@@ -249,7 +249,7 @@ import UIKit
 
     @objc public func searchNFTsByOwner(owner_address:[String],limit:Int,cursor:String,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.AssetNFT, APIPath: "owners")
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.AssetNFT, APIPath: "owner")
             let params = [
                 "owner_address":owner_address,
                 "limit":limit,

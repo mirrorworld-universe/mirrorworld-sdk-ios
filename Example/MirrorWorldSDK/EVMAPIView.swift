@@ -134,7 +134,7 @@ class EVMAPIView{
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.limit])
             paramtersView.paramtersJson = {datas in
-                let limit:Int = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! Int
+                let limit:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "limit"})?.valueText) as! String)
                 MWSDK.EVM.Wallet.getTransactions(limit: Int(limit)) { response in
                     self.Log(response)
                     loadingActive.stopAnimating()
@@ -204,25 +204,25 @@ class EVMAPIView{
             } onFailed: {
                 self.Log("Get wallet tokens: failed")
             }
-        case "getTokensByWallet":
-            view.addSubview(paramtersView)
-            paramtersView.setParams(keys: [.to_wallet_address])
-            paramtersView.paramtersJson = {datas in
-                let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
-                
-                MWSDK.EVM.Wallet.getTokensByWallet(wallet_address: to_wallet_address) { response in
-                    self.Log(response)
-                    loadingActive.stopAnimating()
-                } onFailed: {
-                    self.Log("\(item):failed~")
-                }
-            }
+//        case "getTokensByWallet":
+//            view.addSubview(paramtersView)
+//            paramtersView.setParams(keys: [.to_wallet_address])
+//            paramtersView.paramtersJson = {datas in
+//                let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
+//
+//                MWSDK.EVM.Wallet.getTokensByWallet(wallet_address: to_wallet_address) { response in
+//                    self.Log(response)
+//                    loadingActive.stopAnimating()
+//                } onFailed: {
+//                    self.Log("\(item):failed~")
+//                }
+//            }
         case "getTransactionByWallet":
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.to_wallet_address,.limit])
             paramtersView.paramtersJson = {datas in
                 let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
-                let limit:Int = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! Int
+                let limit:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "limit"})?.valueText) as! String)
                 
                 MWSDK.EVM.Wallet.getTransactionsByWallet(wallet_address: to_wallet_address, limit: limit) { response in
                     self.Log(response)
@@ -272,8 +272,8 @@ class EVMAPIView{
             paramtersView.setParams(keys: [.collection_address,.token_id,.price,.marketplace_address,.confirmation])
             paramtersView.paramtersJson = {datas in
                 let collection_address:String = (datas.first(where: {$0.keyText == "collection_address"})?.valueText)! as! String
-                let price:Double = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! Double
-                let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
+                let price:Double = MirrorTool.getInputDouble((datas.first(where: {$0.keyText == "price"})?.valueText)! as! String)
+                let token_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "token_id"})?.valueText) as! String)
                 let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
                  let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 MWSDK.EVM.Asset.buyNFT(collection_address: collection_address,token_id:token_id, price: Double(price) ,marketplace_address: marketplace_address, confirmation: confirmation) { data in
@@ -291,7 +291,7 @@ class EVMAPIView{
             paramtersView.paramtersJson = {datas in
                 
                     let collection_address:String = (datas.first(where: {$0.keyText == "collection_address"})?.valueText)! as! String
-                    let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
+                    let token_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "token_id"})?.valueText) as! String)
                     let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
                      let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 MWSDK.EVM.Asset.cancelNFTListing(collection_address: collection_address,token_id:token_id,marketplace_address: marketplace_address,confirmation: confirmation) { data in
@@ -305,13 +305,28 @@ class EVMAPIView{
             }
 
             break
+        case "getTransactionsByWallet":
+            view.addSubview(paramtersView)
+            paramtersView.setParams(keys: [.to_wallet_address,.limit])
+            paramtersView.paramtersJson = {datas in
+                let wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
+                let limit:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "limit"})?.valueText) as! String)
+                MWSDK.EVM.Wallet.getTransactionsByWallet(wallet_address:wallet_address, limit: limit){ response in
+                    self.Log(response)
+                    loadingActive.stopAnimating()
+                } onFailed: {
+                    loadingActive.stopAnimating()
+                    self.Log("\(item):failed~")
+                }
+            }
+            break
         case "listNFT":
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.collection_address,.token_id,.price,.marketplace_address,.confirmation])
             paramtersView.paramtersJson = {datas in
                 let collection_address:String = (datas.first(where: {$0.keyText == "collection_address"})?.valueText)! as! String
-                let price:Double = (datas.first(where: {$0.keyText == "price"})?.valueText)! as! Double
-                let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
+                let price:Double = MirrorTool.getInputDouble((datas.first(where: {$0.keyText == "price"})?.valueText)! as! String)
+                let token_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "token_id"})?.valueText) as! String)
                 let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
                  let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 MWSDK.EVM.Asset.listNFT(collection_address: collection_address,token_id:token_id, price: Double(price) ,marketplace_address: marketplace_address, confirmation: confirmation) { data in
@@ -332,7 +347,7 @@ class EVMAPIView{
                 let collection_address:String = (datas.first(where: {$0.keyText == "collection_address"})?.valueText)! as! String
                 let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
                  let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
-                let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
+                let token_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "token_id"})?.valueText) as! String)
                 MWSDK.EVM.Asset.transferNFT(collection_address: collection_address, token_id: token_id, to_wallet_address: to_wallet_address, confirmation: confirmation,onSuccess: { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -353,10 +368,11 @@ class EVMAPIView{
                 let url:String = (datas.first(where: {$0.keyText == "url"})?.valueText)! as! String
                 let name:String = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
                 let symbol:String = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
-                let contract_type:String = (datas.first(where: {$0.keyText == "contract_type"})?.valueText)! as! String
-                let mint_start_id:Int = (datas.first(where: {$0.keyText == "mint_start_id"})?.valueText)! as! Int
-                let mint_end_id:Int = (datas.first(where: {$0.keyText == "mint_end_id"})?.valueText)! as! Int
-                let mint_amount:Int = (datas.first(where: {$0.keyText == "mint_amount"})?.valueText)! as! Int
+                let contract_type:String = MirrorTool.getContractType(str: (datas.first(where: {$0.keyText == "contract_type"})?.valueText)! as! String)
+                let mint_start_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "mint_start_id"})?.valueText) as! String)
+                let mint_end_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "mint_end_id"})?.valueText) as! String)
+                let mint_amount:Int = self.getMintAmount(someString: (datas.first(where: {$0.keyText == "mint_amount"})?.valueText) as! String)
+                
                  let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
 
                 MWSDK.EVM.Asset.mintCollection(url:url,name: name, symbol: symbol, contract_type: contract_type, mint_start_id: mint_start_id,mint_end_id:mint_end_id,mint_amount: mint_amount ,confirmation:confirmation, onSuccess: { data in
@@ -372,9 +388,9 @@ class EVMAPIView{
             paramtersView.setParams(keys: [.collection_address,.token_id,.to_wallet_address,.mint_amount,.confirmation])
             paramtersView.paramtersJson = {datas in
                 let collection_address = (datas.first(where: {$0.keyText == "collection_address"})?.valueText)! as! String
-                let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
+                let token_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "token_id"})?.valueText) as! String)
                 let to_wallet_address:String = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
-                let mint_amount:Int = (datas.first(where: {$0.keyText == "mint_amount"})?.valueText)! as! Int
+                let mint_amount:Int = self.getMintAmount(someString: (datas.first(where: {$0.keyText == "mint_amount"})?.valueText) as! String)
                  let confirmation:String = MirrorTool.getInputConfirmation(someString: (datas.first(where: {$0.keyText == "confirmation"})?.valueText)! as! String)
                 MWSDK.EVM.Asset.mintNFT(collection_address: collection_address, token_id: token_id, to_wallet_address: to_wallet_address, mint_amount: mint_amount, confirmation: confirmation){ data in
 
@@ -392,7 +408,7 @@ class EVMAPIView{
             paramtersView.setParams(keys: [.token_address,.token_id])
             paramtersView.paramtersJson = {datas in
                 let token_address:String = (datas.first(where: {$0.keyText == "token_address"})?.valueText)! as! String
-                let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
+                let token_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "token_id"})?.valueText) as! String)
                 MWSDK.EVM.Asset.queryNFT(token_address: token_address,token_id: token_id) { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -408,7 +424,9 @@ class EVMAPIView{
                 let token_address:String = (datas.first(where: {$0.keyText == "token_address"})?.valueText)! as! String
                 let token_id:String = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! String
                 
-                var mint_address_arr:[[String:String]] = [["token_address":token_address,"token_id":token_id]]
+                var mint_address_arr:[[String:String]] = [
+                    ["token_address":String(token_address),"token_id":String(token_id)]
+                ] as [[String:String]]
                 MWSDK.EVM.Asset.searchNFTs(tokens: mint_address_arr) { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -423,7 +441,7 @@ class EVMAPIView{
             paramtersView.setParams(keys: [.owner_address,.limit,.cursor])
             paramtersView.paramtersJson = {datas in
                 let owner_address:String = (datas.first(where: {$0.keyText == "owner_address"})?.valueText)! as! String
-                let limit:Int = (datas.first(where: {$0.keyText == "limit"})?.valueText)! as! Int
+                let limit:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "limit"})?.valueText) as! String)
                 let cursor:String = (datas.first(where: {$0.keyText == "cursor"})?.valueText)! as! String
 
                 MWSDK.EVM.Asset.searchNFTsByOwner(owner_address: [owner_address], limit: limit , cursor: cursor ) { data in
@@ -484,7 +502,7 @@ class EVMAPIView{
             paramtersView.setParams(keys: [.contract,.token_id])
             paramtersView.paramtersJson = {datas in
                 let contract = (datas.first(where: {$0.keyText == "contract"})?.valueText)! as! String
-                let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
+                let token_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "token_id"})?.valueText) as! String)
                 MWSDK.EVM.Metadata.getNFTInfo(contract: contract,token_id:token_id) {data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -500,9 +518,9 @@ class EVMAPIView{
 
                 let contract:String = (datas.first(where: {$0.keyText == "contract"})?.valueText)! as! String
                 let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
-                let page:Int = (datas.first(where: {$0.keyText == "page"})?.valueText)! as! Int
-                let page_size:Int = (datas.first(where: {$0.keyText == "page_size"})?.valueText)! as! Int
-                let sale:Int = (datas.first(where: {$0.keyText == "sale"})?.valueText)! as! Int
+                let page:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page"})?.valueText) as! String)
+                let page_size:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page_size"})?.valueText) as! String)
+                let sale:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "sale"})?.valueText) as! String)
 
 
                 MWSDK.EVM.Metadata.getNFTs(contract: contract, sale: sale, page: page, page_size: page_size, order: ["order_by":"price","desc":true], marketplace_address: marketplace_address, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]){ data in
@@ -521,9 +539,9 @@ class EVMAPIView{
             paramtersView.paramtersJson = {datas in
                 let contract:String = (datas.first(where: {$0.keyText == "contract"})?.valueText)! as! String
                 let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
-                let token_id:Int = (datas.first(where: {$0.keyText == "token_id"})?.valueText)! as! Int
-                let page:Int = (datas.first(where: {$0.keyText == "page"})?.valueText)! as! Int
-                let page_size:Int = (datas.first(where: {$0.keyText == "page_size"})?.valueText)! as! Int
+                let token_id:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "token_id"})?.valueText) as! String)
+                let page:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page"})?.valueText) as! String)
+                let page_size:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page_size"})?.valueText) as! String)
 
                 MWSDK.EVM.Metadata.getNFTEvents(contract: contract,token_id:token_id, page: page, page_size: page_size, marketplace_address: marketplace_address) { data in
                     self.Log(data)
@@ -534,7 +552,7 @@ class EVMAPIView{
                 }
             }
             break
-        case "searchNFTs":
+        case "Metadata searchNFTs":
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.collection_mint,.search])
             paramtersView.paramtersJson = {datas in
@@ -569,8 +587,8 @@ class EVMAPIView{
             paramtersView.setParams(keys: [.marketplace_address,.page,.page_size])
             paramtersView.paramtersJson = {datas in
                 let marketplace_address:String = (datas.first(where: {$0.keyText == "marketplace_address"})?.valueText)! as! String
-                let page:Int = (datas.first(where: {$0.keyText == "page"})?.valueText)! as! Int
-                let page_size:Int = (datas.first(where: {$0.keyText == "page_size"})?.valueText)! as! Int
+                let page:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page"})?.valueText) as! String)
+                let page_size:Int = MirrorTool.getInputInt(someString: (datas.first(where: {$0.keyText == "page_size"})?.valueText) as! String)
                 MWSDK.EVM.Metadata.getMarketplaceEvents(marketplace_address: marketplace_address, page: page, page_size: page_size){ data in
                     self.Log(data)
                     loadingActive.stopAnimating()
@@ -586,5 +604,13 @@ class EVMAPIView{
             break
 
         }
+    }
+    
+    
+    func getMintAmount(someString:String) -> Int{
+        if(someString.isEmpty){
+            return 1
+        }
+        return MirrorTool.getInputInt(someString: someString)
     }
 }

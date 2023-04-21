@@ -106,7 +106,7 @@ import UIKit
 
 
     @objc public func getNFTEvents(contract: String, token_id: Int, page:Int, page_size: Int,marketplace_address:String,onSuccess:onSuccess,onFailed:onFailed){
-        let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.AssetNFT, APIPath: "events")
+        let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.MetadataNFT, APIPath: "events")
         let params = [
             "contract":contract,
             "token_id":token_id,
@@ -129,7 +129,7 @@ import UIKit
     }
 
     @objc public func searchNFTs(collections: [String], search: String,onSuccess:onSuccess,onFailed:onFailed){
-        let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.MetadataNFTSearch, APIPath: "")
+        let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum: MirrorService.MetadataNFT, APIPath: "search")
         let params = [
             "collections":collections,
             "search":search

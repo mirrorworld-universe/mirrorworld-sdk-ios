@@ -562,7 +562,7 @@ class SolanaAPIView{
                 }
             }
             break
-        case "searchNFTs":
+        case "Metadata searchNFTs":
             view.addSubview(paramtersView)
             paramtersView.setParams(keys: [.collection_mint,.search])
             paramtersView.paramtersJson = {datas in

@@ -107,7 +107,7 @@ class Entrance :UIViewController{
                             "transferNFT",
                             "buyNFT","searchNFTsByOwner"]),
                           (moudleTitle:"Metadata",MethodList:[
-                            "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","searchNFTs","recommendSearchNFT","getNFTs"])
+                            "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","Metadata searchNFTs","recommentSearchNFT","getNFTs"])
         ]
     }
     
@@ -117,11 +117,10 @@ class Entrance :UIViewController{
         DataModel.shared.data = [
             (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
             (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
-            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","getTokensByWallet","transferETH","transferToken"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","transferETH","transferToken"]),
             (moudleTitle:"Asset",MethodList:[
               "mintCollection",
               "mintNFT",
-              "updateNFT",
               "queryNFT",
               "listNFT",
               "cancelNFTListing",
@@ -130,7 +129,7 @@ class Entrance :UIViewController{
               "buyNFT",
               "searchNFTsByOwner"]),
             (moudleTitle:"Metadata",MethodList:[
-              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","searchNFTs","recommendSearchNFT","getNFTs","getMarketplaceEvents"])
+              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","Metadata searchNFTs","recommentSearchNFT","getNFTs","getMarketplaceEvents"])
         ]
     }
     
@@ -140,11 +139,10 @@ class Entrance :UIViewController{
         DataModel.shared.data = [
             (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
             (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
-            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","getTokensByWallet","transferMatic","transferToken"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","transferMatic","transferToken"]),
             (moudleTitle:"Asset",MethodList:[
               "mintCollection",
               "mintNFT",
-              "updateNFT",
               "queryNFT",
               "listNFT",
               "cancelNFTListing",
@@ -153,7 +151,7 @@ class Entrance :UIViewController{
               "buyNFT",
               "searchNFTsByOwner"]),
             (moudleTitle:"Metadata",MethodList:[
-              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","searchNFTs","recommendSearchNFT","getNFTs","getMarketplaceEvents"])
+              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","Metadata searchNFTs","recommentSearchNFT","getNFTs","getMarketplaceEvents"])
         ]
     }
     
@@ -163,11 +161,10 @@ class Entrance :UIViewController{
         DataModel.shared.data = [
             (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
             (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
-            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","getTokensByWallet","transferBNB","transferToken"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactions","getTransactionsByWallet","getTransactionBySignature","getTokens","transferBNB","transferToken"]),
             (moudleTitle:"Asset",MethodList:[
               "mintCollection",
               "mintNFT",
-              "updateNFT",
               "queryNFT",
               "listNFT",
               "cancelNFTListing",
@@ -176,7 +173,7 @@ class Entrance :UIViewController{
               "buyNFT",
               "searchNFTsByOwner"]),
             (moudleTitle:"Metadata",MethodList:[
-              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","searchNFTs","recommendSearchNFT","getNFTs","getMarketplaceEvents"])
+              "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","Metadata searchNFTs","recommentSearchNFT","getNFTs","getMarketplaceEvents"])
         ]
     }
 }
