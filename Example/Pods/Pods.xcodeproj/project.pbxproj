@@ -36,8 +36,8 @@
 		E6E38FAC29F67775008B0C16 /* SolanaMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E38FA929F67775008B0C16 /* SolanaMetadata.swift */; };
 		E6E38FAD29F67775008B0C16 /* SolanaWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E38FAA29F67775008B0C16 /* SolanaWallet.swift */; };
 		E6E38FAE29F67775008B0C16 /* SolanaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E38FAB29F67775008B0C16 /* SolanaAsset.swift */; };
-		E6E38FB129F67DE4008B0C16 /* MirrorTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E38FAF29F67DE3008B0C16 /* MirrorTool.swift */; };
-		E6E38FB229F67DE4008B0C16 /* MirrorUrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E38FB029F67DE3008B0C16 /* MirrorUrlUtils.swift */; };
+		E6E38FB529F685D8008B0C16 /* MirrorUrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E38FB329F685D8008B0C16 /* MirrorUrlUtils.swift */; };
+		E6E38FB629F685D8008B0C16 /* MirrorTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E38FB429F685D8008B0C16 /* MirrorTool.swift */; };
 		EAAB06C9676C4C33842C7C8E775914A6 /* Pods-MirrorWorldSDK_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F965A23D0E5DA1FA6F107CB4F5F795C5 /* Pods-MirrorWorldSDK_Tests-dummy.m */; };
 		F32E9DE2F2E20797CA9D014650D9CD29 /* MirrorWorldLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F365970D5308DEF5C45FFF9C7F1FD816 /* MirrorWorldLog.swift */; };
 		F33A6791A59047E918CA3D9D8E69B640 /* MirrorAuthMoudle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5E78277FB8AB43EA7CE035EA47A4D /* MirrorAuthMoudle.swift */; };
@@ -115,8 +115,8 @@
 		E6E38FA929F67775008B0C16 /* SolanaMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SolanaMetadata.swift; path = MirrorWorldSDK/Classes/SolanaMetadata.swift; sourceTree = "<group>"; };
 		E6E38FAA29F67775008B0C16 /* SolanaWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SolanaWallet.swift; path = MirrorWorldSDK/Classes/SolanaWallet.swift; sourceTree = "<group>"; };
 		E6E38FAB29F67775008B0C16 /* SolanaAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SolanaAsset.swift; path = MirrorWorldSDK/Classes/SolanaAsset.swift; sourceTree = "<group>"; };
-		E6E38FAF29F67DE3008B0C16 /* MirrorTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MirrorTool.swift; sourceTree = "<group>"; };
-		E6E38FB029F67DE3008B0C16 /* MirrorUrlUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MirrorUrlUtils.swift; sourceTree = "<group>"; };
+		E6E38FB329F685D8008B0C16 /* MirrorUrlUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorUrlUtils.swift; path = MirrorWorldSDK/Classes/MirrorUrlUtils.swift; sourceTree = "<group>"; };
+		E6E38FB429F685D8008B0C16 /* MirrorTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MirrorTool.swift; path = MirrorWorldSDK/Classes/MirrorTool.swift; sourceTree = "<group>"; };
 		E9F6843435746FCE3B7E3E6DEAACC2E6 /* MirrorWorldSDK.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldSDK.swift; path = MirrorWorldSDK/Classes/MirrorWorldSDK.swift; sourceTree = "<group>"; };
 		F0843E7612CF75C54AED9AE13543F45F /* MirrorWorldSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MirrorWorldSDK-dummy.m"; sourceTree = "<group>"; };
 		F365970D5308DEF5C45FFF9C7F1FD816 /* MirrorWorldLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MirrorWorldLog.swift; path = MirrorWorldSDK/Classes/MirrorWorldLog.swift; sourceTree = "<group>"; };
@@ -243,11 +243,11 @@
 				8CBE6FCAF955F3EAE4C1D442691D8707 /* MirrorWorldNetApi.swift */,
 				CB9EA534F01FD25B6AE8670E8DE9436D /* MirrorWorldNetWork.swift */,
 				E9F6843435746FCE3B7E3E6DEAACC2E6 /* MirrorWorldSDK.swift */,
+				E6E38FB429F685D8008B0C16 /* MirrorTool.swift */,
+				E6E38FB329F685D8008B0C16 /* MirrorUrlUtils.swift */,
 				877ECDEF44F97DED269C500AB1A9D1EE /* MirrorWorldSDKConfig.swift */,
 				1B21B2D71B639F2AB0D9074B44DA117A /* MirrorWorldSDKProtocol.swift */,
 				E6E38FAB29F67775008B0C16 /* SolanaAsset.swift */,
-				E6E38FAF29F67DE3008B0C16 /* MirrorTool.swift */,
-				E6E38FB029F67DE3008B0C16 /* MirrorUrlUtils.swift */,
 				E6E38FA929F67775008B0C16 /* SolanaMetadata.swift */,
 				E6E38FAA29F67775008B0C16 /* SolanaWallet.swift */,
 				A023CC9E7EE0351E0D38BC508D9E8C6C /* MirrorWorldUserInfo.swift */,
@@ -452,14 +452,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6E38FB129F67DE4008B0C16 /* MirrorTool.swift in Sources */,
 				F33A6791A59047E918CA3D9D8E69B640 /* MirrorAuthMoudle.swift in Sources */,
 				E6E38FAE29F67775008B0C16 /* SolanaAsset.swift in Sources */,
 				E6E38FAC29F67775008B0C16 /* SolanaMetadata.swift in Sources */,
 				E6E38F9F29F67767008B0C16 /* MirrorBaseMoudle.swift in Sources */,
 				E6E38FA629F67767008B0C16 /* EVMWallet.swift in Sources */,
+				E6E38FB529F685D8008B0C16 /* MirrorUrlUtils.swift in Sources */,
 				E6E38FA429F67767008B0C16 /* EVMMetadata.swift in Sources */,
-				E6E38FB229F67DE4008B0C16 /* MirrorUrlUtils.swift in Sources */,
 				B2D6A11DFC602C6EB59A0C3665438E21 /* MirrorMetadataFilterMoudle.swift in Sources */,
 				C18F2491EF9A536F06ACD2A677797858 /* MirrorSecurityVerification.swift in Sources */,
 				E6E38FA729F67767008B0C16 /* EVMAsset.swift in Sources */,
@@ -473,6 +472,7 @@
 				53B76061D5457EC1BF70DD14E12962DC /* MirrorWorldNetApi.swift in Sources */,
 				FDFC45BD8DBA4B87D69EF9CE7AFCBDCC /* MirrorWorldNetWork.swift in Sources */,
 				B91520EAC1387E65D6826CCB3BBB5009 /* MirrorWorldSDK.swift in Sources */,
+				E6E38FB629F685D8008B0C16 /* MirrorTool.swift in Sources */,
 				E6E38FA029F67767008B0C16 /* MirrorSolana.swift in Sources */,
 				70D7D694DF7327A30F903A285BB2B24C /* MirrorWorldSDK-dummy.m in Sources */,
 				C57162628264049719D4013EFA3136AF /* MirrorWorldSDKConfig.swift in Sources */,
