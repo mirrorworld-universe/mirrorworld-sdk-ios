@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public class MirrorUrlUtils :NSObject{
+public class MirrorUrlUtils :NSObject{
     
     public static let shard = MirrorUrlUtils()
     public var chain:MWChain = MWChain.Solana
