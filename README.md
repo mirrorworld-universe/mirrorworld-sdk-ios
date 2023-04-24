@@ -11,7 +11,7 @@
 
 ## Supported iOS & SDK Versions
 
-- iOS 10.0+
+- iOS 11.0+
 - Swift
 - Objective-C/C++/C
 
@@ -22,7 +22,7 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
 
 target '<Your Target Name>' do
@@ -75,73 +75,94 @@ func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
 
 ```
 
-### Authentication Methods
+## Choose your chain
+Mirror World SDK supports multi-chain operation. You can use different instance to call all chains' API.
+- For all client APIs: the instance is MWSDK
+- For all Solana APIs: the instance is MWSDK.Solana
+- For all EVM APIs: the instance is MWSDK.EVM. EVM include Ethereum\Polygon\BNB.
 
-`public let MWSDK = MirrorWorldSDK.share`
+There are three modules in the Mirror World SDK: Wallet, Asset, and Metadata. You can use different modules depending on which type of APIs you want to call.
 
-- StartLogin
+*For example, a user use MWSDK.startLogin() to let user login and use MWSDK.Solana.Wallet.getTokens() to check his tokens.*
+
+
+### Client APIs
+*This kind of API doesn't belong to any module, you can just use MWSDK.functionName to call it.*
+
+- startLogin
 
 Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
 
 ```Swift
-MirrorWorldSDK.share.StartLogin { userInfo in
-    print("login success :\(userInfo?.toString() ?? "")")
+MWSDK.startLogin { userInfo in
+    print("login success :\(MirrorTool.dicToString(userInfo) ?? "")")
 } onFail: {
-    print("login failed !")
+    print("login failed!")
 }
 ```
 
-- GuestLogin
+- loginWithEmail
+
+Allow the user to log in using their email and password. Only after logging in, the user can use other APIs.
+
+```Swift
+MWSDK.loginWithEmail(email: email, passWord: password) {
+    print("email login success")
+} onFail: {
+    print("email login success")
+}
+```
+
+- guestLogin
 
 Use this API to make a user logged in as a guest who has a new account and a new wallet.
 ```Swift
-MWSDK.GuestLogin {
+MWSDK.guestLogin {
     print("guest login success")
 } onFail: {
     print("guest login failed")
 }
 ```
 
-- CheckAuthenticated
+- isLogged
 
 Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
 
 ```Swift
-MWSDK.CheckAuthenticated { onBool in
+MWSDK.isLogged { onBool in
     print("This device's login state is:\(onBool)")
 }
 ```
 
-- Logs out a user
+- Logout
 
 ```Swift
-MWSDK.loginOut {
+MWSDK.Logout {
     print("Logs out a user : success")
 } onFail: {
     print("Logs out a user : failed !")
 }
 ```
 
-### Wallet Methods
-
-- OpenWallet
+- openWallet
 
 Open a webview which would show the wallet page.
 
 ```Swift
-MWSDK.OpenWallet()
+MWSDK.openWallet {
+    print("Wallet is logout")
+    
+} loginSuccess: { userinfo in
+    print("Wallet login: \(String(describing: userinfo))")
+}
 ```
 
-- GetAccessToken
-
-Get access token so that users can visit APIs.
-
+- openMarket
+Open the market place page which publish before.
+You can refer to [How to publish self Storefront](https://docs.mirrorworld.fun/overview/storefront).
 ```Swift
-
-MWSDK.GetAccessToken(callBack: { token in
-    self.Log("Access Token is : \(token)")
-})
-
+let marketUrl = "Your market place url"
+MWSDK.openMarket(url: url)
 ```
 
 - QueryUser
@@ -149,64 +170,185 @@ MWSDK.GetAccessToken(callBack: { token in
 Check user's info, then we can get user's base information such as wallet address and so on.
 
 ```Swift
-
-MWSDK.QueryUser(email: "user Email") { user in
-  self.Log(user ?? "null")
+MWSDK.QueryUser(email: email) { user in
+    print(user ?? "null")
 } onFetchFailed: { code, error in
- self.Log("\(code):\(error)")
+    print("\(code):\(String(describing: error))")
 }
-
 ```
 
-## MarketPlace Method
 
-- FetchSingleNFT
-Fetch the details of a NFT.
+### Wallet Methods
+
+*This kind of API are all belong to mudule 'Wallet'. To use them, you can call MWSDK.ChainName.functionName.*
+
+- getTokens
+Allow users to check their tokens in their wallet.
+```Swift
+MWSDK.Solana.Wallet.getTokens { response in
+    let res = response?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
+    
+    print("Get wallet tokens:\(res ?? "null")")
+    loadingActive.stopAnimating()
+} onFailed: {
+    print("Get wallet tokens: failed")
+}
+```
+
+- getTokensByWallet
+Allow users to check wallet tokens by a wallet address.
+```Swift
+MWSDK.Solana.Wallet.getTokensByWallet(wallet_address: to_wallet_address) { response in
+    print("success, result is:\(String(describing: response))")
+} onFailed: {
+    print("failed ~")
+}
+```
+
+- getTransactions
+Get transactions that belong to the current wallet.
+```Swift
+MWSDK.Solana.Wallet.getTransactions(limit: Int(limit) , next_before: next_before) { response in
+    print("success, result is:\(String(describing: response))")
+} onFailed: {
+    print("failed ~")
+}
+```
+
+- getTransactionsByWallet
+Get transactions that belong to a wallet.
+```Swift
+MWSDK.Solana.Wallet.getTransactionsByWallet(wallet_address:wallet_address, limit: limit, next_before: next_before){ response in
+    print(response)
+} onFailed: {
+    print("failed~")
+}
+```
+
+- getTransactionBySignature
+Get transaction by a signature address.
+```Swift
+MWSDK.Solana.Wallet.getTransactionBySignature(signature: signature) { response in
+    print(response)
+} onFailed: {
+    print("failed~")
+}
+```
+
+- transferSOL
+Transfer SOL to another wallet.
+```Swift
+MWSDK.Solana.Wallet.transferSOL(to_publickey: to_publickey, amount: Int(amount) ) { response in
+    print(response)
+} onFailed: {
+    print("failed~")
+}
+```
+
+- transferToken
+Transfer Token to another wallet.
+```Swift
+MWSDK.Solana.Wallet.transferToken(to_publickey: to_publickey, amount: Int(Double(amount) ?? 0.0), token_mint: token_mint, decimals: Int(decimals) ?? 1) { response in
+    print(response)
+} onFailed: {
+    print("failed~")
+}
+```
+
+## Asset APIs
+*This kind of API belongs to 'Asset' module, you can just use 'MWSDK.ChainName.Asset.functionName' to call it.*
+
+- buyNFT
+
+Buy a NFT on market place.
+```Swift
+MWSDK.Solana.Asset.buyNFT(mint_address: mint_address, price: Double(price) ?? 0.01,auction_house: auction_house,confirmation: confirmation,skip_preflight: skip_preflight) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```
+
+- cancelNFTListing
+Cancel listing of NFT.
 
 ```Swift
+MWSDK.Solana.Asset.cancelNFTListing(mint_address: mint_address, price: Double(price) ?? 1.1,auction_house: auction_house,confirmation: confirmation,skip_preflight: skip_preflight) { data in
+    print(data)
 
-MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```
+
+- listNFT
+List a NFT on market place.
+
+```Swift
+MWSDK.Solana.Asset.listNFT(mint_address: mint_address, price: Double(price) ?? 0.1,auction_house: auction_house, confirmation: "finalized",skip_preflight: skip_preflight) { data in
     self.Log(data)
 } onFailed: { code, message in
-    self.Log("\(item):failed:\(code),\(message ?? "")")
+    self.Log("failed:\(code),\(message ?? "")")
 }
-
 ```
 
-- MintNewNFTOnCollection
-Mint a new NFT.
+- transferNFT
+Transfer NFT to another Sol wallet.
 
 ```Swift
-MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA", url: "", seller_fee_basis_points: 100, confirmation: "finalized") { data in
-        print(data)
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
+MWSDK.Solana.Asset.transferNFT(mint_address: mint_address, to_wallet_address: to_wallet_address, confirmation: confirmation, skip_preflight: skip_preflight,onSuccess: { data in
+    self.Log(data)
 
+},onFailed: { code, message in
+    self.Log("failed:\(code),\(message ?? "")")
+})
 ```
 
-- CheckStatusOfMinting
+- checkMintingStatus
 
 Get status of a minting operation. Because minting may has some delay before success.
 ```Swift
-MWSDK.CheckStatusOfMinting(mintAddress: ["NFTMintAddress"]) { isSucc, data in
-    print("Check status of Minting result is:\(isSucc). data is:\(data)")
-}
+MWSDK.Solana.Asset.checkMintingStatus(mint_addresses: [mint_address,another_address],onSuccess: { data in
+    print("Check status of Minting result is:\(String(describing: data))")
+},onFailed:{ code,errorDesc in
+    print("Check status of Minting error(\(code)),desc is:\(String(describing: errorDesc))")
+})
 ```
 
-- CheckStatusOfTransactions
+- checkTransactionsStatus
 
 Get status of transactions by their signatures.
 ```Swift
-MWSDK.CheckStatusOfTransactions(signatures: ["signature"]) { data in
+MWSDK.Solana.Asset.checkTransactionsStatus(signatures: [signature,another_signature]) { data in
     print(data)
 } onFailed: { code, message in
-    print("CheckStatusOfTransactions failed,code is:\(code);message:\(message)")
+    print("CheckStatusOfTransactions failed,code is:\(code);message:\(String(describing: message))")
 }
 ```
 
-- UpdateNFTProperties
+- mintCollection
+Mint a parent NFT collection.
 
+```Swift
+MWSDK.Solana.Asset.mintCollection(url:url,name: name, symbol: symbol, to_wallet_address: to_wallet_address, seller_fee_basis_points: Int(seller_fee_basis_points) ,confirmation:confirmation,skip_preflight:skip_preflight, onSuccess: { data in
+    print(data)
+}, onFailed: { code,message in
+    print("failed:\(code),\(message ?? "")")
+})
+```
+
+- mintNFT
+Mint a new NFT.
+
+```Swift
+MWSDK.Solana.Asset.mintNFT(collection_mint: collection_mint, url: url, to_wallet_address: to_wallet_address, seller_fee_basis_points: seller_fee_basis_points, confirmation: confirmation, skip_preflight: skip_preflight){ data in
+    print("mintNewNFT - response:\n")
+} onFailed: { code, message in
+    print("\(item):failed:\(code),\(message ?? "")")
+}
+```
+
+- updateNFT
 Update properties of a NFT.
 ```Swift
 let mintAddress = "NFT mint address"
@@ -217,237 +359,131 @@ let url = "Your NFT json url"
 let points = 100
 let confirmation = "confirmed"
 
-MWSDK.UpdateNFTProperties(mintAddresses: mintAddress,name:name,symbol:symbol,updateAuthority:update_authority,NFTJsonUrl: url,seller_fee_basis_points:points,confirmation:confirmation) { data in
+MWSDK.Solana.Asset.updateNFT(mint_address: mintAddress, url: url, seller_fee_basis_points: seller_fee_basis_points, name: name, symbol: symbol, updateAuthority: update_authority, confirmation: confirmation, skip_preflight: skip_preflight)
+{ isSucc,data in
+    print("result:\(isSucc),data is:\(data)")
+}
+```
+
+- queryNFT
+Fetch the details of a NFT.
+
+```Swift
+MWSDK.Solana.Asset.queryNFT(mint_Address: mint_address) { data in
     print(data)
-} _: { message in
-    print(message)
-}
-```
-
-- CreateVerifiedCollection
-Mint a parent NFT collection.
-
-```Swift
-MWSDK.MintNewCollection(name: "testNewCollection", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", confirmation: "finalized", seller_fee_basis_points: 200, onSuccess: { data in
-        self.Log(data)
-    }, onFailed: { code,message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    })
-```
-
-- CreateVerifiedSubCollection
-Mint a child NFT collection.
-
-```Swift
-MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", symbol: "test", url: "https://market-assets.mirrorworld.fun/gen1/1.json") { data in
-        self.Log(data)
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
-```
-
-- TransferNFTToAnotherSolanaWallet
-Transfer NFT to another Sol wallet.
-
-```Swift
-MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
-    self.Log(data)
 } onFailed: { code, message in
-    self.Log("\(item):failed:\(code),\(message ?? "")")
+    print("failed:\(code),\(message ?? "")")
 }
 ```
 
-- CancelNFTListing
-
-Cancel listing of NFT.
-
-```Swift
-MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
-    self.Log(data)
-
-} onFailed: { code, message in
-    self.Log("\(item):failed:\(code),\(message ?? "")")
-}
-```
-
-- BuyNFT
-
-Buy a NFT on market place.
-```Swift
-    MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
-        self.Log(data)
-        self.loadingActive.stopAnimating()
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-        self.loadingActive.stopAnimating()
-    }
-
-```
-
-- UpdateNFTListing
-Update the list of NFTs.
-
-```Swift
-MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
-        self.Log(data)
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
-```
-
-- ListNFT
-Get list of NFT on market place.
-
-```Swift
-MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
-        self.Log(data)
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
-```
-
-- CancelNFTListing
-Cancel listing of NFT.
-
-```Swift
-MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
-        self.Log(data)
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
-```
-
-- FetchNFTsByUpdateAuthorities
-Get a collection of NFT by authority addresses.
-
-```Swift
-MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offset: 0.1) { data in
-            self.Log(data)
-        } onFailed: { code, message in
-            self.Log("\(item):failed:\(code),\(message ?? "")")
-        }
-```
-
-- FetchNFTsByCreatorAddresses
-Get a collection of NFT by creator addresses
-
-```Swift
-MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { data in
-        self.Log(data)
-        self.loadingActive.stopAnimating()
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-        self.loadingActive.stopAnimating()
-    }
-```
-
-- FetchNFTsByOwnerAddresses
+- searchNFTs
 Get a collection of NFT by mint addresses.
 
 ```Swift
-MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
-        self.Log(data)
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
-```
-
-## Storefront Methods
-- OpenMarketPlacePage
-Open the market place page which publish before.
-You can refer to [How to publish self Storefront](https://docs.mirrorworld.fun/overview/storefront).
-```Swift
-let marketUrl = "Your market place url"
-MWSDK.OpenMarketPlacePage(url: url)
-```
-
-- GetCollectionFilterInfo
-Get collection filters info.
-```Swift
-MWSDK.GetCollectionFilterInfo(collection: "Your collection address") { data in
-    print("<iOS_MWSDK_LOG>: GetCollectionFilterInfo result:\(data)")
+MWSDK.Solana.Asset.searchNFTs(mint_addresses: mint_address_arr) { data in
+    print(data)
 } onFailed: { code, message in
-    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+    print("failed:\(code),\(message ?? "")")
 }
 ```
 
-- GetNFTInfo
-Get NFT info. You need to parse the rawJsonString by yourself, cause SDK don't know what format your NFT is like.
+- searchNFTsByOwner
+Get a collection of NFT by creator addresses
 
 ```Swift
-MWSDK.GetNFTInfo(mint_address: "your address") { data in
-    print("<iOS_MWSDK_LOG>: GetNFTInfo result:\(data)")
+MWSDK.Solana.Asset.searchNFTsByOwner(owners: ownersArr, limit: limit , offset: offset ) { data in
+    print(data)
 } onFailed: { code, message in
-    print("<iOS_MWSDK_LOG>: GetNFTInfo faild, code is \(code) message is \(message)")
+    print("failed:\(code),\(message ?? "")")
 }
 ```
 
-- GetCollectionInfo
+## Metadata APIs
+*This kind of API belongs to 'Metadata' module, you can just use 'MWSDK.ChainName.Metadata.functionName' to call them.*
+
+- getCollectionsInfo
 Get collections info by collection addresses.
 
 ```Swift
-MWSDK.GetCollectionInfo(collections: ["Your collection address 1"]) { data in
-    print("<iOS_MWSDK_LOG>: GetCollectionFilterInfo result:\(data)")
-} onFailed: { code, message in
-    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+MWSDK.Solana.Metadata.getCollectionsInfo(collections: [collection_mint]) {data in
+    print(data)
+} onFailed: {code, message in
+    print("failed  code:\(code),message: \(message ?? "")")
 }
 ```
 
-- GetNFTEvents
+- getCollectionFilterInfo
+Get collection filters info.
+```Swift
+ MWSDK.Solana.Metadata.getCollectionFilterInfo(collection: collection) {data in
+    self.Log(data)
+} onFailed: {code, message in
+    self.Log("failed:\(code),\(message ?? "")")
+}
+```
+
+- getCollectionsSummary
+Get collections summary info.
+```Swift
+MWSDK.Solana.Metadata.getCollectionsSummary(collections: [collection]) {data in
+    print(data)
+} onFailed: {code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```
+
+- getNFTInfo
+Get NFT info. You need to parse the rawJsonString by yourself, cause SDK don't know what format your NFT is like.
+
+```Swift
+MWSDK.Solana.Metadata.getNFTInfo(mint_address: mint_address) {data in
+    print(data)
+} onFailed: {code, message in
+    print("failed  code:\(code),message: \(message ?? "")")
+}
+```
+
+- getNFTs
+Get NFTs by unabridged rules.
+```Swift
+MWSDK.Solana.Metadata.getNFTs(collection: collection_mint, sale: sale, page: page, page_size: page_size, order: ["order_by":"price","desc":true], auction_house: auction_house, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]){ data in
+    print(data)
+} onFailed: { code, message in
+    print("\(item):failed  code:\(code),message: \(message ?? "")")
+}
+```
+
+- getNFTEvents
 Get NFT's events.
 ```Swift
-MWSDK.GetNFTEvents(mint_address: "NFT address", page: 1, page_size: 10) { data in
-    print("<iOS_MWSDK_LOG>: GetNFTEvents result:\(data)")
+MWSDK.Solana.Metadata.getNFTEvents(mint_address: mint_address, page: page, page_size: page_size) { data in
+    print(data)
 } onFailed: { code, message in
-    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+    print("failed  code:\(code),message: \(message ?? "")")
 }
 ```
 
-- SearchNFTs
+- searchNFTs
 Search NFTs by given search string.
 ```Swift
-MWSDK.SearchNFTs(collections: ["collection address 1"], search: "price") { data in
-    print("<iOS_MWSDK_LOG>: SearchNFTs result:\(data)")
+MWSDK.Solana.Metadata.searchNFTs(collections: [collection_mint], search: search) { data in
+    print(data)
 } onFailed: { code, message in
-    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+    print("failed  code:\(code),message: \(message ?? "")")
 }
 ```
 
-- RecommendSearchNFT
+- recommentSearchNFT
 Search NFTs by recommend, server will give 10 NFT as recommend NFT at most.
 Developer may use them to fill some blank of searching UI.
 
 ```Swift
-MWSDK.RecommentSearchNFT(collections: ["collection address 1"]) { data in
-    print("<iOS_MWSDK_LOG>: RecommentSearchNFT result:\(data)")
+MWSDK.Solana.Metadata.recommentSearchNFT(collections: [collection_mint]) { data in
+    print(data)
 } onFailed: { code, message in
-    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+    print("failed  code:\(code),message: \(message ?? "")")
 }
 ```
-
-- GetNFTsByUnabridgedParams
-Get NFTs by unabridged rules.
-```Swift
-MWSDK.GetNFTsByUnabridgedParams(collection: "collection address", page: 1, page_size: 10, order: ["price"], sale: 1, filter: ["price"]) { data in
-    print("<iOS_MWSDK_LOG>: GetNFTsByUnabridgedParams result:\(data)")
-} onFailed: { code, message in
-    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
-}
-```
-
-- GetNFTRealPrice
-Get real price of a NFT.
-The param 'fee' is deduct rate of server. So if you input '4250', server will deduct 4.25%.
-
-```Swift
-MWSDK.GetNFTRealPrice(price: "1.2", fee: 1250) { data in
-    print("<iOS_MWSDK_LOG>: GetNFTRealPrice result:\(data)")
-} onFailed: { code, message in
-    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
-}
-```
-
-
 
 ## Using iOS-SDK for Unity
 
