@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MirrorUrlUtils :NSObject{
+@objc public class MirrorUrlUtils :NSObject{
     public static let shard = MirrorUrlUtils()
     public var chain:MWChain = MWChain.Solana
     public var env:MWEnvironment = MWEnvironment.DevNet
@@ -24,13 +24,13 @@ class MirrorUrlUtils :NSObject{
             MirrorWorldLog.shard.console("MirrorUrlUtils not inited!")
             return ""
         }
-        var host = getUrlHost(service:serviceEnum);
-        var service = getServiceString(serviceEnum: serviceEnum);
-        var version = "v2";
-        var chainStr = getChainString();
-        var network = getNetworkString();
+        let host = getUrlHost(service:serviceEnum);
+        let service = getServiceString(serviceEnum: serviceEnum);
+        let version = "v2";
+        let chainStr = getChainString();
+        let network = getNetworkString();
 
-        var finalUrl = "\(host)/\(version)/\(chainStr)/\(network)/\(service)/\(APIPath)";
+        let finalUrl = "\(host)/\(version)/\(chainStr)/\(network)/\(service)/\(APIPath)";
         return finalUrl;
     }
     
