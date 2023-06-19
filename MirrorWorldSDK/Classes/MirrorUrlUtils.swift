@@ -166,10 +166,23 @@ import Foundation
                 MirrorWorldLog.shard.console("Unknown env: \(env).Will use mainnet.");
                 return "bnb-testnet";
             }
+        }else if(chain == MWChain.SUI){
+            if(env == MWEnvironment.StagingMainNet){
+                return "mainnet";
+            }else if(env == MWEnvironment.StagingDevNet){
+                return "testnet";
+            }else if(env == MWEnvironment.MainNet){
+                return "mainnet";
+            }else if(env == MWEnvironment.DevNet){
+                return "testnet";
+            }else {
+                MirrorWorldLog.shard.console("Unknown env: \(env).Will use mainnet.");
+                return "bnb-testnet";
+            }
         }
         else {
             MirrorWorldLog.shard.console("MirrorSDK Unknwon chain \(chain)");
-            return "unknwon-net";
+            return "unknown-net";
         }
     }
     

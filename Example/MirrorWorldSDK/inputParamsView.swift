@@ -14,9 +14,13 @@ enum paramsData {
     case password
     case collection_mint
     case collection_address
+    case nft_object_id
+    case attributes
+    case image
     case token_id
     case name
     case symbol
+    case description
     case url
     case seller_fee_basis_points
     case confirmation
@@ -30,6 +34,7 @@ enum paramsData {
     case to_publickey
     case nonce
     case amount
+    case digest
     case token_mint
     case decimals
     
@@ -66,9 +71,14 @@ enum paramsData {
     case mint_end_id
     case mint_amount
     case owner_address
+    case nft_object_ids
     
     var keyText:String{
         switch self {
+        case .digest:
+            return "digest"
+        case .nft_object_ids:
+            return "nft_object_ids"
         case .cursor:
             return "cursor"
         case .owner_address:
@@ -89,6 +99,12 @@ enum paramsData {
             return "token_id"
         case .collection_address:
             return "collection_address"
+        case .nft_object_id:
+            return "nft_object_id"
+        case .image:
+            return "image"
+        case .attributes:
+            return "attributes"
         case .contract:
             return "contract"
         case .to:
@@ -109,6 +125,8 @@ enum paramsData {
             return "name"
         case .symbol:
             return "symbol"
+        case .description:
+            return "description"
         case .url:
             return "url"
         case .seller_fee_basis_points:

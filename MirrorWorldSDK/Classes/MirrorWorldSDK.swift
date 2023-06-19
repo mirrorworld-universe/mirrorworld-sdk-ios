@@ -27,6 +27,7 @@ public let MWSDK = MirrorWorldSDK.share
     
     public var Solana:MirrorSolana = MirrorSolana()
     public var EVM:MirrorEVM = MirrorEVM()
+    public var SUI:MirrorSUI = MirrorSUI()
     
     private var authMoudle:MirrorAuthMoudle = MirrorAuthMoudle()
 

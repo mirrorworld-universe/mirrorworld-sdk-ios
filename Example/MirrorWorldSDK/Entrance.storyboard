@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
@@ -75,6 +75,11 @@
                                         <command title="BNB" id="v7W-Qt-tdw">
                                             <connections>
                                                 <action selector="onChainItemClicked:" destination="Y6W-OH-hqX" id="y6Y-Aa-LIS"/>
+                                            </connections>
+                                        </command>
+                                        <command title="SUI" id="yaG-7j-hAf" userLabel="SUI">
+                                            <connections>
+                                                <action selector="onChainItemClicked:" destination="Y6W-OH-hqX" id="IhQ-Ib-2Gq"/>
                                             </connections>
                                         </command>
                                     </children>

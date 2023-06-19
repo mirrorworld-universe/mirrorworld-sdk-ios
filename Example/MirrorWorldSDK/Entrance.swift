@@ -27,6 +27,8 @@ class Entrance :UIViewController{
                 selectedChain = MWChain.Polygon
             }else if(buttonName == "BNB"){
                 selectedChain = MWChain.BNB
+            }else if(buttonName == "SUI"){
+                selectedChain = MWChain.SUI
             }else{
                 print("⚠️ Warning: Unknwon chain:"+buttonName)
             }
@@ -62,6 +64,8 @@ class Entrance :UIViewController{
                     setPolygonUIData()
                 }else if(selectedChain == MWChain.BNB){
                     setBNBUIData()
+                }else if(selectedChain == MWChain.SUI){
+                    setSUIUIData()
                 }else{
                     print("⚠️ Warning: Unknown chain")
                 }
@@ -174,6 +178,25 @@ class Entrance :UIViewController{
               "searchNFTsByOwner"]),
             (moudleTitle:"Metadata",MethodList:[
               "getCollectionFilterInfo","getNFTInfo","getCollectionsInfo","getNFTEvents","Metadata searchNFTs","recommentSearchNFT","getNFTs","getMarketplaceEvents"])
+        ]
+    }
+    
+    func setSUIUIData(){
+        DataModel.shared.chain = MWChain.SUI
+        DataModel.shared.title = "Mirror World SDK(SUI)";
+        DataModel.shared.data = [
+            (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
+            (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactionByDigest","getTransactionBySignature","getTokens","transferSUI","transferToken"]),
+            (moudleTitle:"Asset",MethodList:[
+                "getMintedCollections",
+                "getMintedNFTsOnCollection",
+                  "mintCollection",
+                  "mintNFT",
+                  "queryNFT",
+                  "searchNFTs",
+                  "searchNFTsByOwner"]
+            )
         ]
     }
 }

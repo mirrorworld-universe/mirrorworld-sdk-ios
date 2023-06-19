@@ -114,6 +114,10 @@ extension ViewController:UITableViewDataSource,UITableViewDelegate{
             var evmView:EVMAPIView = EVMAPIView()
             evmView.Init(textView: textView)
             evmView.onAPISelected(view, paramtersView: paramtersView, loadingActive: loadingActive, dataSource: dataSource, tableView: tableView, didSelectRowAt: indexPath)
+        }else if(DataModel.shared.chain == MWChain.SUI){
+            var evmView:SUIAPIView = SUIAPIView()
+            evmView.Init(textView: textView)
+            evmView.onAPISelected(view, paramtersView: paramtersView, loadingActive: loadingActive, dataSource: dataSource, tableView: tableView, didSelectRowAt: indexPath)
         }else{
             
         }
