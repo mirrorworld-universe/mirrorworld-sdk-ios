@@ -187,7 +187,7 @@ class Entrance :UIViewController{
         DataModel.shared.data = [
             (moudleTitle:"Authentication",MethodList:["startLogin","guestLogin","logout","isLogged","loginWithEmail"]),
             (moudleTitle:"Client APIs",MethodList:["openWallet","openMarket","queryUser"]),
-            (moudleTitle:"Wallet",MethodList:["getTransactionByDigest","getTransactionBySignature","getTokens","transferSUI","transferToken"]),
+            (moudleTitle:"Wallet",MethodList:["getTransactionByDigest","getTokens","transferSUI","transferToken"]),
             (moudleTitle:"Asset",MethodList:[
                 "getMintedCollections",
                 "getMintedNFTsOnCollection",

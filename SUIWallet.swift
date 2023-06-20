@@ -50,7 +50,7 @@ import Foundation
     
     @objc public func transferToken(to_publickey:String,amount:Int,token:String,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetConfirmation,APIPath:"transfer-token")
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.Wallet,APIPath:"transfer-token")
             let params = [
                 "to_publickey":to_publickey,
                 "amount":amount,
@@ -72,7 +72,7 @@ import Foundation
     
     @objc public func transferSUI(to_publickey:String,amount:Int,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetConfirmation,APIPath:"transfer-sui")
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.Wallet,APIPath:"transfer-sui")
             let params = [
                 "to_publickey":to_publickey,
                 "amount":amount

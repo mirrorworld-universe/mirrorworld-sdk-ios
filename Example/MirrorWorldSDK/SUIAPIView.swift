@@ -129,7 +129,7 @@ class SUIAPIView{
                 
                 let res = response?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
                 
-                self.Log("Get wallet tokens:\(res ?? "null")")
+                self.Log("result:\(res ?? "null")")
                 loadingActive.stopAnimating()
             } onFailed: {code, error in
                 self.Log("\(code):\(String(describing: error))")
@@ -157,13 +157,16 @@ class SUIAPIView{
                 let name = (datas.first(where: {$0.keyText == "name"})?.valueText)! as! String
                 let symbol = (datas.first(where: {$0.keyText == "symbol"})?.valueText)! as! String
                 let description = (datas.first(where: {$0.keyText == "description"})?.valueText)! as! String
-                let creators = (datas.first(where: {$0.keyText == "creators"})?.valueText)! as! [String]
                 var creators_arr:[String] = []
-                creators.split(separator: ",").forEach { subStr in
-                    creators_arr.append(contentsOf: subStr)
+                
+                let creatorsStr = (datas.first(where: {$0.keyText == "creators"})?.valueText)! as! String
+                if(creatorsStr != ""){
+                    creatorsStr.split(separator: ",").forEach { subStr in
+                        creators_arr.append(String(subStr))
+                    }
                 }
                 
-                MWSDK.SUI.Asset.mintCollection(name:name,symbol: symbol, description: description,creators: creators,onSuccess: { data in
+                MWSDK.SUI.Asset.mintCollection(name:name,symbol: symbol, description: description,creators: creators_arr,onSuccess: { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
 
@@ -181,8 +184,14 @@ class SUIAPIView{
                 let image = (datas.first(where: {$0.keyText == "image"})?.valueText)! as! String
                 let description = (datas.first(where: {$0.keyText == "description"})?.valueText)! as! String
                 let to_wallet_address = (datas.first(where: {$0.keyText == "to_wallet_address"})?.valueText)! as! String
+                struct Item: Decodable {
+                    let key: String
+                    let value: String
+                }
+                var attributes:[[String:String]] = []
+                attributes.append(["key": "face", "value": "round"])
                 
-                MWSDK.SUI.Asset.mintNFT(collection_address:collection_address,name: name,image_url: image,attributes: "",description: description,to_wallet_address:to_wallet_address,onSuccess: { data in
+                MWSDK.SUI.Asset.mintNFT(collection_address:collection_address,name: name,image_url: image,attributes: attributes,description: description,to_wallet_address:to_wallet_address,onSuccess: { data in
                     self.Log(data)
                     loadingActive.stopAnimating()
 
@@ -193,7 +202,7 @@ class SUIAPIView{
             }
         case "queryNFT":
             view.addSubview(paramtersView)
-            paramtersView.setParams(keys: [.collection_address])
+            paramtersView.setParams(keys: [.nft_object_id])
             paramtersView.paramtersJson = {datas in
                 let nft_object_id = (datas.first(where: {$0.keyText == "nft_object_id"})?.valueText)! as! String
                 
@@ -270,7 +279,10 @@ class SUIAPIView{
             paramtersView.setParams(keys: [.to_publickey,.amount])
             paramtersView.paramtersJson = {datas in
                 let to_publickey = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
-                let amount = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! Int
+                let amountStr = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! String
+                let formatter = NumberFormatter()
+                    let someString = datas.first(where: {$0.keyText == "limit"})?.valueText
+                let amount:Int = formatter.number(from: amountStr as! String) as! Int
                 
                 MWSDK.SUI.Wallet.transferSUI(to_publickey:to_publickey,amount:amount,onSuccess: { data in
                     self.Log(data)
@@ -285,7 +297,10 @@ class SUIAPIView{
             paramtersView.setParams(keys: [.to_publickey,.amount,.token_address])
             paramtersView.paramtersJson = {datas in
                 let to_publickey = (datas.first(where: {$0.keyText == "to_publickey"})?.valueText)! as! String
-                let amount = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! Int
+                let amountStr = (datas.first(where: {$0.keyText == "amount"})?.valueText)! as! String
+                let formatter = NumberFormatter()
+                    let someString = datas.first(where: {$0.keyText == "limit"})?.valueText
+                let amount:Int = formatter.number(from: amountStr as! String) as! Int
                 let token = (datas.first(where: {$0.keyText == "token_address"})?.valueText)! as! String
                 
                 MWSDK.SUI.Wallet.transferToken(to_publickey:to_publickey,amount:amount,token:token,onSuccess: { data in

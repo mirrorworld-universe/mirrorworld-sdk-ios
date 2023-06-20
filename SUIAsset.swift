@@ -51,7 +51,7 @@ import Foundation
     
     @objc public func mintCollection(name:String,symbol:String,description:String,creators:[String],onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetConfirmation,APIPath:"transactions-status")
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetMint,APIPath:"collection")
             let params = [
                 "name":name,
                 "symbol":symbol,
@@ -75,7 +75,7 @@ import Foundation
     
     @objc public func mintNFT(collection_address:String,name:String,image_url:String,attributes:Any,description:String,to_wallet_address:String,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetConfirmation,APIPath:"transactions-status")
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetMint,APIPath:"nft")
             let params = [
                 "collection_address":collection_address,
                 "name":name,
@@ -119,7 +119,7 @@ import Foundation
     
     @objc public func searchNFTsByOwner(owner_address:String,onSuccess:onSuccess,onFailed:onFailed){
         self.checkAccessToken { succ in
-            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetNFT,APIPath:owner_address)
+            let url = MirrorUrlUtils.shard.getMirrorUrl(serviceEnum:MirrorService.AssetNFT,APIPath:"owner")
             let params = [
                 "owner_address":owner_address
             ] as [String : Any]
