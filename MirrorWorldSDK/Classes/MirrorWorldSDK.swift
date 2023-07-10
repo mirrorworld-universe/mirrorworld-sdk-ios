@@ -13,7 +13,7 @@ public let MWSDK = MirrorWorldSDK.share
 @objc public class MirrorWorldSDK: NSObject {
    @objc public static let share = MirrorWorldSDK()
     
-    public var SDKVersion:String = "2.1.4"
+    public var SDKVersion:String = "2.2.0"
     
     public typealias loginListent = ((_ s:Bool)->Void)?
 
