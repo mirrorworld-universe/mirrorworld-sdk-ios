@@ -57,7 +57,33 @@ import UIKit
         }
     }
     
+    public var walletUrl:String{
+//        return "https://auth.mirrorworld.fun/"
+        switch self {
+        case .StagingDevNet:
+            return "https://auth-next-staging.mirrorworld.fun/v1/assets/tokens?useSchemeRedirect=true"
+        case .StagingMainNet:
+            return "https://auth-next-staging.mirrorworld.fun/v1/assets/tokens?useSchemeRedirect=true"
+        case .DevNet:
+            return "https://auth-next.mirrorworld.fun/v1/assets/tokens?useSchemeRedirect=true"
+        case .MainNet:
+            return "https://auth-next.mirrorworld.fun/v1/assets/tokens?useSchemeRedirect=true"
+        }
+    }
     
+    public var loginPageUrl:String{
+//        return "https://auth.mirrorworld.fun/"
+        switch self {
+        case .StagingDevNet:
+            return "https://auth-next-staging.mirrorworld.fun/v1/auth/login"
+        case .StagingMainNet:
+            return "https://auth-next-staging.mirrorworld.fun/v1/auth/login"
+        case .DevNet:
+            return "https://auth-next.mirrorworld.fun/v1/auth/login"
+        case .MainNet:
+            return "https://auth-next.mirrorworld.fun/v1/auth/login"
+        }
+    }
     
     
     var marketRoot:String{

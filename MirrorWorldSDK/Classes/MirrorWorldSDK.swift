@@ -172,7 +172,6 @@ public let MWSDK = MirrorWorldSDK.share
     
     /**
      * This method handles URLScheme. If you do not call this method, you will not be able to get the callback of login information
-     *
      */
     @objc public func handleOpen(url:URL){
         sdkProtol.urlSchemeDecode(url: url)
@@ -199,12 +198,13 @@ public let MWSDK = MirrorWorldSDK.share
     
     @objc private func doOpenWallet(controller:UIViewController?){
         authMoudle.checkAccessToken {[weak self] succ in
-            var walletUrl = (self?.sdkConfig.environment.mainRoot ?? "")
-            if succ{
-                walletUrl = (self?.sdkConfig.environment.mainRoot ?? "") + "jwt?key=" + MirrorWorldSDKAuthData.share.access_token
-            }else{
-                walletUrl = (self?.sdkConfig.environment.mainRoot ?? "")
-            }
+            var walletUrl = (self?.sdkConfig.environment.walletUrl ?? "")
+//            if succ{
+//                walletUrl = (self?.sdkConfig.environment.walletUrl ?? "") + "jwt?key=" + MirrorWorldSDKAuthData.share.access_token
+//            }else{
+//                walletUrl = (self?.sdkConfig.environment.walletUrl ?? "")
+//            }
+            MWLog.console("walletUrl:"+walletUrl)
             guard walletUrl.count > 0 else { return }
             let url = URL(string: walletUrl)!
             let auth = MirrorWorldLoginAuthController.init(url: url)
