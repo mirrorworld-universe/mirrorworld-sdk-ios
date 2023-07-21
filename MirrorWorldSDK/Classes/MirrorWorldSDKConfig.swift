@@ -42,20 +42,6 @@ import UIKit
 //    case DevNet = 3
 //    #endif
     
-   
-    
-   public var mainRoot:String{
-        switch self {
-        case .StagingDevNet:
-            return "https://auth-staging.mirrorworld.fun/"
-        case .StagingMainNet:
-            return "https://auth-staging.mirrorworld.fun/"
-        case .DevNet:
-            return "https://auth.mirrorworld.fun/"
-        case .MainNet:
-            return "https://auth.mirrorworld.fun/"
-        }
-    }
     
     public var walletUrl:String{
 //        return "https://auth.mirrorworld.fun/"
@@ -72,7 +58,6 @@ import UIKit
     }
     
     public var loginPageUrl:String{
-//        return "https://auth.mirrorworld.fun/"
         switch self {
         case .StagingDevNet:
             return "https://auth-next-staging.mirrorworld.fun/v1/auth/login"
@@ -82,6 +67,19 @@ import UIKit
             return "https://auth-next.mirrorworld.fun/v1/auth/login"
         case .MainNet:
             return "https://auth-next.mirrorworld.fun/v1/auth/login"
+        }
+    }
+    
+    public var approvePageUrl:String{
+        switch self {
+        case .StagingDevNet:
+            return "https://auth-next-staging.mirrorworld.fun/v1/approve/"
+        case .StagingMainNet:
+            return "https://auth-next-staging.mirrorworld.fun/v1/approve/"
+        case .DevNet:
+            return "https://auth-next.mirrorworld.fun/v1/approve/"
+        case .MainNet:
+            return "https://auth-next.mirrorworld.fun/v1/approve/"
         }
     }
     

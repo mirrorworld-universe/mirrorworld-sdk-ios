@@ -42,8 +42,8 @@ import UIKit
             let uuid:String = (data?["uuid"] as? String)!
             MirrorSecurityVerificationShared.share.bindUUID = uuid
             print("requestActionAuthorization bindUUID:\(String(describing: MirrorSecurityVerificationShared.share.bindUUID))")
-            let urlString =  MirrorUrlUtils.shard.getUrlHost(service: MirrorService.Auth)
-              let approve = urlString + "/approve/" + uuid + "?key=" + MirrorWorldSDKAuthData.share.access_token
+            var approveUrl = MWSDK.sdkConfig.environment.approvePageUrl
+              let approve = approveUrl + uuid + "?key=" + MirrorWorldSDKAuthData.share.access_token
               DispatchQueue.main.async {
                   guard let url = URL(string: approve) else {
                   MWLog.console("please check your param.")
