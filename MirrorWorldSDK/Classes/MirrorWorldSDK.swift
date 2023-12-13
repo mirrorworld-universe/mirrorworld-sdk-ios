@@ -13,7 +13,7 @@ public let MWSDK = MirrorWorldSDK.share
 @objc public class MirrorWorldSDK: NSObject {
    @objc public static let share = MirrorWorldSDK()
     
-    public var SDKVersion:String = "2.2.0"
+    public var SDKVersion:String = "2.2.1"
     
     public typealias loginListent = ((_ s:Bool)->Void)?
 
@@ -118,7 +118,9 @@ public let MWSDK = MirrorWorldSDK.share
      * baseController： baseController will present of SFSafariViewController
      */
     
-    @objc public func startLogin(onSuccess:@escaping (_ userInfo:[String:Any]?)->(),onFail:@escaping ()->()){
+    @objc public func startLogin(
+        onSuccess:@escaping (_ userInfo:[String:Any]?)->(),
+        onFail:@escaping ()->()){
         self.onSuccess = onSuccess
         self.onFail = onFail
         loginAuth(Self.getBaseViewController())
@@ -209,6 +211,7 @@ public let MWSDK = MirrorWorldSDK.share
             let url = URL(string: walletUrl)!
             let auth = MirrorWorldLoginAuthController.init(url: url)
             controller?.present(auth, animated: true)
+            self?.loginAuthController = auth
         }
     }
     
@@ -284,6 +287,13 @@ extension MirrorWorldSDK{
         }
         sdkProtol.onWalletLogOut = {[weak self] in
             self?.onWalletLogOut?()
+            if let controller = self?.loginAuthController {
+              // controller不为nil，可以使用
+              controller.dismiss(animated: true)
+            } else {
+              // controller为nil，可能被释放了
+              print("controller is nil")
+            }
         }
         sdkProtol.authorizationTokenBlock = {[weak self] (uuid, token) in
             self?.authMoudle.authorization.callBackToken(uuid: uuid,token: token)
@@ -304,6 +314,7 @@ extension MirrorWorldSDK{
             let url = URL(string: walletUrl)!
             let auth = MirrorWorldLoginAuthController.init(url: url)
             topvc?.present(auth, animated: true)
+            self.loginAuthController = auth
         }
     }
     
